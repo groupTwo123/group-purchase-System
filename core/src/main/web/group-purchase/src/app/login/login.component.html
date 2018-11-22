@@ -1,0 +1,47 @@
+l
+<div class="">
+	<div class="row top">
+		<div class="col-sm-3 text-right ">
+			<img src="../../assets/img/logo.jpg" class="logocss">
+		</div>
+		<div class="col-sm-4 huanyinbg" >
+			<p class="huanyin">欢迎登陆</p>
+		</div>
+	</div>
+	<div class="row loginboxbg" >
+		<div class="col-sm-8"></div>
+		<div class="col-sm-3 loginbox ">
+			<div class="row text-center" >
+				<div class="col-sm-6 "  >
+					<p  [ngClass]="{'pick':loginWay=='mobile', 'unpick':loginWay=='Id'}" (click)="changeLoginWay('mobile')">手机登陆</p>
+				</div>
+				<div class="col-sm-6">
+					<p  [ngClass]="{'pick':loginWay=='Id' ,'unpick':loginWay=='mobile'}" (click)="changeLoginWay('Id')">账号登陆</p>
+				</div>
+
+			</div>
+			<div class="row" style="margin-top: 40px">
+        <div class="col-sm-12">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="请输入账号" [(ngModel)]="id" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+			</div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" >@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="密码" [(ngModel)]="password" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+		</div>
+		<div class="col-sm-1"></div>
+	</div>
+</div>
+
