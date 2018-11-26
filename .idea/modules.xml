@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/core/group-purchase.iml" filepath="$PROJECT_DIR$/core/group-purchase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/group-purchase-System.iml" filepath="$PROJECT_DIR$/group-purchase-System.iml" />
+    </modules>
+  </component>
+</project>

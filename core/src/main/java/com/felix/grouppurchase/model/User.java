@@ -1,28 +1,29 @@
 package com.felix.grouppurchase.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.UUID;
 
 
-public class User {
-    private Integer id;
+public class User implements Serializable {
+    private String id;
     private String userName;
-    private Integer gender;
-    private Date birth;
+    private String gender;
+    private String birth;
     private String phone;
     private String email;
     private String password;
     private Integer type;
     private String area;
     private Integer level;
-    private double vacancy;
+    private String vacancy;
     private String volumeManagerId;
 
 
-    public Integer getId() {
+    public String getId(String id) {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,19 +35,19 @@ public class User {
         this.userName = userName;
     }
 
-    public Integer getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
@@ -98,11 +99,11 @@ public class User {
         this.level = level;
     }
 
-    public double getVacancy() {
+    public String getVacancy() {
         return vacancy;
     }
 
-    public void setVacancy(double vacancy) {
+    public void setVacancy(String vacancy) {
         this.vacancy = vacancy;
     }
 

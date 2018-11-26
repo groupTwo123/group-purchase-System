@@ -1,13 +1,15 @@
 package com.felix.grouppurchase.model;
 
+import java.io.Serializable;
+
 /**
- * @Date: 2018/11/22 10:07
+ * @Date: 2018/11/22 15:25
  * @Author: fangyong
  */
-public class Test {
-    private Integer id;;
+public class CommodityType implements Serializable {
+    private Integer id;
     private String name;
-    private Integer gender;
+    private String pink;
 
     public Integer getId() {
         return id;
@@ -25,11 +27,11 @@ public class Test {
         this.name = name;
     }
 
-    public Integer getGender() {
-        return gender;
+    public String getPink() {
+        return pink;
     }
 
-    public void setGender(Integer gender) {
-        this.gender = gender;
+    public void setPink(String pink) {
+        this.pink = pink;
     }
 }
