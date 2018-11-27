@@ -1,0 +1,55 @@
+.topBox{
+  height: 30px;
+  background-color: #fbf6ff;
+  box-shadow: 0px 0px 5px #888888;
+
+}
+.aStyle{
+  font-size: 15px;
+  font-family:YouYuan;
+  cursor: pointer;
+}
+.pStyle{
+  font-size: 12px;
+  font-family:YouYuan;
+}
+.logocss{
+  height: 120px;
+}
+.marTop50{
+  margin-top: 50px;
+}
+.searchCss{
+  width:40px;
+  background-color: #cb00cb;
+  border-radius: 2px;
+  text-align: center;
+}
+.searchI{
+  font-size: 20px;
+  color: white;
+  margin-top:9px;
+}
+.searchBtn{
+  width:90px;
+  background-color:#cb00cb ;
+  color: white;
+  font-family:YouYuan;
+  font-size: 15px;
+  letter-spacing:5px;
+}
+.classificationHeight{
+  height: 500px;
+
+}
+.classificationLeft{
+  background-color: #e9e0ff;
+  box-shadow: 0px 0px 10px #888888;
+}
+.classificationLeftAstyle{
+  color: #000000;
+  font-family:SimHei ;
+  font-size: 15px;
+  cursor:pointer;
+
+}
