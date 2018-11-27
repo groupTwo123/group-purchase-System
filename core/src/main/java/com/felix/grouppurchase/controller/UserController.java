@@ -30,8 +30,8 @@ public class UserController {
      * @Description: 会员用户注册
      * @params: id, userName, gender, birth, phone, email, password, area
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public HashMap<String, Object> userRegister(String id, String userName, String gender, String birth, String phone, String email, String password, String area, Integer type) {
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String userRegister(String id, String userName, String gender, String birth, String phone, String email, String password, String area, Integer type,String callback) {
         User user = new User();
         user.setId(id);
         user.setUserName(userName);
@@ -45,11 +45,11 @@ public class UserController {
         userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
         JsonTransfer s = new JsonTransfer();
         try {
-            HashMap<String, Object> result1 = s.result(1, "", user);
+            String result1 = s.result(1, "", user , callback);
             return result1;
         } catch (Exception e) {
             e.printStackTrace();
-            HashMap<String, Object> result2 = s.result(0, "系统异常", user);
+            String result2 = s.result(0, "系统错误", user, callback);
             return result2;
         }
     }
