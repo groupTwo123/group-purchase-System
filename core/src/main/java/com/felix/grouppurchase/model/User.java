@@ -12,12 +12,20 @@ public class User implements Serializable {
     private String phone;
     private String email;
     private String password;
-    private Integer type;
+    private String type;
     private String area;
     private Integer level;
     private String vacancy;
     private String volumeManagerId;
+    private String stage;
 
+    public String getStage() {
+        return stage;
+    }
+
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
 
     public String getId() {
         return id;
@@ -75,11 +83,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

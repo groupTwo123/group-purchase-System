@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.UUID;
 
 
 /**
@@ -31,7 +29,7 @@ public class UserController {
      * @params: id, userName, gender, birth, phone, email, password, area
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String userRegister(String id, String userName, String gender, String birth, String phone, String email, String password, String area, Integer type,String callback) {
+    public String userRegister(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type, String callback) {
         User user = new User();
         user.setId(id);
         user.setUserName(userName);
@@ -42,7 +40,12 @@ public class UserController {
         user.setPassword(password);
         user.setArea(area);
         user.setType(type);
-        userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
+        if (type.equals(UserUtil.USER_VIP)) {
+            userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
+        }
+        if (type.equals(UserUtil.USER_BUSINESS)){
+            userService.registerBusiness(id, userName, gender, birth, phone, email, password, area,UserUtil.USER_BUSINESS, UserUtil.BUSINESS_STAGE1);
+        }
         JsonTransfer s = new JsonTransfer();
         try {
             String result1 = s.result(1, "", user , callback);
@@ -52,5 +55,17 @@ public class UserController {
             String result2 = s.result(0, "系统错误", user, callback);
             return result2;
         }
+    }
+    
+    /**
+    *
+    * @Author: fangyong
+    * @date: 2018/11/27 15:56
+    * @Description: 用户登录
+    * @params: id，password
+    */
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(String id, String password, String callback){
+        return userService.login(id, password,callback);
     }
 }

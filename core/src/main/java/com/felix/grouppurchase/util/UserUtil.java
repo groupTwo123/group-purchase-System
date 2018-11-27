@@ -12,4 +12,8 @@ public class UserUtil {
 
     public static final String USER_ADMINISTRATOR = "2"; //管理
 
+    public static final String BUSINESS_STAGE1 = "0"; //商家注册审核中
+
+    public static final String BUSINESS_STAGE2 = "1"; //商家注册已审核
+
 }
