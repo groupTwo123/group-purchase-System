@@ -1,5 +1,7 @@
 package com.felix.grouppurchase.util;
 
+import net.minidev.json.JSONObject;
+
 import java.util.HashMap;
 
 /**
@@ -15,11 +17,13 @@ public class JsonTransfer {
     * @Description: 用户注册json格式方法
     * @params:
     */
-    public HashMap<String, Object> result(Integer stage, String msg, Object data){
+    public String result(Integer stage, String msg, Object data, String callback){
         HashMap<String, Object> map = new HashMap<>();
         map.put("stage",stage);
         map.put("msg",msg);
         map.put("data",data);
-        return map;
+        JSONObject jsonObj = new JSONObject(map);
+        String result=callback+"("+jsonObj.toString()+")";
+        return result;
     }
 }
