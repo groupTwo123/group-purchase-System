@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String volumeManagerId;
 
 
-    public String getId(String id) {
+    public String getId() {
         return id;
     }
 
