@@ -170,8 +170,19 @@ export class RegisterComponent implements OnInit {
           area:this.province+'-'+this.city+'-'+this.district,
         };
         console.log(send);
-        this.$.post(url,send,res=>{
-          console.log(res)
+        this.$.ajax(url,{
+          data:send,
+          dataType:"jsonp",
+          jsonp:"callback",
+          type:"GET",
+          success:json=>{
+            if(json.stage=='1'){
+              this.nextStep();
+            }
+            else{
+              alert("注册失败");
+            }
+          }
         })
       }
       else{

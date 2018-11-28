@@ -42,8 +42,6 @@
   height: 35px;
   border-bottom:2px solid orangered;
   font-family: 'Microsoft YaHei';
-
-
 }
 .unpick{
   margin-top: 10px;
@@ -51,3 +49,13 @@
   font-family: 'Microsoft YaHei';
   cursor: pointer;
 }
+.login-btn{
+  width:100%
+}
+.login-a{
+  cursor: pointer;
+  color: dodgerblue;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
