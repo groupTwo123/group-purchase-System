@@ -1,3 +1,4 @@
+use group_purchase;
 CREATE TABLE `tb_user` (
   `id` varchar(32) NOT NULL COMMENT '自增id',
   `userName` varchar(25) DEFAULT NULL COMMENT '用户名称',
@@ -12,6 +13,7 @@ CREATE TABLE `tb_user` (
   `vacancy` double(10,2) DEFAULT '0.00' COMMENT '用户余额',
   `rebate_id` varchar(32) DEFAULT NULL COMMENT '返利id',
   `volume_manage_id` varchar(32) DEFAULT NULL COMMENT '仓库管理id',
+  `stage` tinyint(2) DEFAULT 0 COMMENT '商家注册状态',
   PRIMARY KEY (`id`),
   KEY `index_name` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
