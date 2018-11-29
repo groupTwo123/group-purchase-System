@@ -32,4 +32,5 @@ public interface UserMapper {
     //用户登录
     @Select("select * from tb_user where id = #{id} and password = #{password}")
     User userLogin(@Param("id") String id, @Param("password") String password);
+
 }
