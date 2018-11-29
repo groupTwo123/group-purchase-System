@@ -1,12 +1,12 @@
 package com.felix.grouppurchase.util;
 
-import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringEscapeUtils;
+
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 
 /**
  * @Date: 2018/11/28 21:49
@@ -71,7 +71,9 @@ public class GetSMS {
         JsonTransfer jsonObject = new JsonTransfer();
         System.out.println(jsonObject);
         String data = sb.toString();
-        String result1 = jsonObject.result(1,"respCode",data,callback);
+        HashMap<String,String> hashMap= new HashMap<String,String>();
+        hashMap.put("code",randNum);
+        String result1 = jsonObject.result(1,"respCode",hashMap,callback);
         System.out.println("状态码：" + data + "验证码：" + randNum);
         System.out.println(!data.equals("00000"));
         return result1;

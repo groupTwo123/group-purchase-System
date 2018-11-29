@@ -3,6 +3,7 @@ package com.felix.grouppurchase.controller;
 import com.felix.grouppurchase.util.GetSMS;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/gpsys/sendSMS")
 public class SendSms {
 
-    @RequestMapping(value = "/sendMessage")
+    @RequestMapping(value = "/sendMessage" , method = RequestMethod.GET)
     public String sendMessage(String to,String callback) {
         return GetSMS.getMssage(to,callback);
     }
