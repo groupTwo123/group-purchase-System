@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @Author: fangyong
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService{
 
     private final static transient Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -47,4 +47,5 @@ public class UserServiceImpl implements IUserService {
         String result2 = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
         return result2;
     }
+
 }
