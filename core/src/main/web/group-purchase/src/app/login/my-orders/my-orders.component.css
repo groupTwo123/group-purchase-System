@@ -1,0 +1,30 @@
+.topBox{
+  border-right: 1px solid #dad8b9;
+  height: 50px;
+}
+.insideBox{
+  width: 98%;
+  height: 100%;
+
+}
+.boxPStyle{
+  font-family: SimHei;
+  font-size: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.boxPStyle:hover{
+  color:  #cb00cb
+}
+.topPick{
+  color: #cb00cb;
+  border-bottom: 1px solid #cb00cb;
+}
+.searchBtn{
+  width:90px;
+  background-color:#cb00cb ;
+  color: white;
+  font-family:YouYuan;
+  font-size: 15px;
+  letter-spacing:5px;
+}

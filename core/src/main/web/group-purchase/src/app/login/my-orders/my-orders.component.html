@@ -1,0 +1,43 @@
+<div class="row mt-2 ml-2">
+  <div class="col-sm-1 topBox text-center " *ngFor="let item of topDataObj" >
+    <div class="insideBox " [ngClass]="{'topPick':ordersTypeChose==item.id}">
+      <p class="boxPStyle" (click)="getOrdersByType(item.id)">{{item.name}}</p>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-sm-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="输入商品订单号或标题进行搜索" >
+      <span class="input-group-btn">
+          <button class="btn searchBtn" type="button">搜索</button>
+        </span>
+    </div>
+  </div>
+</div>
+<div class="row mt-2 text-center">
+  <div class="col-sm-12 ">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <th>商品</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>商品操作</th>
+      <th>实际付款</th>
+      <th>交易状态</th>
+      <th>交易操作</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
