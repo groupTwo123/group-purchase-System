@@ -1,8 +1,16 @@
 .topBox{
   height: 30px;
-  background-color: #fbf6ff;
+  background-color: #ffe7f8;
   box-shadow: 0px 0px 5px #888888;
 
+}
+.PUser{
+  font-size: 15px;
+  font-family:YouYuan;
+  cursor: pointer;
+}
+.PUser:hover{
+  color: #cb00cb;
 }
 .aStyle{
   font-size: 15px;
@@ -39,11 +47,11 @@
   letter-spacing:5px;
 }
 .classificationHeight{
-  height: 500px;
+  height: 460px;
 
 }
 .classificationLeft{
-  background-color: #e9e0ff;
+  background-color: #fffefd;
   box-shadow: 0px 0px 10px #888888;
 }
 .classificationLeftAstyle{
@@ -53,3 +61,88 @@
   cursor:pointer;
 
 }
+.classificationRight{
+  background-color: #fffefd;
+  box-shadow: 0px 0px 10px #888888;
+
+}
+.adverBoxCss{
+
+  border-bottom: 1px solid #cb00cb;
+  height: 40px;
+}
+.AdverPStyle{
+  font-family:SimHei;margin-top: 5px
+}
+.AdverRightPStyle{
+  font-family:SimHei;margin-top: 5px;
+  font-size:13px;
+}
+.adverRightPickCSS{
+  border-bottom: 2px solid #cb00cb ;
+}
+.boxStyle{
+  background-color: #fffefd;
+  box-shadow: 0px 0px 10px #888888;
+}
+.boxIStyle{
+  color:#cb00cb;
+  margin-left: 5px;
+  font-size: 20px;
+  margin-top:3px;
+  cursor: pointer;
+}
+.commodityTopPStyle{
+  font-family:SimHei;
+  margin-top: 8px;
+  font-size:16px;
+  color:white;
+}
+.searchResultPStyle{
+  cursor: pointer;
+  font-size: 15px;
+  font-family: SimHei;
+}
+.searchResultPStyle:hover{
+  color: #cb00cb
+}
+.indexBox{
+  border-top: 1px solid silver;
+  padding: 10px;
+}
+.indexP{
+  font-family: SimHei;
+  font-size: 15px;
+  cursor: pointer;
+}
+.indexP:hover{
+  color:#cb00cb
+}
+.recommendBox{
+  border:1px solid silver;
+  height: 600px;
+}
+
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-family: YouYuan;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-family: YouYuan;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-family: YouYuan;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-family: YouYuan;
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+
