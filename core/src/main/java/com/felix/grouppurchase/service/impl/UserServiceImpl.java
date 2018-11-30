@@ -45,6 +45,7 @@ public class UserServiceImpl implements IUserService{
         }
         HashMap<String, Object> map = new HashMap<>();
         map.put("username",user.getUserName());
+        map.put("type",user.getType());
         String result2 = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
         return result2;
     }
