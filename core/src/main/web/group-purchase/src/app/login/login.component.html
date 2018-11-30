@@ -1,5 +1,5 @@
 
-<div class="" >
+<div class=""  *ngIf="!homePageShow">
 	<div class="row top">
 		<div class="col-sm-3 text-right ">
 			<img src="../../assets/img/logo.jpg" class="logocss">
@@ -98,6 +98,6 @@
 	</div>
 </div>
 <div>
-  <app-home-page [usernameFromParent]="username"></app-home-page>
+  <app-home-page [usernameFromParent]="username" *ngIf="homePageShow"></app-home-page>
 </div>
 
