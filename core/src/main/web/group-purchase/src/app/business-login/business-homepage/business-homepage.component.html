@@ -1,0 +1,187 @@
+<div class="row">
+  <div class="col-sm-2 leftBox" id="leftBox">
+    <div class="row">
+      <div class="col-sm-12">
+        <img src="../../../assets/logo2.1.png" class="logoCss">
+      </div>
+    </div>
+    <div class="row mt-4 leftHover" [ngClass]="{'leftPick':navPick=='0'}" (click)="leftPickFun('0')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-home leftIStyle" aria-hidden="true"></i>首页</p>
+      </div>
+    </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='1'}" (click)="leftPickFun('1')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-user leftIStyle" aria-hidden="true"></i>账号信息</p>
+      </div>
+    </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='2'}" (click)="leftPickFun('2')">
+      <div class="col-sm-12 ml-3 mt-2" >
+        <p class="leftPStyle"><i class="fa fa-shopping-bag leftIStyle" aria-hidden="true"></i>商品列表</p>
+      </div>
+    </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='3'}" (click)="leftPickFun('3')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>订单状态修改</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-10 rightBox" id="rightBox">
+    <div class="row rightTopBox">
+        <div class="col-sm-6 mt-3">
+          <p class="rightTopP"><i class="fa fa-bars leftIStyle" aria-hidden="true" ></i>美购网后台管理系统</p>
+        </div>
+        <div class="col-sm-3 mt-4 text-right">
+          <p class="rightTopP1">你好</p>
+        </div>
+        <div class="col-sm-1 mt-4">
+          <p class="rightTopP1">{{username}}</p>
+        </div>
+        <div class="col-sm-1 mt-4">
+          <p class="rightTopP1"><i class="fa fa-bell " aria-hidden="true"></i>通知</p>
+        </div>
+        <div class="col-sm-1 mt-4 ">
+          <p class="rightTopP1" style="cursor: pointer">退出登录</p>
+        </div>
+    </div>
+    <div class="row mt-4 ml-4" *ngIf="navPick=='0'">
+
+    </div>
+    <div class="row mt-4  " *ngIf="navPick=='1'">
+        <div class="col-sm-12">
+          <div class="row ml-4">
+            <div class="col-sm-2">
+              <!--<p class="rightCenterP">用户头像</p>-->
+              <img class="headImg" src="../../../assets/businessHead.gif">
+            </div>
+            <div class="col-sm-2 mt-5">
+              <button class="btn btn-outline-primary">上传商铺头像</button>
+            </div>
+          </div>
+          <div class="row ml-2">
+            <div class="col-sm-2 mt-4 text-right">
+              <p class="rightCenterP">店铺评价分数：</p>
+            </div>
+            <div class="col-sm-10">
+
+            </div>
+          </div>
+          <div class="row mt-2 ml-2 " >
+            <div class="col-sm-2 mt-2 text-center">
+              <p class="rightCenterP">账号主体：</p>
+            </div>
+            <div class="col-sm-8 boderStyle">
+              <div class="row">
+              <div class="col-sm-2 mt-2">
+                <p class="rightCenterP1">登录名：</p>
+              </div>
+              <div class="col-sm-10" *ngIf="!isChangeInfo">
+                <p>12</p>
+              </div>
+              <div class="col-sm-8" *ngIf="isChangeInfo">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">店铺名称：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">昵称：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">真实姓名：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">身份证账号：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">店铺所在地区：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2 mt-2">
+                  <p class="rightCenterP1">商家类型：</p>
+                </div>
+                <div class="col-sm-10" *ngIf="!isChangeInfo">
+                  <p>12</p>
+                </div>
+                <div class="col-sm-8" *ngIf="isChangeInfo">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row mt-4 mb-2" *ngIf="isChangeInfo">
+                <div class="col-sm-4 text-right"><button class="btn btn-success btn-sm" style="width: 100px;">密码修改</button> </div>
+                <div class="col-sm-4 text-center"><button class="btn btn-success btn-sm" style="width: 100px;">保存</button> </div>
+                <div class="col-sm-4 text-left"><button class="btn btn-danger btn-sm" style="width: 100px;">关闭</button> </div>
+              </div>
+            </div>
+            <div class="col-sm-1">
+              <a class="changeCss "  (click)="isChangeShow()"> <i class="fa fa-pencil" aria-hidden="true"></i>修改</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row mt-4 ml-4" *ngIf="navPick=='2'">
+      <div *ngIf="!isAddCommodity">
+        <div class="row  col-sm-12">
+          <div class="col-sm-10" >
+            <p class="commodityLostTopP"><i class="fa fa-shopping-bag" aria-hidden="true" style="margin-right:5px;"></i>您所有的商品有：</p>
+          </div>
+          <div class="col-sm-2 ">
+            <button class="btn btn-primary " (click)="addCommodityShow()">增加商品</button>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+      <div *ngIf="isAddCommodity">
+        <div class = "bg-model" id="bg-model">
+      　　<div class = 'bg-content ' >
+            <app-add-commodity></app-add-commodity>
+           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 ml-4" *ngIf="navPick=='3'">
+
+    </div>
+  </div>
+</div>
