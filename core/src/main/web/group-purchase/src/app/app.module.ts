@@ -16,6 +16,7 @@ import { BusinessHomepageComponent } from './business-login/business-homepage/bu
 import { AddCommodityComponent } from './business-login/business-homepage/add-commodity/add-commodity.component';
 import { BusinessLoginComponent } from './business-login/business-login.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BusinessRegisterComponent } from './business-login/business-register/business-register.component';
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -45,7 +46,8 @@ const appRoutes:Routes=[
     BusinessHomepageComponent,
     AddCommodityComponent,
     BusinessLoginComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    BusinessRegisterComponent
   ],
   imports: [
     BrowserModule,
