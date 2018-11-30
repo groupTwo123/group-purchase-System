@@ -51,9 +51,16 @@
     </div>
     <div class="row ">
       <div class="typeBox mt-2" *ngFor="let item of typechose;let i=index" >
-        <p class="typePStyle" >{{item.name}}<i class="fa fa-times "  style="margin-left: 5px ;color: red;cursor:pointer;" aria-hidden="true"></i></p>
+        <p class="typePStyle" >{{item.name}}<i class="fa fa-times "  style="margin-left: 5px ;color: red;cursor:pointer;" aria-hidden="true" (click)="deleteTypeChose(i)"></i></p>
       </div>
-
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-5 text-right">
+        <button class="btn btn-success">提交</button>
+      </div>
+      <div class="col-sm-6 text-left">
+        <button class="btn btn-danger">取消</button>
+      </div>
     </div>
   </div>
 </div>

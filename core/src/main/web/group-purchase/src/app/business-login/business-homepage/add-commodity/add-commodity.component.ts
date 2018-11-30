@@ -42,4 +42,8 @@ export class AddCommodityComponent implements OnInit {
       console.log(this.typechose)
     }
   }
+  //删除已选类型
+  deleteTypeChose(index){
+    this.typechose.splice(index,1)
+  }
 }
