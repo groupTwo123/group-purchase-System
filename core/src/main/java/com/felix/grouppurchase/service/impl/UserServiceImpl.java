@@ -4,6 +4,7 @@ import com.felix.grouppurchase.mapper.UserMapper;
 import com.felix.grouppurchase.model.User;
 import com.felix.grouppurchase.service.IUserService;
 import com.felix.grouppurchase.util.ErrorCodeDesc;
+import com.felix.grouppurchase.util.GetSMS;
 import com.felix.grouppurchase.util.JsonTransfer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,36 @@ public class UserServiceImpl implements IUserService{
         map.put("type",user.getType());
         String result2 = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
         return result2;
+    }
+
+    @Override
+    public String checkPhoneLogin(String phone, String callback) {
+        User user =  userMapper.checkPhone(phone);
+        JsonTransfer s = new JsonTransfer();
+        if (user == null){
+            String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+            return result1;
+        }
+        return GetSMS.getMssage(phone,callback);
+    }
+
+    @Override
+    public String checkPhoneRegister(String phone, String callback) {
+        User user =  userMapper.checkPhone(phone);
+        JsonTransfer s = new JsonTransfer();
+        if (user == null){
+            return GetSMS.getMssage(phone,callback);
+        }
+        String result1 = s.result(0,ErrorCodeDesc.USER_EXIST,"",callback);
+        return result1;
+    }
+
+    @Override
+    public String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback) {
+        userMapper.updateUserMessage(id,userName,gender,birth,phone,email,password,area);
+        JsonTransfer s = new JsonTransfer();
+        String result = s.result(1,"修改成功","",callback);
+        return result;
     }
 
 }

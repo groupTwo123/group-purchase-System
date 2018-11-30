@@ -10,4 +10,6 @@ public interface CommodityService {
     //获取所有商品类别
     String getAllCommodityType(String callback);
 
+    //获取仓库中所有商品的信息
+    String getAllCommodityInfo(String[] volumeIds, String callback);
 }

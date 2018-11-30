@@ -1,10 +1,7 @@
 package com.felix.grouppurchase.mapper;
 
 import com.felix.grouppurchase.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 
 /**
@@ -33,4 +30,14 @@ public interface UserMapper {
     @Select("select * from tb_user where id = #{id} and password = #{password}")
     User userLogin(@Param("id") String id, @Param("password") String password);
 
+    //检测数据库中是否存在该手机号码的用户
+    @Select("select * from tb_user where phone = #{phone}")
+    User checkPhone(@Param("phone") String phone);
+
+    //修改用户信息
+    @Update("update tb_user set userName =#{userName}, password=#{password}, gender=#{gender}, birth=#{birth},email=#{email},\n"+
+            " phone=#{phone}, area=#{area} where id=#{id}")
+    void updateUserMessage(@Param("id") String id, @Param("userName") String userName, @Param("gender") String gender,
+                           @Param("birth") String birth, @Param("phone") String phone, @Param("email") String email,
+                           @Param("password") String password, @Param("area") String area);
 }
