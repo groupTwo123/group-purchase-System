@@ -1,8 +1,11 @@
 package com.felix.grouppurchase.mapper;
 
 
+import com.felix.grouppurchase.model.Admin;
 import com.felix.grouppurchase.model.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface AdminMapper {
-    //获取所有用户类别
-    @Select("select * from tb_admin_type")
-    List<User> getAllAdminType();
+
+    @Select("select * from tb_admin where admin_id = #{adminId} and admin_password = #{adminPassword} ")
+    Admin adminLogin(@Param("adminId") String adminId, @Param("adminPassword") String adminPassword);
 }

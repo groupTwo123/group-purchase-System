@@ -31,8 +31,8 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public void registerBusiness(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type, String stage) {
-        userMapper.insertRegisterBusinessMessage(id, userName, gender, birth, phone, email, password, area, type, stage);
+    public void registerNormal(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type) {
+        userMapper.insertRegisterNormalMessage(id, userName, gender, birth, phone, email, password, area, type);
     }
 
     @Override
@@ -78,6 +78,37 @@ public class UserServiceImpl implements IUserService{
         JsonTransfer s = new JsonTransfer();
         String result = s.result(1,"修改成功","",callback);
         return result;
+    }
+
+    @Override
+    public String checkIdWithPhone(String id, String phone, String callback) {
+        String user = userMapper.checkIdWithPhone(id, phone);
+        JsonTransfer s = new JsonTransfer();
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("id",id);
+        if (user.equals("0")){
+            String result1 = s.result(0,"找不到该手机号匹配的ID，请重新输入","",callback);
+            return result1;
+        }
+        String result2 = s.result(1,"匹配成功",map,callback);
+        return result2;
+    }
+
+    @Override
+    public String resetPassword(String id, String password, String callback) {
+        userMapper.resetPassword(id, password);
+        JsonTransfer s = new JsonTransfer();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("id",id);
+        map.put("password",password);
+        try {
+            String result1 = s.result(1,"修改成功","map",callback);
+            return result1;
+        }catch (Exception e){
+            e.printStackTrace();
+            String result2 = s.result(0,"系统异常，修改失败",map,callback);
+            return result2;
+        }
     }
 
 }

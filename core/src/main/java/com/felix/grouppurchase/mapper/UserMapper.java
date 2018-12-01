@@ -18,13 +18,12 @@ public interface UserMapper {
                                @Param("birth") String birth, @Param("phone") String phone, @Param("email") String email,
                                @Param("password") String password, @Param("area") String area, @Param("type")String type);
 
-    //商家注册
+    //游客注册
     @Insert(" insert into tb_user(id, userName, password, gender, birth, phone, email, area, type, stage)\n" +
-            " values(#{id}, #{userName}, #{password}, #{gender}, #{birth}, #{phone}, #{email}, #{area}, #{type}, #{stage})")
-    void insertRegisterBusinessMessage(@Param("id") String id, @Param("userName") String userName, @Param("gender") String gender,
+            " values(#{id}, #{userName}, #{password}, #{gender}, #{birth}, #{phone}, #{email}, #{area}, #{type})")
+    void insertRegisterNormalMessage(@Param("id") String id, @Param("userName") String userName, @Param("gender") String gender,
                                        @Param("birth") String birth, @Param("phone") String phone, @Param("email") String email,
-                                       @Param("password") String password, @Param("area") String area, @Param("type") String type,
-                                       @Param("stage") String stage);
+                                       @Param("password") String password, @Param("area") String area, @Param("type") String type);
 
     //用户登录
     @Select("select * from tb_user where id = #{id} and password = #{password}")
@@ -40,4 +39,12 @@ public interface UserMapper {
     void updateUserMessage(@Param("id") String id, @Param("userName") String userName, @Param("gender") String gender,
                            @Param("birth") String birth, @Param("phone") String phone, @Param("email") String email,
                            @Param("password") String password, @Param("area") String area);
+
+    //会员用户重置密码
+    @Update("update tb_user set password = #{password} where id = #{id} ")
+    void resetPassword(@Param("id") String id, @Param("password") String password);
+
+    //检测数据库中是否有该商家的id与手机号码相符合
+    @Select("select count(1) from tb_user where id = #{id} and phone = #{phone}")
+    String checkIdWithPhone(String id, String phone);
 }

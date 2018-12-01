@@ -16,16 +16,9 @@ public class User implements Serializable {
     private String area;
     private Integer level;
     private String vacancy;
-    private String volumeManagerId;
-    private String stage;
+    private String rebateId;
+    private Integer stage;
 
-    public String getStage() {
-        return stage;
-    }
-
-    public void setStage(String stage) {
-        this.stage = stage;
-    }
 
     public String getId() {
         return id;
@@ -115,11 +108,19 @@ public class User implements Serializable {
         this.vacancy = vacancy;
     }
 
-    public String getVolumeManagerId() {
-        return volumeManagerId;
+    public String getRebateId() {
+        return rebateId;
     }
 
-    public void setVolumeManagerId(String volumeManagerId) {
-        this.volumeManagerId = volumeManagerId;
+    public void setRebateId(String rebateId) {
+        this.rebateId = rebateId;
+    }
+
+    public Integer getStage() {
+        return stage;
+    }
+
+    public void setStage(Integer stage) {
+        this.stage = stage;
     }
 }

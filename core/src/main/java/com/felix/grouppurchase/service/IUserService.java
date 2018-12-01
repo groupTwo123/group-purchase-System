@@ -1,8 +1,6 @@
 package com.felix.grouppurchase.service;
 
 
-import com.felix.grouppurchase.model.User;
-
 /**
  * @Date: 2018/11/22 16:02
  * @Author: fangyong
@@ -13,7 +11,7 @@ public interface IUserService {
     void registerUser(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);
 
     //商家用户注册
-    void registerBusiness(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type, String stage);
+    void registerNormal(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);
 
     //用户登录
     String login(String id, String password, String callback);
@@ -24,6 +22,12 @@ public interface IUserService {
     //注册第一步检测该手机号码是否第一次注册
     String checkPhoneRegister(String phone, String callback);
 
-    //忘记密码，修改用户信息
+    //修改用户信息
     String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback);
+
+    //重置密码
+    String resetPassword(String id, String password, String callback);
+
+    //检测输入的商家id是否与输入的手机号码相匹配
+    String checkIdWithPhone(String id, String phone, String callback);
 }

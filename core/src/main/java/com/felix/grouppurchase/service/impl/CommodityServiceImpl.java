@@ -3,15 +3,13 @@ package com.felix.grouppurchase.service.impl;
 import com.felix.grouppurchase.mapper.CommodityMapper;
 import com.felix.grouppurchase.model.CommodityType;
 import com.felix.grouppurchase.model.VolumeManage;
-import com.felix.grouppurchase.service.CommodityService;
+import com.felix.grouppurchase.service.ICommodityService;
 import com.felix.grouppurchase.util.JsonTransfer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,7 +17,7 @@ import java.util.List;
  * @Author: huangchuwen
  */
 @Service
-public class CommodityServiceImpl  implements CommodityService{
+public class CommodityServiceImpl  implements ICommodityService {
 
     private final static transient Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
 

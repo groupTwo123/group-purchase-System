@@ -1,7 +1,7 @@
 package com.felix.grouppurchase.controller;
 
 
-import com.felix.grouppurchase.service.AdminService;
+import com.felix.grouppurchase.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/gpsys/admin")
 public class AdminController {
     @Autowired
-    AdminService adminService;
+    IAdminService adminService;
 
     /**
-     * @Author: huangchuwen
-     * @date: 2018/11/27 22:46
-     * @Description: 获取所有商品类型
-     * @params: callback
-     */
-    @RequestMapping(value = "/getAdminType", method = RequestMethod.GET)
-    public String getAdminType( String callback){
-
-        return adminService.getAllAdminType(callback);
+    *
+    * @Author: fangyong
+    * @date: 2018/11/30 11:36
+    * @Description: 管理员登录
+    * @params:
+    */
+    @RequestMapping(value = "/adminLogin",method = RequestMethod.GET)
+    public String adminLogin(String adminId, String adminPassword, String callback){
+        return adminService.adminLogin(adminId,adminPassword,callback);
     }
 }

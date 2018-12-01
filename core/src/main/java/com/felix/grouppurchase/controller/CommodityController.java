@@ -1,13 +1,10 @@
 package com.felix.grouppurchase.controller;
 
-import com.felix.grouppurchase.model.VolumeManage;
-import com.felix.grouppurchase.service.CommodityService;
+import com.felix.grouppurchase.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @Date: 2018/11/27 22:46
@@ -18,7 +15,7 @@ import java.util.List;
 public class CommodityController {
 
     @Autowired
-    CommodityService commodityService;
+    ICommodityService commodityService;
 
     /**
      * @Author: huangchuwen

@@ -9,4 +9,8 @@ public class ErrorCodeDesc {
     public static final String USER_NOEXIST = "用户不存在";
 
     public static final String USER_EXIST = "用户已存在";
+
+    public static final String ADMIN_NOEXIST = "管理员不存在";
+
+    public static final String ADMIN_EXIST  = "管理员已存在";
 }

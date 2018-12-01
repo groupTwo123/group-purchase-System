@@ -42,16 +42,16 @@ public class UserController {
         if (type.equals(UserUtil.USER_VIP)) {
             userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
         }
-        if (type.equals(UserUtil.USER_BUSINESS)) {
-            userService.registerBusiness(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_BUSINESS, UserUtil.BUSINESS_STAGE1);
+        if (type.equals(UserUtil.USER_NORMAL)) {
+            userService.registerNormal(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_NORMAL);
         }
         JsonTransfer s = new JsonTransfer();
         try {
-            String result1 = s.result(1, "", user, callback);
+            String result1 = s.result(1, "注册成功", user, callback);
             return result1;
         } catch (Exception e) {
             e.printStackTrace();
-            String result2 = s.result(0, "系统错误", user, callback);
+            String result2 = s.result(0, "注册失败", user, callback);
             return result2;
         }
     }
@@ -66,12 +66,34 @@ public class UserController {
     public String login(String id, String password, String callback) {
         return userService.login(id, password, callback);
     }
-    
+
+    /**
+    *
+    * @Author: fangyong
+    * @date: 2018/11/30 17:44
+    * @Description: 验证手机号码与id是否对应
+    * @params: sellerId, sellerPhone, callback
+    */
+    @RequestMapping(value = "/confirmMessage", method = RequestMethod.GET)
+    public String confirmMessage(String id, String phone, String callback){
+        return userService.checkIdWithPhone(id, phone, callback);
+    }
+    /**
+    *
+    * @Author: fangyong
+    * @date: 2018/11/30 17:38
+    * @Description: 会员用户重置密码
+    * @params:
+    */
+    public String resetPassword(String id, String password, String callback){
+        return userService.resetPassword(id, password, callback);
+    }
+
     /**
     *
     * @Author: fangyong
     * @date: 2018/11/29 10:47
-    * @Description: 忘记密码
+    * @Description: 修改用户信息
     * @params:
     */
     @RequestMapping("/updateUserMessage")
