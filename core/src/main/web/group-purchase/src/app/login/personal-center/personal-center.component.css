@@ -1,0 +1,36 @@
+.logocss{
+  height: 120px;
+  top:-20px;
+  position: relative;
+}
+.topBox{
+  height: 70px;
+  background-color: #cb00cb;
+}
+.topPStyle{
+  font-family: YouYuan;
+  color: white;
+  font-size: 20px;
+  margin-top:30px;
+}
+.headportrait{
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  border: 2px solid silver;
+}
+.centerBox{
+  border: 1px solid #a0a0a0;
+  box-shadow: 0px 0px 10px #888888;
+}
+.centerPStyle{
+  font-family: SimHei;
+  font-size: 18px;
+}
+.centerIStyle{
+  margin-right: 5px;
+  color:  #cb00cb;
+}
+.centerInput{
+  background-color: #ececec;
+}

@@ -5,15 +5,31 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './login/register/register.component';
 import { HomePageComponent } from './login/home-page/home-page.component';
 import{RouterModule,Routes} from "@angular/router";
+import { ShoppingCardPageComponent } from './login/shopping-card-page/shopping-card-page.component';
+import { MyOrdersComponent } from './login/my-orders/my-orders.component';
+import { MyRebateComponent } from './login/my-rebate/my-rebate.component';
+import { PersonalCenterComponent } from './login/personal-center/personal-center.component';
+import { BusinessHomepageComponent } from './business-login/business-homepage/business-homepage.component';
+import { AddCommodityComponent } from './business-login/business-homepage/add-commodity/add-commodity.component';
+import { BusinessLoginComponent } from './business-login/business-login.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BusinessRegisterComponent } from './business-login/business-register/business-register.component';
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
 	{path:'login',component:LoginComponent},
 	{path:'register',component:RegisterComponent},
 	{path:'homePage',component:HomePageComponent},
+	{path:'ShopCarPage',component:ShoppingCardPageComponent},
+	{path:'myOrders',component:MyOrdersComponent},
+	{path:'myRebate',component:MyRebateComponent},
+	{path:'perCenter',component:PersonalCenterComponent},
+	{path:'businessHomePage',component:BusinessHomepageComponent},
+	{path:'addComodity',component:AddCommodityComponent},
+
 
 ]
 
@@ -22,7 +38,16 @@ const appRoutes:Routes=[
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomePageComponent
+    HomePageComponent,
+    ShoppingCardPageComponent,
+    MyOrdersComponent,
+    MyRebateComponent,
+    PersonalCenterComponent,
+    BusinessHomepageComponent,
+    AddCommodityComponent,
+    BusinessLoginComponent,
+    AdminLoginComponent,
+    BusinessRegisterComponent
   ],
   imports: [
     BrowserModule,

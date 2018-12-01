@@ -1,0 +1,16 @@
+.pSTyle{
+  font-family: SimHei;
+  font-size: 16px;
+}
+.aStyle{
+  margin-right: 10px;
+  font-size: 20px;
+}
+.typePStyle{
+  border: 1px solid silver;border-radius:5px;padding: 2px;font-family: SimHei;font-size: 16px;
+}
+.typeBox{
+  min-width: 50px;
+
+  margin-left: 10px;
+}

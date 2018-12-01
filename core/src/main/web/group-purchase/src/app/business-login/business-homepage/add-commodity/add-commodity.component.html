@@ -1,0 +1,68 @@
+<div class="row mt-2">
+  <div class="col-sm-12 text-right mr-2"> <i class="fa fa-times-circle aStyle" aria-hidden="true"></i></div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-12 ml-2 ">
+  <p class="pSTyle">- -请输入商品信息- -</p></div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-3 text-right mt-2">
+    <p class="pSTyle">商品名称：</p>
+  </div>
+  <div class="col-sm-8 mt-1">
+    <input type="text" class="form-control" style="height: 30px">
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-3 text-right mt-2">
+    <p class="pSTyle">商品数量：</p>
+  </div>
+  <div class="col-sm-8 mt-1">
+    <input type="text" class="form-control" style="height: 30px">
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-3 text-right mt-2">
+    <p class="pSTyle">商品描述：</p>
+  </div>
+  <div class="col-sm-8 mt-1">
+    <input type="text" class="form-control" style="height: 30px">
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-3 text-right mt-2">
+    <p class="pSTyle">单价金额：</p>
+  </div>
+  <div class="col-sm-8 mt-1">
+    <textarea type="text" class="form-control" ></textarea>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-3 text-right mt-2">
+    <p class="pSTyle">商品类型：</p>
+  </div>
+  <div class="col-sm-8 mt-1">
+    <div class="row">
+      <div class="col-sm-12">
+        <select  class="form-control"  (change)="typeChose(type)" [(ngModel)]="type">
+        <option *ngFor="let item of typeDataObj" value="{{item.id}},{{item.name}}" class="mt-1">{{item.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="typeBox mt-2" *ngFor="let item of typechose;let i=index" >
+        <p class="typePStyle" >{{item.name}}<i class="fa fa-times "  style="margin-left: 5px ;color: red;cursor:pointer;" aria-hidden="true" (click)="deleteTypeChose(i)"></i></p>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-5 text-right">
+        <button class="btn btn-success">提交</button>
+      </div>
+      <div class="col-sm-6 text-left">
+        <button class="btn btn-danger">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
