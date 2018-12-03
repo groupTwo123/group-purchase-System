@@ -38,21 +38,20 @@ public class UserController {
         user.setEmail(email);
         user.setPassword(password);
         user.setArea(area);
-        user.setType(type);
-        if (type.equals(UserUtil.USER_VIP)) {
-            userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
-        }
-        if (type.equals(UserUtil.USER_NORMAL)) {
-            userService.registerNormal(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_NORMAL);
-        }
+//      user.setType(type);
         JsonTransfer s = new JsonTransfer();
-        try {
-            String result1 = s.result(1, "注册成功", user, callback);
+        if (user.getId() == null){
+            String result1 = s.result(0,"id不能为空","",callback);
             return result1;
+        }
+        userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
+        try {
+            String result2 = s.result(1, "注册成功", user, callback);
+            return result2;
         } catch (Exception e) {
             e.printStackTrace();
-            String result2 = s.result(0, "注册失败", user, callback);
-            return result2;
+            String result3 = s.result(0, "注册失败", user, callback);
+            return result3;
         }
     }
 
@@ -78,6 +77,19 @@ public class UserController {
     public String confirmMessage(String id, String phone, String callback){
         return userService.checkIdWithPhone(id, phone, callback);
     }
+
+    /**
+     * @Author fangyong
+     * @Description 用户通过手机号码登录
+     * @Date 2018/12/3 15:36
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/getUsernameByPhone", method = RequestMethod.GET)
+    public String getUsernameByPhone(String phone, String callback){
+        return userService.getUsernameByPhone(phone,callback);
+    }
+
     /**
     *
     * @Author: fangyong

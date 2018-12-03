@@ -77,7 +77,7 @@ public class SellerServiceImpl implements ISellerService {
 
     @Override
     public String checkIdWithPhone(String sellerId, String sellerPhone, String callback) {
-        String seller =  sellerMapper.checkI,mbhkdWithPhone(sellerId, sellerPhone);
+        String seller =  sellerMapper.checkIdWithPhone(sellerId, sellerPhone);
         JsonTransfer s = new JsonTransfer();
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("sellerId",sellerId);

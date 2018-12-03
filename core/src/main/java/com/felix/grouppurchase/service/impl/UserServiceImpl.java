@@ -95,6 +95,22 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
+    public String getUsernameByPhone(String phone, String callback) {
+        User user = userMapper.getUsernameByPhone(phone);
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("id",user.getId());
+        map.put("userName",user.getUserName());
+        JsonTransfer s = new JsonTransfer();
+        if (user.getPhone() == null){
+            String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+            return result1;
+        }
+        String result2 = s.result(1,"登录成功",map,callback);
+        return result2;
+
+    }
+
+    @Override
     public String resetPassword(String id, String password, String callback) {
         userMapper.resetPassword(id, password);
         JsonTransfer s = new JsonTransfer();
