@@ -67,6 +67,8 @@ public class UserController {
         return userService.login(id, password, callback);
     }
 
+
+
     /**
     *
     * @Author: fangyong
