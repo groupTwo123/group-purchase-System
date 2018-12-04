@@ -72,7 +72,10 @@ public class SellerServiceImpl implements ISellerService {
             String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
             return result1;
         }
-        return GetSMS.getMssage(sellerPhone,callback);
+        HashMap<String , Object> map=new HashMap<>();
+        map.put("id",seller.getSellerId());
+        map.put("username",seller.getSellerNickname());
+        return  s.result(1,"",map,callback);
     }
 
     @Override
