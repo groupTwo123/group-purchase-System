@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   $:any=(window as any).$;
-  step:number=1;
+  step:number=0;
   id:any=''  ;     //登录账号
   code:any ;         //验证码
   username:any='' ;     //用户名
@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.step=1;
+    this.step=0;
   }
 
   //下一步
