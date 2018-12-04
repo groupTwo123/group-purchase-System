@@ -11,8 +11,9 @@ export class BusinessRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.step=0;
-    document.getElementById("registerBox").style.height=(document.body.scrollHeight).toString()+'px';
-    document.getElementById("registerBox").style.width=(document.body.scrollWidth).toString()+'px';
+    document.getElementById("registerBox").style.height=(document.documentElement.scrollHeight).toString()+'px';
+    document.getElementById("registerBox").style.width=(document.documentElement.scrollWidth).toString()+'px';
+    document.getElementById("registerBox").style.backgroundImage="url('../../../assets/background.png')";
   }
   //下一步点击炒作
   nextStyleFun(){

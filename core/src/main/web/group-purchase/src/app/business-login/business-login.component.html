@@ -1,4 +1,4 @@
-<div id="loginBox" style="background-image: url('../../assets/background.png') ">
+<div id="loginBox" style="background-image: url('../../assets/background.png') " *ngIf="!business_homePage">
   <div class="bg-model">
       <div class="bg-content">
         <div class="row  mt-2" >
@@ -16,7 +16,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1" [(ngModel)]="id">
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1">
+                <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1" [(ngModel)]="password">
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="请输入手机" aria-describedby="basic-addon1" [(ngModel)]="phone">
               </div>
             </div>
           </div>
@@ -48,17 +48,17 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入验证码" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="请输入验证码" aria-describedby="basic-addon1" [(ngModel)]="code">
               </div>
             </div>
             <div class="col-sm-4">
-              <button class="btn btn-outline-success ">获取验证码</button>
+              <button class="btn btn-outline-success " (click)="IsHasPhone()">获取验证码</button>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-sm-11 ml-3">
-            <button class="btn btn-success form-control">登录</button>
+            <button class="btn btn-success form-control" (click)="submitData()">登录</button>
           </div>
         </div>
         <div class="row mt-1">
@@ -89,3 +89,5 @@
   </div>
 
 </div>
+
+<app-business-homepage [username]="nickName" [id]="id" *ngIf="business_homePage"></app-business-homepage>

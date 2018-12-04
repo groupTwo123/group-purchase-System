@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 @Component({
   selector: 'app-business-homepage',
   templateUrl: './business-homepage.component.html',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessHomepageComponent implements OnInit {
   $:any=(window as any).$;
+  @Input() username:any="user";
+  @Input() id:any="";
   navPick:any="0" //左侧导航栏选择 0为首页，1为账号信息，2为商品列表，3为订单状态修改
-  username:any='user';  //用于存储用户名
   isChangeInfo:boolean=false;
-  scorllHeight:any=(document.body.scrollHeight).toString()+'px';
+  scorllHeight:any=(document.documentElement.scrollHeight).toString()+'px';
   isAddCommodity:boolean=false;
   constructor() { }
 
@@ -17,6 +18,7 @@ export class BusinessHomepageComponent implements OnInit {
     this.isChangeInfo=false;
     // $('#leftBox').style.minHeight=(document.body.scrollHeight).toString()+'px';
      document.getElementById('leftBox').style.height=this.scorllHeight;
+     alert(this.username+this.id);
   }
   //导航栏点击事件
   leftPickFun(index){
