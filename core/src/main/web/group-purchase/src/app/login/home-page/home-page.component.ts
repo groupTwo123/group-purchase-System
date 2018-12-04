@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
   @Input() usernameFromParent:any;
+  @Input() idFormParent:any;
   username:any="";
   isLogin:boolean=false;
   typeDataObj:any;

@@ -10,6 +10,8 @@ export class AdminLoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.getElementById("loginBox").style.height=(document.body.scrollHeight).toString()+'px';
+    document.getElementById("loginBox").style.width=(document.body.scrollWidth).toString()+'px';
   }
 
 }

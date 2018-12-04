@@ -1,0 +1,39 @@
+<div class="row stepBox">
+  <div class="col-sm-1 ml-5"></div>
+  <div class="col-sm-3 stepContent">
+    <div class="row">
+      <div class="col-sm-3 mt-2 text-right">
+        <i class="fa fa-mobile iStyle" aria-hidden="true" [ngClass]="{'stepChose':step==0}"></i>
+      </div>
+      <div class="col-sm-9   mt-1">
+        <p class="stepStyle" [ngClass]="{'stepChose':step==0}">Step1:</p>
+        <p class="descriptStyle" [ngClass]="{'stepChose':step==0}">输入您的手机号码</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 stepContent" >
+    <div class="row">
+      <div class="col-sm-3 mt-2 text-right">
+        <i class="fa fa-user iStyle" aria-hidden="true" [ngClass]="{'stepChose':step==1}"></i>
+      </div>
+      <div class="col-sm-9   mt-1">
+        <p class="stepStyle" [ngClass]="{'stepChose':step==1}">Step2:</p>
+        <p class="descriptStyle" [ngClass]="{'stepChose':step==1}">基本信息</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 stepContent">
+    <div class="row">
+      <div class="col-sm-3 mt-2 text-right">
+        <i class="fa fa-check-circle iStyle" aria-hidden="true" [ngClass]="{'stepChose':step==2}"></i>
+      </div>
+      <div class="col-sm-9   mt-1">
+        <p class="stepStyle"  [ngClass]="{'stepChose':step==2}">Step3:</p>
+        <p class="descriptStyle" [ngClass]="{'stepChose':step==2}">注册完成</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1  ">
+
+  </div>
+</div>

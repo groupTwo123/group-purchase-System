@@ -1,0 +1,27 @@
+.stepBox{
+  width: 100%;
+  height: 60px;
+
+
+}
+.stepContent{
+  border:1px solid silver;
+}
+.iStyle{
+ font-size: 45px;
+  color: silver;
+}
+.stepStyle{
+  font-family: YouYuan;
+  font-size: 18px;
+  color: silver;
+  height: 10px
+}
+.descriptStyle{
+  color: silver;
+  font-family: YouYuan;
+  font-size: 15px;
+}
+.stepChose{
+  color: #3267d8;
+}

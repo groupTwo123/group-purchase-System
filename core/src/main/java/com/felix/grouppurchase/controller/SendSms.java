@@ -2,6 +2,7 @@ package com.felix.grouppurchase.controller;
 
 import com.felix.grouppurchase.service.ISellerService;
 import com.felix.grouppurchase.service.IUserService;
+import com.felix.grouppurchase.util.GetSMS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,31 @@ public class SendSms {
     }
 
     /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/3 17:18
+     * @Description: 忘记密码，发送短信
+     * @params: phone, callback
+     * @return:code
+     */
+    @RequestMapping(value = "/sendMessage/forgetPassword")
+    public String sendMessageUserForgetPassword(String phone,String callback) {
+        return GetSMS.getMssage(phone,callback);
+    }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/4 9:32
+     * @Description: 发送短信共有方法
+     * @params: phone, callback
+     * @return:code
+     */
+    @RequestMapping(value = "/sendMessage/sendCode")
+    public String sendCode(String phone,String callback) {
+        return GetSMS.getMssage(phone,callback);
+    }
+
+    /**
     *
     * @Author: fangyong
     * @date: 2018/11/30 11:43
@@ -61,7 +87,8 @@ public class SendSms {
     * @Author: fangyong
     * @date: 2018/11/30 14:54
     * @Description: 商家通过手机号码获取验证码登录
-    * @params:
+    * @params:sellerPhone
+     * @return:id,username
     */
     @RequestMapping(value = "/sendMessage/sellerLogin")
     public String sendMessageSellerLogin(String sellerPhone,String callback) {

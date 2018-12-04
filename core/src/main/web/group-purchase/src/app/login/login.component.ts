@@ -10,18 +10,25 @@ export class LoginComponent implements OnInit {
   id:any='';   //用户名
   password:any='';//密码
   code:any=''; //验证码
+  phone:any=''; //手机号码
   username:any="";
   userType:number=0;      //0是会员，1是商家
   homePageShow:boolean=false; //主页展示
   businessShow:boolean=false;
+  checkCode:any=''; //获取后台验证码
+
   constructor() { }
 
   ngOnInit() {
+    this.homePageShow=false;
     this.username="";
     this.password='';
     this.id='';
-    this.homePageShow=false;
     this.businessShow=false;
+    // alert(document.getElementById("bgBox").style.height);
+    // document.getElementById("login").style.width=(document.body.scrollWidth).toString()+'px';
+
+
   }
 
   //改变登陆方式
@@ -77,12 +84,46 @@ export class LoginComponent implements OnInit {
   }
 
 }
+    else{
+      if(this.checkCode==this.code||this.code!=''){
+        let url="http://localhost:8080/gpsys/user/getUsernameByPhone";
+        let send={
+          phone:this.phone
+        }
+        $.ajax(url,{
+          data:send,
+          dataType:"jsonp",
+          jsonp:"callback",
+          type:"POST",
+          success:json=>{
+            if(json.stage==1){
+              alert("登录成功")
+              this.id=json.data.id;
+              this.username=json.data.userName;
+              this.homePageShow=true;
+            }
+            else{
+              alert("登录失败:"+json.msg);
+            }
+          }
+        })
+      }
+      else {
+        alert("验证码不正确");
+        return;
+      }
+
+    }
 }
   //获取验证码
   getCode(){
-    let url="http://localhost:8080/gpsys/sendSMS/sendMessage";
+    if(this.phone.length!=11){
+      alert("请输入合法手机号码");
+      return;
+    }
+    let url="http://localhost:8080/gpsys/sendSMS/sendMessage/login";
     let send={
-      to:"13420120369",
+      phone:this.phone,
     }
     $.ajax(url,{
       data:send,
@@ -90,7 +131,9 @@ export class LoginComponent implements OnInit {
       jsonp:"callback",
       type:"POST",
       success:json=>{
-        console.log(json)
+        console.log(json);
+        this.checkCode=json.data.code;
+
       }
     })
   }

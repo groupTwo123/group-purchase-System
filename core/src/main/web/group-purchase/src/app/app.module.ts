@@ -17,6 +17,9 @@ import { AddCommodityComponent } from './business-login/business-homepage/add-co
 import { BusinessLoginComponent } from './business-login/business-login.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { BusinessRegisterComponent } from './business-login/business-register/business-register.component';
+import { ForgetPasswordComponent } from './login/forget-password/forget-password.component';
+import { StepComponent } from './step/step.component';
+import { AdminHomePageComponent } from './admin-login/admin-home-page/admin-home-page.component';
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -29,6 +32,13 @@ const appRoutes:Routes=[
 	{path:'perCenter',component:PersonalCenterComponent},
 	{path:'businessHomePage',component:BusinessHomepageComponent},
 	{path:'addComodity',component:AddCommodityComponent},
+	{path:'adminLogin',component:AdminLoginComponent},
+	{path:'businessLogin',component:BusinessLoginComponent},
+	{path:'businessRegister',component:BusinessRegisterComponent},
+	{path:'adminHomePage',component:AdminHomePageComponent},
+	{path:'forgetPassword',component:ForgetPasswordComponent},
+
+
 
 
 ]
@@ -47,7 +57,10 @@ const appRoutes:Routes=[
     AddCommodityComponent,
     BusinessLoginComponent,
     AdminLoginComponent,
-    BusinessRegisterComponent
+    BusinessRegisterComponent,
+    ForgetPasswordComponent,
+    StepComponent,
+    AdminHomePageComponent
   ],
   imports: [
     BrowserModule,
