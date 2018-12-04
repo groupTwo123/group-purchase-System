@@ -18,7 +18,6 @@ export class BusinessHomepageComponent implements OnInit {
     this.isChangeInfo=false;
     // $('#leftBox').style.minHeight=(document.body.scrollHeight).toString()+'px';
      document.getElementById('leftBox').style.height=this.scorllHeight;
-     //这是测试21
   }
   //导航栏点击事件
   leftPickFun(index){
