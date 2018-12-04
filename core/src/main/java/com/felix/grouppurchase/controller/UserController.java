@@ -76,8 +76,8 @@ public class UserController {
     * @params: sellerId, sellerPhone, callback
     */
     @RequestMapping(value = "/confirmMessage", method = RequestMethod.GET)
-    public String confirmMessage(String id, String phone, String callback){
-        return userService.checkIdWithPhone(id, phone, callback);
+    public String confirmMessage(String phone, String callback){
+        return userService.checkIdWithPhone( phone, callback);
     }
 
     /**
@@ -99,6 +99,7 @@ public class UserController {
     * @Description: 会员用户重置密码
     * @params:
     */
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
     public String resetPassword(String id, String password, String callback){
         return userService.resetPassword(id, password, callback);
     }

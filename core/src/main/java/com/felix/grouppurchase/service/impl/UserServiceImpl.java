@@ -81,15 +81,11 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public String checkIdWithPhone(String id, String phone, String callback) {
-        String user = userMapper.checkIdWithPhone(id, phone);
+    public String checkIdWithPhone( String phone, String callback) {
+        User user = userMapper.checkIdWithPhone(phone);
         JsonTransfer s = new JsonTransfer();
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("id",id);
-        if (user.equals("0")){
-            String result1 = s.result(0,"找不到该手机号匹配的ID，请重新输入","",callback);
-            return result1;
-        }
+        map.put("id",user.getId());
         String result2 = s.result(1,"匹配成功",map,callback);
         return result2;
     }

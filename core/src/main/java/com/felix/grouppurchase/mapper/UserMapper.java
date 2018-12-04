@@ -45,8 +45,8 @@ public interface UserMapper {
     void resetPassword(@Param("id") String id, @Param("password") String password);
 
     //检测数据库中是否有该商家的id与手机号码相符合
-    @Select("select count(1) from tb_user where id = #{id} and phone = #{phone}")
-    String checkIdWithPhone(String id, String phone);
+    @Select("select id from tb_user where  phone = #{phone}")
+    User checkIdWithPhone( String phone);
 
     //用户登录根据手机号码获取用户信息
     @Select("select * from tb_user where phone = #{phone} ")

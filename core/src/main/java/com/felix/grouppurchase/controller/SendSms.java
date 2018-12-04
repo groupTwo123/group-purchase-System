@@ -2,6 +2,7 @@ package com.felix.grouppurchase.controller;
 
 import com.felix.grouppurchase.service.ISellerService;
 import com.felix.grouppurchase.service.IUserService;
+import com.felix.grouppurchase.util.GetSMS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,18 @@ public class SendSms {
     @RequestMapping(value = "/sendMessage/register")
     public String sendMessageUserRegister(String phone,String callback) {
         return userService.checkPhoneRegister(phone, callback);
+    }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/3 17:18
+     * @Description: 忘记密码，发送短信
+     * @params: phone, callback
+     * @return:code
+     */
+    @RequestMapping(value = "/sendMessage/forgetPassword")
+    public String sendMessageUserForgetPassword(String phone,String callback) {
+        return GetSMS.getMssage(phone,callback);
     }
 
     /**
