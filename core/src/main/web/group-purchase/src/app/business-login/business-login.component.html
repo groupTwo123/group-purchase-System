@@ -70,7 +70,7 @@
             <a class="aStyle" (click)="changeLoginWay('1')">手机登录</a>
           </div>
           <div class="col-sm-4 text-right" *ngIf="loginWay=='0'">
-            <a class="aStyle">忘记密码</a>
+            <a class="aStyle" [routerLink]="['/b_forgetPassword']">忘记密码</a>
           </div>
           <div class="col-sm-2">
             <a class="aStyle" [routerLink]="['/businessRegister']">注册</a>
@@ -84,7 +84,7 @@
             <i class="fa fa-user-secret loginWayI" aria-hidden="true" title="管理员登录" [routerLink]="['/adminLogin']"></i>
           </div>
         </div>
-		
+
 
       </div>
   </div>

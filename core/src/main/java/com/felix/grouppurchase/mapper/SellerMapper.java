@@ -32,4 +32,7 @@ public interface SellerMapper {
     //重置密码
     @Update("update tb_seller set seller_password = #{sellerPassword} where seller_id = #{sellerId}")
     void resetPassword(@Param("sellerId") String sellerId, @Param("sellerPassword") String sellerPassword);
+
+    @Select("select seller_id from tb_seller where seller_phone = #{phone}")
+    Seller checkPhoneExist(@Param("phone") String phone);
 }

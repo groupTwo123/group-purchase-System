@@ -38,21 +38,21 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" ><i class="fa fa-phone" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="请输入手机号码"   aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="请输入手机号码"   aria-describedby="basic-addon1" [(ngModel)]="phone">
               </div>
             </div>
           </div>
           <div class="row mt-2 ">
             <div class="col-sm-8">
-              <input type="text" class="form-control" placeholder="验证码" aria-describedby="basic-addon1">
+              <input type="text" class="form-control" placeholder="验证码" aria-describedby="basic-addon1" [(ngModel)]="code">
             </div>
             <div class="col-sm-4 text-left">
-              <button class="btn btn-outline-success ">获取验证码</button>
+              <button class="btn btn-outline-success " (click)="getCode()">获取验证码</button>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-sm-12">
-              <button class="btn btn-success form-control" (click)="nextStyleFun()">下一步</button>
+              <button class="btn btn-success form-control" (click)="nextStepFun()">下一步</button>
             </div>
           </div>
         </div>
@@ -62,10 +62,18 @@
           <div class="col-sm-6">
             <div class="row mt-2">
               <div class="col-sm-5  text-right">
+                <p class="infoP" >登录名:</p>
+              </div>
+              <div class="col-sm-7" >
+                <input [(ngModel)]="sellerId" class="form-control"  style="height: 30px;">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-5  text-right">
                 <p class="infoP">店铺名称:</p>
               </div>
               <div class="col-sm-7" >
-                <input class="form-control"  style="height: 30px;">
+                <input [(ngModel)]="storeName" class="form-control"  style="height: 30px;">
               </div>
             </div>
             <div class="row mt-2">
@@ -73,7 +81,7 @@
                 <p class="infoP">店主昵称:</p>
               </div>
               <div class="col-sm-7" >
-                <input class="form-control" style="height: 30px;" >
+                <input [(ngModel)]="sellerNickName" class="form-control" style="height: 30px;" >
               </div>
             </div>
             <div class="row mt-2">
@@ -81,17 +89,25 @@
                 <p class="infoP">真实姓名:</p>
               </div>
               <div class="col-sm-7" >
-                <input class="form-control" style="height: 30px;" >
+                <input [(ngModel)]="sellerName" class="form-control" style="height: 30px;" >
               </div>
             </div>
           </div>
           <div class="col-sm-5">
             <div class="row mt-2">
               <div class="col-sm-4  text-right">
+                <p class="infoP">登录密码:</p>
+              </div>
+              <div class="col-sm-8" >
+                <input type="password" [(ngModel)]="sellerPassword" class="form-control" style="height: 30px;" >
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-4  text-right">
                 <p class="infoP">身份证账号:</p>
               </div>
               <div class="col-sm-8" >
-                <input class="form-control" style="height: 30px;" >
+                <input [(ngModel)]="sellerIdentityId" class="form-control" style="height: 30px;" >
               </div>
             </div>
             <div class="row mt-2">
@@ -99,28 +115,32 @@
                 <p class="infoP">所在地区:</p>
               </div>
               <div class="col-sm-8" >
-                <input class="form-control" style="height: 30px;" >
+                <input [(ngModel)]="storeArea" class="form-control" style="height: 30px;" >
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-sm-4  text-right">
-                <p class="infoP">商家类型:</p>
+                <p class="infoP">商家邮箱:</p>
               </div>
               <div class="col-sm-8" >
-                <input class="form-control" style="height: 30px;" >
+                <input [(ngModel)]="sellerEmail" class="form-control" style="height: 30px;" >
               </div>
             </div>
           </div>
 
           <div class="col-sm-6 text-right mt-4">
-            <button class="btn btn-success">提交</button>
+            <button class="btn btn-success" (click)="submitRegisterData()">提交</button>
           </div>
           <div class="col-sm-6 text-left mt-4">
-            <button class="btn btn-danger">上一步</button>
+            <button class="btn btn-danger" (click)="beforeStep()">上一步</button>
           </div>
 
       </div>
-
+      <div class="row mt-2 " *ngIf="step==2">
+        <div class="col-sm-12 mt-4 text-center">
+          <h4>注册成功</h4>
+        </div>
+      </div>
     </div>
   </div>
 </div>
