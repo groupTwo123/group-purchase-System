@@ -53,13 +53,16 @@ export class HomePageComponent implements OnInit {
       type:"GET",
       success:json=>{
         this.typeDataObj=json.data
-        console.log(this.typeDataObj);
       }
     })
   }
   //返回到登录页面
   returnLogin(){
     window.location.reload();
+  }
+  //返回首页
+  backToHome(){
+    this.CommodityListShow=false;
   }
 
 }

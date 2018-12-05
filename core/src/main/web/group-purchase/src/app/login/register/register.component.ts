@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   month:any='' ;
   day:any='' ;
   repassword:any='' ;
+  checkCode:any="";
   yearObj:any=[
     {
       'key':'1990','value':'1990'
@@ -106,8 +107,8 @@ export class RegisterComponent implements OnInit {
 
   //下一步
   nextStep(){
-    if(this.phone==''){
-      alert('请输入正确的手机号码');
+    if(this.checkCode!=this.code||this.code==""){
+      alert('验证码不正确');
       return;
     }
     this.step=this.step+1;
@@ -125,6 +126,28 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  //验证手机
+  getCode(){
+    if(this.phone.length!=11){
+      alert("请输入正确的手机号码");
+      return;
+    }
+    let url="http://localhost:8080/gpsys/sendSMS/register"
+    let send={
+      phone:this.phone
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      json:"callback",
+      success:json=>{
+        if(json.stage==1){
+          console.log(json)
+          this.checkCode=json.data.code;
+        }
+      }
+    })
+  }
   //选中市
   choseCity(city){
     this.districtObj=[];

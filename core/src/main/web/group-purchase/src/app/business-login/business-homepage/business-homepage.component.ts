@@ -29,7 +29,7 @@ export class BusinessHomepageComponent implements OnInit {
     if($("#rightBox").outerHeight(true)<=this.scorllHeight){
       document.getElementById('leftBox').style.height=this.scorllHeight;
     }else{
-      document.getElementById('leftBox').style.height= document.getElementById('rightBox').style.height;
+      document.getElementById('leftBox').style.height=  $("#rightBox").outerHeight(true)+"px";
 
     }
 
