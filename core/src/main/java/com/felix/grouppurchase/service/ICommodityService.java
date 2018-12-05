@@ -26,4 +26,6 @@ public interface ICommodityService {
 
     //根据商品名称模糊查询
     String getCommodityByName(String commodityName, String callback);
+
+    String getAllCommodity(String callback);
 }

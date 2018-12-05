@@ -38,6 +38,14 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
+    public  String getAllCommodity( String callback){
+        List<VolumeManage> volumeManages=commodityMapper.getAllCommodity();
+        JsonTransfer s = new JsonTransfer();
+        String result1 = s.result(1, "",volumeManages,callback);
+        return result1;
+    }
+
+    @Override
     public String getAllCommodityInfo(String[] volumeIds, String callback) {
         List<VolumeManage> commodityInfo = commodityMapper.getAllCommodityInfo(volumeIds);
         JsonTransfer s = new JsonTransfer();
