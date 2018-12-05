@@ -30,6 +30,7 @@ public class SellerController {
        return sellerService.sellerRegister(sellerId,sellerNickName,sellerName,sellerPassword,sellerIdentityId,sellerPhone,sellerEmail,storeName,storeArea,callback);
     }
 
+
     /**
     *
     * @Author: fangyong
@@ -66,4 +67,16 @@ public class SellerController {
         return sellerService.resetPassword(sellerId, sellerPassword, callback);
     }
 
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/4 15:52
+     * @Description: 商家重置密码前获取手机验证
+     * @params: phone
+     * @return:id
+     */
+    @RequestMapping(value = "/checkPhoneExist",method = RequestMethod.GET)
+    public String checkPhoneExist(String sellerPhone, String callback){
+        return sellerService.checkPhoneExist(sellerPhone, callback);
+    }
 }

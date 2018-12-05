@@ -1,0 +1,80 @@
+.leftBox{
+  background-color: #312335;
+
+}
+.logoCss{
+  height:70px;
+}
+.leftPStyle{
+  font-family: YouYuan;
+  font-size: 16px;
+  color: white;
+}
+.leftIStyle{
+  margin-right: 10px;
+}
+.leftHover{
+  cursor: pointer;
+  width: 230px;
+}
+.leftHover:hover{
+  background-color: #6e2b68;
+}
+.leftPick{
+  background-color:#6e2b68;
+}
+.rightTopBox{
+  height:60px;
+  background-color: #312335;
+}
+.rightTopP{
+  color: white;
+  font-size: 23px;
+  font-family: YouYuan;
+}
+.rightTopP1{
+  color: white;
+  font-size: 15px;
+  font-family: YouYuan;
+}
+.rightCenterP{
+  font-family: SimHei;
+  font-size: 18px;
+}
+.rightCenterP1{
+  font-family: SimHei;
+  font-size: 16px;
+}
+.headImg{
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  border: 2px  solid silver;
+}
+.changeCss{
+  cursor: pointer;
+  font-family: SimHei;
+  color: #002385;
+}
+.changeCss:hover{
+  color: #40aaf5;
+}
+.boderStyle{
+  /*border: 1px solid black;*/
+  border-style: dashed;
+  border-width: thin;
+  padding: 10px;
+
+}
+.commodityLostTopP{
+  font-family: SimHei;
+  font-size: 25px;
+}
+.bg-model{
+  position:absolute;top:0%;left:0%;background:rgba(0,0,0,0.3);width:100%;height:100%;position:fixed;
+}
+.bg-content{
+  position: absolute;left: 35%;top: 5%;border-radius: 8px;width: 35%;height:90%;background-color: #fff;
+}
+
+

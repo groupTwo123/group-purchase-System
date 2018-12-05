@@ -20,6 +20,8 @@ import { BusinessRegisterComponent } from './business-login/business-register/bu
 import { ForgetPasswordComponent } from './login/forget-password/forget-password.component';
 import { StepComponent } from './step/step.component';
 import { AdminHomePageComponent } from './admin-login/admin-home-page/admin-home-page.component';
+import { BForgetPasswordComponent } from './business-login/b-forget-password/b-forget-password.component';
+
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -37,6 +39,7 @@ const appRoutes:Routes=[
 	{path:'businessRegister',component:BusinessRegisterComponent},
 	{path:'adminHomePage',component:AdminHomePageComponent},
 	{path:'forgetPassword',component:ForgetPasswordComponent},
+	{path:'b_forgetPassword',component:BForgetPasswordComponent},
 
 
 
@@ -60,7 +63,9 @@ const appRoutes:Routes=[
     BusinessRegisterComponent,
     ForgetPasswordComponent,
     StepComponent,
-    AdminHomePageComponent
+    AdminHomePageComponent,
+    BForgetPasswordComponent,
+
   ],
   imports: [
     BrowserModule,

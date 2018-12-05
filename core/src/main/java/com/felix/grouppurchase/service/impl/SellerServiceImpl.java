@@ -72,7 +72,10 @@ public class SellerServiceImpl implements ISellerService {
             String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
             return result1;
         }
-        return GetSMS.getMssage(sellerPhone,callback);
+        HashMap<String , Object> map=new HashMap<>();
+        map.put("id",seller.getSellerId());
+        map.put("username",seller.getSellerNickname());
+        return  s.result(1,"",map,callback);
     }
 
     @Override
@@ -104,5 +107,21 @@ public class SellerServiceImpl implements ISellerService {
             String result2 = s.result(0,"系统异常，修改失败",map,callback);
             return result2;
         }
+    }
+
+    @Override
+    public  String checkPhoneExist(String phone,String callback){
+        Seller seller=sellerMapper.checkPhoneExist(phone);
+        JsonTransfer s=new JsonTransfer();
+        HashMap<String ,Object> map=new HashMap<>();
+        String result1="";
+        if(seller.getSellerId()==null){
+             result1 = s.result(0,"请先注册手机","",callback);
+        }
+        else{
+            map.put("id",seller.getSellerId());
+            result1 = s.result(1,"",map,callback);
+        }
+        return result1;
     }
 }

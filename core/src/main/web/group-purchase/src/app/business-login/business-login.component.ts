@@ -7,15 +7,115 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessLoginComponent implements OnInit {
   loginWay:any='0';// 0为账号密码登录 1为手机登录
+  id:any='';
+  password:any='';
+  username:any='';
+  nickName:any='';
+  phone:any='';
+  code:any='';
+  checkCode:any='';
+  business_homePage:boolean=false;
   constructor() { }
 
   ngOnInit() {
-    document.getElementById("loginBox").style.height=(document.body.scrollHeight).toString()+'px';
-    document.getElementById("loginBox").style.width=(document.body.scrollWidth).toString()+'px';
+    setTimeout(function () {
+      document.getElementById("loginBox").style.height=(document.documentElement.scrollHeight).toString()+'px';
+      document.getElementById("loginBox").style.width=(document.documentElement.scrollWidth).toString()+'px';
+
+    },100)
 
   }
   //切换登录方式
   changeLoginWay(way){
     this.loginWay=way;
+  }
+
+  //检测手机是否易被注册
+  IsHasPhone(){
+	  if(this.phone.length!=11||this.phone==''){
+		  alert("请输入正确的手机");
+		  return;
+	  }
+	  let url="http://localhost:8080/gpsys/sendSMS/sendMessage/sellerLogin";
+	  let send={
+		  sellerPhone:this.phone
+	  }
+	  $.ajax(url,{
+		  data:send,
+		  dataType:"jsonp",
+		  jsonp:"callback",
+		  success:json=>{
+			  if(json.stage==1){
+				console.log(json);
+				this.id=json.data.id;
+				this.nickName=json.data.username;
+				this.getCode();
+			  }
+			  else{
+				alert(json.msg+",请先注册");
+			  }
+		  }
+	  })
+
+  }
+  //获取验证码
+  getCode(){
+	  let url="http://localhost:8080/gpsys/sendSMS/sendMessage/sendCode";
+	  let send={
+		  phone:this.phone
+	  }
+	  $.ajax(url,{
+		  data:send,
+		  dataType:"jsonp",
+		  jsonp:"callback",
+		  success:json=>{
+			  if(json.stage==1){
+				  this.checkCode=json.data.code;
+			  }
+			  else{
+				  alert(json.msg);
+			  }
+		  }
+	  })
+  }
+
+  //提交登录
+  submitData(){
+	  if(this.loginWay==0){
+		  if(this.password==''||this.id==""){
+			  alert("请输入正确账号或者密码");
+			  return;
+		  }
+		  let url="http://localhost:8080/gpsys/seller/login";
+		  let send={
+			  sellerId:this.id,
+			  sellerPassword:this.password
+		  };
+		  $.ajax(url,{
+			  data:send,
+			  dataType:"jsonp",
+			  jsonp:"callback",
+			  success:json=>{
+				  if(json.stage==1){
+					alert("登录成功");
+					console.log(json);
+					this.nickName=json.data.sellerNickname;
+					this.business_homePage=true;
+				  }
+				  else{
+					alert("登录失败："+json.msg);
+				  }
+			  }
+		  })
+	  }
+	  else{
+		  if(this.checkCode!=this.code||this.code==''){
+			  alert("请输入正确验证码");
+			  return;
+		  }
+		  alert("登录成功");
+		  this.business_homePage=true;
+
+	  }
   }
 }

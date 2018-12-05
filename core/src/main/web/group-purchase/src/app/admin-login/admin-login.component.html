@@ -1,3 +1,51 @@
-<p>
-  admin-login works!
-</p>
+<div id="loginBox" style="background-image: url('../../assets/background1.png') ">
+  <div class="bg-model">
+    <div class="bg-content">
+      <div class="row  mt-2" >
+        <div class=" col-sm-12 text-center">
+          <img src="../../assets/headExample.png" class="logo">
+        </div>
+        <div class=" col-sm-12 text-center">
+          <p class="topPStyle">美购网系统后台登录</p>
+        </div>
+      </div>
+
+        <div class="row mt-2">
+          <div class="col-sm-11 ml-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-11 ml-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true"></i></span>
+              </div>
+              <input type="text" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+
+      <div class="row mt-2">
+        <div class="col-sm-11 ml-3">
+          <button class="btn btn-success form-control">登录</button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-sm-6 text-right ">
+          <i class="fa fa-user-circle  loginWayI"  aria-hidden="true" title="商家登录" [routerLink]="['/businessLogin']"></i>
+        </div>
+        <div class="col-sm-6 text-left ">
+          <i class="fa fa-user loginWayI" aria-hidden="true" title="用户登录" [routerLink]="['/login']"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

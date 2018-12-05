@@ -32,6 +32,7 @@ public class SendSms {
     public String sendMessageUserRegister(String phone,String callback) {
         return userService.checkPhoneRegister(phone, callback);
     }
+
     /**
      *
      * @Author: huangchuwen
@@ -42,6 +43,18 @@ public class SendSms {
      */
     @RequestMapping(value = "/sendMessage/forgetPassword")
     public String sendMessageUserForgetPassword(String phone,String callback) {
+        return GetSMS.getMssage(phone,callback);
+    }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/4 9:32
+     * @Description: 发送短信共有方法
+     * @params: phone, callback
+     * @return:code
+     */
+    @RequestMapping(value = "/sendMessage/sendCode")
+    public String sendCode(String phone,String callback) {
         return GetSMS.getMssage(phone,callback);
     }
 
@@ -74,7 +87,8 @@ public class SendSms {
     * @Author: fangyong
     * @date: 2018/11/30 14:54
     * @Description: 商家通过手机号码获取验证码登录
-    * @params:
+    * @params:sellerPhone
+     * @return:id,username
     */
     @RequestMapping(value = "/sendMessage/sellerLogin")
     public String sendMessageSellerLogin(String sellerPhone,String callback) {
