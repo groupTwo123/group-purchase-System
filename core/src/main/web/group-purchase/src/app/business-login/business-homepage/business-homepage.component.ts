@@ -26,7 +26,7 @@ export class BusinessHomepageComponent implements OnInit {
   }
   //左侧导航栏高度变化
   scrollHeightChange(){
-    if(document.getElementById('rightBox').style.height<this.scorllHeight){
+    if($("#rightBox").outerHeight(true)<=this.scorllHeight){
       document.getElementById('leftBox').style.height=this.scorllHeight;
     }else{
       document.getElementById('leftBox').style.height= document.getElementById('rightBox').style.height;

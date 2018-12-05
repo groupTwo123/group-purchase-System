@@ -108,4 +108,20 @@ public class SellerServiceImpl implements ISellerService {
             return result2;
         }
     }
+
+    @Override
+    public  String checkPhoneExist(String phone,String callback){
+        Seller seller=sellerMapper.checkPhoneExist(phone);
+        JsonTransfer s=new JsonTransfer();
+        HashMap<String ,Object> map=new HashMap<>();
+        String result1="";
+        if(seller.getSellerId()==null){
+             result1 = s.result(0,"请先注册手机","",callback);
+        }
+        else{
+            map.put("id",seller.getSellerId());
+            result1 = s.result(1,"",map,callback);
+        }
+        return result1;
+    }
 }
