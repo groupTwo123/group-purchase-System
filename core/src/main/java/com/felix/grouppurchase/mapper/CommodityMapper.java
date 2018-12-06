@@ -1,8 +1,10 @@
 package com.felix.grouppurchase.mapper;
 
+import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
 import com.felix.grouppurchase.model.VolumeManage;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  * @Author: huangchuwen
  */
 @Mapper
+@Component
 public interface CommodityMapper {
     //获取所有商品类别
     @Select("select * from tb_commodity_type")
@@ -78,6 +81,14 @@ public interface CommodityMapper {
     //根据商品名称模糊查询商品
     @Select("select * from tb_volume_manage where commodity_name like '%'")
     VolumeManage getCommodityByName(@Param("commodityName") String commodityName);
+
+    //存图片到数据库
+    @Insert("insert into tb_commodity_picture (commodity_id, local_url, url) values (#{commodityId}, #{path}, #{url}) ")
+    int addCommodityPicture(@Param("commodityId") String commodityId,@Param("path") String path, @Param("url") String url);
+
+    //获取商品图片
+    @Select("select * from tb_commodity_picture")
+    List<CommodityPicture> getCommodityPicture();
 
     //查询所有商品
     @Select("select * from tb_volume_manage ")
