@@ -84,8 +84,7 @@ public class UserController {
      * @Author fangyong
      * @Description 用户通过手机号码登录
      * @Date 2018/12/3 15:36
-     * @Param
-     * @return
+     * @Param phone,callback
      **/
     @RequestMapping(value = "/getUsernameByPhone", method = RequestMethod.GET)
     public String getUsernameByPhone(String phone, String callback){
@@ -97,7 +96,7 @@ public class UserController {
     * @Author: fangyong
     * @date: 2018/11/30 17:38
     * @Description: 会员用户重置密码
-    * @params:
+    * @params: id, password, callback
     */
     @RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
     public String resetPassword(String id, String password, String callback){
@@ -109,10 +108,11 @@ public class UserController {
     * @Author: fangyong
     * @date: 2018/11/29 10:47
     * @Description: 修改用户信息
-    * @params:
+    * @params: id,userName,gender,birth,phone,email,password,area,callback
     */
     @RequestMapping("/updateUserMessage")
     public String  updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback){
         return userService.updateUserMessage(id,userName,gender,birth,phone,email,password,area,callback);
     }
+
 }
