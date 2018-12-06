@@ -1,6 +1,7 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
+import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
 import com.felix.grouppurchase.model.VolumeManage;
 import com.felix.grouppurchase.service.ICommodityService;
@@ -9,17 +10,18 @@ import com.felix.grouppurchase.util.JsonTransfer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.activation.CommandInfo;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @Date: 2018/11/27 22:58
- * @Author: huangchuwen
+ * @Author: fangyong
  */
 @Service
+@Component
 public class CommodityServiceImpl  implements ICommodityService {
 
     private final static transient Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
@@ -132,6 +134,18 @@ public class CommodityServiceImpl  implements ICommodityService {
             return result2;
         }
 
+    }
+
+    @Override
+    public int addCommodityPicture(String commodityId, String path,String url, String callback) {
+        int result = commodityMapper.addCommodityPicture(commodityId, path, url);
+        return result;
+    }
+
+    @Override
+    public List<CommodityPicture> getCommodityPicture(String callback) {
+        List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
+        return commodityPictureList;
     }
 
 }

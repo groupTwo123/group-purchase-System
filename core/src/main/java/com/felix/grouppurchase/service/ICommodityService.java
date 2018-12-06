@@ -1,10 +1,16 @@
 package com.felix.grouppurchase.service;
 
 
+import com.felix.grouppurchase.model.CommodityPicture;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 /**
  * @Date: 2018/11/27 22:50
  * @Author: huangchuwen
  */
+@Component
 public interface ICommodityService {
 
     //获取所有商品类别
@@ -26,6 +32,12 @@ public interface ICommodityService {
 
     //根据商品名称模糊查询
     String getCommodityByName(String commodityName, String callback);
+
+    //上传商品图片
+    int addCommodityPicture(String commodityId, String path, String url, String callback);
+
+    //获取商品图片
+    List<CommodityPicture> getCommodityPicture(String callback);
 
     String getAllCommodity(String callback);
 }
