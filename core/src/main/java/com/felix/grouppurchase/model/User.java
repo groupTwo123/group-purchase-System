@@ -1,7 +1,7 @@
 package com.felix.grouppurchase.model;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.util.List;
 
 
 public class User implements Serializable {
@@ -12,7 +12,7 @@ public class User implements Serializable {
     private String phone;
     private String email;
     private String password;
-    private String type;
+    private List<Role> type;
     private String area;
     private Integer level;
     private String vacancy;
@@ -76,11 +76,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getType() {
+    public List<Role> getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(List<Role> type) {
         this.type = type;
     }
 

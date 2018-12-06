@@ -20,7 +20,7 @@ import java.util.HashMap;
 @Service
 public class SellerServiceImpl implements ISellerService {
 
-    private final static transient Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
+    private final static transient Logger logger = LoggerFactory.getLogger(SellerServiceImpl.class);
 
     @Autowired
     SellerMapper sellerMapper;
@@ -124,4 +124,5 @@ public class SellerServiceImpl implements ISellerService {
         }
         return result1;
     }
+
 }

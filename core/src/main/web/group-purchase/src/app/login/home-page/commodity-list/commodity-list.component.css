@@ -1,0 +1,112 @@
+.adverBoxCss{
+
+  border-bottom: 1px solid #cb00cb;
+  height: 40px;
+}
+.AdverPStyle{
+  font-family:SimHei;margin-top: 5px
+}
+.AdverRightPStyle{
+  font-family:SimHei;margin-top: 5px;
+  font-size:13px;
+}
+.adverRightPickCSS{
+  border-bottom: 2px solid #cb00cb ;
+}
+.boxStyle{
+  background-color: #fffefd;
+  box-shadow: 0px 0px 10px #888888;
+}
+.boxIStyle{
+  color:#cb00cb;
+  margin-left: 5px;
+  font-size: 20px;
+  margin-top:3px;
+  cursor: pointer;
+}
+.commodityTopPStyle{
+  font-family:SimHei;
+  margin-top: 8px;
+  font-size:16px;
+  color:white;
+}
+.searchResultPStyle{
+  cursor: pointer;
+  font-size: 15px;
+  font-family: SimHei;
+}
+.searchResultPStyle:hover{
+  color: #cb00cb
+}
+.indexBox{
+  border-top: 1px solid silver;
+  padding: 10px;
+}
+.indexP{
+  font-family: SimHei;
+  font-size: 15px;
+  cursor: pointer;
+}
+.indexP:hover{
+  color:#cb00cb
+}
+.recommendBox{
+  border:1px solid silver;
+  height: 600px;
+}
+
+.simHei{
+  font-family: SimHei;
+}
+.fontSize-16{
+   font-size: 16px;
+ }
+.fontSize-13{
+  font-size: 13px;
+}
+.fontSize-25{
+  font-size: 25px;
+}
+.cursor{
+  cursor: pointer;
+}
+.colorSilver{
+  color: silver;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.selectBox{
+  background-color: #dcdcdc;
+  height: 35px;
+  padding:5px;
+}
+.selectContent{
+  border: 1px solid silver;
+  background-color: white;
+}
+.selectContent:hover{
+  border: 1px solid #ee1a1f;
+  color:#ee1a1f;
+}
+.pickSelectContent{
+  background-color: #ee1a1f;
+  border: 1px solid #ee1a1f;
+  color:white;
+}
+.commodityBox{
+
+  height:350px;
+}
+.commodityBox:hover{
+  border:1px solid silver;
+}
+.commodityImg{
+  height: 200px;
+}
+.commodityPrice{
+  color:red;
+
+}
+
+

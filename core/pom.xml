@@ -95,10 +95,12 @@
             <version>4.0.0</version>
         </dependency>
 
+        <!-- 安全框架 Spring Security -->
         <dependency>
-            <groupId>com.github.jsqlparser</groupId>
-            <artifactId>jsqlparser</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
 
     </dependencies>
 

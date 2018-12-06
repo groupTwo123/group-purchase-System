@@ -1,0 +1,16 @@
+.pagePick{
+  font-size: 16px;
+  color: #4084ff;
+  cursor: pointer;
+  width: 50px;
+  border:1px solid #4084ff;
+  padding: 5px;
+}
+.pagePick:hover{
+  background: #4084ff;
+  color: white;
+}
+.pagePick1{
+  background: #4084ff;
+  color: white;
+}
