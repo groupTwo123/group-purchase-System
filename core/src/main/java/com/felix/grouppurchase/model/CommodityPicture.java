@@ -8,8 +8,9 @@ import java.io.Serializable;
  */
 public class CommodityPicture implements Serializable {
     private Integer id;
-    private String pictureBase64;
     private String commodityId;
+    private String url;
+    private String localUrl;
     private Integer priority;
 
     public Integer getId() {
@@ -20,12 +21,20 @@ public class CommodityPicture implements Serializable {
         this.id = id;
     }
 
-    public String getPictureBase64() {
-        return pictureBase64;
+    public String getUrl() {
+        return url;
     }
 
-    public void setPictureBase64(String pictureBase64) {
-        this.pictureBase64 = pictureBase64;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getLocalUrl() {
+        return localUrl;
+    }
+
+    public void setLocalUrl(String localUrl) {
+        this.localUrl = localUrl;
     }
 
     public String getCommodityId() {
