@@ -1,134 +1,28 @@
-INSERT INTO tb_volume_manage (
-	volume_id,
-	commodity_id,
-	commodity_name,
-	commodity_number,
-	commodity_description,
-	commodity_price,
-	commodity_type_id
-)
-VALUES
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'123',
-		'12344',
-		'iphone',
-		50,
-		'垃圾iPhone',
-		9998,
-		1
-	),
-	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),
-	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),
-	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),
-	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),
-	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	),	(
-		'456',
-		'12355',
-		'mac',
-		100,
-		'牛逼',
-		19998,
-		2
-	);
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
+insert into group_purchase.tb_volume_manage
+ (volume_id,commodity_id,commodity_name,commodity_number,commodity_description,commodity_price,commodity_type_id) 
+values ("123","12344","小米phone","50","垃圾小米","9998.00","1");
