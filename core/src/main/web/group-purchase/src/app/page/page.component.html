@@ -1,0 +1,11 @@
+<div class="row mt-4  text-center">
+  <div class="col-sm-1 text-center">
+    <p class="pagePick" (click)="pageChoseFun(pageChose-1)"><<</p>
+  </div>
+  <div class="col-sm-1 text-center " *ngFor="let item of pageObj;" (click)="pageChoseFun(item-1)" [hidden]="!(((page-item-pageChose+1)<(page-8+1-(item-9)*2))&&pageChose<item+1)">
+    <p class="pagePick" [ngClass]="{'pagePick1':pageChose==item-1 }">{{item}}</p>
+  </div>
+  <div class="col-sm-1 text-center">
+    <p class="pagePick" (click)="pageChoseFun(pageChose+1)">>></p>
+  </div>
+</div>
