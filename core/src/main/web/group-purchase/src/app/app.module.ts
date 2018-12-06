@@ -23,6 +23,8 @@ import { AdminHomePageComponent } from './admin-login/admin-home-page/admin-home
 import { BForgetPasswordComponent } from './business-login/b-forget-password/b-forget-password.component';
 import { CommodityListComponent } from './login/home-page/commodity-list/commodity-list.component';
 import { PageComponent } from './page/page.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { SearchLoadingComponent } from './search-loading/search-loading.component';
 
 
 const appRoutes:Routes=[
@@ -42,7 +44,8 @@ const appRoutes:Routes=[
 	{path:'adminHomePage',component:AdminHomePageComponent},
 	{path:'forgetPassword',component:ForgetPasswordComponent},
 	{path:'b_forgetPassword',component:BForgetPasswordComponent},
-
+	{path:'fileUpload',component:FileUploadComponent},
+	{path:'searchLoading',component:SearchLoadingComponent},
 
 
 
@@ -69,6 +72,8 @@ const appRoutes:Routes=[
     BForgetPasswordComponent,
     CommodityListComponent,
     PageComponent,
+    FileUploadComponent,
+    SearchLoadingComponent,
 
   ],
   imports: [

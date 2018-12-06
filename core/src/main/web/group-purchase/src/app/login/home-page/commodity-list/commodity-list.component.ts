@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-commodity-list',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commodity-list.component.css']
 })
 export class CommodityListComponent implements OnInit {
+  @Input() search:any='';
+
   typeDataObj:any;
   sortWay:any='0';    //  排序顺序，0为销量，1为评论，2为价格，3为评论数
   commodityList:any;	//用于存储数据
@@ -14,11 +16,34 @@ export class CommodityListComponent implements OnInit {
   page:number=0;
   pageChose:number=0;
   pageObj:any=[];
+  isCommodityTypeShow:boolean=false;  //分类显示
   constructor() { }
 
   ngOnInit() {
+    this.changeFun();
+  }
+  ngOnChanges(){
+    this.changeFun();
+  }
+
+  //触发搜索
+  changeFun(){
     this.getAllCommodityType();
-	this.getAllCommodity();
+    if(this.search==''){
+      this.getAllCommodity();
+    }
+    else{
+      this.getCommodityBySearch();
+    }
+  }
+
+  //分类显示
+  showType(){
+    this.isCommodityTypeShow=true;
+  }
+  //分类关闭
+  closeType(){
+    this.isCommodityTypeShow=false;
   }
   //获取所有商品类别
   getAllCommodityType(){
@@ -33,6 +58,31 @@ export class CommodityListComponent implements OnInit {
       }
     })
   }
+  //模糊获取商品
+  getCommodityBySearch(){
+    this.isHasData=false;
+    let url="http://localhost:8080/gpsys/commodity/getCommodityByName";
+    let send={
+      commodityName:this.search
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      jsonp:"callback",
+      success:json=>{
+        if(json.stage==1){
+          this.commodityList=json.data;
+          this.dataTrans();
+        }
+        else{
+          alert("错误:"+json.msg);
+          this.isHasData=false;
+        }
+
+      }
+    })
+
+  }
   //重新排序
   resetSort(sortWay){
     this.sortWay=sortWay;
@@ -40,6 +90,7 @@ export class CommodityListComponent implements OnInit {
 
   //获取所有商品
   getAllCommodity(){
+    this.isHasData=false;
 	  let url="http://localhost:8080/gpsys/commodity/getAllCommodity"
 	  $.ajax(url,{
 		  dataType:"jsonp",
@@ -47,25 +98,7 @@ export class CommodityListComponent implements OnInit {
 		  success:json=>{
 			  if(json.stage==1){
 				  this.commodityList=json.data;
-          if(this.commodityList.length % 16!=0){
-            this.page=parseInt((this.commodityList.length / 16).toString()) +1;
-          }
-          else{
-            this.page=this.commodityList.length / 16;
-          }
-          var index=0;
-          for(var i=0;i<this.page;i++){
-            this.commodityListDataObj[i]=[];
-            for(var j=0;j<16;j++){
-              if(this.commodityList[index]){
-                this.commodityListDataObj[i].push(this.commodityList[index])
-                index++;
-              }
-            }
-            this.pageObj.push( i+1);
-          }
-          console.log(this.commodityListDataObj);
-				  this.isHasData=true;
+          this.dataTrans();
 			  }
 			  else{
 				  alert("错误:"+json.msg);
@@ -74,5 +107,40 @@ export class CommodityListComponent implements OnInit {
 		  }
 	  })
   }
+  //分页数据处理
+  dataTrans(){
 
+    this.page=0;
+    this.pageChose=0;
+    this.pageObj=[];
+    this.commodityListDataObj={};
+
+    var commodityLength=0;
+    for(let item in this.commodityList){
+      commodityLength++;
+    }
+    console.log(commodityLength)
+    if(commodityLength==0){
+      this.isHasData=false;
+      return;
+    }
+    if(commodityLength % 16!=0){
+      this.page=parseInt((commodityLength / 16).toString()) +1;
+    }
+    else{
+      this.page=commodityLength / 16;
+    }
+    var index=0;
+    for(var i=0;i<this.page;i++){
+      this.commodityListDataObj[i]=[];
+      for(var j=0;j<16;j++){
+        if(this.commodityList[index]){
+          this.commodityListDataObj[i].push(this.commodityList[index])
+          index++;
+        }
+      }
+      this.pageObj.push( i+1);
+    }
+    this.isHasData=true;
+  }
 }

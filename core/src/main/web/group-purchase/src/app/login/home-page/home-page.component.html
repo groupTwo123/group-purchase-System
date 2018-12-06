@@ -39,7 +39,7 @@
 
         <div class="col-sm-2 text-right">
           <i class="fa fa-mobile" aria-hidden="true" style="color:#cb00cb;font-size: 20px;"></i>
-          <a class="aStyle">个人中心</a>
+          <a class="aStyle" (click)="personCenterShow()">个人中心</a>
         </div>
         <div class="col-sm-1"></div>
       </div>
@@ -55,9 +55,9 @@
         <span class="input-group-btn searchCss" >
           <i class="fa fa-search searchI" aria-hidden="true" ></i>
         </span>
-        <input type="text" class="form-control" placeholder="想你所想" [(ngModel)]="search">
+        <input type="text" class="form-control" placeholder="想你所想" [(ngModel)]="searchObj">
         <span class="input-group-btn">
-          <button class="btn searchBtn" type="button">搜索</button>
+          <button class="btn searchBtn" type="button" (click)="searchFun()">搜索</button>
         </span>
       </div>
     </div>
@@ -182,8 +182,11 @@
       </div>
     </div>
     <div *ngIf="CommodityListShow">
-      <app-commodity-list></app-commodity-list>
+      <app-commodity-list [search]="search" ></app-commodity-list>
     </div>
   </div>
 
 </div>
+
+<app-personal-center *ngIf="personCenterPageshow"></app-personal-center>
+
