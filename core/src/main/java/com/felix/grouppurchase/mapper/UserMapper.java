@@ -51,4 +51,5 @@ public interface UserMapper {
     //用户登录根据手机号码获取用户信息
     @Select("select * from tb_user where phone = #{phone} ")
     User getUsernameByPhone(@Param("phone") String phone);
+
 }
