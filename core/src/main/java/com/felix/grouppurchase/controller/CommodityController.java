@@ -21,7 +21,7 @@ import java.util.List;
  * @Author: huangchuwen
  */
 @RestController
-@RequestMapping("/c/commodity")
+@RequestMapping("/gpsys/commodity")
 public class CommodityController {
 
     @Autowired
