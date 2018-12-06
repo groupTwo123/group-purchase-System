@@ -78,4 +78,8 @@ public interface CommodityMapper {
     //根据商品名称模糊查询商品
     @Select("select * from tb_volume_manage where commodity_name like '%'")
     VolumeManage getCommodityByName(@Param("commodityName") String commodityName);
+
+    //查询所有商品
+    @Select("select * from tb_volume_manage ")
+    List<VolumeManage> getAllCommodity();
 }

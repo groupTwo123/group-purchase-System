@@ -21,6 +21,8 @@ import { ForgetPasswordComponent } from './login/forget-password/forget-password
 import { StepComponent } from './step/step.component';
 import { AdminHomePageComponent } from './admin-login/admin-home-page/admin-home-page.component';
 import { BForgetPasswordComponent } from './business-login/b-forget-password/b-forget-password.component';
+import { CommodityListComponent } from './login/home-page/commodity-list/commodity-list.component';
+import { PageComponent } from './page/page.component';
 
 
 const appRoutes:Routes=[
@@ -65,6 +67,8 @@ const appRoutes:Routes=[
     StepComponent,
     AdminHomePageComponent,
     BForgetPasswordComponent,
+    CommodityListComponent,
+    PageComponent,
 
   ],
   imports: [

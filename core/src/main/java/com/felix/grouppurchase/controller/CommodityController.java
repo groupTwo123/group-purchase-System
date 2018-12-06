@@ -29,6 +29,17 @@ public class CommodityController {
     }
 
     /**
+     * @Author: huangchuwen
+     * @date: 2018/12/5 10:24
+     * @Description: 获取所有商品
+     * @params: callback
+     */
+    @RequestMapping(value = "/getAllCommodity", method = RequestMethod.GET)
+    public String getAllCommodity( String callback){
+        return commodityService.getAllCommodity(callback);
+    }
+
+    /**
     *
     * @Author: fangyong
     * @date: 2018/11/29 14:45

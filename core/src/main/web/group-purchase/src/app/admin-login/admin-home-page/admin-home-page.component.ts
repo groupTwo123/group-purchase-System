@@ -10,7 +10,7 @@ export class AdminHomePageComponent implements OnInit {
   navPick:any="0" //左侧导航栏选择 0为首页，1为账号信息，2为商品列表，3为订单状态修改
   username:any='user';  //用于存储用户名
   isChangeInfo:boolean=false;
-  scorllHeight:any=(document.body.scrollHeight).toString()+'px';
+  scorllHeight:any=(document.documentElement.scrollHeight).toString()+'px';
   isAddCommodity:boolean=false;
   constructor() { }
 
@@ -26,10 +26,10 @@ export class AdminHomePageComponent implements OnInit {
   }
   //左侧导航栏高度变化
   scrollHeightChange(){
-    if(document.getElementById('rightBox').style.height<this.scorllHeight){
+    if($("#rightBox").outerHeight(true)<this.scorllHeight){
       document.getElementById('leftBox').style.height=this.scorllHeight;
     }else{
-      document.getElementById('leftBox').style.height= document.getElementById('rightBox').style.height;
+      document.getElementById('leftBox').style.height= $("#rightBox").outerHeight(true)+"px";
 
     }
 
