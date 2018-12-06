@@ -20,12 +20,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    UserDetailsService customUserService(){ //注册UserDetailsService 的bean
+    UserDetailsService userService(){ //注册UserDetailsService 的bean
         return new CustomUserService();
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService()); //user Details Service验证
+        auth.userDetailsService(userService()); //user Details Service验证
 
     }
     @Override
@@ -34,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("localhost:4200/perCenter").authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()
-                .loginPage("localhost:4200/login")
+                .loginPage("/localhost:4200/login")
                 .failureUrl("/login?error")
                 .permitAll() //登录页面用户任意访问
                 .and()
