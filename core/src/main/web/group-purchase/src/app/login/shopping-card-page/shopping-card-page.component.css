@@ -2,3 +2,19 @@
   min-width:120px;
   font-family: SimHei;
 }
+
+.tableStyle{
+  font-size: 15px;
+  font-weight: normal;
+  font-family: YouYuan;
+}
+.borderPadding5{
+  border: 1px solid silver ;
+  padding: 5px;
+}
+.cursor{
+  cursor: pointer;
+}
+.imgCss{
+  height:70px
+}

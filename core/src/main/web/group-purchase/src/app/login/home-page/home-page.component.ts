@@ -19,6 +19,8 @@ export class HomePageComponent implements OnInit {
   searchObj:any='';
   shopCarPageShow:boolean;   //判断是否展示购物车组件
   personCenterPageshow:boolean=false;
+  shoppingCarPageshow:boolean=false;
+
   constructor() { }
 
   ngOnInit() {
@@ -73,8 +75,12 @@ export class HomePageComponent implements OnInit {
     this.CommodityListShow=false;
   }
 
+  //显示个人中心
   personCenterShow(){
-    alert("123")
     this.personCenterPageshow=true;
+  }
+  //显示购物车
+  showShoppingCar(){
+    this.shoppingCarPageshow=true;
   }
 }
