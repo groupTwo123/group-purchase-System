@@ -167,4 +167,28 @@ public class CommodityController {
         return pictureList;
     }
 
+
+    /**
+     * @Author fangyong
+     * @Description 查看商品详情
+     * @Date 2018/12/6 15:44
+     * @Param commodityId,callback
+     * @return
+     **/
+    @RequestMapping(value = "/getCommodityDetail", method = RequestMethod.GET)
+    public String getCommodityDetail(String commodityId, String callback){
+        return commodityService.getCommodityDetail(commodityId,callback);
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 加入购物车
+     * @Date 2018/12/6 16:22
+     * @Param commodityId,commodityNumber,callback
+     * @return
+     **/
+    @RequestMapping(value = "/addCommodityToShopCar", method = RequestMethod.GET)
+    public String addCommodityToShopCar(String commodityId,String commodityNumber,String callback){
+        return commodityService.addCommodityToShopCar(commodityId,commodityNumber,callback);
+    }
 }
