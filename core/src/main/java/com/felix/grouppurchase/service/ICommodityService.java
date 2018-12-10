@@ -4,6 +4,7 @@ package com.felix.grouppurchase.service;
 import com.felix.grouppurchase.model.CommodityPicture;
 import org.springframework.stereotype.Component;
 
+
 import java.util.List;
 
 /**
@@ -41,4 +42,10 @@ public interface ICommodityService {
 
     //查询所有商品
     String getAllCommodity(String callback);
+
+    //查询商品详情
+    String getCommodityDetail(String commodityId, String callback);
+
+    //添加商品到购物车
+    String addCommodityToShopCar(String commodityId,String commodityNumber,String callback);
 }
