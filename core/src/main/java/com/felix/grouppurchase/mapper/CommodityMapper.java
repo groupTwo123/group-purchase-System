@@ -2,6 +2,7 @@ package com.felix.grouppurchase.mapper;
 
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
+import com.felix.grouppurchase.model.ShopCar;
 import com.felix.grouppurchase.model.Seller;
 import com.felix.grouppurchase.model.VolumeManage;
 import org.apache.ibatis.annotations.*;
@@ -95,6 +96,18 @@ public interface CommodityMapper {
     //查询所有商品
     @Select("select * from tb_volume_manage")
     List<VolumeManage> getAllCommodity();
+
+    //查询商品详情
+    @Select("select * from tb_volume_manage where commodity_id = #{commodityId}")
+    VolumeManage getCommodityDetail(@Param("commodityId") String commodityId);
+
+    //添加商品到购物车
+    @Insert("insert into tb_shopping_car(commodity_id,commodity_number) values(#{commodityId},#{commodityNumber})")
+    void addCommodityToShopCar(@Param("commodityId") String commodityId,@Param("commodityNumber")String commodityNumber);
+
+    //根据商品id查找该用户购物车是否已存在该商品
+    @Select("select * from tb_shopping_car where commodity_id = #{commodityId}")
+    ShopCar getShopCarMsg(@Param("commodityId") String commodityId);
 
     //查询商家信息seller_id,store_name根据volume_id
     @Select("select seller_id, store_name from tb_seller where volume_id= #{volumeId} ")
