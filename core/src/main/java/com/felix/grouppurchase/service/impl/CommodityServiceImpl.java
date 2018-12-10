@@ -1,8 +1,10 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
+import com.felix.grouppurchase.mapper.ShopcarMapper;
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
+import com.felix.grouppurchase.model.ShopCar;
 import com.felix.grouppurchase.model.Seller;
 import com.felix.grouppurchase.model.VolumeManage;
 import com.felix.grouppurchase.service.ICommodityService;
@@ -59,6 +61,27 @@ public class CommodityServiceImpl  implements ICommodityService {
         JsonTransfer s = new JsonTransfer();
         String result1 = s.result(1, "",mapObj,callback);
         return result1;
+    }
+
+    @Override
+    public String getCommodityDetail(String commodityId, String callback) {
+        VolumeManage volumeDetail =  commodityMapper.getCommodityDetail(commodityId);
+        JsonTransfer s = new JsonTransfer();
+        String result = s.result(1,"查看成功",volumeDetail,callback);
+        return result;
+    }
+
+    @Override
+    public String addCommodityToShopCar(String commodityId,String commodityNumber,String callback) {
+        ShopCar shopCarMsg = commodityMapper.getShopCarMsg(commodityId);
+        JsonTransfer s = new JsonTransfer();
+        if (!commodityId.equals(shopCarMsg.getCommodityId())) {
+            commodityMapper.addCommodityToShopCar(commodityId, commodityNumber);
+            String result1 = s.result(1, "添加成功", "", callback);
+            return result1;
+        }
+        String result2 = s.result(0,"购物车已存在该商品","",callback);
+        return result2;
     }
 
     @Override
