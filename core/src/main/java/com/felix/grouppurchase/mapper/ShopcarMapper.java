@@ -1,11 +1,16 @@
 package com.felix.grouppurchase.mapper;
 
 import com.felix.grouppurchase.model.ShopCar;
+import com.felix.grouppurchase.model.VolumeManage;
+import net.sf.json.JSON;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.lang.reflect.Array;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -25,9 +30,10 @@ public interface ShopcarMapper {
                     + "<foreach item='item' index='index' collection='commodityIds' open='(' separator=',' close=')'>"
                     + "#{item} "
                     + "</foreach>"
+                    +" and user_id=#{userId}"
                     + "</script>"
     })
-    void delShopcarInfo(@Param("commodityIds") String[] commodityIds);
+    void delShopcarInfo(@Param("commodityIds") String[] commodityIds,@Param("userId") String userId);
 
     //查询购物车所有信息
     @Select({
@@ -41,5 +47,12 @@ public interface ShopcarMapper {
                     + "</foreach>"
                     + "</script>"
     })
-    int getAllShopcarInfo(@Param("commodityIds") String[] commodityIds);
+    int getAllShopcarInfo(@Param("commodityIds") String[] commodityIds) ;
+
+    @Select("select * from tb_volume_manage where volume_id=#{volumeId} and commodity_id=#{commodityId} ")
+    List<VolumeManage> getCommodityData(@Param("volumeId") String volumeId, @Param("commodityId") String commodityId);
+
+    //修改购物车商品数量
+    @Select("update  tb_shopping_car set commodity_number=#{commodity_number} where commodity_id=#{commodity_id} and user_id=#{userId}")
+    void changeShoppingCarVolumeNumById(@Param("commodity_id") String commodityId, @Param("commodity_number") String changeNum ,@Param("userId") String userId ) throws SQLException;
 }

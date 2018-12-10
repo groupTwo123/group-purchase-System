@@ -16,7 +16,11 @@ export class HomePageComponent implements OnInit {
   commodityList:any;  //商品列表
   isHasData:boolean=false;  //判断是否有数据
   search:any='';
+  searchObj:any='';
   shopCarPageShow:boolean;   //判断是否展示购物车组件
+  personCenterPageshow:boolean=false;
+  shoppingCarPageshow:boolean=false;
+
   constructor() { }
 
   ngOnInit() {
@@ -56,6 +60,12 @@ export class HomePageComponent implements OnInit {
       }
     })
   }
+  //搜索事件
+  searchFun(){
+    var str = JSON.stringify(this.searchObj);
+    this.search = JSON.parse(str);
+   this.showCommodityList();
+  }
   //返回到登录页面
   returnLogin(){
     window.location.reload();
@@ -65,4 +75,12 @@ export class HomePageComponent implements OnInit {
     this.CommodityListShow=false;
   }
 
+  //显示个人中心
+  personCenterShow(){
+    this.personCenterPageshow=true;
+  }
+  //显示购物车
+  showShoppingCar(){
+    this.shoppingCarPageshow=true;
+  }
 }

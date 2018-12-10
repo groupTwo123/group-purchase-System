@@ -2,10 +2,12 @@ package com.felix.grouppurchase.mapper;
 
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
+import com.felix.grouppurchase.model.Seller;
 import com.felix.grouppurchase.model.VolumeManage;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -79,8 +81,8 @@ public interface CommodityMapper {
                          @Param("commodityDescription")String commodityDescription, @Param("commodityPrice")String commodityPrice);
 
     //根据商品名称模糊查询商品
-    @Select("select * from tb_volume_manage where commodity_name like '%'")
-    VolumeManage getCommodityByName(@Param("commodityName") String commodityName);
+    @Select("select * from tb_volume_manage,tb_seller where tb_volume_manage.volume_id=tb_seller.volume_id and commodity_name like CONCAT('%' ,#{commodityName},'%')")
+    List<VolumeManage> getCommodityByName(@Param("commodityName") String commodityName);
 
     //存图片到数据库
     @Insert("insert into tb_commodity_picture (commodity_id, local_url, url) values (#{commodityId}, #{path}, #{url}) ")
@@ -91,6 +93,10 @@ public interface CommodityMapper {
     List<CommodityPicture> getCommodityPicture();
 
     //查询所有商品
-    @Select("select * from tb_volume_manage ")
+    @Select("select * from tb_volume_manage")
     List<VolumeManage> getAllCommodity();
+
+    //查询商家信息seller_id,store_name根据volume_id
+    @Select("select seller_id, store_name from tb_seller where volume_id= #{volumeId} ")
+    Seller getSellerInfoByVolumeId( @Param("volumeId") String volumeId);
 }

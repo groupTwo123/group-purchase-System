@@ -3,6 +3,7 @@ package com.felix.grouppurchase.service.impl;
 import com.felix.grouppurchase.mapper.CommodityMapper;
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
+import com.felix.grouppurchase.model.Seller;
 import com.felix.grouppurchase.model.VolumeManage;
 import com.felix.grouppurchase.service.ICommodityService;
 import com.felix.grouppurchase.util.GetUUID;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,8 +44,20 @@ public class CommodityServiceImpl  implements ICommodityService {
     @Override
     public  String getAllCommodity( String callback){
         List<VolumeManage> volumeManages=commodityMapper.getAllCommodity();
+        HashMap<Integer,Object> mapObj=new HashMap<>();
+
+        int index=0;
+        for(VolumeManage manage : volumeManages){
+            Seller sellers=commodityMapper.getSellerInfoByVolumeId(manage.getVolumeId());
+            HashMap<String,Object> map=new HashMap<>();
+            map.put("volumeData",manage);
+            map.put("seller_id",sellers.getSellerId());
+            map.put("store_name",sellers.getStoreName());
+            mapObj.put(index,map);
+            index++;
+        }
         JsonTransfer s = new JsonTransfer();
-        String result1 = s.result(1, "",volumeManages,callback);
+        String result1 = s.result(1, "",mapObj,callback);
         return result1;
     }
 
@@ -122,17 +136,22 @@ public class CommodityServiceImpl  implements ICommodityService {
 
     @Override
     public String getCommodityByName(String commodityName, String callback) {
-        VolumeManage volumeManage = commodityMapper.getCommodityByName(commodityName);
-        ArrayList<Object> arrayList = new ArrayList<>();
-        arrayList.add(volumeManage);
-        JsonTransfer s = new JsonTransfer();
-        if (volumeManage == null){
-            String result1 = s.result(0,"查询失败","",callback);
-            return result1;
-        }else {
-            String result2 = s.result(1,"查询成功",arrayList,callback);
-            return result2;
+        List<VolumeManage> volumeManage = commodityMapper.getCommodityByName(commodityName);
+        HashMap<Integer,Object> mapObj=new HashMap<>();
+
+        int index=0;
+        for(VolumeManage manage : volumeManage){
+            Seller sellers=commodityMapper.getSellerInfoByVolumeId(manage.getVolumeId());
+            HashMap<String,Object> map=new HashMap<>();
+            map.put("volumeData",manage);
+            map.put("seller_id",sellers.getSellerId());
+            map.put("store_name",sellers.getStoreName());
+            mapObj.put(index,map);
+            index++;
         }
+        JsonTransfer s = new JsonTransfer();
+        String result1 = s.result(1, "",mapObj,callback);
+        return result1;
 
     }
 

@@ -49,9 +49,7 @@ export class PageComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
-    console.log(this.page)
-    console.log(this.pageObj)
-    console.log(this.pageChose)
+
 
   }
   //选择页数

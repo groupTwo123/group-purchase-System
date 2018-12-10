@@ -40,7 +40,19 @@ public class ShopcarController {
      * @return
      **/
     @RequestMapping(value = "/delShopcarInfo",method = RequestMethod.GET)
-    public String delShopcarInfo(String commodityIds, String callback){
-        return shopcarService.delShopcarInfo(commodityIds.split(","), callback);
+    public String delShopcarInfo(String commodityIds, String userId,String callback){
+        return shopcarService.delShopcarInfo(commodityIds.split(","), userId, callback);
+    }
+	/**
+     * @Author huangchuwen
+     * @Description 通过volume_id改变购物车数量
+     * @Date 2018/12/7 15:28
+     * @Param volume_id,changeNum,callback
+     * @return
+     **/
+
+    @RequestMapping(value = "/changeShoppingCarVolumeNumById",method = RequestMethod.GET)
+    public String changeShoppingCarVolumeNumById(String commodityId, String changeNum, String userId,String callback){
+        return shopcarService.changeShoppingCarVolumeNumById(commodityId, changeNum,userId,callback);
     }
 }

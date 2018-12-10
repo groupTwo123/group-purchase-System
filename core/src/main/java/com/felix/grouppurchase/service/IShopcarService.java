@@ -6,5 +6,7 @@ public interface IShopcarService {
     String getShopcarInfo(String userId,String callback);
 
     //删除购物车商品
-    String delShopcarInfo(String[] commodityIds, String callback);
+    String delShopcarInfo(String[] commodityIds,String userId, String callback);
+
+    String changeShoppingCarVolumeNumById(String commodityId, String changeNum, String userId,String callback);
 }

@@ -100,7 +100,7 @@ public class CommodityController {
      * @Author fangyong
      * @Description 高级搜索--根据名称模糊查询
      * @Date 2018/12/4 15:53 
-     * @Param
+     * @Param:commodityName
      **/
     @RequestMapping(value = "/getCommodityByName",method = RequestMethod.GET)
     public String getCommodityByName(String commodityName, String callback){
@@ -126,7 +126,7 @@ public class CommodityController {
         String fileName = file.getOriginalFilename();
         fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileName;
         //加个时间戳，尽量避免文件名称重复
-        String path = "E:/fileUpload/" + fileName;
+        String path = "C:/Users/Administrator/Desktop/img/" + fileName;
         //创建文件路径
         File dest = new File(path);
         //判断文件是否已经存在
