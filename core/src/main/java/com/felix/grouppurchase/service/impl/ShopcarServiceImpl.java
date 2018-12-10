@@ -69,6 +69,8 @@ public class ShopcarServiceImpl implements IShopcarService {
             return result2;
         }
     }
+
+
     @Override
     public  String changeShoppingCarVolumeNumById(String commodityId, String changeNum, String userId, String callback) {
         String result="";
