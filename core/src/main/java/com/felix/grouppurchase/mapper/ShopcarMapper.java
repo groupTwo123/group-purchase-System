@@ -1,6 +1,7 @@
 package com.felix.grouppurchase.mapper;
 
 import com.felix.grouppurchase.model.ShopCar;
+import org.apache.ibatis.annotations.*;
 import com.felix.grouppurchase.model.VolumeManage;
 import net.sf.json.JSON;
 import org.apache.ibatis.annotations.Delete;
@@ -47,7 +48,8 @@ public interface ShopcarMapper {
                     + "</foreach>"
                     + "</script>"
     })
-    int getAllShopcarInfo(@Param("commodityIds") String[] commodityIds) ;
+    int getAllShopcarInfo(@Param("commodityIds") String[] commodityIds);
+
 
     @Select("select * from tb_volume_manage where volume_id=#{volumeId} and commodity_id=#{commodityId} ")
     List<VolumeManage> getCommodityData(@Param("volumeId") String volumeId, @Param("commodityId") String commodityId);
