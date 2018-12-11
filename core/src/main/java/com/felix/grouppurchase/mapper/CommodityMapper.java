@@ -112,4 +112,8 @@ public interface CommodityMapper {
     //查询商家信息seller_id,store_name根据volume_id
     @Select("select seller_id, store_name from tb_seller where volume_id= #{volumeId} ")
     Seller getSellerInfoByVolumeId( @Param("volumeId") String volumeId);
+
+    //查询类型中文字段通过类型id
+    @Select("select * from tb_commodity_type where id=#{id}")
+    List<CommodityType> getCommodityTypeById(@Param("id") String commodityTypeId);
 }

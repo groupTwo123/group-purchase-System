@@ -48,4 +48,7 @@ public interface ICommodityService {
 
     //添加商品到购物车
     String addCommodityToShopCar(String commodityId,String commodityNumber,String callback);
+
+    //通过类型id查找类型中文描述
+    String getCommodityTypeById(String commodityTypeId, String callback);
 }

@@ -114,7 +114,7 @@ public class CommodityController {
      * @Param
      * @return
      **/
-    @RequestMapping(value = "/addCommodityPicture", method = RequestMethod.GET)
+    @RequestMapping(value = "/addCommodityPicture", method = RequestMethod.POST)
     public String addCommodityPicture(@RequestParam("file") MultipartFile file, String callback) throws IOException {
         String url;
         System.out.print(file);
@@ -191,5 +191,16 @@ public class CommodityController {
     @RequestMapping(value = "/addCommodityToShopCar", method = RequestMethod.GET)
     public String addCommodityToShopCar(String commodityId,String commodityNumber,String callback){
         return commodityService.addCommodityToShopCar(commodityId,commodityNumber,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 根据类型id查找中文描述
+     * @Date 2018/12/11 11：23
+     * @Param commodityTypeId,callback
+     * @return commodityTypeObj
+     **/
+    @RequestMapping(value = "/getCommodityTypeById", method = RequestMethod.GET)
+    public String getCommodityTypeById(String commodityTypeId,String callback){
+        return commodityService.getCommodityTypeById(commodityTypeId,callback);
     }
 }

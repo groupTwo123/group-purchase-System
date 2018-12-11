@@ -190,4 +190,12 @@ public class CommodityServiceImpl  implements ICommodityService {
         return commodityPictureList;
     }
 
+    @Override
+    public  String getCommodityTypeById(String commodityTypeId, String callback){
+        List<CommodityType> commodityTypes=commodityMapper.getCommodityTypeById(commodityTypeId);
+        JsonTransfer s = new JsonTransfer();
+        String result1 = s.result(1, "",commodityTypes,callback);
+        return result1;
+    }
+
 }
