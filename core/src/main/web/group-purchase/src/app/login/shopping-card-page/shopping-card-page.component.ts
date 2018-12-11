@@ -10,6 +10,7 @@ export class ShoppingCardPageComponent implements OnInit {
   $tbr:any=$('table tbody tr');
   dataList:any;
   tbShow:boolean=false;
+  totalPrice:any;
   constructor() { }
 
   ngOnInit() {
@@ -54,6 +55,7 @@ export class ShoppingCardPageComponent implements OnInit {
            json.data[item]['totalPrice']=parseInt(json.data[item].commodityNumber)*parseInt(json.data[item].commodityData.commodityPrice)
            this.dataList.push(json.data[item]);
          }
+         this.setTotalPrice();
          this.tbShow=true;
          console.log(this.dataList)
        }
@@ -85,6 +87,7 @@ export class ShoppingCardPageComponent implements OnInit {
             }
             this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*parseInt(this.dataList[index].commodityData.commodityPrice)
             this.dataList[index]['commodityNumber']=(parseInt(commodityNumber)-1).toString();
+            this.setTotalPrice();
           }
           else{
             alert("修改失败："+json.msg)
@@ -119,6 +122,7 @@ export class ShoppingCardPageComponent implements OnInit {
             }
             this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*parseInt(this.dataList[index].commodityData.commodityPrice)
             this.dataList[index]['commodityNumber']=(parseInt(commodityNumber)+1).toString();
+            this.setTotalPrice();
           }
           else{
             alert("修改失败："+json.msg)
@@ -153,5 +157,13 @@ export class ShoppingCardPageComponent implements OnInit {
       return;
     }
 
+  }
+
+  //计算所有商品总价格
+  setTotalPrice(){
+    this.totalPrice=0;
+    for(let item of this.dataList){
+      this.totalPrice=this.totalPrice+item.totalPrice;
+    }
   }
 }

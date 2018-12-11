@@ -17,10 +17,9 @@ export class HomePageComponent implements OnInit {
   isHasData:boolean=false;  //判断是否有数据
   search:any='';
   searchObj:any='';
-  shopCarPageShow:boolean;   //判断是否展示购物车组件
-  personCenterPageshow:boolean=false;
-  shoppingCarPageshow:boolean=false;
-
+  personCenterPageshow:boolean=false; //个人中心显示
+  shoppingCarPageshow:boolean=false;  ////判断是否展示购物车组件
+  myOrdersPageShow:boolean=false; //我的订单显示
   constructor() { }
 
   ngOnInit() {
@@ -44,7 +43,10 @@ export class HomePageComponent implements OnInit {
 
   //显示商品类别
   showCommodityList(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
     this.CommodityListShow=true;
+    this.personCenterPageshow=false;
   }
 
   //获取所有商品类别
@@ -72,15 +74,31 @@ export class HomePageComponent implements OnInit {
   }
   //返回首页
   backToHome(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
     this.CommodityListShow=false;
+    this.personCenterPageshow=false;
   }
 
   //显示个人中心
   personCenterShow(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
     this.personCenterPageshow=true;
   }
   //显示购物车
   showShoppingCar(){
+    this.myOrdersPageShow=false;
     this.shoppingCarPageshow=true;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
+  }
+  //显示我的订单界面
+  showMyOrder(){
+    this.myOrdersPageShow=true;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
   }
 }

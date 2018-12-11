@@ -17,6 +17,7 @@ export class CommodityListComponent implements OnInit {
   pageChose:number=0;
   pageObj:any=[];
   isCommodityTypeShow:boolean=false;  //分类显示
+  isLoading:boolean=false;
   constructor() { }
 
   ngOnInit() {
@@ -61,6 +62,7 @@ export class CommodityListComponent implements OnInit {
   //模糊获取商品
   getCommodityBySearch(){
     this.isHasData=false;
+    this.isLoading=true;
     let url="http://localhost:8080/gpsys/commodity/getCommodityByName";
     let send={
       commodityName:this.search
@@ -77,6 +79,9 @@ export class CommodityListComponent implements OnInit {
         else{
           alert("错误:"+json.msg);
           this.isHasData=false;
+          setTimeout(json=>{
+            this.isLoading=false
+          },500)
         }
 
       }
@@ -91,6 +96,7 @@ export class CommodityListComponent implements OnInit {
   //获取所有商品
   getAllCommodity(){
     this.isHasData=false;
+    this.isLoading=true;
 	  let url="http://localhost:8080/gpsys/commodity/getAllCommodity"
 	  $.ajax(url,{
 		  dataType:"jsonp",
@@ -122,6 +128,9 @@ export class CommodityListComponent implements OnInit {
     console.log(commodityLength)
     if(commodityLength==0){
       this.isHasData=false;
+      setTimeout(json=>{
+        this.isLoading=false
+      },500)
       return;
     }
     if(commodityLength % 16!=0){
@@ -142,5 +151,6 @@ export class CommodityListComponent implements OnInit {
       this.pageObj.push( i+1);
     }
     this.isHasData=true;
+    this.isLoading=false
   }
 }

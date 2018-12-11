@@ -30,7 +30,7 @@
         </div>
         <div class="col-sm-2 text-right">
           <i class="fa fa-paper-plane" aria-hidden="true" style="color:#cb00cb;"></i>
-          <a class="aStyle">我的订单</a>
+          <a class="aStyle" (click)="showMyOrder()">我的订单</a>
         </div>
         <div class="col-sm-2 text-right">
           <i class="fa fa-smile-o" aria-hidden="true" style="color:#cb00cb;"></i>
@@ -63,7 +63,7 @@
     </div>
 
   </div>
-  <div class="container" *ngIf=" !shoppingCarPageshow" style="z-index: 3">
+  <div class="container" *ngIf=" !shoppingCarPageshow&&!myOrdersPageShow" style="z-index: 3">
     <div *ngIf="!CommodityListShow ">
       <div class="row adverBoxCss ">
         <div class="col-sm-2 text-center" style="background-color: #e2e2e2;">
@@ -191,4 +191,7 @@
 <app-personal-center *ngIf="personCenterPageshow"></app-personal-center>
 <div class="container" *ngIf="shoppingCarPageshow">
   <app-shopping-card-page></app-shopping-card-page>
+</div>
+<div class="container" *ngIf="myOrdersPageShow">
+  <app-my-orders></app-my-orders>
 </div>

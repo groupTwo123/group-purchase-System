@@ -1,6 +1,6 @@
 .topBox{
   border-right: 1px solid #dad8b9;
-  height: 50px;
+  height: 35px;
 }
 .insideBox{
   width: 98%;
@@ -8,8 +8,8 @@
 
 }
 .boxPStyle{
-  font-family: SimHei;
-  font-size: 20px;
+  font-family:SimHei;
+  font-size: 15px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -22,9 +22,20 @@
 }
 .searchBtn{
   width:90px;
-  background-color:#cb00cb ;
-  color: white;
+  /*background-color:#cb00cb ;*/
+  /*color: white;*/
   font-family:YouYuan;
   font-size: 15px;
   letter-spacing:5px;
+}
+.imgCss{
+  height:80px;
+}
+.operationCss{
+  font-size: 14px;
+  cursor: pointer;
+  color: #3e74ff;
+}
+.operationCss:hover{
+  text-decoration: underline;
 }

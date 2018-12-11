@@ -1,43 +1,89 @@
-<div class="row mt-2 ml-2">
+<div class="row ml-2">
   <div class="col-sm-1 topBox text-center " *ngFor="let item of topDataObj" >
     <div class="insideBox " [ngClass]="{'topPick':ordersTypeChose==item.id}">
       <p class="boxPStyle" (click)="getOrdersByType(item.id)">{{item.name}}</p>
     </div>
   </div>
-</div>
-<div class="row mt-4">
+  <div class="col-sm-2"></div>
   <div class="col-sm-4">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="输入商品订单号或标题进行搜索" >
+      <input type="text" class="form-control"  [(ngModel)]="searchOrder" placeholder="输入商品订单号或标题进行搜索" >
       <span class="input-group-btn">
-          <button class="btn searchBtn" type="button">搜索</button>
+          <button class="btn searchBtn btn-primary" (click)="searchOrderFun()" type="button">搜索</button>
         </span>
     </div>
   </div>
 </div>
-<div class="row mt-2 text-center">
+<div class="row mt-4 text-center">
   <div class="col-sm-12 ">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" style="font-family: YouYuan">
       <thead>
       <th>商品</th>
       <th>单价</th>
       <th>数量</th>
-      <th>商品操作</th>
       <th>实际付款</th>
       <th>交易状态</th>
       <th>交易操作</th>
       </thead>
-      <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tbody *ngIf="isHasData">
+      <tr *ngFor="let item of orderListDataObj[pageChose];let i=index">
+        <td>
+          <div class="row">
+            <div class="col-sm-3 text-right">
+              <img src="../../../assets/phone.png" class="imgCss">
+            </div>
+            <div class="col-sm-6 mt-2 text-left">
+              <p><a style="font-size: 14px">订单号:</a>{{item.orderData.orderId}}</p>
+              <p><a style="font-size: 14px">商品名称:</a>{{item.CommodityData.commodityName}}</p>
+            </div>
+          </div>
+        </td>
+        <td> <p class="mt-4">￥{{item.orderData.money}}</p></td>
+        <td><p class="mt-4">{{item.CommodityData.commodityPrice}}</p></td>
+        <td><p class="mt-4">￥{{item.orderData.money}}</p></td>
+        <td>
+          <p class="mt-4" *ngIf="item.orderData.state=='0'">未付款</p>
+          <p class="mt-4" *ngIf="item.orderData.state=='1'">待发货</p>
+          <p class="mt-4" *ngIf="item.orderData.state=='2'">商家已发货</p>
+          <p class="mt-4" *ngIf="item.orderData.state=='3'">交易完成</p>
+          <p class="mt-4" *ngIf="item.orderData.state=='4'">待评论</p>
+          <p class="mt-4" *ngIf="item.orderData.state=='7'">退货申请中</p>
+        </td>
+        <td>
+          <div *ngIf="item.orderData.state=='0'">
+            <p class=" operationCss" >去付款</p>
+            <p class=" operationCss" (click)="backCommodityShow(item)">取消订单</p>
+            <p class="operationCss" >商品详情</p>
+          </div>
+          <div *ngIf="item.orderData.state=='1'||item.orderData.state=='2'">
+            <p class=" mt-2 operationCss" (click)="backCommodityShow(item)">取消订单</p>
+            <p class="operationCss" >商品详情</p>
+          </div>
+          <div *ngIf="item.orderData.state=='3'">
+            <p class="  operationCss" (click)="backCommodityShow(item)">退货</p>
+            <p class="operationCss" >商品详情</p>
+            <p class="operationCss" >删除订单</p>
+          </div>
+          <div *ngIf="item.orderData.state=='4'">
+            <p class="  operationCss"  (click)="backCommodityShow(item)">退货</p>
+            <p class="operationCss" >去评论</p>
+            <p class="operationCss" >商品详情</p>
+            <p class="operationCss" >删除订单</p>
+          </div>
+          <div *ngIf="item.orderData.state=='7'">
+            <p class=" mt-2 operationCss" (click)="cancelBackCommodity(item)">取消退货</p>
+            <p class="operationCss" >商品详情</p>
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
+<app-page [(pageObj)]="pageObj" [(page)]="page" [(pageChose)]="pageChose" *ngIf="isHasData"></app-page>
+<div class="row" *ngIf="!isHasData">
+  <div class=" col-sm-12 text-center mt-2">
+    <h5 >无搜索结果</h5>
+  </div>
+</div>
+<app-back-commodity *ngIf="backCommodityPageShow" [backCommodityData]="backCommodityData" (closeFun)="closeBackCommodity()"></app-back-commodity>

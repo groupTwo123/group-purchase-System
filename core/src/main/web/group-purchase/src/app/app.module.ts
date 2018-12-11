@@ -25,6 +25,8 @@ import { CommodityListComponent } from './login/home-page/commodity-list/commodi
 import { PageComponent } from './page/page.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { SearchLoadingComponent } from './search-loading/search-loading.component';
+import { BackCommodityComponent } from './back-commodity/back-commodity.component';
+import { CommodityDetailComponent } from './login/home-page/commodity-list/commodity-detail/commodity-detail.component';
 
 
 const appRoutes:Routes=[
@@ -74,6 +76,8 @@ const appRoutes:Routes=[
     PageComponent,
     FileUploadComponent,
     SearchLoadingComponent,
+    BackCommodityComponent,
+    CommodityDetailComponent,
 
   ],
   imports: [
