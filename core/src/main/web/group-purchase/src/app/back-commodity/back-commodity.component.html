@@ -1,0 +1,75 @@
+<div class="bg-model">
+  <div class="bg-content">
+    <div class="row mt-2">
+      <div class="col-sm-5 ">
+        <img src="../../assets/logo2.png" class="imgCss">
+      </div>
+      <div class="col-sm-5">
+        <p class="youyuan mt-5 ">退货申请</p>
+      </div>
+      <div class="col-sm-2  text-center">
+          <i class="fa fa-times curSor font20" aria-hidden="true" (click)="close()"></i>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan">订单号:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="youyuan colorGrey">{{backCommodityData.orderData.orderId}}</p>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan">商品名称:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="youyuan colorGrey">{{backCommodityData.CommodityData.commodityName}}</p>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan">商品数量:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="youyuan colorGrey">{{backCommodityData.orderData.commodityNumber}}</p>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan">商品金额:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="youyuan colorGrey">￥{{backCommodityData.orderData.money}}</p>
+      </div>
+    </div>
+    <div class="row mt-2" >
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan mt-2">退货理由:</p>
+      </div>
+      <div class="col-sm-7">
+        <select class="youyuan form-control select" [(ngModel)]="back_reason">
+          <option value="拍错/多拍/不喜欢">拍错/多拍/不喜欢</option>
+          <option value="和商品描述不符">和商品描述不符</option>
+          <option value="商家发错货">商家发错货</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-sm-3  ml-4 text-left">
+        <p class="youyuan mt-2">补充说明:</p>
+      </div>
+      <div class="col-sm-7">
+        <textarea class="form-control" [(ngModel)]="ps_reason"></textarea>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <button class="btn btn-success form-control" (click)="submitData()">提交申请</button>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+  </div>
+</div>
