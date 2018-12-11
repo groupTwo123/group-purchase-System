@@ -35,4 +35,8 @@ public interface SellerMapper {
 
     @Select("select seller_id from tb_seller where seller_phone = #{phone}")
     Seller checkPhoneExist(@Param("phone") String phone);
+
+    //通过商家id查找商家信息
+    @Select("select * from tb_seller where seller_id=#{id}")
+    Seller getSellerInfoById(@Param("id") String sellerId);
 }

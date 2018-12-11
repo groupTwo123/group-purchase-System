@@ -23,7 +23,7 @@ public interface IUserService {
     String checkPhoneRegister(String phone, String callback);
 
     //修改用户信息
-    String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback);
+    String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email,  String area, String callback);
 
     //重置密码
     String resetPassword(String id, String password, String callback);
@@ -33,4 +33,7 @@ public interface IUserService {
 
     //用户通过手机号码登录获取用户名
     String getUsernameByPhone(String phone, String callback);
+
+    //获取用户信息通过用户Id
+    String getUserInfoById(String userId, String callback);
 }

@@ -56,5 +56,17 @@ public class ShopcarController {
         return shopcarService.changeShoppingCarVolumeNumById(commodityId, changeNum,userId,callback);
     }
 
+    /**
+     * @Author huangchuwen
+     * @Description 增加购物车
+     * @Date 2018/12/11 15：27
+     * @Param commodityId，commodityNumber, volume_id, user_id, callback
+     * @return
+     **/
+
+    @RequestMapping(value = "/addShoppingCar",method = RequestMethod.GET)
+    public String addShoppingCar(String commodityId, String commodityNumber, String volume_id, String user_id, String callback){
+        return shopcarService.addShoppingCar(commodityId, commodityNumber,volume_id, user_id,callback);
+    }
 
 }

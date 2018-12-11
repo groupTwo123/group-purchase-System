@@ -24,5 +24,9 @@ public interface ISellerService {
     //重置密码
     String resetPassword(String sellerId, String sellerPassword, String callback);
 
+    //检测手机是否存在
     String checkPhoneExist(String phone, String callback);
+
+    //查找商家信息通过商家Id
+    String getSellerInfoById(String sellerId, String callback);
 }

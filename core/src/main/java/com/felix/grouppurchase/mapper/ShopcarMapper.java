@@ -57,4 +57,8 @@ public interface ShopcarMapper {
     //修改购物车商品数量
     @Select("update  tb_shopping_car set commodity_number=#{commodity_number} where commodity_id=#{commodity_id} and user_id=#{userId}")
     void changeShoppingCarVolumeNumById(@Param("commodity_id") String commodityId, @Param("commodity_number") String changeNum ,@Param("userId") String userId ) throws SQLException;
+
+    //增加购物车
+    @Insert("insert into tb_shopping_car ( commodity_id, commodity_number, volume_id, user_id) VALUES ( #{commodityId},#{commodityNumber}, #{volume_id}, #{user_id})")
+    void addShoppingCar(@Param("commodityId") String commodityId, @Param("commodityNumber") String commodityNumber,@Param("volume_id") String volume_id,@Param("user_id") String user_id)throws SQLException;
 }

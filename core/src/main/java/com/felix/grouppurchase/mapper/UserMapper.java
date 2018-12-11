@@ -34,11 +34,11 @@ public interface UserMapper {
     User checkPhone(@Param("phone") String phone);
 
     //修改用户信息
-    @Update("update tb_user set userName =#{userName}, password=#{password}, gender=#{gender}, birth=#{birth},email=#{email},\n"+
+    @Update("update tb_user set userName =#{userName},  gender=#{gender}, birth=#{birth},email=#{email},\n"+
             " phone=#{phone}, area=#{area} where id=#{id}")
     void updateUserMessage(@Param("id") String id, @Param("userName") String userName, @Param("gender") String gender,
                            @Param("birth") String birth, @Param("phone") String phone, @Param("email") String email,
-                           @Param("password") String password, @Param("area") String area);
+                            @Param("area") String area);
 
     //会员用户重置密码
     @Update("update tb_user set password = #{password} where id = #{id} ")
@@ -52,4 +52,7 @@ public interface UserMapper {
     @Select("select * from tb_user where phone = #{phone} ")
     User getUsernameByPhone(@Param("phone") String phone);
 
+    //查找用户信息通过id
+    @Select("select * from tb_user where id=#{userId}")
+    User getUserInfoById(@Param("userId") String userId);
 }

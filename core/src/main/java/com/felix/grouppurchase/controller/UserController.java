@@ -104,15 +104,27 @@ public class UserController {
     }
 
     /**
-    *
-    * @Author: fangyong
-    * @date: 2018/11/29 10:47
-    * @Description: 修改用户信息
-    * @params: id,userName,gender,birth,phone,email,password,area,callback
-    */
+     *
+     * @Author: fangyong
+     * @date: 2018/11/29 10:47
+     * @Description: 修改用户信息
+     * @params: id,userName,gender,birth,phone,email,area,callback
+     */
     @RequestMapping("/updateUserMessage")
-    public String  updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback){
-        return userService.updateUserMessage(id,userName,gender,birth,phone,email,password,area,callback);
+    public String  updateUserMessage(String id, String userName, String gender, String birth, String phone, String email,  String area, String callback){
+        return userService.updateUserMessage(id,userName,gender,birth,phone,email,area,callback);
+    }
+
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/11 16:04
+     * @Description: 获取用户信息通过用户Id
+     * @params: userId, callback
+     */
+    @RequestMapping("/getUserInfoById")
+    public String  getUserInfoById(String userId, String callback){
+        return userService.getUserInfoById(userId,callback);
     }
 
 }

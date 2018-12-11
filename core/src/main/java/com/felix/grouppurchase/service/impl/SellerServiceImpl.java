@@ -6,6 +6,7 @@ import com.felix.grouppurchase.service.ISellerService;
 import com.felix.grouppurchase.util.ErrorCodeDesc;
 import com.felix.grouppurchase.util.GetSMS;
 import com.felix.grouppurchase.util.JsonTransfer;
+import net.sf.json.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,4 +126,11 @@ public class SellerServiceImpl implements ISellerService {
         return result1;
     }
 
+    @Override
+    public String getSellerInfoById(String sellerId, String callback){
+        Seller seller=sellerMapper.getSellerInfoById(sellerId);
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"查找成功",seller,callback);
+        return result;
+    }
 }

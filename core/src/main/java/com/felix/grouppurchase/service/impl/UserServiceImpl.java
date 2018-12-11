@@ -73,8 +73,8 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String callback) {
-        userMapper.updateUserMessage(id,userName,gender,birth,phone,email,password,area);
+    public String updateUserMessage(String id, String userName, String gender, String birth, String phone, String email,  String area, String callback) {
+        userMapper.updateUserMessage(id,userName,gender,birth,phone,email,area);
         JsonTransfer s = new JsonTransfer();
         String result = s.result(1,"修改成功","",callback);
         return result;
@@ -104,6 +104,14 @@ public class UserServiceImpl implements IUserService{
         String result2 = s.result(1,"登录成功",map,callback);
         return result2;
 
+    }
+
+    @Override
+    public String getUserInfoById(String userId, String callback) {
+       User user=userMapper.getUserInfoById(userId);
+       JsonTransfer s = new JsonTransfer();
+        String result = s.result(1,"查询成功",user,callback);
+        return result;
     }
 
     @Override

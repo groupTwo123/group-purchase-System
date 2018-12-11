@@ -84,4 +84,18 @@ public class ShopcarServiceImpl implements IShopcarService {
         }
         return result;
     }
+
+    @Override
+    public String addShoppingCar(String commodityId, String commodityNumber, String volume_id, String user_id, String callback){
+        String result="";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            shopcarMapper.addShoppingCar(commodityId,commodityNumber,volume_id,user_id);
+            result=s.result(1,"修改成功","",callback);
+        }catch (SQLException e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
 }

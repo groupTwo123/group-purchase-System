@@ -79,4 +79,17 @@ public class SellerController {
     public String checkPhoneExist(String sellerPhone, String callback){
         return sellerService.checkPhoneExist(sellerPhone, callback);
     }
+
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/11 14:47
+     * @Description: 通过登录名获取商家信息
+     * @params: sellerId
+     * @return:
+     */
+    @RequestMapping(value = "/getSellerInfoById",method = RequestMethod.GET)
+    public String getSellerInfoById(String sellerId, String callback){
+        return sellerService.getSellerInfoById(sellerId, callback);
+    }
 }
