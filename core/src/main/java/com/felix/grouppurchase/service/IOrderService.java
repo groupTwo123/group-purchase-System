@@ -11,4 +11,8 @@ public interface IOrderService {
 
     //根据订单id删除订单
     String delOrderByOrderId(String[] orderIds, String callback);
+
+    String addBackCommodity(String back_order_id, String user_id, String commodity_id, String commodity_number, String money, String back_reason, String state,String callback);
+
+    String cancelBackCommodity(String order_id, String callback);
 }

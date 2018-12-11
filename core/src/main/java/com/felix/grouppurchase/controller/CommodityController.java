@@ -117,6 +117,7 @@ public class CommodityController {
     @RequestMapping(value = "/addCommodityPicture", method = RequestMethod.GET)
     public String addCommodityPicture(@RequestParam("file") MultipartFile file, String callback) throws IOException {
         String url;
+        System.out.print(file);
         System.out.print("上传文件===" + "\n");
         //判断文件是否为空
         if (file.isEmpty()) {

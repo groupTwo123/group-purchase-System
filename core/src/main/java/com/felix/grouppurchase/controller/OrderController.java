@@ -42,6 +42,32 @@ public class OrderController {
         return orderService.delOrderByOrderId(orderIds.split(","), callback);
     }
 
+    /**
+     * @Author huangchuwen
+     * @Description 退货申请
+     * @Date 2018/12/10 15：50
+     * @Param back_order_id,user_id,commodity_id,commodity_number,money,back_reason,state,callback
+     * @return
+     **/
+
+    @RequestMapping(value = "/addBackCommodity", method = RequestMethod.GET)
+    public String addBackCommodity(String back_order_id, String user_id, String commodity_id, String commodity_number, String money, String back_reason, String state, String callback){
+        return orderService.addBackCommodity(back_order_id,user_id,commodity_id,commodity_number,money,back_reason,state,callback);
+    }
+
+    /**
+     * @Author huangchuwen
+     * @Description 取消退货
+     * @Date 2018/12/10 16：48
+     * @Param order_id,callback
+     * @return
+     **/
+
+    @RequestMapping(value = "/cancelBackCommodity", method = RequestMethod.GET)
+    public String cancelBackCommodity(String order_id, String callback){
+        return orderService.cancelBackCommodity(order_id,callback);
+    }
+
 
 
 }

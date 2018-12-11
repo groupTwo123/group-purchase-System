@@ -1,10 +1,9 @@
 package com.felix.grouppurchase.mapper;
 
+import com.felix.grouppurchase.model.BackCommodity;
 import com.felix.grouppurchase.model.Order;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.felix.grouppurchase.model.VolumeManage;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -31,4 +30,24 @@ public interface OrderMapper {
                     + "</script>"
     })
     void delOrderByOrderId(@Param("orderIds") String[] orderIds);
+
+    //通过id获取商品信息
+    @Select("select * from tb_volume_manage where commodity_id=#{conmmodity_id}")
+    List<VolumeManage> getCommodityById(@Param("conmmodity_id") String commodityId);
+
+    //新加退货订单
+    @Insert("insert into tb_back_commodity(back_order_id, user_id, commodity_id, commodity_number, money, back_reason, state) values(#{back_order_id},#{user_id},#{commodity_id},#{commodity_number},#{money},#{back_reason},#{state})")
+    void addBackCommodity(@Param("back_order_id") String back_order_id, @Param("user_id") String user_id, @Param("commodity_id") String commodity_id, @Param("commodity_number") String commodity_number, @Param("money") String money, @Param("back_reason") String back_reason,@Param("state") String state);
+
+    //修改订单状态
+    @Update("update tb_order set state=#{stage} where order_id=#{order_id}")
+    void updateOrderStage(@Param("order_id") String order_id, @Param("stage") String stage);
+
+    //获取退货前状态
+    @Select("select * from tb_back_commodity where back_order_id=#{order_id}")
+    BackCommodity getStageByOrderId(@Param("order_id") String order_id);
+
+    //删除退货订单
+    @Delete("delete from tb_back_commodity where back_order_id=#{order_id} ")
+    void deleteBackOrder(@Param("order_id") String order_id);
 }
