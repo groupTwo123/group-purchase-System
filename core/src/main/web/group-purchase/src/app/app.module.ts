@@ -48,6 +48,7 @@ const appRoutes:Routes=[
 	{path:'b_forgetPassword',component:BForgetPasswordComponent},
 	{path:'fileUpload',component:FileUploadComponent},
 	{path:'searchLoading',component:SearchLoadingComponent},
+	{path:'commodityDetal',component:CommodityDetailComponent},
 
 
 
