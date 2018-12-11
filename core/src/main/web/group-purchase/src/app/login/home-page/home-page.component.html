@@ -1,4 +1,4 @@
-<div *ngIf="!personCenterPageshow " style="margin-bottom: 50px">
+<div *ngIf="!personCenterPageshow &&!myRebatePageShow" style="margin-bottom: 50px">
   <div class="row topBox">
     <div class=" col-sm-1 mt-1 text-right" *ngIf="!isLogin">
       <a class="aStyle" [routerLink]="['/login']">登录</a>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-sm-2 text-right">
           <i class="fa fa-smile-o" aria-hidden="true" style="color:#cb00cb;"></i>
-          <a class="aStyle">我的返利</a>
+          <a class="aStyle" (click)="showMyRebate()">我的会员</a>
         </div>
 
         <div class="col-sm-2 text-right">
@@ -63,8 +63,8 @@
     </div>
 
   </div>
-  <div class="container" *ngIf=" !shoppingCarPageshow&&!myOrdersPageShow" style="z-index: 3">
-    <div *ngIf="!CommodityListShow ">
+  <div  *ngIf=" !shoppingCarPageshow&&!myOrdersPageShow" style="z-index: 3">
+    <div class="container" *ngIf="!CommodityListShow ">
       <div class="row adverBoxCss ">
         <div class="col-sm-2 text-center" style="background-color: #e2e2e2;">
           <p class="AdverPStyle" (click)="showCommodityList()" style="cursor:pointer;"> 全部商品类别</p>
@@ -188,10 +188,11 @@
 
 </div>
 
-<app-personal-center *ngIf="personCenterPageshow"></app-personal-center>
+<app-personal-center *ngIf="personCenterPageshow" (close)="closePersonCenter()"></app-personal-center>
 <div class="container" *ngIf="shoppingCarPageshow">
   <app-shopping-card-page></app-shopping-card-page>
 </div>
 <div class="container" *ngIf="myOrdersPageShow">
   <app-my-orders></app-my-orders>
 </div>
+<app-my-rebate *ngIf="myRebatePageShow"></app-my-rebate>

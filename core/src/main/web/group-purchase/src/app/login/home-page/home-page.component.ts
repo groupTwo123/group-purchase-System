@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
+import {tokenReference} from "@angular/compiler";
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +21,7 @@ export class HomePageComponent implements OnInit {
   personCenterPageshow:boolean=false; //个人中心显示
   shoppingCarPageshow:boolean=false;  ////判断是否展示购物车组件
   myOrdersPageShow:boolean=false; //我的订单显示
+  myRebatePageShow:boolean=false;  //我的会员页面显示
   constructor() { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class HomePageComponent implements OnInit {
     this.shoppingCarPageshow=false;
     this.CommodityListShow=true;
     this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
   }
 
   //获取所有商品类别
@@ -78,6 +81,8 @@ export class HomePageComponent implements OnInit {
     this.shoppingCarPageshow=false;
     this.CommodityListShow=false;
     this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
+
   }
 
   //显示个人中心
@@ -86,6 +91,8 @@ export class HomePageComponent implements OnInit {
     this.shoppingCarPageshow=false;
     this.CommodityListShow=false;
     this.personCenterPageshow=true;
+    this.myRebatePageShow=false;
+
   }
   //显示购物车
   showShoppingCar(){
@@ -93,6 +100,8 @@ export class HomePageComponent implements OnInit {
     this.shoppingCarPageshow=true;
     this.CommodityListShow=false;
     this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
+
   }
   //显示我的订单界面
   showMyOrder(){
@@ -100,5 +109,25 @@ export class HomePageComponent implements OnInit {
     this.shoppingCarPageshow=false;
     this.CommodityListShow=false;
     this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
+
+  }
+
+  //关闭个人中心页面
+  closePersonCenter(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
+  }
+
+  //显示我的会员页面
+  showMyRebate(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
+    this.myRebatePageShow=true;
   }
 }

@@ -1,3 +1,71 @@
-<p>
-  commodity-detail works!
-</p>
+<div class="row container-fluid topBoxCss" >
+  <div class="col-sm-1"></div>
+  <div class="col-sm-2  text-center" style="background-color:#dd0000">
+    <p class="font16 fontColorWhite youyuan cursor mt-2" (click)="back()">全部商品</p>
+  </div>
+  <div class="col-sm-2  text-center" >
+    <p class="font16  cursor mt-2">关键词</p>
+  </div>
+  <div class="col-sm-2 text-center" >
+    <p class="font16  cursor mt-2 ">关键词</p>
+  </div>
+</div>
+<div class="row storeCss" >
+  <div class="col-sm-1"></div>
+  <div class="col-sm-1">
+    <p class="font16 mt-2 simhei" >全部分类></p>
+  </div>
+  <div class="col-sm-1">
+    <p class="font16 mt-2 simhei cursor">{{commidtyTypeName}}></p>
+  </div>
+  <div class="col-sm-1">
+    <p class="font16 mt-2 simhei">{{data.volumeData.commodityName}}></p>
+  </div>
+  <div class="col-sm-5 text-right">
+    <p class="font16 mt-2 simhei">信誉度：{{sellerInfo.sellerPink}}</p>
+  </div>
+  <div class="col-sm-2"><p class="font16 mt-2 simhei">{{data.store_name}}</p></div>
+  <div class="col-sm-1"></div>
+</div>
+<div class="container" >
+  <div class="row ">
+    <div class="col-sm-5">
+      <img src="../../../../../assets/phone.png" class="imgCss">
+    </div>
+    <div class="col-sm-7">
+      <div class="row mt-2 mt-5">
+        <div class="col-sm-12 mt-2">
+          <p class="simhei  bold" style="font-size: 25px">{{data.volumeData.commodityName}}</p>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-10">
+          <p class="youyuan" style="color: #ff4f4f;font-size: 30px"><a class="simhei font16 mt-2" style="color: black">价格：￥</a>{{data.volumeData.commodityPrice}}</p>
+        </div>
+      </div>
+      <div class="row mt-2" >
+        <div class="col-sm-10">
+          <p class="youyuan font20" >描述：{{data.volumeData.commodityDescription}}</p>
+        </div>
+      </div>
+      <div class="row mt-2" style="min-height: 150px">
+        <div class="col-sm-10">
+          <p class="youyuan font20" >库存：{{data.volumeData.commodityNumber}}</p>
+        </div>
+      </div>
+
+      <div class="row mt-2" >
+        <div class="col-sm-2 text-center">
+          <div class="row">
+            <p class="borderPadding5 cursor" (click)="numberChange('-')">-</p>
+            <p class="borderPadding5" style=" width:40px; text-align: center">{{commodityNumber}}</p>
+            <p class="borderPadding5 cursor" (click)="numberChange('+')">+</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-danger form-control" (click)="addShoppingCar()">加入购物车</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

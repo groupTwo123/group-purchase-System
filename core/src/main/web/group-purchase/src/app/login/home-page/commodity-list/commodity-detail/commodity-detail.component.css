@@ -1,0 +1,39 @@
+.imgCss{
+  height: 500px;
+}
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family:YouYuan;
+}
+.topBoxCss{
+  border-bottom: 2px solid #dd0000;
+  height:40px
+}
+.font20{
+  font-size: 20px;
+}
+.font16{
+  font-size: 16px;
+}
+.font12{
+  font-size: 12px;
+}
+.fontColorWhite{
+  color:white
+}
+.cursor{
+  cursor: pointer;
+}
+.storeCss{
+  background-color: #dad2d5;
+  height: 40px;
+}
+.bold{
+  font-weight: bold;
+}
+.borderPadding5{
+  border: 1px solid silver ;
+  padding: 5px;
+}

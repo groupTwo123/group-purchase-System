@@ -7,7 +7,6 @@ import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 })
 export class CommodityListComponent implements OnInit {
   @Input() search:any='';
-
   typeDataObj:any;
   sortWay:any='0';    //  排序顺序，0为销量，1为评论，2为价格，3为评论数
   commodityList:any;	//用于存储数据
@@ -18,6 +17,8 @@ export class CommodityListComponent implements OnInit {
   pageObj:any=[];
   isCommodityTypeShow:boolean=false;  //分类显示
   isLoading:boolean=false;
+  commodityDetailPageShow:boolean=false;
+  commodityDetail:any;
   constructor() { }
 
   ngOnInit() {
@@ -152,5 +153,15 @@ export class CommodityListComponent implements OnInit {
     }
     this.isHasData=true;
     this.isLoading=false
+  }
+
+  // 回调数据
+  choseCommodity(item){
+    this.commodityDetailPageShow=true;
+    this.commodityDetail=item;
+  }
+  //关闭详细页
+  closeDetail(){
+    this.commodityDetailPageShow=false;
   }
 }
