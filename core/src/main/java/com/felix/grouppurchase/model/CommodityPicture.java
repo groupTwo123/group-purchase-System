@@ -8,9 +8,9 @@ import java.io.Serializable;
  */
 public class CommodityPicture implements Serializable {
     private Integer id;
-    private String commodityId;
-    private String url;
-    private String localUrl;
+    private String picId;
+    private String picBase64;
+    private Integer picType;
     private Integer priority;
 
     public Integer getId() {
@@ -21,28 +21,28 @@ public class CommodityPicture implements Serializable {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getPicId() {
+        return picId;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPicId(String picId) {
+        this.picId = picId;
     }
 
-    public String getLocalUrl() {
-        return localUrl;
+    public String getPicBase64() {
+        return picBase64;
     }
 
-    public void setLocalUrl(String localUrl) {
-        this.localUrl = localUrl;
+    public void setPicBase64(String picBase64) {
+        this.picBase64 = picBase64;
     }
 
-    public String getCommodityId() {
-        return commodityId;
+    public Integer getPicType() {
+        return picType;
     }
 
-    public void setCommodityId(String commodityId) {
-        this.commodityId = commodityId;
+    public void setPicType(Integer picType) {
+        this.picType = picType;
     }
 
     public Integer getPriority() {

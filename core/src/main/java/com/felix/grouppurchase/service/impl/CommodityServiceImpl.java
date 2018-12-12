@@ -1,7 +1,6 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
-import com.felix.grouppurchase.mapper.ShopcarMapper;
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.model.CommodityType;
 import com.felix.grouppurchase.model.ShopCar;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -179,12 +177,6 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public int addCommodityPicture(String commodityId, String path,String url, String callback) {
-        int result = commodityMapper.addCommodityPicture(commodityId, path, url);
-        return result;
-    }
-
-    @Override
     public List<CommodityPicture> getCommodityPicture(String callback) {
         List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
         return commodityPictureList;
@@ -196,6 +188,33 @@ public class CommodityServiceImpl  implements ICommodityService {
         JsonTransfer s = new JsonTransfer();
         String result1 = s.result(1, "",commodityTypes,callback);
         return result1;
+    }
+
+    @Override
+    public String addCommodityPicture(String picId, String picBase64, int picType, int priority, String callback) {
+        JsonTransfer s = new JsonTransfer();
+        List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
+        if (commodityPictureList == null) {
+            commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
+        } else {
+            int sort = 0;
+            for (CommodityPicture commodityPicture : commodityPictureList) {
+                if (picId.equals(commodityPicture.getPicId())) {
+                    CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
+                    if (sort < priorityMax.getPriority()) {
+                        sort = priorityMax.getPriority();
+                    }
+                }
+            }
+            if (sort == 0) {
+                commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
+            } else {
+                sort++;
+                commodityMapper.addCommodityPicture(picId, picBase64, picType, sort);
+            }
+        }
+        String result = s.result(1, "上传成功", "", callback);
+        return result;
     }
 
 }

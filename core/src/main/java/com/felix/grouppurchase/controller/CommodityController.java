@@ -2,6 +2,7 @@ package com.felix.grouppurchase.controller;
 
 import com.felix.grouppurchase.model.CommodityPicture;
 import com.felix.grouppurchase.service.ICommodityService;
+import com.felix.grouppurchase.util.ErrorCodeDesc;
 import com.felix.grouppurchase.util.JsonTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,45 +115,9 @@ public class CommodityController {
      * @Param
      * @return
      **/
-    @RequestMapping(value = "/addCommodityPicture", method = RequestMethod.POST)
-    public String addCommodityPicture(@RequestParam("file") MultipartFile file, String callback) throws IOException {
-        String url;
-        System.out.print(file);
-        System.out.print("上传文件===" + "\n");
-        //判断文件是否为空
-        if (file.isEmpty()) {
-            return "上传文件不可为空";
-        }
-        // 获取文件名
-        String fileName = file.getOriginalFilename();
-        fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + fileName;
-        //加个时间戳，尽量避免文件名称重复
-        String path = "C:/Users/Administrator/Desktop/img/" + fileName;
-        //创建文件路径
-        File dest = new File(path);
-        //判断文件是否已经存在
-        if (dest.exists()) {
-            return "文件已经存在";
-        }
-
-        //判断文件父目录是否存在
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdir();
-        }
-
-        JsonTransfer s = new JsonTransfer();
-        try {
-            //上传文件
-            file.transferTo(dest); //保存文件
-            url = "http://localhost:8080/gpsys/commodity/addCommodityPicture/" + fileName;//本地运行项目
-            int result = commodityService.addCommodityPicture(fileName, path, url, callback);
-            String result1 = s.result(1,"上传成功",path,callback);
-            return result1;
-
-        } catch (IOException e) {
-            String result1 = s.result(0,"上传失败","",callback);
-            return result1;
-        }
+    @RequestMapping(value = "/addCommodityPicture", method = RequestMethod.GET)
+    public String addCommodityPicture(String picId, String picBase64, Integer picType, String callback) throws IOException {
+        return commodityService.addCommodityPicture(picId,picBase64.replaceAll(" ","+"),picType,ErrorCodeDesc.priority,callback);
     }
 
     /**

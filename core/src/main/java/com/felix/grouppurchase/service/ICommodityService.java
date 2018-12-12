@@ -34,9 +34,6 @@ public interface ICommodityService {
     //根据商品名称模糊查询
     String getCommodityByName(String commodityName, String callback);
 
-    //上传商品图片
-    int addCommodityPicture(String commodityId, String path, String url, String callback);
-
     //获取商品图片
     List<CommodityPicture> getCommodityPicture(String callback);
 
@@ -51,4 +48,7 @@ public interface ICommodityService {
 
     //通过类型id查找类型中文描述
     String getCommodityTypeById(String commodityTypeId, String callback);
+
+    //上传图片
+    String addCommodityPicture(String picId, String picBase64, int picType,int priority, String callback);
 }

@@ -13,4 +13,6 @@ public class ErrorCodeDesc {
     public static final String ADMIN_NOEXIST = "管理员不存在";
 
     public static final String ADMIN_EXIST  = "管理员已存在";
+
+    public static final int priority = 1;
 }

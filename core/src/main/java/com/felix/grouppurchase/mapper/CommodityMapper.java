@@ -8,7 +8,6 @@ import com.felix.grouppurchase.model.VolumeManage;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -86,8 +85,8 @@ public interface CommodityMapper {
     List<VolumeManage> getCommodityByName(@Param("commodityName") String commodityName);
 
     //存图片到数据库
-    @Insert("insert into tb_commodity_picture (commodity_id, local_url, url) values (#{commodityId}, #{path}, #{url}) ")
-    int addCommodityPicture(@Param("commodityId") String commodityId,@Param("path") String path, @Param("url") String url);
+    @Insert("insert into tb_commodity_picture(picId,picBase64,picType,priority) values(#{picId},#{picBase64},#{picType},#{priority})")
+    void addCommodityPicture(@Param("picId") String picId, @Param("picBase64") String picBase64, @Param("picType") Integer picType,@Param("priority") Integer priority);
 
     //获取商品图片
     @Select("select * from tb_commodity_picture")
@@ -116,4 +115,8 @@ public interface CommodityMapper {
     //查询类型中文字段通过类型id
     @Select("select * from tb_commodity_type where id=#{id}")
     List<CommodityType> getCommodityTypeById(@Param("id") String commodityTypeId);
+
+    //查询优先级最高的图片priority
+    @Select("select max(priority) as priority from tb_commodity_picture where picId = #{picId} and picType = #{picType}")
+    CommodityPicture getCommodityPictureByPriority(@Param("picId") String picId,@Param("picType")int picType);
 }
