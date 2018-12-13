@@ -15,4 +15,6 @@ public class ErrorCodeDesc {
     public static final String ADMIN_EXIST  = "管理员已存在";
 
     public static final int priority = 1;
+
+    public static final int commodityNumber = 0;
 }

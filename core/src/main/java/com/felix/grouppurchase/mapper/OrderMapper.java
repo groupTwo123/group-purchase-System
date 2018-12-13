@@ -50,4 +50,19 @@ public interface OrderMapper {
     //删除退货订单
     @Delete("delete from tb_back_commodity where back_order_id=#{order_id} ")
     void deleteBackOrder(@Param("order_id") String order_id);
+
+    //用户付款支出
+    @Update("update tb_user set vacancy = vacancy - #{money} where id = #{id}")
+    void moveOut(@Param("id") String id, @Param("money") String money);
+
+    //商家收款收入
+    @Update("update tb_seller set seller_account = seller_account + #{money} where seller_id = #{sellerId}")
+    void moveIn(@Param("sellerId") String sellerId, @Param("money") String money);
+
+    //增加订单
+    @Insert("insert into tb_order(order_id,user_id,commodity_id,commodity_number,money,state) values(#{orderId},#{userId},#{commodityId}," +
+            " #{orderInfoNumber},#{orderSumPrice},#{state})")
+    void addOrder(@Param("orderId") String orderId, @Param("userId") String userId,
+                  @Param("commodityId") String commodityId, @Param("orderInfoNumber") String orderInfoNumber,
+                  @Param("orderSumPrice") String orderSumPrice, @Param("state") int state);
 }

@@ -119,4 +119,8 @@ public interface CommodityMapper {
     //查询优先级最高的图片priority
     @Select("select max(priority) as priority from tb_commodity_picture where picId = #{picId} and picType = #{picType}")
     CommodityPicture getCommodityPictureByPriority(@Param("picId") String picId,@Param("picType")int picType);
+
+    //结算后修改商品仓库中商品的数量
+    @Update("update tb_volume_manage set commodity_number = commodity_number - #{orderInfoNumber}")
+    void updateCommodityNumber(@Param("orderInfoNumber") String orderInfoNumber);
 }

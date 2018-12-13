@@ -6,6 +6,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.felix.grouppurchase.service.IOrderService;
 import com.felix.grouppurchase.util.GetUUID;
+import com.felix.grouppurchase.util.JsonTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -121,5 +122,48 @@ public class OrderController {
         httpResponse.getWriter().write(form);//直接将完整的表单html输出到页面
         httpResponse.getWriter().flush();
         httpResponse.getWriter().close();
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 用户付款给商家
+     * @Date 2018/12/13 14:49 
+     * @Param id, sellerId, money, callback
+     * @return 
+     **/
+    @RequestMapping(value = "/userPayToSeller", method = RequestMethod.GET)
+    public String userPayToSeller(String id, String sellerId, String money, String callback){
+        JsonTransfer s = new JsonTransfer();
+        try {
+            orderService.userPayToSeller(id, sellerId, money, callback);
+            String result = s.result(1,"付款成功","",callback);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            String result = s.result(0,"付款失败","",callback);
+            return result;
+        }
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 购物车结算后生成订单，购物车记录删除
+     * @Date 2018/12/13 15:49
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/changeOrderAndShopcar",method = RequestMethod.GET)
+    public String changeOrderAndShopcar(String ids,Integer state, String callback){
+        String orderId = GetUUID.getUUID();
+        JsonTransfer s = new JsonTransfer();
+        try{
+            orderService.changeOrderAndShopcar(ids.split(","),orderId,state,callback);
+            String result = s.result(1,"修改成功","",callback);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            String result = s.result(0,"修改失败","",callback);
+            return result;
+        }
     }
 }
