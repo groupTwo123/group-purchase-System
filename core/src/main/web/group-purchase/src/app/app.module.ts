@@ -27,7 +27,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { SearchLoadingComponent } from './search-loading/search-loading.component';
 import { BackCommodityComponent } from './back-commodity/back-commodity.component';
 import { CommodityDetailComponent } from './login/home-page/commodity-list/commodity-detail/commodity-detail.component';
-
+import { BusinessPerComponent } from './business-login/business-homepage/business-per/business-per.component';
+import { BusinessCommodityListComponent } from './business-login/business-homepage/business-commodity-list/business-commodity-list.component';
+import {DataTableModule} from "angular2-datatable";
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -79,13 +81,16 @@ const appRoutes:Routes=[
     SearchLoadingComponent,
     BackCommodityComponent,
     CommodityDetailComponent,
+    BusinessPerComponent,
+    BusinessCommodityListComponent,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    DataTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -60,10 +60,11 @@
   color: #40aaf5;
 }
 .boderStyle{
-  /*border: 1px solid black;*/
-  border-style: dashed;
-  border-width: thin;
+  border: 1px solid silver;
+  /*border-style: dashed;*/
+  /*border-width: thin;*/
   padding: 10px;
+  box-shadow: 0px 0px 10px #888888;
 
 }
 .commodityLostTopP{

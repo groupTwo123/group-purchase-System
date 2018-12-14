@@ -1,5 +1,5 @@
-<div *ngIf="!personCenterPageshow &&!myRebatePageShow" style="margin-bottom: 50px">
-  <div class="row topBox">
+<div *ngIf="!personCenterPageshow " style="margin-bottom: 50px">
+  <div class="row topBox" style="z-index: 5">
     <div class=" col-sm-1 mt-1 text-right" *ngIf="!isLogin">
       <a class="aStyle" [routerLink]="['/login']">登录</a>
     </div>
@@ -35,6 +35,10 @@
         <div class="col-sm-2 text-right">
           <i class="fa fa-smile-o" aria-hidden="true" style="color:#cb00cb;"></i>
           <a class="aStyle" (click)="showMyRebate()">我的会员</a>
+          <template  [ngIf]="myRebatePageShow" style="position:absolute;z-index: 4">
+            <app-my-rebate  [userId]="'1101'" [myRebateNum]="myRebateNum" (bindChange)="closeMyRebate()"></app-my-rebate>
+          </template>
+
         </div>
 
         <div class="col-sm-2 text-right">
@@ -195,4 +199,4 @@
 <div class="container" *ngIf="myOrdersPageShow">
   <app-my-orders></app-my-orders>
 </div>
-<app-my-rebate *ngIf="myRebatePageShow"></app-my-rebate>
+

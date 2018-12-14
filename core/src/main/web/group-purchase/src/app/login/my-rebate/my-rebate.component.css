@@ -1,75 +1,20 @@
-.time-vertical {
-  list-style-type: none;
-  border-left: 1px solid #707070;
-  padding: 0px;
-  height: 400px;
-}
 
-.time-vertical li {
-  height: 100px;
-  position: relative;
+.templateBox{
+  background-color: #ffffff;
+  border:1px solid silver;
+  box-shadow: 0px 0px  15px #888888;
+  width:200px;
+  padding: 10px;
 }
-
-.time-vertical li a {
-  display: inline-block;
-  margin-left: 20px;
-  margin-top: 15px;
-  text-decoration: none;
-  color: #000;
-}
-
-.time-vertical li b:before {
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: -20px;
-  width: 25px;
-  height: 25px;
-  border: 2px solid #cb00cb;
-  border-radius: 10px;
-  background: #cb00cb;
-}
-
-.time-vertical li span {
-  position: absolute;
-  color: #fff;
-  top: 18px;
-  left: -6px;
-}
-
-.logocss{
-  height: 120px;
-  top:-20px;
-  position: relative;
-}
-.topBox{
-  height: 70px;
-  background-color: #863f87;
-}
-.topPStyle{
+.youyuan{
   font-family: YouYuan;
-  color: white;
-  font-size: 20px;
-  margin-top:30px;
 }
-.headportrait{
-  width: 150px;
-  height: 150px;
-  border-radius: 100px;
-  border: 2px solid silver;
-}
-.centerBox{
-  border: 1px solid #a0a0a0;
-  box-shadow: 0px 0px 10px #888888;
-}
-.centerPStyle{
+.simhei{
   font-family: SimHei;
-  font-size: 18px;
 }
-.centerIStyle{
-  margin-right: 5px;
-  color:  #863f87;
+.font12{
+  font-size: 12px;
 }
-.centerInput{
-  background-color: #ececec;
+.cursor{
+  cursor: pointer;
 }

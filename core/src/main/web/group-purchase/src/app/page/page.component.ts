@@ -1,7 +1,8 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 /*
 * pageObj为页数数组,page为总页数，pageChose为选择页数
-* */
+* <app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>
+ * */
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',

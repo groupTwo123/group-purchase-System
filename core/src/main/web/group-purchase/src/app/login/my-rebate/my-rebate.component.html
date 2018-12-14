@@ -1,42 +1,24 @@
-<div class="row  topBox">
-  <div class="col-sm-3 text-right">
-    <img class="logocss" src="../../../assets/logo2.1.png">
-  </div>
-  <div class="col-sm-8">
-    <p class="topPStyle"> 我的会员</p>
-  </div>
-
-</div>
-<div class="container ">
-  <div class="row mt-4">
-    <div class="col-sm-2 text-center">
-      <div class="row">
-        <div class="col-sm-12">
-          <img src="../../../assets/headExample.gif" class="headportrait">
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-sm-12">
-          <button class="btn btn-sm btn-outline-primary">上传头像</button>
-        </div>
-      </div>
+<div class="templateBox mt-1 text-left" style="position:absolute;z-index: 4" id="templateBox">
+  <div class="row ">
+    <div class="col-sm-2" >
+      <i class="fa fa-diamond"  style=" color: red;font-size: 20px"  aria-hidden="true"></i>
     </div>
-    <div class="col-sm-9 centerBox">
+    <div class="col-sm-8">
+      <p class="youyuan">我的会员</p>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-sm-8">
+      <p class="youyuan font12 mt-2">账号余额：{{userInfo.vacancy}}</p>
+    </div>
+
+  </div>
+  <div class="row "><div class="col-sm-12"><p class="youyuan font12 mt-2">会员等级：{{userInfo.level}}</p></div> </div>
+  <div class="row ">
+    <div class="col-sm-12">
+      <button class="btn btn-primary btn-sm form-control" on-click="addMoney()">充值</button>
     </div>
   </div>
 </div>
 
 
-
-
-<div class="row mt-2">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-11">
-    <ul class="time-vertical">
-      <li><b></b><span>1</span><a href="javascript:void(0)">keso</a></li>
-      <li><b></b><span>2</span><a href="javascript:void(0)">FlyElephant</a></li>
-      <li><b></b><span>3</span><a href="javascript:void(0)">博客园</a></li>
-      <li><b></b><span>4</span><a href="javascript:void(0)">创业</a></li>
-    </ul>
-  </div>
-</div>

@@ -6,7 +6,7 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class BusinessHomepageComponent implements OnInit {
   $:any=(window as any).$;
-  @Input() username:any="user";
+  @Input() username:any="zhangyun";
   @Input() id:any="";
   navPick:any="0" //左侧导航栏选择 0为首页，1为账号信息，2为商品列表，3为订单状态修改
   isChangeInfo:boolean=false;
@@ -22,16 +22,22 @@ export class BusinessHomepageComponent implements OnInit {
   //导航栏点击事件
   leftPickFun(index){
     this.navPick=index;
-    this.scrollHeightChange();
+    setTimeout(json=>{
+      this.scrollHeightChange();
+    },100)
+
   }
   //左侧导航栏高度变化
   scrollHeightChange(){
-    if($("#rightBox").outerHeight(true)<=this.scorllHeight){
-      document.getElementById('leftBox').style.height=this.scorllHeight;
-    }else{
-      document.getElementById('leftBox').style.height=  $("#rightBox").outerHeight(true)+"px";
+    setTimeout(json=>{
+      if($("#rightBox").outerHeight(true)<=this.scorllHeight){
+        document.getElementById('leftBox').style.height=this.scorllHeight;
+      }else{
+        document.getElementById('leftBox').style.height=  $("#rightBox").outerHeight(true)+"px";
 
-    }
+      }
+    },100)
+
 
   }
   //修改账号信息显示
@@ -40,9 +46,5 @@ export class BusinessHomepageComponent implements OnInit {
     this.scrollHeightChange();
   }
 
-  //显示增加商品
-  addCommodityShow(){
-    this.isAddCommodity=true;
-    this.scrollHeightChange();
-  }
+
 }

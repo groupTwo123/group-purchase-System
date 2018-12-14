@@ -5,6 +5,7 @@
 .aStyle{
   margin-right: 10px;
   font-size: 20px;
+
 }
 .typePStyle{
   border: 1px solid silver;border-radius:5px;padding: 2px;font-family: SimHei;font-size: 16px;
@@ -13,4 +14,22 @@
   min-width: 50px;
 
   margin-left: 10px;
+}
+.font20{
+  font-size: 20px;
+}
+.font16{
+  font-size: 16px;
+}
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.imgCss{
+  height:100px;
+}
+.cursor{
+  cursor: pointer;
 }

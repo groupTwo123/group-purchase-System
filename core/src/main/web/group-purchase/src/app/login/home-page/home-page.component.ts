@@ -22,6 +22,7 @@ export class HomePageComponent implements OnInit {
   shoppingCarPageshow:boolean=false;  ////判断是否展示购物车组件
   myOrdersPageShow:boolean=false; //我的订单显示
   myRebatePageShow:boolean=false;  //我的会员页面显示
+  myRebateNum:number=0;
   constructor() { }
 
   ngOnInit() {
@@ -129,5 +130,14 @@ export class HomePageComponent implements OnInit {
     this.CommodityListShow=false;
     this.personCenterPageshow=false;
     this.myRebatePageShow=true;
+    this.myRebateNum++;
+  }
+  //关闭会员页面
+  closeMyRebate(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
   }
 }
