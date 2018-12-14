@@ -1,0 +1,48 @@
+<div class="row mt-4 " *ngIf="!isAddCommodity" style="margin:5px">
+  <div class="col-sm-12">
+    <div class="row  col-sm-12">
+      <div class="col-sm-11" >
+        <p class="commodityLostTopP"><i class="fa fa-shopping-bag" aria-hidden="true" style="margin-right:5px;"></i>您所有的商品有：</p>
+      </div>
+      <div class="col-sm-1 ">
+        <button class="btn btn-primary btn-sm" (click)="addCommodityShow()">增加商品</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-12">
+        <table class="table table-striped table-hover youyuan " id="table" >
+          <thead>
+            <tr>
+              <th>商品id </th>
+              <th>商品名称</th>
+              <th>商品数量</th>
+              <th>商品单价</th>
+              <th>商品描述</th>
+              <th>商品类别</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="bodyShow">
+            <tr *ngFor="let item of commodityList">
+              <td>{{item.commodityId}}</td>
+              <td>{{item.commodityName}}</td>
+              <td>{{item.commodityNumber}}</td>
+              <td>{{item.commodityPrice}}</td>
+              <td>{{item.commodityDescription}}</td>
+              <td>{{typeDataObj[item.commodityTypeId].name}}</td>
+              <td>
+                <i class="fa fa-pencil " style="color:#4f95ff" title="编辑" aria-hidden="true"></i>
+                <i class="fa fa-trash-o " style="color:red" title="删除" aria-hidden="true"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--<app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>-->
+</div>
+
+<div *ngIf="isAddCommodity">
+    <app-add-commodity (close)="closeAdd()" [sellerInfo]="userInfo" (changeHeight)="changeHeightFun()"></app-add-commodity>
+</div>
