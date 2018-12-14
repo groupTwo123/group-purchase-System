@@ -133,4 +133,12 @@ public class SellerServiceImpl implements ISellerService {
         String result=s.result(1,"查找成功",seller,callback);
         return result;
     }
+
+    @Override
+    public String updateSellerInfo( String sellerId,String storeName, String sellerNickname, String sellerName, String sellerIdentityId, String storeArea, String sellerEmail, String callback) {
+        sellerMapper.updateSellerInfo( sellerId,storeName,  sellerNickname,  sellerName,  sellerIdentityId,  storeArea,  sellerEmail);
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"更新成功","",callback);
+        return result;
+    }
 }

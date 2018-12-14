@@ -91,41 +91,46 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public String addCommodityById(String[] volumeIds, String commodityName, String commodityNumber,
-                                   String commodityDescription, String commodityPrice, String callback) {
+    public String addCommodityById(String volumeIds, String commodityName, String commodityNumber,
+                                   String commodityDescription, String commodityPrice,String commodityType, String callback) {
+        JsonTransfer s = new JsonTransfer();
+        String result="";
+        int index=0;
         //查询所有商品信息
-        List<VolumeManage> commodityInfo = commodityMapper.getAllCommodityInfo(volumeIds);
+        List<VolumeManage> commodityInfo = commodityMapper.getAllCommodityInfoById(volumeIds);
         //遍历所有商品
-        for (VolumeManage commodityInfoPO : commodityInfo) {
-            //判断传入的商品名是否与已存在的商品相同
-            //各属性相同的话，则认为是同一种商品，则只是数量增加
-            if ((commodityName.equals(commodityInfoPO.getCommodityName()) && commodityDescription.equals(commodityInfoPO.getCommodityDescription())
-                    && commodityPrice.equals(commodityInfoPO.getCommodityPrice()))) {
-                Integer newCommodityNumberInt = (commodityInfoPO.getCommodityNumber()).intValue() + Integer.parseInt(commodityNumber);
-                String newCommodityNumberStr = String.valueOf(newCommodityNumberInt);
-                //修改数量：原先的数量+传入的数量
-                commodityMapper.updateCommodityAddNumber(volumeIds, newCommodityNumberStr);
-            } else {
-                for (String volumeId : volumeIds) {
-                    commodityMapper.addCommodityById(volumeId, GetUUID.getUUID(), commodityName, commodityNumber, commodityDescription, commodityPrice);
+        if (commodityInfo.isEmpty()) {
+            String commodityId=GetUUID.getUUID();
+            commodityMapper.addCommodityById(volumeIds, commodityId, commodityName, commodityNumber, commodityDescription, commodityPrice,commodityType);
+            result= s.result(1, "添加成功", commodityId, callback);
+        }else{
+            for (VolumeManage commodityInfoPO : commodityInfo) {
+                //判断传入的商品名是否与已存在的商品相同
+                //各属性相同的话，则认为是同一种商品，则只是数量增加
+                String test=commodityInfoPO.getCommodityPrice();
+                System.out.print(test);
+                System.out.print(commodityPrice);
+                if (
+                        (volumeIds.equals(commodityInfoPO.getVolumeId()) )
+                        && (commodityName.equals(commodityInfoPO.getCommodityName()) )
+                        && (commodityDescription.equals(commodityInfoPO.getCommodityDescription()))
+                        && (Float.parseFloat(commodityPrice)==Float.parseFloat((commodityInfoPO.getCommodityPrice())))
+                        ) {
+                    Integer newCommodityNumberInt = (commodityInfoPO.getCommodityNumber()).intValue() + Integer.parseInt(commodityNumber);
+                    String newCommodityNumberStr = String.valueOf(newCommodityNumberInt);
+                    //修改数量：原先的数量+传入的数量
+                    commodityMapper.updateCommodityAddNumber(volumeIds,commodityInfoPO.getCommodityId(), newCommodityNumberStr);
+                    result= s.result(2, "由于数据库中存在该商品，图片请在商品列表中进行图片修改", "", callback);
+                    index++;
                 }
             }
-        }
-        if (commodityInfo.isEmpty()) {
-            for (String volumeId : volumeIds) {
-                commodityMapper.addCommodityById(volumeId, GetUUID.getUUID(), commodityName, commodityNumber, commodityDescription, commodityPrice);
+            if(index==0){
+                String commodityId=GetUUID.getUUID();
+                commodityMapper.addCommodityById(volumeIds,commodityId, commodityName, commodityNumber, commodityDescription, commodityPrice,commodityType);
+                result= s.result(1, "添加成功",commodityId , callback);
             }
         }
-
-        JsonTransfer s = new JsonTransfer();
-        try {
-            String result1 = s.result(1, "添加成功", "", callback);
-            return result1;
-        } catch (Exception e) {
-            e.getMessage();
-            String result2 = s.result(0, "添加失败", e, callback);
-            return result2;
-        }
+        return result;
     }
 
     @Override
