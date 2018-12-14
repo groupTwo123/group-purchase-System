@@ -10,10 +10,19 @@ import java.io.Serializable;
  **/
 public class ShopCar implements Serializable {
 
+    private Integer id;
     private String commodityId;
     private String commodityNumber;
     private String volumeId;
     private String userId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCommodityId() {
         return commodityId;

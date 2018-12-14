@@ -1,5 +1,8 @@
 package com.felix.grouppurchase.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -28,5 +31,17 @@ public class GetUUID {
         String uuid = UUID.randomUUID().toString();
         //去掉“-”符号
         return uuid.replaceAll("-", "");
+    }
+
+
+    public static String getOrderIdByTime(){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+        String newDate = sdf.format(new Date());
+        String result = "";
+        Random random = new Random();
+        for (int i = 0;i<3;i++){
+            result+=random.nextInt(10);
+        }
+        return newDate+result;
     }
 }

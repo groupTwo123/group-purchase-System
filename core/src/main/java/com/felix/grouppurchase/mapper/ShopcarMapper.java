@@ -61,4 +61,22 @@ public interface ShopcarMapper {
     //增加购物车
     @Insert("insert into tb_shopping_car ( commodity_id, commodity_number, volume_id, user_id) VALUES ( #{commodityId},#{commodityNumber}, #{volume_id}, #{user_id})")
     void addShoppingCar(@Param("commodityId") String commodityId, @Param("commodityNumber") String commodityNumber,@Param("volume_id") String volume_id,@Param("user_id") String user_id)throws SQLException;
+
+    //根据id查询购物车信息
+    @Select({
+            "<script>"
+                    + "SELECT "
+                    + "* "
+                    + "FROM tb_shopping_car "
+                    + "where id IN "
+                    + "<foreach item='item' index='index' collection='ids' open='(' separator=',' close=')'>"
+                    + "#{item} "
+                    + "</foreach>"
+                    + "</script>"
+    })
+    List<ShopCar> getShopcarById(@Param("ids") String[] ids);
+
+    //删除购物车记录
+    @Delete("delete from tb_shopping_car where id = #{id}")
+    void delShopcarInfoById(@Param("id") int id);
 }

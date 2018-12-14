@@ -18,6 +18,7 @@ public class Seller implements Serializable {
     private String storeArea;
     private Integer sellerPink;
     private String volumeId;
+    private String sellerAccount;
 
     public String getSellerId() {
         return sellerId;
@@ -105,5 +106,13 @@ public class Seller implements Serializable {
 
     public void setVolumeId(String volumeId) {
         this.volumeId = volumeId;
+    }
+
+    public String getSellerAccount() {
+        return sellerAccount;
+    }
+
+    public void setSellerAccount(String sellerAccount) {
+        this.sellerAccount = sellerAccount;
     }
 }
