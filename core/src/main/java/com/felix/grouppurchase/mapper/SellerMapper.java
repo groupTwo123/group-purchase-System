@@ -39,4 +39,8 @@ public interface SellerMapper {
     //通过商家id查找商家信息
     @Select("select * from tb_seller where seller_id=#{id}")
     Seller getSellerInfoById(@Param("id") String sellerId);
+
+    //商家修改账号信息
+    @Update("update tb_seller set seller_nickname=#{sellerNickname}, seller_name=#{sellerName},seller_identity_id=#{sellerIdentityId},seller_email=#{sellerEmail},store_name=#{storeName},store_area=#{storeArea} where seller_id=#{sellerId}")
+    void updateSellerInfo(@Param("sellerId") String sellerId, @Param("storeName") String storeName, @Param("sellerNickname") String sellerNickname, @Param("sellerName") String sellerName, @Param("sellerIdentityId") String sellerIdentityId, @Param("storeArea") String storeArea, @Param("sellerEmail") String sellerEmail);
 }

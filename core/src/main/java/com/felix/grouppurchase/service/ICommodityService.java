@@ -21,8 +21,8 @@ public interface ICommodityService {
     String getAllCommodityInfo(String[] volumeIds, String callback);
 
     //增加商品到仓库
-    String addCommodityById(String[] volumeIds, String commodityName, String commodityNumber,
-                            String commodityDescription, String commodityPrice, String callback);
+    String addCommodityById(String volumeIds, String commodityName, String commodityNumber,
+                            String commodityDescription, String commodityPrice , String commodityType,String callback);
 
     //根据商品id删除商品
     String delCommodityById(String[] commodityIds, String callback);

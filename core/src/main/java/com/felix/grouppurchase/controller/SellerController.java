@@ -92,4 +92,16 @@ public class SellerController {
     public String getSellerInfoById(String sellerId, String callback){
         return sellerService.getSellerInfoById(sellerId, callback);
     }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/13 9:12
+     * @Description: 商家修改账号信息
+     * @params: sellerId, storeName, sellerNickname, sellerName, sellerIdentityId, storeArea, sellerPhone
+     * @return:
+     */
+    @RequestMapping(value = "/updateSellerInfo",method = RequestMethod.GET)
+    public String updateSellerInfo(String sellerId, String storeName,String sellerNickname,String sellerName, String sellerIdentityId, String storeArea, String sellerEmail, String callback){
+        return sellerService.updateSellerInfo(sellerId,storeName, sellerNickname, sellerName, sellerIdentityId, storeArea, sellerEmail, callback);
+    }
 }

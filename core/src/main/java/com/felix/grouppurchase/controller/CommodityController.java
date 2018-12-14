@@ -66,12 +66,12 @@ public class CommodityController {
      * @Author fangyong
      * @Description 增加商品到仓库中
      * @Date 2018/12/3 16:26
-     * @Param volumeIds,commodityName,commodityNumber,commodityDescription,commodityPrice,callback
+     * @Param volumeIds,commodityName,commodityNumber,commodityDescription,commodityPrice,commodityPic, commodityDetailPic,callback
      **/
     @RequestMapping(value = "/addCommodityById",method = RequestMethod.GET)
-    public String addCommodityById(String[] volumeIds, String commodityName, String commodityNumber,
-                                 String commodityDescription, String commodityPrice, String callback){
-      return commodityService.addCommodityById(volumeIds,commodityName,commodityNumber,commodityDescription,commodityPrice,callback);
+    public String addCommodityById(String volumeIds, String commodityName, String commodityNumber,
+                                 String commodityDescription, String commodityPrice,String commodityType, String callback){
+      return commodityService.addCommodityById(volumeIds,commodityName,commodityNumber,commodityDescription,commodityPrice,commodityType,callback);
     }
 
     /**
