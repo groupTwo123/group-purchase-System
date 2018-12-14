@@ -1,0 +1,94 @@
+
+<div class="row mt-4  mb-4" >
+  <div class="col-sm-12">
+    <div class="row ml-4">
+      <div class="col-sm-2">
+        <!--<p class="rightCenterP">用户头像</p>-->
+        <img class="headImg" src="../../../assets/businessHead.gif">
+      </div>
+      <div class="col-sm-2 mt-5">
+        <button class="btn btn-outline-primary">上传商铺头像</button>
+      </div>
+    </div>
+    <div class="row ml-2">
+      <div class="col-sm-2 mt-4 text-right">
+        <p class="rightCenterP">店铺评价分数：</p>
+      </div>
+      <div class=" row col-sm-10 mt-4"  *ngIf="heartNumberShow">
+        <i class="fa fa-heart colorRed ml-1" aria-hidden="true"  *ngFor="let item of heartNumber" title="你的分数为：{{userInfo.sellerPink}}"></i>
+      </div>
+    </div>
+    <div class="row mt-2 ml-2 " >
+      <div class="col-sm-2  text-center">
+        <p class="rightCenterP mt-2">账号主体：</p>
+      </div>
+      <div class="col-sm-8 boderStyle">
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">登录名：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.sellerId" readonly>
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">店铺名称：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.storeName">
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">昵称：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.sellerNickname">
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">真实姓名：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg"[(ngModel)]="userInfo.sellerName">
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">身份证：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.sellerIdentityId">
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">所在地区：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.storeArea">
+          </div>
+        </div>
+        <div class="row ml-1">
+          <div class="col-sm-2 mt-2">
+            <p class="rightCenterP1">商家邮箱：</p>
+          </div>
+          <div class="col-sm-8" *ngIf="isChangeInfo">
+            <input type="text" class="form-control inputbg" [(ngModel)]="userInfo.sellerEmail">
+          </div>
+        </div>
+        <div class="row mt-4 mb-2" *ngIf="isChangeInfo">
+          <div class="col-sm-4 text-right"><button class="btn btn-success btn-sm" style="width: 100px;" [routerLink]="['/b_forgetPassword']">密码修改</button> </div>
+          <div class="col-sm-4 text-center"><button class="btn btn-success btn-sm" style="width: 100px;"  (click)="saveData()">保存</button> </div>
+          <div class="col-sm-4 text-left"><button class="btn btn-danger btn-sm" style="width: 100px;" (click)="reset()"> 刷新</button> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="row mt-4 ml-4" *ngIf="navPick=='3'">-->
+
+<!--</div>-->
