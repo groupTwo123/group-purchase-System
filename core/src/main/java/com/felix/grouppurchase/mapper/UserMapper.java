@@ -55,4 +55,8 @@ public interface UserMapper {
     //查找用户信息通过id
     @Select("select * from tb_user where id=#{userId}")
     User getUserInfoById(@Param("userId") String userId);
+
+    //修改用户账户余额
+    @Update("update tb_user set vacancy=vacancy+#{money} where id=#{userId}")
+    void updateAccountData(@Param("userId") String userId,@Param("money") Float money);
 }

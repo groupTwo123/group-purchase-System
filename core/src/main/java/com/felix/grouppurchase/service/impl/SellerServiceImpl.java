@@ -141,4 +141,12 @@ public class SellerServiceImpl implements ISellerService {
         String result=s.result(1,"更新成功","",callback);
         return result;
     }
+
+    @Override
+    public String getSellerInfoByVolumeId(String volumeId, String callback) {
+        Seller seller=sellerMapper.getSellerInfoByVolumeId(volumeId);
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"更新成功",seller,callback);
+        return result;
+    }
 }

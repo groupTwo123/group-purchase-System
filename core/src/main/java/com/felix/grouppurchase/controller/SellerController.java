@@ -104,4 +104,17 @@ public class SellerController {
     public String updateSellerInfo(String sellerId, String storeName,String sellerNickname,String sellerName, String sellerIdentityId, String storeArea, String sellerEmail, String callback){
         return sellerService.updateSellerInfo(sellerId,storeName, sellerNickname, sellerName, sellerIdentityId, storeArea, sellerEmail, callback);
     }
+
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/15 15:12
+     * @Description: 通过仓库id获取商家信息
+     * @params: volumeId,callback
+     * @return:
+     */
+    @RequestMapping(value = "/getSellerInfoByVolumeId",method = RequestMethod.GET)
+    public String getSellerInfoByVolumeId(String volumeId, String callback){
+        return sellerService.getSellerInfoByVolumeId(volumeId, callback);
+    }
 }

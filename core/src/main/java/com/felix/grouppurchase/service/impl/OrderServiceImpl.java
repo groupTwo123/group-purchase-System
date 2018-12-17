@@ -1,15 +1,10 @@
 package com.felix.grouppurchase.service.impl;
 
-import com.felix.grouppurchase.mapper.CommodityMapper;
-import com.felix.grouppurchase.mapper.OrderMapper;
-import com.felix.grouppurchase.mapper.ShopcarMapper;
-import com.felix.grouppurchase.mapper.UserMapper;
-import com.felix.grouppurchase.model.BackCommodity;
-import com.felix.grouppurchase.model.Order;
-import com.felix.grouppurchase.model.ShopCar;
-import com.felix.grouppurchase.model.VolumeManage;
+import com.felix.grouppurchase.mapper.*;
+import com.felix.grouppurchase.model.*;
 import com.felix.grouppurchase.service.IOrderService;
 import com.felix.grouppurchase.util.JsonTransfer;
+import net.sf.json.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +34,8 @@ public class OrderServiceImpl implements IOrderService {
 
     @Autowired
     ShopcarMapper shopcarMapper;
+    @Autowired
+    SellerMapper sellerMapper;
 
     @Override
     public String getOrderByUserId(String userId, String callback) {
@@ -75,7 +72,13 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public String addBackCommodity(String back_order_id, String user_id, String commodity_id, String commodity_number, String money, String back_reason, String state,String callback){
         JsonTransfer s = new JsonTransfer();
-        String stage="7";
+        String stage="";
+        if(state.equals("3")||state.equals("4")){
+             stage="7";
+        }
+        else{
+             stage="5";
+        }
         orderMapper.addBackCommodity(back_order_id,user_id,commodity_id,commodity_number,money,back_reason,state);
         orderMapper.updateOrderStage(back_order_id,stage);
         String result = s.result(1,"添加成功","",callback);
@@ -120,6 +123,37 @@ public class OrderServiceImpl implements IOrderService {
             //根据主键id删除购物车记录
             shopcarMapper.delShopcarInfoById(id);
         }
+    }
+
+    @Override
+    public String getOrderByVolumeId(String volumeId, String callback) {
+        List<VolumeManage> volumeManages=commodityMapper.getAllCommodityInfoById(volumeId);
+        List list= new ArrayList();
+        for(VolumeManage volumeManagePo:volumeManages){
+            List<Order> list1 = orderMapper.getOrderByCommodityId(volumeManagePo.getCommodityId());
+            if(!list1.isEmpty()){
+                for(Order orderPo:list1){
+                    list.add(orderPo);
+                }
+            }
+        }
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"添加成功",list,callback);
+        return result;
+    }
+
+    @Override
+    public String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId, String callback) {
+        if(state.equals("6")||state.equals("9")){
+            if(!(beforeState.equals("0"))){
+                userMapper.updateAccountData(userId,Float.parseFloat(money));
+                sellerMapper.updateAccountData(sellerId,Float.parseFloat(money));
+            }
+        }
+        orderMapper.updateOrderStage(orderId,state);
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"修改成功","",callback);
+        return result;
     }
 
 }

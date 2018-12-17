@@ -32,4 +32,7 @@ public interface ISellerService {
 
     //商家修改账号信息
     String updateSellerInfo(String sellerId, String storeName, String sellerNickname, String sellerName, String sellerIdentityId, String storeArea, String sellerEmail, String callback);
+
+    //通过仓库id获取商家信息
+    String getSellerInfoByVolumeId(String volumeId, String callback);
 }

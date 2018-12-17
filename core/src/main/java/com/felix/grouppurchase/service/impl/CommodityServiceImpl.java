@@ -134,21 +134,22 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public String delCommodityById(String[] commodityIds, String callback) {
+    public String delCommodityById(String commodityIds, String callback) {
         JsonTransfer s = new JsonTransfer();
         if (commodityIds == null){
             String result2 = s.result(0,"请选择存在的商品进行删除","",callback);
             return result2;
         }
         commodityMapper.delCommodityById(commodityIds);
+        commodityMapper.delCommodityPicById(commodityIds);
         String result1 = s.result(1,"删除成功","",callback);
         return result1;
     }
 
     @Override
     public String updateCommodityById(String commodityId,String commodityName, String commodityNumber,
-                                String commodityDescription, String commodityPrice, String callback) {
-        commodityMapper.updateCommodityById(commodityId,commodityName, commodityNumber,commodityDescription,commodityPrice);
+                                String commodityDescription, String commodityPrice,String commodityTypeId, String callback) {
+        commodityMapper.updateCommodityById(commodityId,commodityName, commodityNumber,commodityDescription,commodityPrice,commodityTypeId);
         JsonTransfer s = new JsonTransfer();
         try{
             String result1 = s.result(1,"更新成功","",callback);
@@ -204,7 +205,7 @@ public class CommodityServiceImpl  implements ICommodityService {
         } else {
             int sort = 0;
             for (CommodityPicture commodityPicture : commodityPictureList) {
-                if (picId.equals(commodityPicture.getPicId())) {
+                if (picId.equals(commodityPicture.getPicId())&& picType==commodityPicture.getPicType()) {
                     CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
                     if (sort < priorityMax.getPriority()) {
                         sort = priorityMax.getPriority();
@@ -220,6 +221,22 @@ public class CommodityServiceImpl  implements ICommodityService {
         }
         String result = s.result(1, "上传成功", "", callback);
         return result;
+    }
+
+    @Override
+    public String getCommodityPicById(String picId, String callback) {
+        List<CommodityPicture> commodityPictures=commodityMapper.getCommodityPicById(picId);
+        JsonTransfer s=new JsonTransfer();
+        String result = s.result(1, "上传成功", commodityPictures, callback);
+        return result;
+    }
+
+    @Override
+    public String delPicByPicId(String picId, String callback) {
+        JsonTransfer s= new JsonTransfer();
+        commodityMapper.delCommodityPicById(picId);
+        String result1 = s.result(1,"删除成功","",callback);
+        return result1;
     }
 
 }

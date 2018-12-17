@@ -55,24 +55,14 @@ public interface CommodityMapper {
     void updateCommodityAddNumber(@Param("volumeIds")String volumeIds,@Param("commodityId") String commodityId, @Param("newCommodityNumberStr") String newCommodityNumberStr);
 
     //根据商品id删除商品
-    @Delete({
-            "<script>"
-                    + "delete "
-                    + "from "
-                    + "tb_volume_manage "
-                    + "where commodity_id IN "
-                    + "<foreach item='item' index='index' collection='commodityIds' open='(' separator=',' close=')'>"
-                    + "#{item} "
-                    + "</foreach>"
-                    + "</script>"
-    })
-    void delCommodityById(@Param("commodityIds") String[] commodityIds);
+    @Delete("delete from tb_volume_manage where commodity_id=#{commodityIds}")
+    void delCommodityById(@Param("commodityIds") String commodityIds);
 
     //更新商品
-    @Update("update tb_volume_manage set commodity_name = #{commodityName}, commodity_number = #{commodityNumber}, commodity_description = #{commodityDescription}, commodity_price = #{commodityPrice}\n "+
+    @Update("update tb_volume_manage set commodity_name = #{commodityName}, commodity_number = #{commodityNumber}, commodity_description = #{commodityDescription}, commodity_price = #{commodityPrice}, commodity_type_id=#{commodityTypeId}\n "+
             "where commodity_id = #{commodityId}")
     void updateCommodityById(@Param("commodityId") String commodityId,@Param("commodityName")String commodityName, @Param("commodityNumber")String commodityNumber,
-                         @Param("commodityDescription")String commodityDescription, @Param("commodityPrice")String commodityPrice);
+                         @Param("commodityDescription")String commodityDescription, @Param("commodityPrice")String commodityPrice,@Param("commodityTypeId") String commodityTypeId);
 
     //根据商品名称模糊查询商品
     @Select("select * from tb_volume_manage,tb_seller where tb_volume_manage.volume_id=tb_seller.volume_id and commodity_name like CONCAT('%' ,#{commodityName},'%')")
@@ -117,4 +107,12 @@ public interface CommodityMapper {
     //结算后修改商品仓库中商品的数量
     @Update("update tb_volume_manage set commodity_number = commodity_number - #{orderInfoNumber}")
     void updateCommodityNumber(@Param("orderInfoNumber") String orderInfoNumber);
+
+    //根据商品id删除图片
+    @Delete("delete from tb_commodity_picture  where picId=#{commodityIds}")
+    void delCommodityPicById(@Param("commodityIds") String commodityIds);
+
+    //根据pic查找图片
+    @Select("select * from tb_commodity_picture where picId=#{picId} order by priority")
+    List<CommodityPicture> getCommodityPicById(@Param("picId") String picId);
 }

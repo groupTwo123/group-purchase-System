@@ -25,11 +25,11 @@ public interface ICommodityService {
                             String commodityDescription, String commodityPrice , String commodityType,String callback);
 
     //根据商品id删除商品
-    String delCommodityById(String[] commodityIds, String callback);
+    String delCommodityById(String commodityIds, String callback);
 
     //更新商品
     String updateCommodityById(String commodityId,String commodityName, String commodityNumber,
-                         String commodityDescription, String commodityPrice, String callback);
+                         String commodityDescription, String commodityPrice,String commodityTypeId, String callback);
 
     //根据商品名称模糊查询
     String getCommodityByName(String commodityName, String callback);
@@ -51,4 +51,9 @@ public interface ICommodityService {
 
     //上传图片
     String addCommodityPicture(String picId, String picBase64, int picType,int priority, String callback);
+
+    //根据picId查找图片
+    String getCommodityPicById(String picId, String callback);
+
+    String delPicByPicId(String picId, String callback);
 }

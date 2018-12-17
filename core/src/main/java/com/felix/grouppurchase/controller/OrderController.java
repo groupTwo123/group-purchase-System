@@ -166,4 +166,28 @@ public class OrderController {
             return result;
         }
     }
+
+    /**
+     * @Author huangchuwen
+     * @Description 根据仓库id获取所有订单
+     * @Date 2018/12/14 15:49
+     * @Param volumeId
+     * @return
+     **/
+    @RequestMapping(value = "/getOrderByVolumeId",method = RequestMethod.GET)
+    public String getOrderByVolumeId(String volumeId, String callback){
+        return orderService.getOrderByVolumeId(volumeId,callback);
+    }
+
+    /**
+     * @Author huangchuwen
+     * @Description 根据orderId修改订单状态
+     * @Date 2018/12/15 10:47
+     * @Param orderId,state,beforeState,money,userId,sellerId
+     * @return
+     **/
+    @RequestMapping(value = "/updateStateByOrderId",method = RequestMethod.GET)
+    public String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId,String callback){
+        return orderService.updateStateByOrderId(orderId,state,beforeState,money,userId,sellerId,callback);
+    }
 }

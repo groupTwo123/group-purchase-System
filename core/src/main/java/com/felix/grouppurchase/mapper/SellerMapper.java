@@ -43,4 +43,12 @@ public interface SellerMapper {
     //商家修改账号信息
     @Update("update tb_seller set seller_nickname=#{sellerNickname}, seller_name=#{sellerName},seller_identity_id=#{sellerIdentityId},seller_email=#{sellerEmail},store_name=#{storeName},store_area=#{storeArea} where seller_id=#{sellerId}")
     void updateSellerInfo(@Param("sellerId") String sellerId, @Param("storeName") String storeName, @Param("sellerNickname") String sellerNickname, @Param("sellerName") String sellerName, @Param("sellerIdentityId") String sellerIdentityId, @Param("storeArea") String storeArea, @Param("sellerEmail") String sellerEmail);
+
+    //修改商家账户余额（退货时候）
+    @Update("update tb_seller set seller_account=seller_account - #{money} where seller_id=#{userId}")
+    void updateAccountData(@Param("userId") String userId,@Param("money") Float money);
+
+    //通过仓库id获取商家信息
+    @Select("select * from tb_seller where volume_id=#{volumeId}")
+    Seller getSellerInfoByVolumeId(@Param("volumeId") String volumeId);
 }

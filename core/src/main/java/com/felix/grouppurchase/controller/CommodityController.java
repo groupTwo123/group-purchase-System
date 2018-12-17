@@ -81,7 +81,7 @@ public class CommodityController {
      * @Param commodityIds, callback
      **/
     @RequestMapping(value = "/delCommodityById",method = RequestMethod.GET)
-    public String delCommodityById(String[] commodityIds, String callback){
+    public String delCommodityById(String commodityIds, String callback){
         return commodityService.delCommodityById(commodityIds, callback);
     }
     
@@ -93,8 +93,8 @@ public class CommodityController {
      **/
     @RequestMapping(value = "/updateCommodity",method = RequestMethod.GET)
     public String updateCommodityById(String commodityId,String commodityName, String commodityNumber,
-                                  String commodityDescription, String commodityPrice, String callback){
-       return commodityService.updateCommodityById(commodityId,commodityName, commodityNumber,commodityDescription,commodityPrice, callback);
+                                  String commodityDescription, String commodityPrice,String commodityTypeId, String callback){
+       return commodityService.updateCommodityById(commodityId,commodityName, commodityNumber,commodityDescription,commodityPrice,commodityTypeId, callback);
     }
 
     /**
@@ -167,5 +167,27 @@ public class CommodityController {
     @RequestMapping(value = "/getCommodityTypeById", method = RequestMethod.GET)
     public String getCommodityTypeById(String commodityTypeId,String callback){
         return commodityService.getCommodityTypeById(commodityTypeId,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 根据picId查找图片
+     * @Date 2018/12/14 10：23
+     * @Param commodityId,callback
+     * @return
+     **/
+    @RequestMapping(value = "/getCommodityPicById", method = RequestMethod.GET)
+    public String getCommodityPicById(String picId,String callback){
+        return commodityService.getCommodityPicById(picId,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 根据picId删除所有图片
+     * @Date 2018/12/14 16：40
+     * @Param picId,callback
+     * @return
+     **/
+    @RequestMapping(value = "/delPicByPicId", method = RequestMethod.GET)
+    public String delPicByPicId(String picId,String callback){
+        return commodityService.delPicByPicId(picId,callback);
     }
 }

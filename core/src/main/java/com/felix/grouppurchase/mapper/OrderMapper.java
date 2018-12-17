@@ -65,4 +65,9 @@ public interface OrderMapper {
     void addOrder(@Param("orderId") String orderId, @Param("userId") String userId,
                   @Param("commodityId") String commodityId, @Param("orderInfoNumber") String orderInfoNumber,
                   @Param("orderSumPrice") String orderSumPrice, @Param("state") int state);
+
+    //根据商品id查找订单
+    @Select("select * from tb_order where commodity_id=#{commodityId}")
+    List<Order> getOrderByCommodityId(@Param("commodityId") String commodityId);
+
 }

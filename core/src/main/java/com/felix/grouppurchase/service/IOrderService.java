@@ -25,4 +25,10 @@ public interface IOrderService {
     //购物车结算后生成订单，购物车记录删除
     @Transactional
     void changeOrderAndShopcar(String[] ids,String orderId,int state, String callback);
+
+    //根据仓库id获取所有订单
+    String getOrderByVolumeId(String volumeId, String callback);
+
+    //根据orderId修改订单状态
+    String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId, String callback);
 }
