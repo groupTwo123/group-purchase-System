@@ -35,6 +35,18 @@ export class FileUploadComponent implements OnInit {
       })
     }
     }
+  fukuan(){
+    let url="http://localhost:8080/gpsys/order/aliplayToOrder"
+    let send={
+      money:"10"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      success:json=>{
 
+      }
+    })
+  }
 
 }

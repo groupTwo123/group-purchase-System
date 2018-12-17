@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from"./../../type"
 /*
 * 订单状态
 * 0：未付款
@@ -37,7 +37,10 @@ export class MyOrdersComponent implements OnInit {
   searchOrder:any='';   //存储搜索关键词
   backCommodityPageShow:boolean=false;
   backCommodityData:any;
-  constructor() { }
+  orderState:any={}
+  constructor() {
+    this.orderState=g.orderState;
+  }
 
   ngOnInit() {
     this.getAllOrderById();
@@ -158,23 +161,44 @@ export class MyOrdersComponent implements OnInit {
     this.backCommodityPageShow=false;
     this.getAllOrderById();
   }
-  //取消退货
-  cancelBackCommodity(item){
-    if(confirm("是否要取消退货")){
-      let url="http://localhost:8080/gpsys/order/cancelBackCommodity";
-      let send={
-        order_id:item.orderData.orderId
+  //根据仓库id获取卖家信息
+  getSellerInfoByVolumeId(item){
+    let url=g.namespace+"/gpsys/seller/getSellerInfoByVolumeId"
+    let send={
+      volumeId:item.CommodityData.volumeId
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      success:json=>{
+        if(json.stage==1){
+          this.cancelBackCommodity(item,json.data);
+        }
       }
+    })
+  }
+  //取消退货
+  cancelBackCommodity(item,sellerInfo){
+    if(confirm("是否要取消退货申请")){
+      let url=g.namespace+"/gpsys/order/updateStateByOrderId";
+      let send={
+        orderId:item.orderData.orderId,
+        state:"8",
+        beforeState:item.orderData.state,
+        money:item.orderData.money,
+        userId:item.orderData.userId,
+        sellerId:sellerInfo.sellerId
+      };
       $.ajax(url,{
         data:send,
         dataType:"jsonp",
         success:json=>{
           if(json.stage==1){
-            alert("取消成功");
+            alert("修改成功");
             this.getAllOrderById();
           }
           else{
-            alert("取消失败："+json.msg);
+            alert("修改失败："+json.msg)
           }
         }
       })

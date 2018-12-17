@@ -28,6 +28,9 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.getAllCommodityType();
     $('.carousel').carousel({  interval: 2000})
+    if(this.usernameFromParent==''||this.idFormParent==''){
+
+    }
 
   }
   ngOnChanges(){

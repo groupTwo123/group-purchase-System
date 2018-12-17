@@ -30,6 +30,9 @@ import { CommodityDetailComponent } from './login/home-page/commodity-list/commo
 import { BusinessPerComponent } from './business-login/business-homepage/business-per/business-per.component';
 import { BusinessCommodityListComponent } from './business-login/business-homepage/business-commodity-list/business-commodity-list.component';
 import {DataTableModule} from "angular2-datatable";
+import {UpdateCommodityComponent} from "./business-login/business-homepage/update-commodity/update-commodity.component"
+import {UpdateOrderStateComponent} from "./business-login/business-homepage/update-order-state/update-order-state.component"
+import {UserInfoComponent} from "./business-login/business-homepage/update-order-state/user-info/user-info.component"
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -83,7 +86,9 @@ const appRoutes:Routes=[
     CommodityDetailComponent,
     BusinessPerComponent,
     BusinessCommodityListComponent,
-
+    UpdateCommodityComponent,
+    UpdateOrderStateComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -42,12 +42,7 @@
         <td><p class="mt-4">{{item.CommodityData.commodityPrice}}</p></td>
         <td><p class="mt-4">￥{{item.orderData.money}}</p></td>
         <td>
-          <p class="mt-4" *ngIf="item.orderData.state=='0'">未付款</p>
-          <p class="mt-4" *ngIf="item.orderData.state=='1'">待发货</p>
-          <p class="mt-4" *ngIf="item.orderData.state=='2'">商家已发货</p>
-          <p class="mt-4" *ngIf="item.orderData.state=='3'">交易完成</p>
-          <p class="mt-4" *ngIf="item.orderData.state=='4'">待评论</p>
-          <p class="mt-4" *ngIf="item.orderData.state=='7'">退货申请中</p>
+          <p class="mt-4">{{orderState[item.orderData.state]}}</p>
         </td>
         <td>
           <div *ngIf="item.orderData.state=='0'">
@@ -70,9 +65,21 @@
             <p class="operationCss" >商品详情</p>
             <p class="operationCss" >删除订单</p>
           </div>
+          <div *ngIf="item.orderData.state=='5'">
+            <p class=" mt-4 operationCss" >商品详情</p>
+          </div>
+          <div *ngIf="item.orderData.state=='6'">
+            <p class=" mt-4 operationCss" >商品详情</p>
+          </div>
           <div *ngIf="item.orderData.state=='7'">
-            <p class=" mt-2 operationCss" (click)="cancelBackCommodity(item)">取消退货</p>
+            <p class=" mt-2 operationCss" (click)="getSellerInfoByVolumeId(item)">取消退货</p>
             <p class="operationCss" >商品详情</p>
+          </div>
+          <div *ngIf="item.orderData.state=='8'">
+            <p class=" mt-4 operationCss" >商品详情</p>
+          </div>
+          <div *ngIf="item.orderData.state=='9'">
+            <p class=" mt-4 operationCss" >商品详情</p>
           </div>
         </td>
       </tr>

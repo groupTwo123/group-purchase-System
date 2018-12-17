@@ -45,7 +45,8 @@
         <p class="rightTopP1" style="cursor: pointer">退出登录</p>
       </div>
     </div>
-    <app-business-per *ngIf="navPick=='1'" [username]="username" (changeHeight)="scrollHeightChange()"></app-business-per>
-    <app-business-commodity-list *ngIf="navPick=='2'" [username]="username"  (changeHeight)="scrollHeightChange()"></app-business-commodity-list>
+    <app-business-per *ngIf="navPick=='1'" [username]="id" (changeHeight)="scrollHeightChange()"></app-business-per>
+    <app-business-commodity-list *ngIf="navPick=='2'" [username]="id"  (changeHeight)="scrollHeightChange()"></app-business-commodity-list>
+    <app-update-order-state *ngIf="navPick=='3'" [id]="id" (changeHeight)="scrollHeightChange()"></app-update-order-state>
   </div>
 </div>

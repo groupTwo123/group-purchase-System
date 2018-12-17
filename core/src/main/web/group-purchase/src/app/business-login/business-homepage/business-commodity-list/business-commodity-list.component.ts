@@ -1,4 +1,5 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import * as globle from "./../../../type"
 
 @Component({
   selector: 'app-business-commodity-list',
@@ -16,7 +17,9 @@ export class BusinessCommodityListComponent implements OnInit {
   page:any=0;
   pageChose:any=0;
   pageObj:any=[];
-  commodityListDataObj:any={}
+  commodityListDataObj:any={};
+  editCommodityData:any={};
+  editPage:boolean=false;
   constructor() { }
 
   ngOnChanges(){
@@ -41,13 +44,14 @@ export class BusinessCommodityListComponent implements OnInit {
       jsonp:"callback",
       type:"GET",
       success:json=>{
-        this.typeDataObj=json.data
+        this.typeDataObj=json.data;
       }
     })
   }
   //获取商家信息
   getSellerInfo(){
-    let url="http://localhost:8080/gpsys/seller/getSellerInfoById";
+
+    let url=globle.namespace+"/gpsys/seller/getSellerInfoById";
     let send={
       sellerId:this.username
     }
@@ -57,7 +61,7 @@ export class BusinessCommodityListComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           this.userInfo=json.data;
-         this.getCommodityList()
+         this.getCommodityList('0')
         }
         else{
           alert("服务器错误："+json.msg)
@@ -66,8 +70,8 @@ export class BusinessCommodityListComponent implements OnInit {
     })
   }
     //获取商品列表通过商家id
-  getCommodityList(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityInfo"
+  getCommodityList(index){
+    let url=globle.namespace+"/gpsys/commodity/getCommodityInfo"
     let send={
       volumeIds:this.userInfo.volumeId
     }
@@ -77,8 +81,12 @@ export class BusinessCommodityListComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           this.commodityList=json.data;
-          this.dataTrans()
-          console.log(this.commodityList)
+          if(index=='1'){
+            this.dataTrans('1')
+          }else{
+            this.dataTrans('0')
+          }
+
         }
         else{
           alert("服务器错误："+json.msg)
@@ -95,42 +103,54 @@ export class BusinessCommodityListComponent implements OnInit {
   //关闭增加
   closeAdd(){
     this.isAddCommodity=false;
-    this.getCommodityList();
+    this.getCommodityList('0');
   }
 
-  dataTrans() {
-    setTimeout(json=>{
+  dataTrans(index) {
+    if(index=='0'){
+      setTimeout(json=>{
+        $("#table").DataTable( globle.dataTable)
 
+        this.changeHeight.emit();
+      },50)
+    }
 
-      $("#table").DataTable( {
-        'columns': [{},{},{},{},{},{},{}],
-        "pageLength":20,
-        'searching' : true,
-        'language': {
-          'emptyTable': "<div class='cmn_warning tip'>无数据</div>",
-          'loadingRecords': '处理中',
-          'processing': '处理中',
-          'lengthMenu': '_MENU_ 行/页',
-          'zeroRecords': "<div class='cmn_warning tip'>无数据</div>",
-          'info': '共_TOTAL_条记录',
-          'infoEmpty': '共0条',
-          'infoFiltered': '(从_MAX_条中筛选)',
-          'infoPostFix': '',
-          'infoPages': '_CUR_/_MENU_ 页',
-          'jumpToPage': '转到',
-          'search': '查询',
-          'paginate': {
-            'first': '首页',
-            'previous': '上一页',
-            'next': '下一页',
-            'last': '末页'
-          }
-        },
-      })
-
-      this.changeHeight.emit();
-    },50)
     this.bodyShow=true;
 
+  }
+  //是否确定要删除商品
+  deleteCommodity(index){
+   if(!(confirm("确定要删除吗"))){
+     return;
+   }
+   let url=globle.namespace+"/gpsys/commodity/delCommodityById";
+   let send={
+     commodityIds:this.commodityList[index].commodityId
+   }
+   $.ajax(url,{
+     data:send,
+     dataType:"jsonp",
+     success:json=>{
+       if(json.stage==1){
+         alert("删除成功");
+         this.getCommodityList('1')
+       }
+       else{
+         alert("服务器错误:"+json.msg)
+       }
+     }
+   })
+  }
+
+  //修改商品
+  editShow(item){
+    this.editCommodityData=item;
+    this.editPage=true;
+    this.changeHeight.emit()
+  }
+  //关闭修改页面
+  closeUpdate(){
+    this.editPage=false;
+    this.getCommodityList('0')
   }
 }

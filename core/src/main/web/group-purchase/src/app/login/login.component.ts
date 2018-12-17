@@ -64,12 +64,7 @@ export class LoginComponent implements OnInit {
                 alert('登录成功');
                 this.username=json.data.username;
                 this.userType=json.data.type;
-                if(this.userType==0){
-                  this.homePageShow=true;
-                }
-                else if(this.userType==1){
-                  this.businessShow==true;
-                }
+                this.homePageShow=true;
 
               }
               else{

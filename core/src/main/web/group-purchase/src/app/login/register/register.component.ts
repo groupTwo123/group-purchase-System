@@ -132,7 +132,7 @@ export class RegisterComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
-    let url="http://localhost:8080/gpsys/sendSMS/register"
+    let url="http://localhost:8080/gpsys/sendSMS/sendMessage/register"
     let send={
       phone:this.phone
     }
@@ -144,6 +144,9 @@ export class RegisterComponent implements OnInit {
         if(json.stage==1){
           console.log(json)
           this.checkCode=json.data.code;
+        }
+        else{
+          alert(json.msg)
         }
       }
     })
@@ -183,7 +186,7 @@ export class RegisterComponent implements OnInit {
         let url="http://localhost:8080/gpsys/user/register";
         let send={
           id:this.id,
-          username:this.username,
+          userName:this.username,
           gender:this.gender,
           phone:this.phone,
           email:this.email,
