@@ -1,0 +1,99 @@
+<div style="margin: 5px">
+  <div class="row mt-4 ml-2">
+    <div class="col-sm-12 ml-2 ">
+      <p class="youyuan font20"><i class="fa fa-pencil mr-2" style="color:#1573d6" aria-hidden="true"></i>可以对必要商品信息进行修改</p></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei">商品id：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <input type="text" class="form-control" [(ngModel)]="updateData.commodityId" readonly>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品名称：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <input type="text" class="form-control" [(ngModel)]="updateData.commodityName" >
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品数量：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <input type="text" class="form-control" [(ngModel)]="updateData.commodityNumber">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品单价：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <input type="text" class="form-control" [(ngModel)]="updateData.commodityPrice">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品描述：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <textarea type="text" class="form-control" [(ngModel)]="updateData.commodityDescription"></textarea>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品类型：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <select  class="form-control"   [(ngModel)]="updateData.commodityTypeId">
+        <option *ngFor="let item of typeDataObj" value="{{item.id}}" class="mt-1">{{item.name}}</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品图片：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <div class="row col-sm-12">
+        <input id="file" type="file" name="file"  (change)="commodityPicAdd('0')">
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-2" *ngFor="let item of commodityPicData;let i=index">
+          <img src="{{item}}" class="imgCss cursor" (click)="deleteCommodityPic(i,'0')">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-2 text-right mt-2">
+      <p class="font16 simhei"><span class="text-danger">*</span>商品详情：</p>
+    </div>
+    <div class="col-sm-8 mt-1">
+      <div class="row col-sm-12">
+        <input id="file1" type="file" name="file" [(ngModel)]="filePath" (change)="commodityPicAdd('1')">
+      </div>
+      <div class="row mt-2">
+        <div class="col-sm-2" *ngFor="let item of commodityDetailPicData;let i=index">
+          <img src="{{item}}" class="imgCss cursor" (click)="deleteCommodityPic(i,'1')">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-sm-5 text-right">
+      <button class="btn btn-success" (click)="submitData()">保存</button>
+    </div>
+    <div class="col-sm-6 text-left">
+      <button class="btn btn-danger" (click)="closeUpdateFun()">取消</button>
+    </div>
+  </div>
+
+</div>
