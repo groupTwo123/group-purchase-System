@@ -1,0 +1,49 @@
+<div class="row mt-4 "  style="margin:5px">
+  <div class="col-sm-12">
+    <div class="row  col-sm-12">
+      <div class="col-sm-11" >
+        <p class="commodityLostTopP"><i class="fa fa-shopping-bag" aria-hidden="true" style="margin-right:5px;"></i>您所有的商品有：</p>
+      </div>
+      <div class="col-sm-1 ">
+        <button class="btn btn-primary btn-sm" (click)="addCommodityShow()">增加商品</button>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-12">
+        <table class="table table-striped table-hover youyuan " id="table" *ngIf="bodyShow">
+          <thead>
+          <tr>
+            <th>订单id </th>
+            <th>商品id</th>
+            <th>商品数量</th>
+            <th>买家id</th>
+            <th>订单价格</th>
+            <th>订单状态</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="bodyShow">
+          <tr *ngFor="let item of orderList ;let i=index">
+            <td>{{item.orderId}}</td>
+            <td>{{item.commodityId}}</td>
+            <td>{{item.commodityNumber}}</td>
+            <td>{{item.userId}}</td>
+            <td>{{item.money}}</td>
+            <td>{{orderState[item.state]}}</td>
+            <td>
+              <i class="fa fa-user cursor text-primary"  title="展示用户信息" aria-hidden="true" (click)="editShow(item)"></i>
+              <i class="fa fa-truck cursor text-primary" *ngIf="item.state=='1'" title="发货" aria-hidden="true" (click)="updateOrderState(item,'2')"></i>
+              <i class="fa fa-check-square-o cursor text-primary" *ngIf="item.state=='5'" title="同意" aria-hidden="true" (click)="updateOrderState(item,'6')"></i>
+              <i class="fa fa-check-square-o cursor text-primary" *ngIf="item.state=='7'" title="同意" aria-hidden="true" (click)="updateOrderState(item,'9')"></i>
+              <i class="fa fa-check-square-o cursor text-primary" *ngIf="item.state=='8'" title="同意" aria-hidden="true" (click)="cancelBackCommodity(item)"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--<app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>-->
+</div>
+
+<app-user-info *ngIf="userInfoPageShow" [userId]="userId" (close)="closeUserInfoPage()"></app-user-info>

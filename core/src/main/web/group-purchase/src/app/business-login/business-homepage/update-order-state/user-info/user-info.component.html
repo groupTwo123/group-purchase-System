@@ -1,0 +1,63 @@
+<div class="bg-model">
+  <div class="bg-content" >
+    <div class="row mt-4 ml-4">
+      <div class="col-sm-12 ">
+        <p class="font16 youyuan"> <i class="fa fa-user cursor text-primary"  title="展示用户信息" aria-hidden="true" (click)="editShow(item)"></i>用户信息</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">用户id:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan">{{userInfo.id}}</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">昵称:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan">{{userInfo.userName}}</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">性别:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan" *ngIf="userInfo.gender=='1'">男</p>
+        <p class="font16 youyuan" *ngIf="userInfo.gender=='0'">女</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">手机号码:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan" >{{userInfo.phone}}</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">邮箱:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan" >{{userInfo.email}}</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-4">
+      <div class="col-sm-4 text-right">
+        <p class="font16 youyuan">地区:</p>
+      </div>
+      <div class="col-sm-7">
+        <p class="font16 youyuan" >{{userInfo.area}}</p>
+      </div>
+    </div>
+    <div class="row mt-4 ml-4">
+      <div class="col-sm-11">
+        <button class="btn btn-success form-control" (click)="close.emit()">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
