@@ -35,4 +35,10 @@ public interface ISellerService {
 
     //通过仓库id获取商家信息
     String getSellerInfoByVolumeId(String volumeId, String callback);
+
+    //获取所有商家信息
+    String getAllSeller(String callback);
+
+    //修改账号状态
+    String updateSellerState(String state, String sellerId,String callback);
 }

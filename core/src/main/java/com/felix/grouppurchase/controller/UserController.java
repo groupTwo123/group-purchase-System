@@ -127,4 +127,15 @@ public class UserController {
         return userService.getUserInfoById(userId,callback);
     }
 
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/18 11:04
+     * @Description: 获取所有用户信息
+     * @params:  callback
+     */
+    @RequestMapping("/getAllUserInfo")
+    public String  getAllUserInfo( String callback){
+        return userService.getAllUserInfo(callback);
+    }
 }

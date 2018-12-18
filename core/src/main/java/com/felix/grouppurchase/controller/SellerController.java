@@ -117,4 +117,30 @@ public class SellerController {
     public String getSellerInfoByVolumeId(String volumeId, String callback){
         return sellerService.getSellerInfoByVolumeId(volumeId, callback);
     }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/17 9:31
+     * @Description: 获取所有商家信息
+     * @params: callback
+     * @return:SellerObj
+     */
+    @RequestMapping(value = "/getAllSeller",method = RequestMethod.GET)
+    public String getAllSeller(String callback){
+        return sellerService.getAllSeller(callback);
+    }
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/17 11:14
+     * @Description: 修改账号状态
+     * @params:state,sellerId, callback
+     * @return:
+     */
+    @RequestMapping(value = "/updateSellerState",method = RequestMethod.GET)
+    public String updateSellerState(String state,String sellerId, String callback){
+        return sellerService.updateSellerState(state,sellerId,callback);
+    }
+
+
 }

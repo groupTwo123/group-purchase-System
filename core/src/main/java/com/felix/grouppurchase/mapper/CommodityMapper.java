@@ -115,4 +115,20 @@ public interface CommodityMapper {
     //根据pic查找图片
     @Select("select * from tb_commodity_picture where picId=#{picId} order by priority")
     List<CommodityPicture> getCommodityPicById(@Param("picId") String picId);
+
+    //根据仓库id获取商品信息
+    @Select("select * from tb_volume_manage where volume_id=#{volumeId}")
+    List<VolumeManage> getCommodityAndPicByVolumeId(@Param("volumeId") String volumeId);
+
+    //加入类型
+    @Insert("insert into tb_commodity_type (name) values(#{typename})")
+    void addType(@Param("typename") String typename);
+
+    //删除类型
+    @Delete("delete from tb_commodity_type where id=#{typeId}")
+    void delTypeById(@Param("typeId") String typeId);
+
+    //更新类型
+    @Update("update tb_commodity_type set name=#{name} where id=#{id}")
+    void updateTypeById(@Param("id") String id,@Param("name") String name);
 }

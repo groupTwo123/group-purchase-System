@@ -36,4 +36,7 @@ public interface IUserService {
 
     //获取用户信息通过用户Id
     String getUserInfoById(String userId, String callback);
+
+    //获取所有用户信息
+    String getAllUserInfo(String callback);
 }

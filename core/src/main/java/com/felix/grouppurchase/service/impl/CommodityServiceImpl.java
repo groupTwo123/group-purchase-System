@@ -239,4 +239,66 @@ public class CommodityServiceImpl  implements ICommodityService {
         return result1;
     }
 
+    @Override
+    public String getCommodityAndPicByVolumeId(String volumeId, String callback) {
+        String result="";
+        JsonTransfer s = new JsonTransfer();
+        try {
+            List<VolumeManage> commodityInfo = commodityMapper.getCommodityAndPicByVolumeId(volumeId);
+            HashMap<Integer,Object> map= new HashMap<>();
+            int index=0;
+            for(VolumeManage volumeManagePo:commodityInfo){
+                HashMap<String,Object> map1=new HashMap<>();
+                List<CommodityPicture> commodityPictures=commodityMapper.getCommodityPicById(volumeManagePo.getCommodityId());
+                map1.put("picData",commodityPictures);
+                map1.put("commodityData",volumeManagePo);
+                map.put(index,map1);
+                index++;
+            }
+            result = s.result(1,"",map,callback);
+        }catch (Exception e){
+            result = s.result(1,"",e,callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String addType(String typename, String callback) {
+        String result="";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            commodityMapper.addType(typename);
+            result=s.result(1,"","",callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String delTypeById(String typeId, String callback) {
+        String result="";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            commodityMapper.delTypeById(typeId);
+            result=s.result(1,"","",callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String updateTypeById(String id, String name, String callback) {
+        String result="";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            commodityMapper.updateTypeById(id,name);
+            result=s.result(1,"","",callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
 }

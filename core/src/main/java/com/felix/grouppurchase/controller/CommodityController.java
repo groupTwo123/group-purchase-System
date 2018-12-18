@@ -51,15 +51,27 @@ public class CommodityController {
     }
 
     /**
-    *
-    * @Author: fangyong
-    * @date: 2018/11/29 14:45
-    * @Description: 获取仓库中所有商品信息
-    * @params: volumeIds,callback
-    */
+     *
+     * @Author: fangyong
+     * @date: 2018/11/29 14:45
+     * @Description: 获取仓库中所有商品信息
+     * @params: volumeIds,callback
+     */
     @RequestMapping(value = "/getCommodityInfo",method = RequestMethod.GET)
     public String getCommodityInfo(String volumeIds, String callback){
         return commodityService.getAllCommodityInfo(volumeIds.split(","), callback);
+    }
+
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/17 14:45
+     * @Description: 通过仓库id获取商品信息和对应图片
+     * @params: volumeIds,callback
+     */
+    @RequestMapping(value = "/getCommodityAndPicByVolumeId",method = RequestMethod.GET)
+    public String getCommodityAndPicByVolumeId(String volumeId, String callback){
+        return commodityService.getCommodityAndPicByVolumeId(volumeId, callback);
     }
 
     /**
@@ -190,4 +202,39 @@ public class CommodityController {
     public String delPicByPicId(String picId,String callback){
         return commodityService.delPicByPicId(picId,callback);
     }
+
+    /**
+     * @Author huangchuwen
+     * @Description 加入类型
+     * @Date 2018/12/18 8：40
+     * @Param typename,callback
+     * @return
+     **/
+    @RequestMapping(value = "/addType", method = RequestMethod.GET)
+    public String addType(String typename,String callback){
+        return commodityService.addType(typename,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 删除类型
+     * @Date 2018/12/18 9：40
+     * @Param typeId,callback
+     * @return
+     **/
+    @RequestMapping(value = "/delTypeById", method = RequestMethod.GET)
+    public String delTypeById(String typeId,String callback){
+        return commodityService.delTypeById(typeId,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 更新类型
+     * @Date 2018/12/18 10：40
+     * @Param id,name,callback
+     * @return
+     **/
+    @RequestMapping(value = "/updateTypeById", method = RequestMethod.GET)
+    public String updateTypeById(String id, String name,String callback){
+        return commodityService.updateTypeById(id ,name ,callback);
+    }
+
 }

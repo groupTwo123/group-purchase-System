@@ -6,12 +6,14 @@ import com.felix.grouppurchase.service.IUserService;
 import com.felix.grouppurchase.util.ErrorCodeDesc;
 import com.felix.grouppurchase.util.GetSMS;
 import com.felix.grouppurchase.util.JsonTransfer;
+import jdk.internal.dynalink.linker.LinkerServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @Date: 2018/11/22 16:03
@@ -111,6 +113,19 @@ public class UserServiceImpl implements IUserService{
        User user=userMapper.getUserInfoById(userId);
        JsonTransfer s = new JsonTransfer();
         String result = s.result(1,"查询成功",user,callback);
+        return result;
+    }
+
+    @Override
+    public String getAllUserInfo(String callback) {
+        JsonTransfer s = new JsonTransfer();
+        String result="";
+        try {
+            List<User> userList= userMapper.getAllUserInfo();
+            result=s.result(1,"",userList,callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
         return result;
     }
 

@@ -55,5 +55,18 @@ public interface ICommodityService {
     //根据picId查找图片
     String getCommodityPicById(String picId, String callback);
 
+    //删除图片根据图片id
     String delPicByPicId(String picId, String callback);
+
+    //通过仓库id获取商品信息和对应图片
+    String getCommodityAndPicByVolumeId(String volumeId, String callback);
+
+    //添加类型
+    String addType(String typename, String callback);
+
+    //删除类型
+    String delTypeById(String typeId, String callback);
+
+    //更新类型
+    String updateTypeById(String id, String name, String callback);
 }

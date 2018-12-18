@@ -3,6 +3,8 @@ package com.felix.grouppurchase.mapper;
 import com.felix.grouppurchase.model.Seller;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * @Date: 2018/11/30 9:21
  * @Author: fangyong
@@ -51,4 +53,12 @@ public interface SellerMapper {
     //通过仓库id获取商家信息
     @Select("select * from tb_seller where volume_id=#{volumeId}")
     Seller getSellerInfoByVolumeId(@Param("volumeId") String volumeId);
+
+    //获取所有商家信息
+    @Select("select * from tb_seller")
+    List<Seller> getAllSeller();
+
+    //修改商家账号状态
+    @Update("update tb_seller set state=#{state} where seller_id=#{sellerId}")
+    void updateSellerState(@Param("state") String state, @Param("sellerId") String sellerId);
 }

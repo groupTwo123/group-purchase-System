@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @Date: 2018/11/30 9:20
@@ -147,6 +148,27 @@ public class SellerServiceImpl implements ISellerService {
         Seller seller=sellerMapper.getSellerInfoByVolumeId(volumeId);
         JsonTransfer s=new JsonTransfer();
         String result=s.result(1,"更新成功",seller,callback);
+        return result;
+    }
+
+    @Override
+    public String getAllSeller(String callback) {
+        List<Seller> sellers=sellerMapper.getAllSeller();
+        JsonTransfer s=new JsonTransfer();
+        String result=s.result(1,"查询成功",sellers,callback);
+        return result;
+    }
+
+    @Override
+    public String updateSellerState(String state, String sellerId, String callback) {
+       String result="";
+       JsonTransfer s=new JsonTransfer();
+        try {
+           sellerMapper.updateSellerState(state,sellerId);
+            result=s.result(1,"更新成功","",callback);
+       }catch (Exception e){
+            result=s.result(1,e.toString(),"",callback);
+       }
         return result;
     }
 }

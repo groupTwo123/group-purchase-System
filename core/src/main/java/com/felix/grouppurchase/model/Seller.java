@@ -20,6 +20,16 @@ public class Seller implements Serializable {
     private String volumeId;
     private String sellerAccount;
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    private String state;
+
     public String getSellerId() {
         return sellerId;
     }

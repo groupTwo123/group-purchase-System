@@ -3,6 +3,8 @@ package com.felix.grouppurchase.mapper;
 import com.felix.grouppurchase.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 
 /**
  * @Date: 2018/11/22 16:04
@@ -59,4 +61,8 @@ public interface UserMapper {
     //修改用户账户余额
     @Update("update tb_user set vacancy=vacancy+#{money} where id=#{userId}")
     void updateAccountData(@Param("userId") String userId,@Param("money") Float money);
+
+    //查询所有user信息
+    @Select("select * from tb_user")
+    List<User> getAllUserInfo();
 }
