@@ -17,4 +17,7 @@ public class ErrorCodeDesc {
     public static final int priority = 1;
 
     public static final int commodityNumber = 0;
+
+    //文章状态:  1 表示启用
+    public static final int state = 1;
 }
