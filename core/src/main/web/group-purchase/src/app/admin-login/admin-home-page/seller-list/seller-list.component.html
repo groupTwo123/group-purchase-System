@@ -1,0 +1,49 @@
+<div style="margin-right: 10px;" *ngIf="!commodityListPageShow">
+  <div class="row mt-2">
+    <div class="col-sm-10" >
+      <p class=" youyuan font20"><i class="fa fa-user text-primary" aria-hidden="true" style="margin-right:5px;"></i>所有商家列表：</p>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-12">
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <table class="table table-striped table-hover youyuan "  id="table" >
+            <thead>
+            <tr >
+              <th>商家id </th>
+              <th>真实姓名</th>
+              <th>商家手机</th>
+              <th>商家邮箱</th>
+              <th>店铺名称</th>
+              <th>店铺所在地址</th>
+              <th>店铺分数</th>
+              <th>商品</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="bodyShow">
+            <tr *ngFor="let item of sellerInfo ;let i=index">
+              <td>{{item.sellerId}}</td>
+              <td>{{item.sellerName}}</td>
+              <td>{{item.sellerPhone}}</td>
+              <td>{{item.sellerEmail}}</td>
+              <td>{{item.storeName}}</td>
+              <td>{{item.storeArea}}</td>
+              <td>{{item.sellerPink}}</td>
+              <td><a class="cursor text-primary" (click)="showCommodityList(item)">查看</a></td>
+              <td>
+                <!--<i class="fa fa-ban text-danger" aria-hidden="true" title="停用账号" *ngIf="item.state=='1'"></i>-->
+                <button class="btn btn-sm btn-danger cursor" *ngIf="item.state=='1'" (click)="updateSellerState('0',item.sellerId)">停用</button>
+                <button class="btn btn-sm btn-success cursor" *ngIf="item.state=='0'" (click)="updateSellerState('1',item.sellerId)">启动</button>
+                <!--<i class="fa fa-play text-success"  aria-hidden="true" title="启动账号" *ngIf="item.state=='0'"></i>-->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-admin-commodity-list (close)="closeCommodityList()" (changHeight)="scrollHeightChange()" [sellerDataObj]="sellerDataObj" *ngIf="commodityListPageShow"></app-admin-commodity-list>
