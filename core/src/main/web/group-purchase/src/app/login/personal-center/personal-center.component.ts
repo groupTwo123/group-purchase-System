@@ -1,5 +1,5 @@
 import { Component, OnInit, Output,EventEmitter} from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-personal-center',
   templateUrl: './personal-center.component.html',
@@ -19,7 +19,7 @@ export class PersonalCenterComponent implements OnInit {
   }
   //获取用户信息
   getUserInfo(){
-    let url="http://localhost:8080/gpsys/user/getUserInfoById";
+    let url=g.namespace+"/gpsys/user/getUserInfoById";
     let send={
       userId:"1101"
     }
@@ -48,7 +48,7 @@ export class PersonalCenterComponent implements OnInit {
         return;
       }
     }
-    let url="http://localhost:8080/gpsys/user/updateUserMessage"
+    let url=g.namespace+"/gpsys/user/updateUserMessage"
     let send={
       id:this.userInfo.id,
       userName:this.userInfo.userName,

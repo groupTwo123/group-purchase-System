@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
-
+import  * as g from'./../../../../type'
 @Component({
   selector: 'app-commodity-detail',
   templateUrl: './commodity-detail.component.html',
@@ -34,7 +34,7 @@ export class CommodityDetailComponent implements OnInit {
 
   //获取商品Type
   getCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityTypeById";
+    let url=g.namespace+"/gpsys/commodity/getCommodityTypeById";
     let send={
       commodityTypeId:this.data.volumeData.commodityTypeId
     }
@@ -53,7 +53,7 @@ export class CommodityDetailComponent implements OnInit {
   }
   //获取商家信息
   getSellerInfo(){
-    let url="http://localhost:8080/gpsys/seller/getSellerInfoById";
+    let url=g.namespace+"/gpsys/seller/getSellerInfoById";
     let send={
       sellerId:this.data.seller_id
     }
@@ -77,7 +77,7 @@ export class CommodityDetailComponent implements OnInit {
   }
   //提交加入购物车
   addShoppingCar(){
-    let url="http://localhost:8080/gpsys/shopcar/addShoppingCar";
+    let url=g.namespace+"/gpsys/shopcar/addShoppingCar";
     let send={
       commodityId:this.data.volumeData.commodityId,
       commodityNumber:this.commodityNumber,

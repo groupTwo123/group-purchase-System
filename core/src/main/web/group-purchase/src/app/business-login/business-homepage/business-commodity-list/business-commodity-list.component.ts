@@ -37,7 +37,7 @@ export class BusinessCommodityListComponent implements OnInit {
 
   //获取所有商品类别
   getAllCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityType"
+    let url=globle.namespace+"/gpsys/commodity/getCommodityType"
     $.ajax(url,{
       data:{},
       dataType:"jsonp",

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input} from '@angular/core';
+
 @Component({
   selector: 'app-business-homepage',
   templateUrl: './business-homepage.component.html',

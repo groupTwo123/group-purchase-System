@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../type';
 @Component({
   selector: 'app-business-login',
   templateUrl: './business-login.component.html',
@@ -36,7 +36,7 @@ export class BusinessLoginComponent implements OnInit {
 		  alert("请输入正确的手机");
 		  return;
 	  }
-	  let url="http://localhost:8080/gpsys/sendSMS/sendMessage/sellerLogin";
+	  let url=g.namespace+"/gpsys/sendSMS/sendMessage/sellerLogin";
 	  let send={
 		  sellerPhone:this.phone
 	  }
@@ -60,7 +60,7 @@ export class BusinessLoginComponent implements OnInit {
   }
   //获取验证码
   getCode(){
-	  let url="http://localhost:8080/gpsys/sendSMS/sendMessage/sendCode";
+	  let url=g.namespace+"/gpsys/sendSMS/sendMessage/sendCode";
 	  let send={
 		  phone:this.phone
 	  }
@@ -86,7 +86,7 @@ export class BusinessLoginComponent implements OnInit {
 			  alert("请输入正确账号或者密码");
 			  return;
 		  }
-		  let url="http://localhost:8080/gpsys/seller/login";
+		  let url=g.namespace+"/gpsys/seller/login";
 		  let send={
 			  sellerId:this.id,
 			  sellerPassword:this.password

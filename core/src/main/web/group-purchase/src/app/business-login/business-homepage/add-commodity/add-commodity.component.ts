@@ -1,5 +1,5 @@
 import { Component, OnInit ,Output, Input, EventEmitter} from '@angular/core';
-
+import * as g from'./../../../type';
 @Component({
   selector: 'app-add-commodity',
   templateUrl: './add-commodity.component.html',
@@ -27,7 +27,7 @@ export class AddCommodityComponent implements OnInit {
   }
   //获取所有商品类别
   getAllCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityType"
+    let url=g.namespace+"/gpsys/commodity/getCommodityType"
     $.ajax(url,{
       data:{},
       dataType:"jsonp",
@@ -96,7 +96,7 @@ export class AddCommodityComponent implements OnInit {
       alert("请填写必要数据")
       return;
     }
-    let url="http://localhost:8080/gpsys/commodity/addCommodityById";
+    let url=g.namespace+"/gpsys/commodity/addCommodityById";
     let send={
       volumeIds:this.sellerInfo.volumeId,
       commodityName:this.dataObj.commodityName,
@@ -122,7 +122,7 @@ export class AddCommodityComponent implements OnInit {
   }
   //提交图片上传
   addPic(){
-    let url="http://localhost:8080/gpsys/commodity/addCommodityPicture"
+    let url=g.namespace+"/gpsys/commodity/addCommodityPicture"
     for( var i=0;i<this.commodityPicData.length;i++){
       let send={
         picId:this.newCommodityId,

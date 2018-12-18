@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,Output, EventEmitter } from '@angular/core';
-import * as g from "./../../../type"
+import * as g from "./../../../type";
 @Component({
   selector: 'app-update-commodity',
   templateUrl: './update-commodity.component.html',
@@ -20,7 +20,7 @@ export class UpdateCommodityComponent implements OnInit {
   }
   //获取所有商品类别
   getAllCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityType"
+    let url=g.namespace+"/gpsys/commodity/getCommodityType"
     $.ajax(url,{
       data:{},
       dataType:"jsonp",

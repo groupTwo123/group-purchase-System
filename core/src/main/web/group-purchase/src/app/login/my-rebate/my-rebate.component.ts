@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-my-rebate',
   templateUrl: './my-rebate.component.html',
@@ -25,7 +25,7 @@ export class MyRebateComponent implements OnInit {
   }
   //获取用户信息
   getUserInfo(){
-    let url="http://localhost:8080/gpsys/user/getUserInfoById";
+    let url=g.namespace+"/gpsys/user/getUserInfoById";
     let send={
       userId:"1101"
     }

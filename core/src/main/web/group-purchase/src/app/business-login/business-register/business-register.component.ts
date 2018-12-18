@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-business-register',
   templateUrl: './business-register.component.html',
@@ -44,7 +44,7 @@ export class BusinessRegisterComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
-    let url="http://localhost:8080/gpsys/sendSMS/sendMessage/sellerRegister";
+    let url=g.namespace+"/gpsys/sendSMS/sendMessage/sellerRegister";
 	let send={
 		sellerPhone:this.phone
 	}
@@ -81,7 +81,7 @@ export class BusinessRegisterComponent implements OnInit {
 		    return;
       }
 	  }
-	  let url="http://localhost:8080/gpsys/seller/register";
+	  let url=g.namespace+"/gpsys/seller/register";
 	  let send={
 		  sellerId:this.sellerId,
 		  sellerNickName:this.sellerNickName,

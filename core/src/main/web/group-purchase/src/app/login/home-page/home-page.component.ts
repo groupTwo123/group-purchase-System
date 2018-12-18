@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import {tokenReference} from "@angular/compiler";
+import * as g from'./../../type';
 
 @Component({
   selector: 'app-home-page',
@@ -58,7 +59,7 @@ export class HomePageComponent implements OnInit {
 
   //获取所有商品类别
   getAllCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityType"
+    let url=g.namespace+"/gpsys/commodity/getCommodityType"
     $.ajax(url,{
       data:{},
       dataType:"jsonp",

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-b-forget-password',
   templateUrl: './b-forget-password.component.html',
@@ -36,7 +36,7 @@ export class BForgetPasswordComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
-    let url="http://localhost:8080/gpsys/seller/checkPhoneExist";
+    let url=g.namespace+"/gpsys/seller/checkPhoneExist";
     let send={
       sellerPhone:this.phone
     }

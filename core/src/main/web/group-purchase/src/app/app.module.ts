@@ -33,6 +33,14 @@ import {DataTableModule} from "angular2-datatable";
 import {UpdateCommodityComponent} from "./business-login/business-homepage/update-commodity/update-commodity.component"
 import {UpdateOrderStateComponent} from "./business-login/business-homepage/update-order-state/update-order-state.component"
 import {UserInfoComponent} from "./business-login/business-homepage/update-order-state/user-info/user-info.component"
+import {SellerListComponent} from "./admin-login/admin-home-page/seller-list/seller-list.component"
+import {AdminCommodityListComponent} from "./admin-login/admin-home-page/admin-commodity-list/admin-commodity-list.component"
+import {CommodityPicComponent} from "./admin-login/admin-home-page/admin-commodity-list/commodity-pic/commodity-pic.component"
+import {AdminCommodityTypeComponent} from "./admin-login/admin-home-page/admin-commodity-type/admin-commodity-type.component"
+import {AddTypeComponent} from "./admin-login/admin-home-page/admin-commodity-type/add-type/add-type.component"
+import {UpdatetypeComponent} from "./admin-login/admin-home-page/admin-commodity-type/updatetype/updatetype.component"
+import {UserListComponent} from "./admin-login/admin-home-page/user-list/user-list.component"
+import {AdminOrderListComponent} from "./admin-login/admin-home-page/user-list/admin-order-list/admin-order-list.component"
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -88,7 +96,15 @@ const appRoutes:Routes=[
     BusinessCommodityListComponent,
     UpdateCommodityComponent,
     UpdateOrderStateComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    SellerListComponent,
+    AdminCommodityListComponent,
+    CommodityPicComponent,
+    AdminCommodityTypeComponent,
+    AddTypeComponent,
+    UpdatetypeComponent,
+    UserListComponent,
+    AdminOrderListComponent
   ],
   imports: [
     BrowserModule,

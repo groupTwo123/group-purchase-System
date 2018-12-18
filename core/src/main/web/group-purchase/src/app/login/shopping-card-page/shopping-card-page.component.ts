@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-shopping-card-page',
   templateUrl: './shopping-card-page.component.html',
@@ -68,7 +68,7 @@ export class ShoppingCardPageComponent implements OnInit {
   //购物车点击减少
   reduceNumber(commodityId,commodityNumber,commodityAllNumber,index){
     if(commodityNumber!='1'){
-      let url="http://localhost:8080/gpsys/shopcar/changeShoppingCarVolumeNumById";
+      let url=g.namespace+"gpsys/shopcar/changeShoppingCarVolumeNumById";
       let send={
         commodityId:commodityId,
         changeNum:(parseInt(commodityNumber)-1).toString(),
@@ -103,7 +103,7 @@ export class ShoppingCardPageComponent implements OnInit {
   }
   //购物车点击减少
   AddNumber(commodityId,commodityNumber,commodityAllNumber,index){
-      let url="http://localhost:8080/gpsys/shopcar/changeShoppingCarVolumeNumById";
+      let url=g.namespace+"/gpsys/shopcar/changeShoppingCarVolumeNumById";
       let send={
         commodityId:commodityId,
         changeNum:(parseInt(commodityNumber)+1).toString(),
@@ -133,7 +133,7 @@ export class ShoppingCardPageComponent implements OnInit {
   //删除购物车商品
   delete(commodityId){
     if(confirm("确定要删除吗？")){
-      let url="http://localhost:8080/gpsys/shopcar/delShopcarInfo"
+      let url=g.namespace+"/gpsys/shopcar/delShopcarInfo"
       let send={
         commodityIds:commodityId,
         userId:"1101"

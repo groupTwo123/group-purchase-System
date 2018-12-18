@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
@@ -34,7 +34,7 @@ export class ForgetPasswordComponent implements OnInit {
       alert("请输入正确手机号码");
       return;
     }
-    let url="http://localhost:8080/gpsys/user/confirmMessage";
+    let url=g.namespace+"/gpsys/user/confirmMessage";
     let send={
       phone:this.phone
     }
@@ -58,7 +58,7 @@ export class ForgetPasswordComponent implements OnInit {
   }
   //获取验证码
   getPhoneCode(){
-    let url="http://localhost:8080/gpsys/sendSMS/sendMessage/forgetPassword";
+    let url=g.namespace+"/gpsys/sendSMS/sendMessage/forgetPassword";
     let send={
       phone:this.phone
     }
@@ -85,7 +85,7 @@ export class ForgetPasswordComponent implements OnInit {
       alert("两次输入不一致");
       return;
     }
-    let url="http://localhost:8080/gpsys/user/resetPassword";
+    let url=g.namespace+"/gpsys/user/resetPassword";
     let send={
       id:this.id,
       password:this.password

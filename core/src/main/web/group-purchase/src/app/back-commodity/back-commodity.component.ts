@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter,Input } from '@angular/core';
-
+import * as g from './../type';
 @Component({
   selector: 'app-back-commodity',
   templateUrl: './back-commodity.component.html',
@@ -32,7 +32,7 @@ export class BackCommodityComponent implements OnInit {
     else{
       reason="退货理由："+this.back_reason+",补充理由："+this.ps_reason;
     }
-    let url="http://localhost:8080/gpsys/order/addBackCommodity";
+    let url=g.namespace+"/gpsys/order/addBackCommodity";
     let send={
       back_order_id:this.backCommodityData.orderData.orderId,
       user_id:"1101",

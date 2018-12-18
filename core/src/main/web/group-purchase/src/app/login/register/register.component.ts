@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from'./../../type';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -132,7 +132,7 @@ export class RegisterComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
-    let url="http://localhost:8080/gpsys/sendSMS/sendMessage/register"
+    let url=g.namespace+"/gpsys/sendSMS/sendMessage/register"
     let send={
       phone:this.phone
     }
@@ -183,7 +183,7 @@ export class RegisterComponent implements OnInit {
     }
     else{
       if(this.repassword==this.password){
-        let url="http://localhost:8080/gpsys/user/register";
+        let url=g.namespace+"/gpsys/user/register";
         let send={
           id:this.id,
           userName:this.username,

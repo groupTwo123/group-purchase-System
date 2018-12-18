@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as g from"./../../type"
+import * as g from"./../../type";
 /*
 * 订单状态
 * 0：未付款

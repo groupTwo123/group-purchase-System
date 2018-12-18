@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as g from'./../type';
 
 @Component({
   selector: 'app-file-upload',
@@ -21,7 +22,7 @@ export class FileUploadComponent implements OnInit {
     reader.onload = function(theFile) {
       var res=theFile.target['result'];
       console.log(res)
-      let url="http://localhost:8080/gpsys/commodity/saveCommodityPicture";
+      let url=g.namespace+"/gpsys/commodity/saveCommodityPicture";
       let send={
         url:res
 
@@ -36,7 +37,7 @@ export class FileUploadComponent implements OnInit {
     }
     }
   fukuan(){
-    let url="http://localhost:8080/gpsys/order/aliplayToOrder"
+    let url=g.namespace+"/gpsys/order/aliplayToOrder"
     let send={
       money:"10"
     }

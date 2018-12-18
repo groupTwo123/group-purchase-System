@@ -1,4 +1,4 @@
-<div id="loginBox" style="background-image: url('../../assets/background1.png') ">
+<div  [hidden]="homePageShow" id="loginBox" style="background-image: url('../../assets/background1.png') " >
   <div class="bg-model">
     <div class="bg-content">
       <div class="row  mt-2" >
@@ -16,7 +16,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1">
+              <input type="text" class="form-control" placeholder="请输入账号" aria-describedby="basic-addon1" [(ngModel)]="adminId">
             </div>
           </div>
         </div>
@@ -26,14 +26,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1">
+              <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon1" [(ngModel)]="adminPassword">
             </div>
           </div>
         </div>
 
       <div class="row mt-2">
         <div class="col-sm-11 ml-3">
-          <button class="btn btn-success form-control">登录</button>
+          <button class="btn btn-success form-control" (click)="login()">登录</button>
         </div>
       </div>
       <div class="row mt-4">
@@ -49,3 +49,7 @@
   </div>
 
 </div>
+
+
+<app-admin-home-page [adminId]="adminId" [hidden]="!homePageShow"></app-admin-home-page>
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as testing from "selenium-webdriver/testing";
-
+import * as g from'./../../../type'
 @Component({
   selector: 'app-business-per',
   templateUrl: './business-per.component.html',
@@ -24,7 +24,7 @@ export class BusinessPerComponent implements OnInit {
   getSellerInfo(){
     this.heartNumber=[];
     this.userInfoBuffer={};
-    let url="http://localhost:8080/gpsys/seller/getSellerInfoById";
+    let url=g.namespace+"/gpsys/seller/getSellerInfoById";
     let send={
       sellerId:this.username
     }
@@ -66,7 +66,7 @@ export class BusinessPerComponent implements OnInit {
         return;
       }
     }
-    let url="http://localhost:8080/gpsys/seller/updateSellerInfo"
+    let url=g.namespace+"/gpsys/seller/updateSellerInfo"
     let send={
       sellerId:this.userInfo.sellerId,
       storeName:this.userInfo.storeName,

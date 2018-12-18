@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
-
+import * as g from'./../../../type';
 @Component({
   selector: 'app-commodity-list',
   templateUrl: './commodity-list.component.html',
@@ -49,7 +49,7 @@ export class CommodityListComponent implements OnInit {
   }
   //获取所有商品类别
   getAllCommodityType(){
-    let url="http://localhost:8080/gpsys/commodity/getCommodityType"
+    let url=g.namespace+"/gpsys/commodity/getCommodityType"
     $.ajax(url,{
       data:{},
       dataType:"jsonp",
@@ -64,7 +64,7 @@ export class CommodityListComponent implements OnInit {
   getCommodityBySearch(){
     this.isHasData=false;
     this.isLoading=true;
-    let url="http://localhost:8080/gpsys/commodity/getCommodityByName";
+    let url=g.namespace+"/gpsys/commodity/getCommodityByName";
     let send={
       commodityName:this.search
     }
@@ -98,7 +98,7 @@ export class CommodityListComponent implements OnInit {
   getAllCommodity(){
     this.isHasData=false;
     this.isLoading=true;
-	  let url="http://localhost:8080/gpsys/commodity/getAllCommodity"
+	  let url=g.namespace+"/gpsys/commodity/getAllCommodity"
 	  $.ajax(url,{
 		  dataType:"jsonp",
 		  jsonp:"callback",
