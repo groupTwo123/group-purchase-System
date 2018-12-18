@@ -1,57 +1,54 @@
-use group_purchase;
-
-INSERT INTO tb_commodity_type (id, NAME)
-VALUES
-	(1, '家用电器'),
-	(2, '手机'),
-	(3, '运营商'),
-	(4, '数码'),
-	(5, '电脑'),
-	(6, '办公'),
-	(7, '家居'),
-	(8, '家具'),
-	(9, '家装'),
-	(10, '途具'),
-	(11, '男装'),
-	(12, '女装'),
-	(13, '童装'),
-	(14, '内衣'),
-	(15, '美妆'),
-	(16, '个护清洁'),
-	(17, '宠物'),
-	(18, '女鞋'),·
-	(19, '箱包'),
-	(20, '钟表'),
-	(21, '珠宝'),
-	(22, '男鞋'),
-	(23, '运动'),
-	(24, '户外'),
-	(25, '房产'),
-	(26, '汽车'),
-	(27, '汽车用品'),
-	(28, '母婴'),
-	(29, '玩具乐器'),
-	(30, '食品'),
-	(31, '酒类'),
-	(32, '生鲜'),
-	(33, '特产'),
-	(34, '艺术'),
-	(35, '礼品鲜花'),
-	(36, '农资绿植'),
-	(37, '医药保健'),
-	(38, '计生情趣'),
-	(39, '图书'),
-	(40, '文娱'),
-	(41, '电子书'),
-	(42, '机票'),
-	(43, '酒店'),
-	(44, '旅游'),
-	(45, '生活'),
-	(46, '理财'),
-	(47, '众筹'),
-	(48, '白条'),
-	(49, '保险'),
-	(50, '安装'),
-	(51, '维修'),
-	(52, '清洗保养'),
-	(53, '工业品');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`) VALUES ('');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('0', '家用电器');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('1', '手机');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('2', '运营商');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('3', '数码');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('4', '电脑');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('5', '办公');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('6', '家居');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('7', '家具');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('8', '家装');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('9', '途具');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('10', '男装');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('11', '女装');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('12', '童装');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('13', '内衣');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('14', '美妆');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('15', '个护清洁');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('16', '宠物');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('17', '女鞋');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('18', '箱包');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('19', '钟表');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('20', '珠宝');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('21', '男鞋');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('22', '运动');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('23', '户外');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('24', '房产');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('25', '汽车');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('26', '汽车用品');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('27', '母婴');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('28', '玩具乐器');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('29', '食品');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('30', '酒类');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('31', '生鲜');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('32', '特产');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('33', '艺术');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('34', '礼品鲜花');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('35', '农资绿植');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('36', '医药保健');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('37', '计生情趣');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('38', '图书');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('39', '文娱');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('40', '电子书');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('41', '机票');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('42', '酒店');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('43', '旅游');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('44', '生活');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('45', '理财');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('46', '众筹');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('47', '白条');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('48', '保险');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('49', '安装');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('50', '维修');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('51', '清洗保养');
+INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('52', '工业品');
