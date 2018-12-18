@@ -10,3 +10,18 @@ CREATE TABLE `tb_order` (
   PRIMARY KEY (`id`),
   KEY `index_name` (`order_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/*
+* 订单状态
+* 0：未付款
+* 1：已付款
+* 2：商家已发货
+* 3：交易完成
+* 4：待评价
+* 5：取消订单申请中
+* 6：交易关闭
+* 7：退货申请中
+* 8：取消退货申请中
+* 9：已退货
+* */
