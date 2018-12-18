@@ -1,0 +1,36 @@
+<div class="bg-model">
+  <div class="bg-content" style="padding: 10px">
+    <div class="row mt-4 ml-2">
+      <div class="col-sm-10">
+        <p class=" youyuan font20"><i class="fa fa-file-text-o text-primary" aria-hidden="true" style="margin-right:5px;"></i>增加类别</p>
+      </div>
+      <div  class="col-sm-2 text-center">
+        <i class="fa fa-times-circle text-primary mt-2 cursor" aria-hidden="true" (click)="close.emit()"></i>
+      </div>
+    </div>
+    <div class="row mt-2 ">
+      <!--<div class="col-sm-1"></div>-->
+      <div class="col-sm-4 text-right">
+        <p class="youyuan mt-2">商品类别id：</p>
+      </div>
+      <div class="col-sm-7">
+        <input class="form-control" style="background-color: #f4f4f4" [(ngModel)]="data.id" readonly>
+      </div>
+    </div>
+    <div class="row mt-2 ">
+      <!--<div class="col-sm-1"></div>-->
+      <div class="col-sm-4 text-right">
+        <p class="youyuan mt-2">类别名称为：</p>
+      </div>
+      <div class="col-sm-7">
+        <input class="form-control" style="background-color: #f4f4f4" [(ngModel)]="data.name">
+      </div>
+    </div>
+    <div class="row mt-4 ml-2">
+      <div class="col-sm-11">
+        <button class="form-control btn btn-success" (click)="submit()">保存</button>
+      </div>
+    </div>
+
+  </div>
+</div>

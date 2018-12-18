@@ -1,0 +1,33 @@
+.bg-model{
+  position:absolute;top:0%;left:0%;background:rgba(0,0,0,0.3);width:100%;height:100%;position:fixed;
+}
+.bg-content{
+  position: absolute;left: 35%;top: 28%;border-radius: 8px;width: 35%;height:40%;background-color: #fff;
+}
+.font20{
+  font-size: 20px;
+}
+.font16{
+  font-size: 16px;
+}
+.colorRed{
+  color: #e60000
+}
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.font30{
+  font-size: 30px;
+}
+.picCss{
+  height:60px;
+}
+.cursor{
+  cursor: pointer;
+}
+.picCss{
+  height:150px;
+}
