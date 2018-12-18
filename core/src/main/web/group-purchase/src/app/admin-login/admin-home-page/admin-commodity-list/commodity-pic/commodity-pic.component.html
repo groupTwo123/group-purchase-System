@@ -1,0 +1,75 @@
+<div class="bg-model">
+  <div class="bg-content" style="padding: 10px">
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-10">
+        <p class=" youyuan font20"><i class="fa fa-shopping-bag text-primary" aria-hidden="true" style="margin-right:5px;"></i>图片信息</p>
+      </div>
+      <div  class="col-sm-2 text-center">
+        <i class="fa fa-times-circle text-primary mt-2 cursor" aria-hidden="true" (click)="close.emit()"></i>
+      </div>
+    </div>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-12">
+        <p class="simhei font16">商品id: &nbsp; {{picData.commodityData.commodityId}}</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-12">
+        <p class="simhei font16">商品图片:</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10 text-center" style="background-color: #f1e1f0;">
+        <div id="carouselExampleIndicators" class="carousel slide text-center" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="i" [ngClass]="{active:i==0}" *ngFor="let item of pic;let i=index"></li>
+          </ol>
+          <div class="carousel-inner text-center">
+            <div class="carousel-item text-center" [ngClass]="{active:i==0}" *ngFor="let item of pic;let i=index">
+              <img class="d-block picCss " src="{{item.picBase64}}"  style="margin-left: 25%">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-12">
+        <p class="simhei font16">商品详情图片:</p>
+      </div>
+    </div>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10 text-center" style="background-color: #f1e1f0;">
+        <div id="carouselExampleIndicators1" class="carousel slide text-center" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators1" data-slide-to="i" [ngClass]="{active:i==0}" *ngFor="let item of picDetail;let i=index"></li>
+          </ol>
+          <div class="carousel-inner text-center">
+            <div class="carousel-item text-center" [ngClass]="{active:i==0}" *ngFor="let item of picDetail;let i=index">
+              <img class="d-block picCss " src="{{item.picBase64}}"  style="margin-left: 25%">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
