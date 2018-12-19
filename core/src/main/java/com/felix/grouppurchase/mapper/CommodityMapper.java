@@ -128,6 +128,14 @@ public interface CommodityMapper {
     @Update("update tb_commodity_type set name=#{name} where id=#{id}")
     void updateTypeById(@Param("id") String id,@Param("name") String name);
 
+    //获取用户和商家图片根据类型和id匹配
+    @Select("select * from tb_commodity_picture where picId=#{picId} and picType=#{picType}")
+    CommodityPicture getUserPictureByAll(@Param("picId") String picId, @Param("picType") int picType);
+
+    //更新图片
+    @Update("update tb_commodity_picture set picBase64=#{picBase64} where picId=#{picId} and picType=#{picType}")
+    void updatePicByIdAndType(@Param("picId") String picId, @Param("picBase64") String picBase64,@Param("picType") int picType);
+
     //增加文章
     @Insert("insert into tb_article(id,commodity_id,article,type) values(#{id},#{commodityId},#{article},#{type})")
     void addArticle(@Param("id") String id, @Param("commodityId") String commodityId,
