@@ -1,11 +1,7 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
-import com.felix.grouppurchase.model.CommodityPicture;
-import com.felix.grouppurchase.model.CommodityType;
-import com.felix.grouppurchase.model.ShopCar;
-import com.felix.grouppurchase.model.Seller;
-import com.felix.grouppurchase.model.VolumeManage;
+import com.felix.grouppurchase.model.*;
 import com.felix.grouppurchase.service.ICommodityService;
 import com.felix.grouppurchase.util.GetUUID;
 import com.felix.grouppurchase.util.JsonTransfer;
@@ -297,6 +293,71 @@ public class CommodityServiceImpl  implements ICommodityService {
             result=s.result(1,"","",callback);
         }catch (Exception e){
             result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String addArticle(String id, String commodityId, String article, Integer type, String callback) {
+        JsonTransfer s =new JsonTransfer();
+        try {
+            commodityMapper.addArticle(id, commodityId, article, type);
+            String result = s.result(1,"添加成功","",callback);
+            return result;
+        }catch (Exception e){
+            String result = s.result(0,"添加失败","",callback);
+            return result;
+        }
+    }
+
+    @Override
+    public String updateArticle(String id, String commodityId, String article, Integer type, String callback) {
+        String result = "";
+        JsonTransfer s = new JsonTransfer();
+        try {
+            commodityMapper.updateArticle(id, commodityId, article, type);
+            result = s.result(1,"更新成功","",callback);
+        }catch (Exception e){
+            result = s.result(0,"更新失败","",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String deleteArticle(String id, String commodityId, String callback) {
+        String result = "";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            commodityMapper.deleteArticle(id,commodityId);
+            result = s.result(1,"删除成功","",callback);
+        }catch(Exception e){
+            result = s.result(0,"删除失败","",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String getArticleByTypeAndState(Integer type, int state, String callback) {
+        String result = "";
+        JsonTransfer s = new JsonTransfer();
+        try {
+            List<Article> articleList = commodityMapper.getArticleByTypeAndState(type,state);
+            result = s.result(1,"查询成功",articleList,callback);
+        }catch (Exception e){
+            result = s.result(0,"查询失败","",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String changeArticleState(String id, String commodityId, Integer type, Integer state, String callback) {
+        String result = "";
+        JsonTransfer s = new JsonTransfer();
+        try{
+            commodityMapper.changeArticleState(id,commodityId,type,state);
+            result = s.result(1,"状态修改成功","",callback);
+        }catch (Exception e){
+            result = s.result(0,"状态修改失败","",callback);
         }
         return result;
     }

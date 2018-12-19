@@ -1,10 +1,6 @@
 package com.felix.grouppurchase.mapper;
 
-import com.felix.grouppurchase.model.CommodityPicture;
-import com.felix.grouppurchase.model.CommodityType;
-import com.felix.grouppurchase.model.ShopCar;
-import com.felix.grouppurchase.model.Seller;
-import com.felix.grouppurchase.model.VolumeManage;
+import com.felix.grouppurchase.model.*;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -131,4 +127,27 @@ public interface CommodityMapper {
     //更新类型
     @Update("update tb_commodity_type set name=#{name} where id=#{id}")
     void updateTypeById(@Param("id") String id,@Param("name") String name);
+
+    //增加文章
+    @Insert("insert into tb_article(id,commodity_id,article,type) values(#{id},#{commodityId},#{article},#{type})")
+    void addArticle(@Param("id") String id, @Param("commodityId") String commodityId,
+                    @Param("article") String article, @Param("type") Integer type);
+
+    //修改文章
+    @Update("update tb_article set article = #{article} where id = #{id} and commodity_id = #{commodityId} and type = #{type}")
+    void updateArticle(@Param("id") String id, @Param("commodityId") String commodityId,
+                       @Param("article") String article, @Param("type") Integer type);
+
+    //删除文章
+    @Delete("delete from tb_article where id = #{id} and commodity_id = #{commodityId}")
+    void deleteArticle(@Param("id") String id, @Param("commodityId") String commodityId);
+
+    //根据类型和启用状态查询文章
+    @Select("select * from tb_article where type = #{type} and state = #{state}")
+    List<Article> getArticleByTypeAndState(@Param("type") Integer type, @Param("state") int state);
+
+    //修改文章启用状态
+    @Update("update tb_article set state = #{state} where id = #{id} and commodity_id = #{commodityId} and type = #{type}")
+    void changeArticleState(@Param("id") String id, @Param("commodityId") String commodityId, @Param("type") Integer type,
+                            @Param("state") Integer state);
 }

@@ -1,6 +1,11 @@
 package com.felix.grouppurchase.service;
 
+import com.alipay.api.AlipayApiException;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @Date: 2018/11/28 20:38
@@ -31,4 +36,7 @@ public interface IOrderService {
 
     //根据orderId修改订单状态
     String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId, String callback);
+
+    //支付宝功能
+    void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String money) throws AlipayApiException, IOException;
 }
