@@ -77,18 +77,18 @@ public class OrderController {
         return orderService.cancelBackCommodity(order_id,callback);
     }
 
-    /**
-     * @Author fangyong
-     * @Description 通过支付宝接口支付订单
-     * @Date 2018/12/10 16:36
-     * @Param
-     * @return
-     **/
-    @RequestMapping(value = "/alipayToOrder", method = RequestMethod.GET)
-    public void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse,
-                              @RequestParam(value = "money", required = false) String money) throws AlipayApiException, IOException {
-        orderService.alipayToOrder(httpRequest, httpResponse, money);
-    }
+//    /**
+//     * @Author fangyong
+//     * @Description 通过支付宝接口支付订单
+//     * @Date 2018/12/10 16:36
+//     * @Param
+//     * @return
+//     **/
+//    @RequestMapping(value = "/alipayToOrder", method = RequestMethod.GET)
+//    public void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse,
+//                              @RequestParam(value = "money", required = false) String money) throws AlipayApiException, IOException {
+//        orderService.alipayToOrder(httpRequest, httpResponse, money);
+//    }
 
     /**
      * @Author fangyong

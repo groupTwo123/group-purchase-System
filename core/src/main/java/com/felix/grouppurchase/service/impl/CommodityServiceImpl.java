@@ -199,35 +199,55 @@ public class CommodityServiceImpl  implements ICommodityService {
     @Override
     public String addCommodityPicture(String picId, String picBase64, int picType, int priority, String callback) {
         JsonTransfer s = new JsonTransfer();
-        List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
-        if (commodityPictureList == null) {
-            commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
-        } else {
-            int sort = 0;
-            for (CommodityPicture commodityPicture : commodityPictureList) {
-                if (picId.equals(commodityPicture.getPicId())&& picType==commodityPicture.getPicType()) {
-                    CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
-                    if (sort < priorityMax.getPriority()) {
-                        sort = priorityMax.getPriority();
-                    }
-                }
+        String result="";
+        if(picType==1){
+            priority=0;
+            CommodityPicture commodityPicture=commodityMapper.getUserPictureByAll(picId,picType);
+            if(commodityPicture==null){
+                commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
             }
-            if (sort == 0) {
+            else{
+                commodityMapper.updatePicByIdAndType(picId, picBase64, picType);
+            }
+            result = s.result(1, "上传成功", "", callback);
+        }
+        else{
+            List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
+            if (commodityPictureList == null) {
                 commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
             } else {
-                sort++;
-                commodityMapper.addCommodityPicture(picId, picBase64, picType, sort);
+                int sort = 0;
+                for (CommodityPicture commodityPicture : commodityPictureList) {
+                    if (picId.equals(commodityPicture.getPicId())&& picType==commodityPicture.getPicType()) {
+                        CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
+                        if (sort < priorityMax.getPriority()) {
+                            sort = priorityMax.getPriority();
+                        }
+                    }
+                }
+                if (sort == 0) {
+                    commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
+                } else {
+                    sort++;
+                    commodityMapper.addCommodityPicture(picId, picBase64, picType, sort);
+                }
             }
+            result = s.result(1, "上传成功", "", callback);
         }
-        String result = s.result(1, "上传成功", "", callback);
+
         return result;
     }
 
     @Override
     public String getCommodityPicById(String picId, String callback) {
-        List<CommodityPicture> commodityPictures=commodityMapper.getCommodityPicById(picId);
+        String result="";
         JsonTransfer s=new JsonTransfer();
-        String result = s.result(1, "上传成功", commodityPictures, callback);
+        try{
+            List<CommodityPicture> commodityPictures=commodityMapper.getCommodityPicById(picId);
+            result= s.result(1, "查找成功", commodityPictures, callback);
+        }catch (Exception e){
+            result= s.result(0, e.toString(), "", callback);
+        }
         return result;
     }
 
