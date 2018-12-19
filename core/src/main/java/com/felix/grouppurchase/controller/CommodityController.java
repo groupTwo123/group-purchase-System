@@ -237,5 +237,63 @@ public class CommodityController {
         return commodityService.updateTypeById(id ,name ,callback);
     }
 
+    /**
+     * @Author fangyong
+     * @Description 增加文章
+     * @Date 2018/12/18 16:11
+     * @Param id,commodityId,article,type,callback
+     * @return
+     **/
+    @RequestMapping(value = "/addArticle", method = RequestMethod.GET)
+    public String addArticle(String id, String commodityId, String article, Integer type, String callback){
+        return commodityService.addArticle(id,commodityId,article,type,callback);
+    }
 
+    /**
+     * @Author fangyong
+     * @Description 修改文章
+     * @Date 2018/12/18 16:19
+     * @Param id,commodityId,article,type,callback
+     * @return
+     **/
+    @RequestMapping(value = "/updateArticle", method = RequestMethod.GET)
+    public String updateArticle(String id, String commodityId, String article, Integer type, String callback){
+        return commodityService.updateArticle(id,commodityId,article,type,callback);
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 删除文章
+     * @Date 2018/12/18 16:27
+     * @Param id,commodityId,callback
+     * @return
+     **/
+    @RequestMapping(value = "/deleteArticle", method = RequestMethod.GET)
+    public String deleteArticle(String id, String commodityId, String callback){
+        return commodityService.deleteArticle(id,commodityId,callback);
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 根据type和state查询文章
+     * @Date 2018/12/18 16:50
+     * @Param type, ErrorCodeDesc.state,callback
+     * @return
+     **/
+    @RequestMapping(value = "/getArticleByTypeAndState", method = RequestMethod.GET)
+    public String getArticleByTypeAndState(Integer type, String callback){
+      return commodityService.getArticleByTypeAndState(type, ErrorCodeDesc.state,callback);
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 修改文章启用状态
+     * @Date 2018/12/18 17:00
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/changeArticleState", method = RequestMethod.GET)
+    public String changeArticleState(String id, String commodityId, Integer type, Integer state, String callback){
+        return commodityService.changeArticleState(id,commodityId,type,state,callback);
+    }
 }
