@@ -1,6 +1,8 @@
 package com.felix.grouppurchase.service;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Date: 2018/11/22 16:02
  * @Author: fangyong
@@ -14,7 +16,7 @@ public interface IUserService {
     void registerNormal(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);
 
     //用户登录
-    String login(String id, String password, String callback);
+    String login(HttpServletRequest request,String id, String password, String callback);
 
     //登录时检测是否存在该手机号码的用户
     String checkPhoneLogin(String phone, String callback);
