@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @Date: 2018/11/22 16:01
@@ -62,8 +64,8 @@ public class UserController {
      * @params: id，password
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(String id, String password, String callback) {
-        return userService.login(id, password, callback);
+    public String login(HttpServletRequest request,String id, String password, String callback) {
+        return userService.login(request,id, password, callback);
     }
 
 
