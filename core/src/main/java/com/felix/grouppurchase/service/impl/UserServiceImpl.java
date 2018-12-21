@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -39,18 +40,31 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public String login(String id, String password, String callback) {
-        User user =  userMapper.userLogin(id, password);
+    public String login(HttpServletRequest request,String id, String password, String callback) {
+        String result = "";
         JsonTransfer s = new JsonTransfer();
+        HttpSession session = request.getSession();
+        if (id.equals("") && password.equals("")) {
+            if (session.getAttribute("sessionLoginId")==null || session.getAttribute("sessionLoginPassword") == null){
+                result = s.result(0,"用户未登录","",callback);
+                return result;
+            }else {
+                id = session.getAttribute("sessionLoginId").toString();
+                password = session.getAttribute("sessionLoginPassword").toString();
+            }
+        }
+        session.setAttribute("sessionLoginId",id);
+        session.setAttribute("sessionLoginPassword",password);
+        User user =  userMapper.userLogin(id, password);
         if (user == null){
-            String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
-            return result1;
+            result = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+            return result;
         }
         HashMap<String, Object> map = new HashMap<>();
         map.put("username",user.getUserName());
         map.put("type",user.getType());
-        String result2 = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
-        return result2;
+        result = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
+        return result;
     }
 
     @Override
