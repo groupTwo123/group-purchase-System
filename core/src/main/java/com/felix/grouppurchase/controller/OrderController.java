@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.util.HashMap;
 
 
 /**
@@ -87,8 +90,42 @@ public class OrderController {
     @RequestMapping(value = "/alipayToOrder", method = RequestMethod.GET)
     public void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse,
                               @RequestParam(value = "money", required = false) String money) throws AlipayApiException, IOException {
+        HttpSession session = httpRequest.getSession();
+        session.setAttribute("payId",0);
         orderService.alipayToOrder(httpRequest, httpResponse, money);
     }
+
+    /**
+     * @Author fangyong
+     * @Description 设置支付宝session
+     * @Date 2018/12/21 8:30
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/setPaySession", method = RequestMethod.GET)
+    public void setPaySession(HttpServletRequest request, HttpServletResponse response, String stage){
+        HttpSession session = request.getSession();
+        session.setAttribute("payId",stage);
+    }
+
+    /**
+     * @Author fangyong
+     * @Description 获取支付宝session
+     * @Date 2018/12/21 8:32
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/getPaySession", method = RequestMethod.GET)
+    public String getPaySession(HttpServletRequest request, HttpServletResponse response, String callback){
+        HttpSession session = request.getSession();
+        session.getAttribute("payId");
+        HashMap<String, Object> map = new HashMap<String,Object>();
+        JsonTransfer s = new JsonTransfer();
+        map.put("paySessionId",session);
+        String result = s.result(1,"",map,callback);
+        return result;
+    }
+
 
     /**
      * @Author fangyong
