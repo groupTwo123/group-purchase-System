@@ -22,7 +22,7 @@
       <tr *ngFor="let item of dataList;let i=index">
         <td><input type="checkbox" name="checkItem" (click)="checkItemFun()"/></td>
         <td>
-          <img src="../../../assets/phone.png" class="imgCss">
+          <img src="{{item['picData']}}" class="imgCss">
         </td>
         <td>{{item.commodityData.commodityName}}</td>
         <td style="font-weight: bold">￥{{item.commodityData.commodityPrice}}</td>
@@ -55,4 +55,4 @@
   </div>
 </div>
 
-<app-search-loading *ngIf="isSearchLoading"></app-search-loading>
+<!--<app-search-loading *ngIf="isSearchLoading"></app-search-loading>-->

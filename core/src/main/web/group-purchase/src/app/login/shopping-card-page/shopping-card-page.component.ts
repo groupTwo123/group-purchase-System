@@ -62,14 +62,35 @@ export class ShoppingCardPageComponent implements OnInit {
       success:json=>{
        if(json.stage==1){
          this.dataList=[];
-         for(let item in json.data){
-           if(parseInt(json.data[item].commodityData.commodityNumber)>parseInt(json.data[item].commodityNumber)){
-             json.data[item]['hasNumber']='true';
+         var dataObj=json.data
+         for(let item in dataObj){
+           if(parseInt(dataObj[item].commodityData.commodityNumber)>parseInt(dataObj[item].commodityNumber)){
+             dataObj[item]['hasNumber']='true';
            }else{
-             json.data[item]['hasNumber']='false';
+             dataObj[item]['hasNumber']='false';
            }
-           json.data[item]['totalPrice']=parseInt(json.data[item].commodityNumber)*parseInt(json.data[item].commodityData.commodityPrice)
-           this.dataList.push(json.data[item]);
+           dataObj[item]['totalPrice']=parseInt(dataObj[item].commodityNumber)*parseInt(dataObj[item].commodityData.commodityPrice)
+           dataObj[item]['picData']=[]
+           let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+           let send={
+             picId:dataObj[item].commodityData.commodityId
+           }
+           $.ajax(url,{
+             data:send,
+             dataType:'jsonp',
+             success:json=>{
+               if(json.stage==1){
+                 for(let item1 of json.data){
+
+                   if(item1.picType=='2'){
+                     dataObj[item]['picData'].push(item1.picBase64);
+                     break;
+                   }
+                 }
+                 this.dataList.push(dataObj[item]);
+               }
+             }
+           })
          }
          this.setTotalPrice();
          this.tbShow=true;

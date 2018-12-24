@@ -93,6 +93,7 @@ export class MyRebateComponent implements OnInit {
     if(stage==1){
       let url=g.namespace+"/gpsys/user/addVancy";
       let send={
+        user:this.userId,
         money:this.addPrice
       }
       $.ajax(url,{

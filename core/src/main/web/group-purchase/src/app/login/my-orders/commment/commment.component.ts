@@ -42,8 +42,18 @@ export class CommmentComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           alert("评论成功");
+          let url=g.namespace+'/gpsys/seller/updateSellerPink';
+          let send={
+            volumeId:this.data.CommodityData.volumeId
+          }
+          $.ajax(url,{
+            data:send,
+            dataType:'jsonp',
+            success:json=>{
+              this.updateOrder.emit();
+            }
+          })
 
-          this.updateOrder.emit();
         }
         else{
           alert(json.msg)
