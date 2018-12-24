@@ -58,25 +58,27 @@ export class BusinessRegisterComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
+    this.time=120
+    this.codeGetting=true;
     let url=g.namespace+"/gpsys/sendSMS/sendMessage/sellerRegister";
-	let send={
-		sellerPhone:this.phone
-	}
-	$.ajax(url,{
-		data:send,
-		dataType:"jsonp",
-		jsonp:"callback",
-		success:json=>{
-			if(json.stage==1){
-			  console.log(json)
-				this.checkCode=json.data.code;
+    let send={
+      sellerPhone:this.phone
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      jsonp:"callback",
+      success:json=>{
+        if(json.stage==1){
+          console.log(json)
+          this.checkCode=json.data.code;
 
-			}
-			else{
-				alert(json.msg)
-			}
-		}
-	})
+        }
+        else{
+          alert(json.msg)
+        }
+      }
+    })
   }
 
   //提交填写信息

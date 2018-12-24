@@ -40,7 +40,13 @@ export class AdminHomePageComponent implements OnInit {
     },100)
   }
 
-
+//退出登录
+  loginOut(){
+    if(!confirm("是否注销")){
+      return;
+    }
+    window.location.reload();
+  }
 
 
 }

@@ -13,8 +13,8 @@ import java.util.List;
 public interface SellerMapper {
 
     //商家注册
-    @Insert("insert into tb_seller(seller_id,seller_nickname,seller_name,seller_password,seller_identity_id,seller_phone,seller_email,store_name,store_area,volume_id)\n" +
-            " values(#{sellerId}, #{sellerNickName}, #{sellerName}, #{sellerPassword}, #{sellerIdentityId}, #{sellerPhone}, #{sellerEmail}, #{storeName}, #{storeArea}, #{volumeId} )")
+    @Insert("insert into tb_seller(seller_id,seller_nickname,seller_name,seller_password,seller_identity_id,seller_phone,seller_email,store_name,store_area,volume_id,seller_pink)\n" +
+            " values(#{sellerId}, #{sellerNickName}, #{sellerName}, #{sellerPassword}, #{sellerIdentityId}, #{sellerPhone}, #{sellerEmail}, #{storeName}, #{storeArea}, #{volumeId}, '10' )")
     void sellerRegister(@Param("sellerId") String sellerId, @Param("sellerNickName") String sellerNickName, @Param("sellerName") String sellerName,
                         @Param("sellerPassword") String sellerPassword,@Param("sellerIdentityId") String sellerIdentityId, @Param("sellerPhone") String sellerPhone,
                         @Param("sellerEmail") String sellerEmail, @Param("storeName") String storeName, @Param("storeArea") String storeArea, @Param("volumeId") String volumeId);
@@ -61,4 +61,8 @@ public interface SellerMapper {
     //修改商家账号状态
     @Update("update tb_seller set state=#{state} where seller_id=#{sellerId}")
     void updateSellerState(@Param("state") String state, @Param("sellerId") String sellerId);
+
+    //检测是否被注册
+    @Select("select * from tb_seller where seller_id=#{sellerId}")
+    Seller checkIdIsRegist(@Param("sellerId") String sellerId);
 }

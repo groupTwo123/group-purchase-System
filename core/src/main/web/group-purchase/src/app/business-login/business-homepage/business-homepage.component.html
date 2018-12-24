@@ -47,7 +47,7 @@
         <p class="rightTopP1"><i class="fa fa-bell " aria-hidden="true"></i>通知</p>
       </div>
       <div class="col-sm-1 mt-4 ">
-        <p class="rightTopP1" style="cursor: pointer">退出登录</p>
+        <p class="rightTopP1" style="cursor: pointer" (click)="loginOut()">退出登录</p>
       </div>
     </div>
     <app-business-per *ngIf="navPick=='1'" [id]="id" (changeHeight)="scrollHeightChange()"></app-business-per>

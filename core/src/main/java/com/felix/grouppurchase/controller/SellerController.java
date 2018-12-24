@@ -142,5 +142,18 @@ public class SellerController {
         return sellerService.updateSellerState(state,sellerId,callback);
     }
 
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/24 11:14
+     * @Description: 更新商家分数
+     * @params:sellerId, callback
+     * @return:
+     */
+    @RequestMapping(value = "/updateSellerPink",method = RequestMethod.GET)
+    public String updateSellerPink(String sellerId, String callback){
+        return sellerService.updateSellerPink(sellerId,callback);
+    }
+
 
 }

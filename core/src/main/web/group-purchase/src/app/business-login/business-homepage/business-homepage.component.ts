@@ -46,6 +46,11 @@ export class BusinessHomepageComponent implements OnInit {
     this.isChangeInfo=true;
     this.scrollHeightChange();
   }
-
-
+//退出登录
+  loginOut(){
+    if(!confirm("是否注销")){
+      return;
+    }
+    window.location.reload();
+  }
 }

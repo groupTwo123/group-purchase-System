@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface IUserService {
 
     //会员用户注册
-    void registerUser(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);
+    String registerUser(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type ,String callback);
 
     //商家用户注册
     void registerNormal(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);

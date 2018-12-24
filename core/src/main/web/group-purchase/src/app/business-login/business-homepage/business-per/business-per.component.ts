@@ -18,6 +18,7 @@ export class BusinessPerComponent implements OnInit {
   imgBase64:any=""
   constructor() { }
   ngOnChanges(){
+    this.getUserPic();
     this.getSellerInfo();
   }
   ngOnInit() {

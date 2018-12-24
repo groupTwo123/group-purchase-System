@@ -112,7 +112,7 @@ export class RegisterComponent implements OnInit {
               this.nextStep();
             }
             else{
-              alert("注册失败");
+              alert("注册失败:"+json.msg);
             }
           }
         })

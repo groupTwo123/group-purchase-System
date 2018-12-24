@@ -16,6 +16,7 @@ export class PersonalCenterComponent implements OnInit {
   }
   userPic:any="../../../assets/headExample.gif"
   imgBase64:any=""
+  emailCheck:any= g.emailCheck;  //邮箱验证正则
   constructor() { }
 
   ngOnInit() {
@@ -30,8 +31,11 @@ export class PersonalCenterComponent implements OnInit {
 
     }
     else{
-      this.getUserPic()
-      this.getUserInfo();
+      setTimeout(json=>{
+        this.getUserPic()
+        this.getUserInfo();
+      },100)
+
     }
   }
   // 获取用户头像
@@ -82,6 +86,11 @@ export class PersonalCenterComponent implements OnInit {
   //提交保存数据
   submitData(){
     if(!confirm("确定要提交吗？")){
+      return;
+    }
+    if(!this.emailCheck.test(this.userInfo.email))
+    {
+      alert('提示\n\n请输入有效的E_mail！');
       return;
     }
     for(let item in this.userInfo){

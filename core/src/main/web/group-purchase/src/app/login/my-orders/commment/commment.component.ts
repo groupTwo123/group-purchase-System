@@ -42,6 +42,7 @@ export class CommmentComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           alert("评论成功");
+
           this.updateOrder.emit();
         }
         else{

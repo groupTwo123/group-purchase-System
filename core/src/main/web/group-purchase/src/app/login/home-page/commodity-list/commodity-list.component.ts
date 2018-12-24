@@ -76,6 +76,27 @@ export class CommodityListComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           this.commodityList=json.data;
+          for(let item in  this.commodityList){
+            this.commodityList[item]['picData']=""
+            let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+            let send={
+              picId:this.commodityList[item].volumeData.commodityId
+            }
+            $.ajax(url,{
+              data:send,
+              dataType:'jsonp',
+              success:json=>{
+                if(json.stage==1){
+                  for(let item1 of json.data){
+                    if(item1.picType=='2'){
+                      this.commodityList[item]['picData']=item1.picBase64;
+                      break;
+                    }
+                  }
+                }
+              }
+            })
+          }
           this.dataTrans();
         }
         else{
@@ -106,6 +127,27 @@ export class CommodityListComponent implements OnInit {
 		  success:json=>{
 			  if(json.stage==1){
 				  this.commodityList=json.data;
+          for(let item in  this.commodityList){
+            this.commodityList[item]['picData']=""
+            let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+            let send={
+              picId:this.commodityList[item].volumeData.commodityId
+            }
+            $.ajax(url,{
+              data:send,
+              dataType:'jsonp',
+              success:json=>{
+                if(json.stage==1){
+                  for(let item1 of json.data){
+                    if(item1.picType=='2'){
+                      this.commodityList[item]['picData']=item1.picBase64;
+                      break;
+                    }
+                  }
+                }
+              }
+            })
+          }
           this.dataTrans();
 			  }
 			  else{
@@ -127,7 +169,6 @@ export class CommodityListComponent implements OnInit {
     for(let item in this.commodityList){
       commodityLength++;
     }
-    console.log(commodityLength)
     if(commodityLength==0){
       this.isHasData=false;
       setTimeout(json=>{

@@ -1,7 +1,10 @@
 package com.felix.grouppurchase.service.impl;
 
+import com.felix.grouppurchase.mapper.CommodityMapper;
 import com.felix.grouppurchase.mapper.SellerMapper;
+import com.felix.grouppurchase.model.Article;
 import com.felix.grouppurchase.model.Seller;
+import com.felix.grouppurchase.model.VolumeManage;
 import com.felix.grouppurchase.service.ISellerService;
 import com.felix.grouppurchase.util.ErrorCodeDesc;
 import com.felix.grouppurchase.util.GetSMS;
@@ -27,20 +30,28 @@ public class SellerServiceImpl implements ISellerService {
 
     @Autowired
     SellerMapper sellerMapper;
+    @Autowired
+    CommodityMapper commodityMapper;
 
     @Override
     public String sellerRegister(String sellerId, String sellerNickName, String sellerName, String sellerPassword, String sellerIdentityId, String sellerPhone, String sellerEmail, String storeName, String storeArea, String callback) {
         String volumeId= GetUUID.getUUID();
-        sellerMapper.sellerRegister(sellerId,sellerNickName,sellerName,sellerPassword,sellerIdentityId,sellerPhone,sellerEmail,storeName,storeArea,volumeId);
         JsonTransfer s = new JsonTransfer();
+        String result="";
         try {
-            String result1 = s.result(1, "注册成功", "", callback);
-            return result1;
+            Seller seller=sellerMapper.checkIdIsRegist(sellerId);
+            if(seller==null){
+                sellerMapper.sellerRegister(sellerId,sellerNickName,sellerName,sellerPassword,sellerIdentityId,sellerPhone,sellerEmail,storeName,storeArea,volumeId);
+                result = s.result(1, "注册成功", "", callback);
+            }
+            else{
+                result = s.result(1, "登录名已被注册", "", callback);
+            }
+
         }catch ( Exception e){
-            e.printStackTrace();
-            String result2 = s.result(0,"系统异常，注册失败","",callback);
-            return result2;
+            String result2 = s.result(0,e.toString(),"",callback);
         }
+        return result;
     }
 
     @Override
@@ -172,5 +183,27 @@ public class SellerServiceImpl implements ISellerService {
             result=s.result(1,e.toString(),"",callback);
        }
         return result;
+    }
+
+    @Override
+    public String updateSellerPink(String sellerId, String callback) {
+        JsonTransfer s= new JsonTransfer();
+        String result="";
+        int haoping=0;
+        int zhongping=0;
+        int chaping=0;
+        try {
+            Seller seller=sellerMapper.getSellerInfoById(sellerId);
+            List<VolumeManage> volumeManages= commodityMapper.getAllCommodityInfoById(seller.getVolumeId());
+            for(VolumeManage volumeManagePo:volumeManages){
+                List<Article> articles= commodityMapper.getAllArticleByCommodityId(volumeManagePo.getCommodityId());
+                for(Article articlePo:articles){
+
+                }
+            }
+        }catch (Exception e){
+            result=s.result(1,e.toString(),"",callback);
+        }
+        return  result;
     }
 }

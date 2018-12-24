@@ -41,4 +41,7 @@ public interface ISellerService {
 
     //修改账号状态
     String updateSellerState(String state, String sellerId,String callback);
+
+    //更新商家分数
+    String updateSellerPink(String sellerId, String callback);
 }

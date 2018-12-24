@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
 
 }
     else{
-      if(this.checkCode==this.code||this.code!=''){
+      if(this.checkCode==this.code&&this.code!=''){
         let url="http://localhost:8080/gpsys/user/getUsernameByPhone";
         let send={
           phone:this.phone

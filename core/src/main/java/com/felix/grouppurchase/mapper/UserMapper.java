@@ -65,4 +65,8 @@ public interface UserMapper {
     //查询所有user信息
     @Select("select * from tb_user")
     List<User> getAllUserInfo();
+
+    //检测是否id被检测
+    @Select("select * from tb_user where id=#{id}")
+    User checkIdHasRegist(@Param("id") String id);
 }

@@ -31,30 +31,9 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String userRegister(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type, String callback) {
-        User user = new User();
-        user.setId(id);
-        user.setUserName(userName);
-        user.setGender(gender);
-        user.setBirth(birth);
-        user.setPhone(phone);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setArea(area);
-//      user.setType(type);
         JsonTransfer s = new JsonTransfer();
-        if (user.getId() == null){
-            String result1 = s.result(0,"id不能为空","",callback);
-            return result1;
-        }
-        userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP);
-        try {
-            String result2 = s.result(1, "注册成功", user, callback);
-            return result2;
-        } catch (Exception e) {
-            e.printStackTrace();
-            String result3 = s.result(0, "注册失败", user, callback);
-            return result3;
-        }
+        return userService.registerUser(id, userName, gender, birth, phone, email, password, area, UserUtil.USER_VIP,callback);
+
     }
 
     /**
