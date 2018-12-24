@@ -86,7 +86,7 @@ export class MyOrdersComponent implements OnInit {
     this.picData=[]
     let url="http://localhost:8080/gpsys/order/getOrderByUserId"
     let send={
-      userId:"huangchuwen"
+      userId:this.userId
     }
     $.ajax(url,{
       data:send,
