@@ -140,8 +140,8 @@ public class CommodityController {
      * @return
      **/
     @RequestMapping(value = "/getCommodityPicture", method = RequestMethod.GET)
-    public List<CommodityPicture> getCommodityPicture(String callback){
-        List<CommodityPicture> pictureList = commodityService.getCommodityPicture(callback);
+    public String getCommodityPicture(String callback){
+        String pictureList = commodityService.getCommodityPicture(callback);
         return pictureList;
     }
 
