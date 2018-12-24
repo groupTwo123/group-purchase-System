@@ -1,0 +1,54 @@
+<div style="margin-bottom: 50px">
+  <div class="row  ">
+    <div class="col-sm-2 bgCss borBom text-center">
+      <p class="font20 colorWhite youyuan">评价宝贝</p>
+    </div>
+    <div class="col-sm-10 borBom"></div>
+  </div>
+  <div class="row ">
+    <div class="col-sm-12 borLandR">
+      <div class="row mt-4 " style="margin-bottom: 40px">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 text-center">
+          <div class="row">
+            <div class="col-sm-12">
+              <img src="{{this.data.pic}}" class="imgCss">
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-sm-12">
+              <p class="youyuan font12" style="color:#888d8f;">{{this.data.CommodityData.commodityName}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-3">
+              <input type="radio" name="commodityChose" value="3">好评
+            </div>
+            <div class="col-sm-3">
+              <input type="radio" name="commodityChose" value="2" checked="checked">中评
+            </div>
+            <div class="col-sm-3">
+              <input type="radio" name="commodityChose" value="1">差评
+            </div>
+          </div>
+          <div class="row mt-4" >
+            <div class="col-sm-12">
+              <textarea [(ngModel)]="article" style="min-height: 150px;border-color: #adadad" class="form-control" placeholder="请填写您的评论"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-2 ">
+      <button class="btn btn-primary form-control"  (click)="submit()">提交评论</button>
+    </div>
+    <div class="col-sm-2 ml-2">
+      <button class="btn btn-danger form-control" (click)="close.emit()">返回订单</button>
+    </div>
+  </div>
+</div>

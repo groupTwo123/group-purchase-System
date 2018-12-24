@@ -1,0 +1,36 @@
+.borBom{
+  border-bottom:1px solid #e05d0b;
+}
+.bgCss{
+  background-color: #e05d0b;
+  height:35px;
+}
+.font20{
+  font-size: 20px;
+}
+.font16{
+  font-size: 16px;
+}
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.imgCss{
+  height:100px;
+}
+.cursor{
+  cursor: pointer;
+}
+.colorWhite{
+  color:white
+}
+.borLandR{
+  border-left: 1px solid #e05d0b;
+  border-right: 1px solid #e05d0b;
+  border-bottom: 1px solid #e05d0b;
+}
+.imgCss{
+  height: 120px;
+}
