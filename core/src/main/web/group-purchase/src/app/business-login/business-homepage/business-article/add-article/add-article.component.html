@@ -1,0 +1,44 @@
+<div style="padding: 10px">
+  <div class="row mt-2">
+    <div class="col-sm-12">
+      <p class="youyuan font20 "><i class="fa fa-envelope-o text-primary" aria-hidden="true"></i>&nbsp;请填写你要提交的文章信息</p>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-sm-3 text-right">
+      <p class="simhei mt-2" >文章类型：</p>
+    </div>
+    <div class="col-sm-6">
+      <select class="form-control" [(ngModel)]="dataObj.type">
+        <option value="{{i+1}}" *ngFor="let item of articleType;let i=index">{{item}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-sm-3 text-right">
+      <p class="simhei mt-2">商品id：</p>
+    </div>
+    <div class="col-sm-6">
+      <select class="form-control" [(ngModel)]="dataObj.commodityId">
+        <option value="{{item.commodityId}}" *ngFor="let item of commoditySelect;let i=index">{{item.commodityId}}({{item.commodityName}})</option>
+      </select>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-sm-3 text-right">
+      <p class="simhei mt-1">文章内容：</p>
+    </div>
+    <div class="col-sm-6">
+     <textarea class="form-control" [(ngModel)]="dataObj.article"></textarea>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3 text-right">
+      <button class="btn btn-success form-control" (click)="submit()">提交</button>
+    </div>
+    <div class="col-sm-3 text-left">
+      <button class="btn btn-outline-danger form-control" (click)="close.emit()">取消</button>
+    </div>
+  </div>
+</div>
