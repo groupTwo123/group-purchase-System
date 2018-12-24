@@ -1,4 +1,4 @@
-INSERT INTO `group_purchase`.`tb_commodity_type` (`id`) VALUES ('');
+
 INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('0', '家用电器');
 INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('1', '手机');
 INSERT INTO `group_purchase`.`tb_commodity_type` (`id`, `name`) VALUES ('2', '运营商');
