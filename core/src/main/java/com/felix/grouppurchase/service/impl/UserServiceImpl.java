@@ -30,8 +30,25 @@ public class UserServiceImpl implements IUserService{
     UserMapper userMapper;
 
     @Override
-    public void registerUser(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type) {
-        userMapper.insertRegisterMessage(id, userName, gender, birth, phone, email, password, area, type);
+    public String registerUser(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type ,String callback) {
+        String result="";
+        JsonTransfer s=new JsonTransfer();
+        try {
+            User user=userMapper.checkIdHasRegist(id);
+            if(user==null){
+                userMapper.insertRegisterMessage(id, userName, gender, birth, phone, email, password, area, type);
+                result = s.result(1, "注册成功", user, callback);
+            }
+            else{
+                result = s.result(0, "登录名已被注册", "", callback);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = s.result(0, e.toString(), "", callback);
+        }
+        return result;
+
     }
 
     @Override
@@ -64,14 +81,14 @@ public class UserServiceImpl implements IUserService{
             session.setAttribute("sessionLoginPassword",password);
             User user =  userMapper.userLogin(id, password);
             if (user == null){
-                result = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+                result = s.result(0,"用户不存在","",callback);
                 return result;
             }
             HashMap<String, Object> map = new HashMap<>();
             map.put("username",user.getUserName());
-            map.put("id",user.getId());
+            map.put("id",id);
             map.put("type",user.getType());
-            result = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
+            result = s.result(1,"",map,callback);
         }
 
         return result;

@@ -170,7 +170,7 @@ export class CommodityDetailComponent implements OnInit {
       commodityId:this.data.volumeData.commodityId,
       commodityNumber:this.commodityNumber,
       volume_id:this.data.volumeData.volumeId,
-      user_id:"huangchuwen"
+      user_id:this.id
     }
     $.ajax(url,{
       data:send,
