@@ -71,17 +71,26 @@ public interface ICommodityService {
     String updateTypeById(String id, String name, String callback);
 
     //增加文章
-    String addArticle(String id, String commodityId, String article, Integer type, String callback);
+    String addArticle(String id, String commodityId, String article, Integer type,String commentType, String callback);
 
     //修改文章
     String updateArticle(String id, String commodityId, String article, Integer type, String callback);
 
     //删除文章
-    String deleteArticle(String id, String commodityId, String callback);
+    String deleteArticle(String id, String commodityId, String article,String type,String callback);
 
     //根据类型和启用状态查询文章
     String getArticleByTypeAndState(Integer type, int state, String callback);
 
     //修改文章启用状态
-    String changeArticleState(String id, String commodityId, Integer type, Integer state, String callback);
+    String changeArticleState(String id, String commodityId, String article,Integer type, Integer state, String callback);
+
+    //根据id查找文章
+    String getArticleById(String id, String idType,String callback);
+
+    //根据订单id获取退货信息
+    String getBackReasonByOrderId(String orderiId, String callback);
+
+    //通过商品id和类型获取文章列表
+    String getArticleByCommodityId(String commodityId, String type, String callback);
 }

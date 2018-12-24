@@ -245,8 +245,8 @@ public class CommodityController {
      * @return
      **/
     @RequestMapping(value = "/addArticle", method = RequestMethod.GET)
-    public String addArticle(String id, String commodityId, String article, Integer type, String callback){
-        return commodityService.addArticle(id,commodityId,article,type,callback);
+    public String addArticle(String id, String commodityId, String article, Integer type,String commentType, String callback){
+        return commodityService.addArticle(id,commodityId,article,type,commentType,callback);
     }
 
     /**
@@ -269,8 +269,8 @@ public class CommodityController {
      * @return
      **/
     @RequestMapping(value = "/deleteArticle", method = RequestMethod.GET)
-    public String deleteArticle(String id, String commodityId, String callback){
-        return commodityService.deleteArticle(id,commodityId,callback);
+    public String deleteArticle(String id, String commodityId,String article,String type, String callback){
+        return commodityService.deleteArticle(id,commodityId,article,type,callback);
     }
 
     /**
@@ -293,7 +293,43 @@ public class CommodityController {
      * @return
      **/
     @RequestMapping(value = "/changeArticleState", method = RequestMethod.GET)
-    public String changeArticleState(String id, String commodityId, Integer type, Integer state, String callback){
-        return commodityService.changeArticleState(id,commodityId,type,state,callback);
+    public String changeArticleState(String id, String commodityId,String article, Integer type, Integer state, String callback){
+        return commodityService.changeArticleState(id,commodityId,article,type,state,callback);
     }
+
+    /**
+     * @Author huangchuwen
+     * @Description 根据id查找文章列表
+     * @Date 2018/12/20 9:00
+     * @Param id,idType
+     * @return
+     **/
+    @RequestMapping(value = "/getArticleById", method = RequestMethod.GET)
+    public String getArticleById(String id,String idType, String callback){
+        return commodityService.getArticleById(id,idType,callback);
+    }
+    /**
+     * @Author huangchuwen
+     * @Description 根据commodityId和type查找文章列表
+     * @Date 2018/12/20 9:00
+     * @Param commodityId,type
+     * @return
+     **/
+    @RequestMapping(value = "/getArticleByCommodityId", method = RequestMethod.GET)
+    public String getArticleByCommodityId(String commodityId,String type, String callback){
+        return commodityService.getArticleByCommodityId(commodityId,type,callback);
+    }
+
+    /**
+     * @Author huangchuwen
+     * @Description 根据商品订单id获取退货信息
+     * @Date 2018/12/22 10:00
+     * @Param
+     * @return
+     **/
+    @RequestMapping(value = "/getBackReasonByOrderId", method = RequestMethod.GET)
+    public String getArticgetBackReasonByOrderIdleById(String orderiId, String callback){
+        return commodityService.getBackReasonByOrderId(orderiId,callback);
+    }
+
 }

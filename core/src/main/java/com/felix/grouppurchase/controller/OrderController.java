@@ -29,6 +29,8 @@ public class OrderController {
     @Autowired
     IOrderService orderService;
 
+
+
     /**
      * @Author fangyong
      * @Description 获取所有订单
@@ -80,6 +82,7 @@ public class OrderController {
         return orderService.cancelBackCommodity(order_id,callback);
     }
 
+
     /**
      * @Author fangyong
      * @Description 通过支付宝接口支付订单
@@ -90,23 +93,9 @@ public class OrderController {
     @RequestMapping(value = "/alipayToOrder", method = RequestMethod.GET)
     public void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse,
                               @RequestParam(value = "money", required = false) String money) throws AlipayApiException, IOException {
-        HttpSession session = httpRequest.getSession();
-        session.setAttribute("payId",0);
         orderService.alipayToOrder(httpRequest, httpResponse, money);
     }
 
-    /**
-     * @Author fangyong
-     * @Description 设置支付宝session
-     * @Date 2018/12/21 8:30
-     * @Param
-     * @return
-     **/
-    @RequestMapping(value = "/setPaySession", method = RequestMethod.GET)
-    public void setPaySession(HttpServletRequest request, HttpServletResponse response, String stage){
-        HttpSession session = request.getSession();
-        session.setAttribute("payId",stage);
-    }
 
     /**
      * @Author fangyong
@@ -116,12 +105,33 @@ public class OrderController {
      * @return
      **/
     @RequestMapping(value = "/getPaySession", method = RequestMethod.GET)
-    public String getPaySession(HttpServletRequest request, HttpServletResponse response, String callback){
+    public String getPaySession(HttpServletRequest request, HttpServletResponse response,String stage, String callback){
         HttpSession session = request.getSession();
-        session.getAttribute("payId");
-        HashMap<String, Object> map = new HashMap<String,Object>();
         JsonTransfer s = new JsonTransfer();
-        map.put("paySessionId",session);
+        if(session.getAttribute("payId")!=null){
+            if(!( session.getAttribute("payId").equals("1"))){
+                session.setAttribute("payId",stage);
+            }
+            else{
+                if(session.getAttribute("isStart")!=null){
+                    if(session.getAttribute("isStart").equals("0")){
+                        session.setAttribute("payId",stage);
+                        session.setAttribute("isStart",null);
+                    }
+                }
+                else{
+                    session.setAttribute("isStart","0");
+//                    session.setAttribute("payId",stage);
+                }
+            }
+        }
+        else{
+            session.setAttribute("payId",0);
+        }
+        session.getAttribute("payId");
+        System.out.print(session.getAttribute("payId"));
+        HashMap<String, Object> map = new HashMap<String,Object>();
+        map.put("paySessionId",session.getAttribute("payId"));
         String result = s.result(1,"",map,callback);
         return result;
     }

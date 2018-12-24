@@ -84,7 +84,7 @@ public class SellerController {
      *
      * @Author: huangchuwen
      * @date: 2018/12/11 14:47
-     * @Description: 通过登录名获取商家信息
+     * @Description: 通过登录id获取商家信息
      * @params: sellerId
      * @return:
      */

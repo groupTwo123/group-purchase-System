@@ -59,13 +59,14 @@ public class UserController {
 
     /**
      * @Author: fangyong
+	 * @EditBy: huangchuwen
      * @date: 2018/11/27 15:56
      * @Description: 用户登录
      * @params: id，password
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(HttpServletRequest request,String id, String password, String callback) {
-        return userService.login(request,id, password, callback);
+    public String login(HttpServletRequest request,String id, String password, String isOut,String callback) {
+        return userService.login(request,id, password,  isOut, callback);
     }
 
 
@@ -140,4 +141,19 @@ public class UserController {
     public String  getAllUserInfo( String callback){
         return userService.getAllUserInfo(callback);
     }
+
+    /**
+     *
+     * @Author: huangchuwen
+     * @date: 2018/12/21 16:04
+     * @Description: 增加用户余额
+     * @params:  user,money，callback
+     */
+    @RequestMapping("/addVancy")
+    public String  addVancy(String user,Float money, String callback){
+        return userService.addVancy(user,money,callback);
+    }
+
+
 }
+

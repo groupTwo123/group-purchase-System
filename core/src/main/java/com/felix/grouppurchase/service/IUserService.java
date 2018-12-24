@@ -16,7 +16,7 @@ public interface IUserService {
     void registerNormal(String id, String userName, String gender, String birth, String phone, String email, String password, String area, String type);
 
     //用户登录
-    String login(HttpServletRequest request,String id, String password, String callback);
+    String login(HttpServletRequest request,String id, String password, String isOut, String callback);
 
     //登录时检测是否存在该手机号码的用户
     String checkPhoneLogin(String phone, String callback);
@@ -41,4 +41,7 @@ public interface IUserService {
 
     //获取所有用户信息
     String getAllUserInfo(String callback);
+
+    //增加用户余额
+    String addVancy(String user,Float money, String callback);
 }

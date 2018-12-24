@@ -70,4 +70,7 @@ public interface OrderMapper {
     @Select("select * from tb_order where commodity_id=#{commodityId}")
     List<Order> getOrderByCommodityId(@Param("commodityId") String commodityId);
 
+    //根据商品id查找订单
+    @Select("select * from tb_order where order_id=#{orderId}")
+    Order getCommodityByOrderId(@Param("orderId") String orderId);
 }

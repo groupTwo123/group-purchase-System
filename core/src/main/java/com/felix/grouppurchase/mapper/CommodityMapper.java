@@ -129,9 +129,9 @@ public interface CommodityMapper {
     void updateTypeById(@Param("id") String id,@Param("name") String name);
 
     //增加文章
-    @Insert("insert into tb_article(id,commodity_id,article,type) values(#{id},#{commodityId},#{article},#{type})")
+    @Insert("insert into tb_article(id,commodity_id,article,type,commentType, state) values(#{id},#{commodityId},#{article},#{type},#{commentType},#{state})")
     void addArticle(@Param("id") String id, @Param("commodityId") String commodityId,
-                    @Param("article") String article, @Param("type") Integer type);
+                    @Param("article") String article, @Param("type") Integer type,@Param("commentType") String commentType,@Param("state") String state);
 
     //修改文章
     @Update("update tb_article set article = #{article} where id = #{id} and commodity_id = #{commodityId} and type = #{type}")
@@ -139,15 +139,47 @@ public interface CommodityMapper {
                        @Param("article") String article, @Param("type") Integer type);
 
     //删除文章
-    @Delete("delete from tb_article where id = #{id} and commodity_id = #{commodityId}")
-    void deleteArticle(@Param("id") String id, @Param("commodityId") String commodityId);
+    @Delete("delete from tb_article where id = #{id} and commodity_id = #{commodityId} and article=#{article} and type=#{type}")
+    void deleteArticle(@Param("id") String id, @Param("commodityId") String commodityId,@Param("article") String article,@Param("type") String type);
 
     //根据类型和启用状态查询文章
     @Select("select * from tb_article where type = #{type} and state = #{state}")
     List<Article> getArticleByTypeAndState(@Param("type") Integer type, @Param("state") int state);
 
     //修改文章启用状态
-    @Update("update tb_article set state = #{state} where id = #{id} and commodity_id = #{commodityId} and type = #{type}")
-    void changeArticleState(@Param("id") String id, @Param("commodityId") String commodityId, @Param("type") Integer type,
+    @Update("update tb_article set state = #{state} where id = #{id} and commodity_id = #{commodityId} and type = #{type} and article=#{article}")
+    void changeArticleState(@Param("id") String id, @Param("commodityId") String commodityId,@Param("article") String article, @Param("type") Integer type,
                             @Param("state") Integer state);
+
+    //根据id获取文章列表
+    @Select("select * from tb_article where id=#{id}")
+    List<Article> getArticleById(@Param("id") String id);
+
+    //查找所有文章
+    @Select("select * from tb_article ")
+    List<Article> getAllArticle();
+
+    //获取图片通过id和type
+    @Select("select * from tb_commodity_picture where picId=#{picId} and picType=#{picType} ")
+    List<User> getCommodityPicByIdAndType(@Param("picId") String picId,@Param("picType") int picType);
+
+    //更新用户头像
+    @Update("update  tb_commodity_picture set picBase64=#{picBase64} where  picId=#{picId} and picType=#{picType} ")
+    void updateCommodityPicture(@Param("picId") String picId,@Param("picBase64") String picBase64, @Param("picType") int picType);
+
+    //退货增加商品
+    @Update("update tb_volume_manage set commodity_number=commodity_number+#{commodityNumber} where commodity_id=#{commodityId}")
+    void addCommodityNumberByCommodityId(@Param("commodityId") String commodityId, @Param("commodityNumber") Integer commodityNumber);
+
+    //根据订单id获取退货信息
+    @Select("select * from tb_back_commodity where back_order_id=#{orderiId}")
+    BackCommodity getBackReasonByOrderId(@Param("orderiId") String orderiId);
+
+    //根据商品Id获取文章
+    @Select("select * from tb_article where commodity_id=#{commodityId}")
+    List<Article> getAllArticleByCommodityId(@Param("commodityId") String commodityId);
+
+    //通过商品id和类型获取文章列表
+    @Select("select * from tb_article where commodity_id=#{commodityId} and type=#{type}")
+    List<Article> getArticleByCommodityId(@Param("commodityId") String commodityId, @Param("type") String type);
 }

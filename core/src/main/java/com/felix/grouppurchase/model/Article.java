@@ -15,6 +15,15 @@ public class Article implements Serializable {
     private String article;
     private Integer type;
     private Integer state;
+    private String commentType;
+
+    public String getCommentType() {
+        return commentType;
+    }
+
+    public void setCommentType(String commentType) {
+        this.commentType = commentType;
+    }
 
     public String getId() {
         return id;

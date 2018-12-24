@@ -35,8 +35,10 @@ public interface IOrderService {
     String getOrderByVolumeId(String volumeId, String callback);
 
     //根据orderId修改订单状态
+    @Transactional
     String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId, String callback);
 
     //支付宝功能
     void alipayToOrder(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String money) throws AlipayApiException, IOException;
+
 }
