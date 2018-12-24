@@ -1,0 +1,36 @@
+<div style="padding: 10px"  >
+  <div class="row ">
+    <div class="col-sm-10">
+      <p class="youyuan font20 "><i class="fa fa-picture-o text-primary" aria-hidden="true"></i>&nbsp;图片库数据</p>
+    </div>
+  </div>
+  <div class="row mt-2 ">
+    <div class="col-sm-12">
+      <div class="row mt-2">
+        <div class="col-sm-12">
+          <table class="table table-striped table-hover table-bordered "  id="table" >
+            <thead>
+            <tr >
+              <th>图片id </th>
+              <th>图片</th>
+              <th>归属id</th>
+              <th>图片类型</th>
+              <th>优先级</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="bodyShow">
+            <tr *ngFor="let item of picList ;let i=index">
+              <td>{{item.id}}</td>
+              <td><img src="{{item.picBase64}}" class="imgCss"></td>
+              <td>{{item.picId}}</td>
+              <td>{{picType[item.picType]}}</td>
+              <td>{{item.priority}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
