@@ -1,0 +1,1 @@
+insert into group_purchase.tb_admin (admin_id,admin_name,admin_password) values('admin','admin','admin')
