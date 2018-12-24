@@ -1,0 +1,108 @@
+
+<div style="width: 100%;height: 40px;" id='inputbox'>
+	<div class="input-group has-feedback" >
+
+		<input type="text" class="form-control" (click)="showng()"  [(ngModel)]="value" style="background-color: white" readonly>
+	</div>
+	<template  [ngIf]="show">
+		<div class=" row box" id='areabox'>
+			<div class="row col-sm-12" *ngIf='countryPage'>
+				<div class="col-sm-12 py-2" style="height: 50px">
+					<p class="fontStyle">选择国家：</p>
+				</div>
+				<div class="col-sm-12 " >
+					<div class="row col-sm-16 select-color" >
+						<button [ngClass]="{'btnClick':countrySection=='oftenUse'}" class="btnDefult" (mouseover) ="countrySection='oftenUse'">常用</button>
+						<button [ngClass]="{'btnClick':countrySection=='A-B'}" class="btnDefult" (mouseover) ="countrySection='A-B'">A-B</button>
+						<button [ngClass]="{'btnClick':countrySection=='C-I'}" class="btnDefult" (mouseover) ="countrySection='C-I'">C-I</button>
+						<button [ngClass]="{'btnClick':countrySection=='J-M'}" class="btnDefult" (mouseover) ="countrySection='J-M'">J-M</button>
+						<button [ngClass]="{'btnClick':countrySection=='N-V'}" class="btnDefult" (mouseover) ="countrySection='N-V'">N-V</button>
+						<button [ngClass]="{'btnClick':countrySection=='W-Z'}" class="btnDefult" (mouseover) ="countrySection='W-Z'">W-Z</button>
+					</div>
+					<div class="row col-sm-16 marbottom" *ngIf="countrySection=='oftenUse'">
+						<!-- <div  *ngFor="let item of countryList[0]['country']" class="col-sm-3 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[0]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+					<div class="row col-sm-16 marbottom"  *ngIf="countrySection=='A-B'" >
+						<!-- <div  *ngFor="let item of countryList[1]['country']" class="col-sm-4 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[1]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+					<div class="row col-sm-16 marbottom" *ngIf="countrySection=='C-I'">
+						<!-- <div  *ngFor="let item of countryList[2]['country']" class="col-sm-4 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[2]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+					<div class="row col-sm-16 marbottom" *ngIf="countrySection=='J-M'">
+						<!-- <div  *ngFor="let item of countryList[3]['country']" class="col-sm-4 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[3]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+					<div class="row col-sm-16 marbottom" *ngIf="countrySection=='N-V'">
+						<!-- <div  *ngFor="let item of countryList[4]['country']" class="col-sm-4 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[4]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+					<div class="row col-sm-16" *ngIf="countrySection=='W-Z'">
+						<!-- <div  *ngFor="let item of countryList[5]['country']" class="col-sm-4 py-2" >
+							<a href="JavaScript:;" (click)='countryClick(item)'>{{item}}</a>
+						</div> -->
+						<div  *ngFor="let item of countryList[5]['country'];let i=index;" class="listStyle" >
+							<a href="JavaScript:;"  (click)='countryClick(item)' style="font-size: 13px">{{item}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row col-sm-12" *ngIf='provincePage'>
+				<div class="col-sm-5  py-2 text-left" style="height: 20px">
+					<a href="JavaScript:;" style="text-decoration:underline;" class="mt-2" (click)='toCountryPage()'> <<"返回上一级" </a>
+				</div>
+				<div class="col-sm-7 py-2 text-left" style="height: 45px">
+					<p class="fontStyle">选择省份</p>
+
+				</div>
+				<div class="col-sm-12 " >
+					<div class="row col-sm-16 text-center">
+						<div  *ngFor="let item of provinceList" class="col-sm-3 py-2">
+							<a href="JavaScript:;" (click)='provinceClick(item.name)' style="font-size: 13px">{{item.name}}</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="row col-sm-12" *ngIf='cityPage'>
+				<div class="col-sm-5  py-2" style="height: 20px">
+					<a href="JavaScript:;" class="mt-2" style="text-decoration:underline;" (click)='toProvincePage()'> <<"返回上一级"</a>
+				</div>
+				<div class="col-sm-7 py-2" style="height: 45px">
+					<p class="fontStyle">选择城市：</p>
+
+				</div>
+				<div class="col-sm-12 " >
+					<div class="row col-sm-16 text-center">
+						<div  *ngFor="let item of provinceList[provinceListPosition]['cityList']" class="col-sm-3 py-2">
+							<a href="JavaScript:;" (click)='cityClick(item.name)' style="font-size: 13px">{{item.name}}</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+</div>
