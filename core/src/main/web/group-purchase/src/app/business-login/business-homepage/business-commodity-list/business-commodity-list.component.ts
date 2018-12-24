@@ -45,6 +45,7 @@ export class BusinessCommodityListComponent implements OnInit {
       type:"GET",
       success:json=>{
         this.typeDataObj=json.data;
+        // console.log(this.typeDataObj)
       }
     })
   }

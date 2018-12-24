@@ -29,7 +29,7 @@
               <td>{{item.commodityNumber}}</td>
               <td>{{item.commodityPrice}}</td>
               <td>{{item.commodityDescription}}</td>
-              <td>{{typeDataObj[item.commodityTypeId].name}}</td>
+              <td>{{typeDataObj[item.commodityTypeId-1].name}}</td>
               <td>
                 <i class="fa fa-pencil cursor" style="color:#4f95ff" title="编辑" aria-hidden="true" (click)="editShow(item)"></i>
                 <i class="fa fa-trash-o cursor" style="color:red" title="删除" aria-hidden="true" (click)="deleteCommodity(i)"></i>

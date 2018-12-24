@@ -92,7 +92,9 @@ export class ShoppingCardPageComponent implements OnInit {
              }
            })
          }
-         this.setTotalPrice();
+         setTimeout(json=>{
+           this.setTotalPrice();
+         },1000)
          this.tbShow=true;
          console.log(this.dataList)
        }
@@ -203,6 +205,7 @@ export class ShoppingCardPageComponent implements OnInit {
     for(let item of this.dataList){
       this.totalPrice=this.totalPrice+item.totalPrice;
     }
+    console.log( this.totalPrice)
   }
   //结算
   goToPay(){
