@@ -50,6 +50,7 @@ import {AdminArticleComponent} from "./admin-login/admin-home-page/admin-article
 import {PayReturnPageComponent} from "./pay-return-page/pay-return-page.component"
 import {ShowReasonComponent} from "./business-login/business-homepage/update-order-state/show-reason/show-reason.component"
 import {CommmentComponent} from "./login/my-orders/commment/commment.component"
+import {AdminPicComponent} from "./admin-login/admin-home-page/admin-pic/admin-pic.component"
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
@@ -111,7 +112,8 @@ const appRoutes:Routes=[
     AdminArticleComponent,
     PayReturnPageComponent,
     ShowReasonComponent,
-    CommmentComponent
+    CommmentComponent,
+    AdminPicComponent
   ],
   imports: [
     BrowserModule,

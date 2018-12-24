@@ -52,4 +52,9 @@ export  const  passwordLevel:any= {
 }
 export const  emailCheck=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
 
-
+export const picType:any={
+  1:'用户头像',
+  2:'商品图片',
+  3:'商品描述图片',
+  4:'商家头像',
+}

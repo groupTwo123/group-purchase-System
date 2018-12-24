@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-sm-2 leftBox" id="leftBox">
+<div class="row" >
+  <div class="col-sm-2 leftBox"  id="leftBox">
     <div class="row">
       <div class="col-sm-12">
         <img src="../../../assets/logo2.1.png" class="logoCss">
@@ -7,27 +7,32 @@
     </div>
     <div class="row mt-4 leftHover" [ngClass]="{'leftPick':navPick=='0'}" (click)="leftPickFun('0')">
       <div class="col-sm-12 ml-3 mt-2">
-        <p class="leftPStyle"><i class="fa fa-home leftIStyle" aria-hidden="true"></i>商家管理</p>
+        <p class="leftPStyle"><i class="fa fa-home leftIStyle" aria-hidden="true"></i>首页</p>
       </div>
     </div>
-    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='1'}" (click)="leftPickFun('1')">
+    <div class="row  leftHover" [ngClass]="{'leftPick':navPick=='1'}" (click)="leftPickFun('1')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-user leftIStyle" aria-hidden="true"></i>商家管理</p>
+      </div>
+    </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='2'}" (click)="leftPickFun('2')">
       <div class="col-sm-12 ml-3 mt-2">
         <p class="leftPStyle"><i class="fa fa-shopping-bag leftIStyle" aria-hidden="true"></i>商品分类</p>
       </div>
     </div>
-    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='2'}" (click)="leftPickFun('2')">
-      <div class="col-sm-12 ml-3 mt-2" >
-        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>会员管理</p>
-      </div>
-    </div>
     <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='3'}" (click)="leftPickFun('3')">
-      <div class="col-sm-12 ml-3 mt-2">
-        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>文章管理</p>
+      <div class="col-sm-12 ml-3 mt-2" >
+        <p class="leftPStyle"><i class="fa fa-user leftIStyle" aria-hidden="true"></i>会员管理</p>
       </div>
     </div>
     <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='4'}" (click)="leftPickFun('4')">
       <div class="col-sm-12 ml-3 mt-2">
-        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>图片库管理</p>
+        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>文章管理</p>
+      </div>
+    </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='5'}" (click)="leftPickFun('5')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-picture-o leftIStyle" aria-hidden="true"></i>图片库管理</p>
       </div>
     </div>
   </div>
@@ -49,29 +54,30 @@
         <p class="rightTopP1" style="cursor: pointer">退出登录</p>
       </div>
     </div>
-    <div class="row mt-4 ml-2" *ngIf="navPick=='0'">
+
+    <div class="row mt-4 ml-2" *ngIf="navPick=='1'">
       <div class="col-sm-12">
         <app-seller-list (changHeight)="scrollHeightChange()"></app-seller-list>
       </div>
     </div>
-    <div class="row mt-4  ml-4" *ngIf="navPick=='1'">
+    <div class="row mt-4  ml-4" *ngIf="navPick=='2'">
       <div class="col-sm-12">
         <app-admin-commodity-type (changHeight)="scrollHeightChange()"></app-admin-commodity-type>
       </div>
     </div>
-    <div class="row mt-4 " *ngIf="navPick=='2'">
-      <div class="col-sm-12">
-        <app-user-list (changHeight)="scrollHeightChange()"></app-user-list>
-      </div>
-    </div>
     <div class="row mt-4 " *ngIf="navPick=='3'">
       <div class="col-sm-12">
-        <app-admin-article (changHeight)="scrollHeightChange()"></app-admin-article>
+        <app-user-list (changHeight)="scrollHeightChange()"></app-user-list>
       </div>
     </div>
     <div class="row mt-4 " *ngIf="navPick=='4'">
       <div class="col-sm-12">
         <app-admin-article (changHeight)="scrollHeightChange()"></app-admin-article>
+      </div>
+    </div>
+    <div class="row mt-4 " *ngIf="navPick=='5'">
+      <div class="col-sm-12">
+        <app-admin-pic (changHeight)="scrollHeightChange()"></app-admin-pic>
       </div>
     </div>
   </div>

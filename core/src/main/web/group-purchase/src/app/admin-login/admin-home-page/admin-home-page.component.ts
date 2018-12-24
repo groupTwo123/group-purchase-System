@@ -13,12 +13,14 @@ export class AdminHomePageComponent implements OnInit {
   isChangeInfo:boolean=false;
   scorllHeight:any=(document.documentElement.scrollHeight).toString()+'px';
   isAddCommodity:boolean=false;
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.isChangeInfo=false;
-    // $('#leftBox').style.minHeight=(document.body.scrollHeight).toString()+'px';
+    // this.scrollHeightChange()
     document.getElementById('leftBox').style.height=this.scorllHeight;
+    // $('#leftBox').style.minHeight=(document.body.scrollHeight).toString()+'px';
 
   }
   //导航栏点击事件

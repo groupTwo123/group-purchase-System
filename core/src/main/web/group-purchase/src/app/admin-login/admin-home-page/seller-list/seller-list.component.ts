@@ -17,6 +17,7 @@ export class SellerListComponent implements OnInit {
     this.bodyShow=false;
     this.getAllSeller();
     this.setTable();
+    this.changHeight.emit()
   }
   ngOnChanges(){
     // this.getAllSeller();
