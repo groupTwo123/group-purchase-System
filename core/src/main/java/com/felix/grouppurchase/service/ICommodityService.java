@@ -35,7 +35,7 @@ public interface ICommodityService {
     String getCommodityByName(String commodityName, String callback);
 
     //获取商品图片
-    List<CommodityPicture> getCommodityPicture(String callback);
+    String getCommodityPicture(String callback);
 
     //查询所有商品
     String getAllCommodity(String callback);

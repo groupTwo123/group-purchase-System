@@ -182,9 +182,11 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public List<CommodityPicture> getCommodityPicture(String callback) {
+    public String getCommodityPicture(String callback) {
         List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
-        return commodityPictureList;
+        JsonTransfer s=new JsonTransfer();
+        String result= s.result(1,"",commodityPictureList,callback);
+        return result;
     }
 
     @Override
