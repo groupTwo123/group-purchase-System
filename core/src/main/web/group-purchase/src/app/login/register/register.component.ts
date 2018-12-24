@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   passwordLevelObj=g.passwordLevel;
   passwordLevel="";
   emailCheck:any= g.emailCheck;  //邮箱验证正则
+
   constructor() { }
 
   ngOnInit() {

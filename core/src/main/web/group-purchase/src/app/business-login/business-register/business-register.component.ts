@@ -19,6 +19,8 @@ export class BusinessRegisterComponent implements OnInit {
   emailCheck:any= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;  //邮箱验证正则
   code:any="";
   checkCode:any="";
+  codeGetting:boolean=false;//获取验证码中
+  time:number=120;
   constructor() { }
 
   ngOnInit() {
@@ -28,6 +30,18 @@ export class BusinessRegisterComponent implements OnInit {
     document.getElementById("registerBox").style.backgroundImage="url('../../../assets/background.png')";
 
 
+  }
+  //倒计时
+  settimeDown(){
+    var time1=setInterval(json=>{
+      if(this.time!=0){
+        this.time--;
+      }
+      else{
+        clearInterval(time1);
+        this.codeGetting=false;
+      }
+    },1000)
   }
   //下一步点击操作
   nextStepFun(){

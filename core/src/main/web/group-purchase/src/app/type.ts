@@ -48,7 +48,7 @@ export const time:any=1000;
 export  const  passwordLevel:any= {
   'weak' :  /^[0-9]{0,1000}$|^[a-zA-Z]{0,1000}$/,
   'middle': /^[A-Za-z0-9]{0,1000}$/,
-  'strong' : /^\w{0,1000}$/
+  'strong' : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,16}$/
 }
 export const  emailCheck=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
 

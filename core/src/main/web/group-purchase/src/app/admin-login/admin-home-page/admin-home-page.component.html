@@ -25,6 +25,11 @@
         <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>文章管理</p>
       </div>
     </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='4'}" (click)="leftPickFun('4')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>图片库管理</p>
+      </div>
+    </div>
   </div>
   <div class="col-sm-10 rightBox" id="rightBox">
     <div class="row rightTopBox">
@@ -60,6 +65,11 @@
       </div>
     </div>
     <div class="row mt-4 " *ngIf="navPick=='3'">
+      <div class="col-sm-12">
+        <app-admin-article (changHeight)="scrollHeightChange()"></app-admin-article>
+      </div>
+    </div>
+    <div class="row mt-4 " *ngIf="navPick=='4'">
       <div class="col-sm-12">
         <app-admin-article (changHeight)="scrollHeightChange()"></app-admin-article>
       </div>

@@ -15,6 +15,8 @@ export class BusinessLoginComponent implements OnInit {
   code:any='';
   checkCode:any='';
   business_homePage:boolean=false;
+  codeGetting:boolean=false;//获取验证码中
+  time:number=120;
   constructor() { }
 
   ngOnInit() {
@@ -78,7 +80,18 @@ export class BusinessLoginComponent implements OnInit {
 		  }
 	  })
   }
-
+  //倒计时
+  settimeDown(){
+    var time1=setInterval(json=>{
+      if(this.time!=0){
+        this.time--;
+      }
+      else{
+        clearInterval(time1);
+        this.codeGetting=false;
+      }
+    },1000)
+  }
   //提交登录
   submitData(){
 	  if(this.loginWay==0){
