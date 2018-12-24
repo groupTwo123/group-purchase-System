@@ -122,7 +122,21 @@
   border:1px solid silver;
   height: 600px;
 }
-
+.font12{
+  font-size: 10px;
+}
+.fontColorGrey{
+  color:grey
+}
+.font20{
+  font-size: 20px;
+}
+.simhei{
+  font-family: SimHei;
+}
+.imgCss{
+  height: 100px;
+}
 
 input::-webkit-input-placeholder { /* WebKit browsers */
   font-family: YouYuan;

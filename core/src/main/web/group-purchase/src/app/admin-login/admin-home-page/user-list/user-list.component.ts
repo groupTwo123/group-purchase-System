@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import * as g from './../../../type'
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
+  animations: [],
 })
 export class UserListComponent implements OnInit {
   @Output() changHeight=new EventEmitter()
@@ -11,12 +13,18 @@ export class UserListComponent implements OnInit {
   bodyShow:boolean=false;
   orderPage:boolean=false;
   orderPageData:any;
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+    $("#adminUserList").fadeIn(g.time);
     this.bodyShow=false
     this.getAllUser()
     this.setTable();
+  }
+  ngOnChanges(){
+
   }
   //设置表格属性分页
   setTable() {
@@ -57,10 +65,13 @@ export class UserListComponent implements OnInit {
   }
   //关闭订单列表
   closeOrderList(){
+    // $("#adminUserList").display="none"
+    $("#adminUserList").fadeIn(g.time);
     this.orderPage=false;
     this.bodyShow=false;
     this.getAllUser();
     this.setTable()
     this.changHeight.emit();
+
   }
 }

@@ -26,6 +26,11 @@
         <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>订单状态修改</p>
       </div>
     </div>
+    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='4'}" (click)="leftPickFun('4')">
+      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>文章管理</p>
+      </div>
+    </div>
   </div>
   <div class="col-sm-10 rightBox" id="rightBox">
     <div class="row rightTopBox">
@@ -45,8 +50,9 @@
         <p class="rightTopP1" style="cursor: pointer">退出登录</p>
       </div>
     </div>
-    <app-business-per *ngIf="navPick=='1'" [username]="id" (changeHeight)="scrollHeightChange()"></app-business-per>
-    <app-business-commodity-list *ngIf="navPick=='2'" [username]="id"  (changeHeight)="scrollHeightChange()"></app-business-commodity-list>
+    <app-business-per *ngIf="navPick=='1'" [id]="id" (changeHeight)="scrollHeightChange()"></app-business-per>
+    <app-business-commodity-list *ngIf="navPick=='2'" [id]="id"  (changeHeight)="scrollHeightChange()"></app-business-commodity-list>
     <app-update-order-state *ngIf="navPick=='3'" [id]="id" (changeHeight)="scrollHeightChange()"></app-update-order-state>
+    <app-business-article *ngIf="navPick=='4'" [id]="id" (changeHeight)="scrollHeightChange()"></app-business-article>
   </div>
 </div>

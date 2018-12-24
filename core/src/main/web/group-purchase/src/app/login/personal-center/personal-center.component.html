@@ -2,8 +2,11 @@
   <div class="col-sm-3 text-right">
     <img class="logocss" src="../../../assets/logo2.1.png">
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <p class="topPStyle"> 个人中心</p>
+  </div>
+  <div class="col-sm-2 mt-4">
+    <p class="fontcolorwhite youyuan cursor mt-3" (click)="close.emit()">返回首页</p>
   </div>
 
 </div>
@@ -12,12 +15,13 @@
     <div class="col-sm-2 text-center">
       <div class="row">
         <div class="col-sm-12">
-          <img src="../../../assets/headExample.gif" class="headportrait">
+          <img src="{{userPic}}" class="headportrait">
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-12">
-          <button class="btn btn-sm btn-outline-primary">上传头像</button>
+          <button class="btn btn-sm btn-outline-primary" (click)="uploadImgFun()">上传头像</button>
+          <input type="file" style="display: none" id="uploadImg" (change)="addPic()">
         </div>
       </div>
     </div>

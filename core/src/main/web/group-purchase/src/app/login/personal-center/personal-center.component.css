@@ -34,3 +34,18 @@
 .centerInput{
   background-color: #ececec;
 }
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.font20{
+  font-size: 20px;
+}
+.fontcolorwhite{
+  color:white
+}
+.cursor{
+  cursor: pointer;
+}

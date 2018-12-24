@@ -7,7 +7,7 @@ import * as globle from "./../../../type"
   styleUrls: ['./business-commodity-list.component.css']
 })
 export class BusinessCommodityListComponent implements OnInit {
-  @Input() username:any=''
+  @Input() id:any=''
   isAddCommodity:boolean=false;
   @Output() changeHeight=new EventEmitter();
   commodityList:any={};
@@ -53,7 +53,7 @@ export class BusinessCommodityListComponent implements OnInit {
 
     let url=globle.namespace+"/gpsys/seller/getSellerInfoById";
     let send={
-      sellerId:this.username
+      sellerId:this.id
     }
     $.ajax(url,{
       data:send,

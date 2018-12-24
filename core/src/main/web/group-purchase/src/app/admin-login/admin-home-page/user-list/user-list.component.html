@@ -1,42 +1,44 @@
-<div style="padding: 10px"  *ngIf="!orderPage">
-  <div class="row mt-2">
-    <div class="col-sm-10" >
-      <p class=" youyuan font20"><i class="fa fa-user text-primary" aria-hidden="true" style="margin-right:5px;"></i>所有会员列表：</p>
+<div style="display: none;"  id="adminUserList"   >
+  <div *ngIf="!orderPage" style="padding: 10px;">
+    <div class="row mt-2">
+      <div class="col-sm-10" >
+        <p class=" youyuan font20"><i class="fa fa-user text-primary" aria-hidden="true" style="margin-right:5px;"></i>所有会员列表：</p>
+      </div>
     </div>
-  </div>
-  <div class="row mt-2 ml-2">
-    <div class="col-sm-12">
-      <div class="row mt-2">
-        <div class="col-sm-12">
-          <table class="table table-striped table-hover youyuan "  id="table" >
-            <thead>
-            <tr >
-              <th>会员id </th>
-              <th>会员姓名</th>
-              <th>会员手机</th>
-              <th>会员邮箱</th>
-              <th>会员地址</th>
-              <th>账号余额</th>
-              <th>会员等级</th>
-              <th>订单</th>
-            </tr>
-            </thead>
-            <tbody *ngIf="bodyShow">
-            <tr *ngFor="let item of userInfo ;let i=index">
-              <td>{{item.id}}</td>
-              <td>{{item.userName}}</td>
-              <td>{{item.phone}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.area}}</td>
-              <td>{{item.vacancy}}</td>
-              <td>{{item.level}}</td>
-              <td><a class="cursor text-primary" (click)="showOrderList(item)">查看</a></td>
-            </tr>
-            </tbody>
-          </table>
+    <div class="row mt-2 ml-2">
+      <div class="col-sm-12">
+        <div class="row mt-2">
+          <div class="col-sm-12">
+            <table class="table table-striped table-hover youyuan "  id="table" >
+              <thead>
+              <tr >
+                <th>会员id </th>
+                <th>会员姓名</th>
+                <th>会员手机</th>
+                <th>会员邮箱</th>
+                <th>会员地址</th>
+                <th>账号余额</th>
+                <th>会员等级</th>
+                <th>订单</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="bodyShow">
+              <tr *ngFor="let item of userInfo ;let i=index">
+                <td>{{item.id}}</td>
+                <td>{{item.userName}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.area}}</td>
+                <td>{{item.vacancy}}</td>
+                <td>{{item.level}}</td>
+                <td><a class="cursor text-primary" (click)="showOrderList(item)">查看</a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-admin-order-list *ngIf="orderPage" [data]="orderPageData" (close)="closeOrderList()"></app-admin-order-list>
+<app-admin-order-list *ngIf="orderPage" [data]="orderPageData" (close)="closeOrderList()" ></app-admin-order-list>

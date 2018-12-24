@@ -90,5 +90,5 @@
   <app-search-loading *ngIf="isLoading"></app-search-loading>
 </div>
 <div *ngIf="commodityDetailPageShow">
-  <app-commodity-detail [data]="commodityDetail" (close)="closeDetail()"></app-commodity-detail>
+  <app-commodity-detail [data]="commodityDetail" [id]="id" (close)="closeDetail()"></app-commodity-detail>
 </div>

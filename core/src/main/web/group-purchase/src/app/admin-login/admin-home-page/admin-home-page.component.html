@@ -22,16 +22,7 @@
     </div>
     <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='3'}" (click)="leftPickFun('3')">
       <div class="col-sm-12 ml-3 mt-2">
-        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>权限规则设置</p>
-      </div>
-    </div>
-    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='4'}" (click)="leftPickFun('4')">
-      <div class="col-sm-12 ml-3 mt-2">
-        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>订单管理</p>
-      </div>
-    </div>
-    <div class="row mt-2 leftHover" [ngClass]="{'leftPick':navPick=='5'}" (click)="leftPickFun('5')">
-      <div class="col-sm-12 ml-3 mt-2">
+        <p class="leftPStyle"><i class="fa fa-book leftIStyle" aria-hidden="true"></i>文章管理</p>
       </div>
     </div>
   </div>
@@ -68,8 +59,10 @@
         <app-user-list (changHeight)="scrollHeightChange()"></app-user-list>
       </div>
     </div>
-    <div class="row mt-4 ml-4" *ngIf="navPick=='3'">
-
+    <div class="row mt-4 " *ngIf="navPick=='3'">
+      <div class="col-sm-12">
+        <app-admin-article (changHeight)="scrollHeightChange()"></app-admin-article>
+      </div>
     </div>
   </div>
 </div>

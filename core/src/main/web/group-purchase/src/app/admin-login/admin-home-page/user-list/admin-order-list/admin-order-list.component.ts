@@ -3,7 +3,7 @@ import * as g from './../../../../type'
 @Component({
   selector: 'app-admin-order-list',
   templateUrl: './admin-order-list.component.html',
-  styleUrls: ['./admin-order-list.component.css']
+  styleUrls: ['./admin-order-list.component.css'],
 })
 export class AdminOrderListComponent implements OnInit {
   @Input() data:any={}
@@ -19,6 +19,7 @@ export class AdminOrderListComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#admin_order_list").fadeIn(g.time);
     this.bodyShow=false;
     this.getOrderByUserId();
     this.setTable();

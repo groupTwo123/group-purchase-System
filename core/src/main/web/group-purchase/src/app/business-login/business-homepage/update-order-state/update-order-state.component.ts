@@ -14,6 +14,8 @@ export class UpdateOrderStateComponent implements OnInit {
   orderState:any={}
   userInfoPageShow:boolean=false;
   userId:any='';
+  isShowReason:boolean=false;
+  reasonData:any;
   constructor() {
     this.orderState=g.orderState;
   }
@@ -136,5 +138,13 @@ export class UpdateOrderStateComponent implements OnInit {
         }
       }
     })
+  }
+  showReason(item){
+    this.isShowReason=true;
+    this.reasonData=item;
+  }
+  closeReason(){
+    this.isShowReason=false;
+    // this.getOrderByCommodityId()
   }
 }

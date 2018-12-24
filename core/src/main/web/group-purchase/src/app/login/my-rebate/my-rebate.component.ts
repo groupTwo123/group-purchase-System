@@ -8,8 +8,8 @@ import * as g from'./../../type';
 export class MyRebateComponent implements OnInit {
   @Input() userId:any="";
   @Input() myRebateNum:number=0;
-
-
+  isSearchLoading:boolean=false;
+  addPrice:number=0
   @Output()
   bindChange = new EventEmitter();
   userInfo:any={};
@@ -27,7 +27,7 @@ export class MyRebateComponent implements OnInit {
   getUserInfo(){
     let url=g.namespace+"/gpsys/user/getUserInfoById";
     let send={
-      userId:"1101"
+      userId:"huangchuwen"
     }
     $.ajax(url,{
       data:send,
@@ -46,7 +46,7 @@ export class MyRebateComponent implements OnInit {
   }
   //充钱
   addMoney(){
-    this.bindChange.emit();
+    this.goToPay()
   }
   onBodyMouseDown(event) {
     if ( !($(event.target).parents("#templateBox").length>0)) {
@@ -55,4 +55,65 @@ export class MyRebateComponent implements OnInit {
     }
   }
 
+  //结算
+  goToPay(){
+    setTimeout(json=>{
+      let url=g.namespace+"/gpsys/order/getPaySession";
+      $.ajax(url,{
+        data:{stage:"-1"},
+        dataType:'jsonp',
+        success:json=>{
+        }
+      })
+    },900000)
+    this.isSearchLoading=true;
+    window.open(g.namespace+"/gpsys/order/alipayToOrder?money="+this.addPrice);
+    var get=setInterval(json=>{
+      let url=g.namespace+"/gpsys/order/getPaySession";
+      $.ajax(url,{
+        data:{stage:"0"},
+        dataType:'jsonp',
+        success:json=>{
+          if(json.stage==1){
+            console.log(json.data.paySessionId)
+            if(json.data.paySessionId=='1'){
+              clearInterval(get)
+              this.addVancy("1")
+            }else if (json.data.paySessionId=='-1'){
+              clearInterval(get)
+              this.addVancy("-1")
+            }
+          }
+        }
+      })
+    },2000)
+  }
+
+  addVancy(stage){
+    if(stage==1){
+      let url=g.namespace+"/gpsys/user/addVancy";
+      let send={
+        money:this.addPrice
+      }
+      $.ajax(url,{
+        data:send,
+        dataType:'jsonp',
+        success:json=>{
+          if(json.stage==1){
+            alert("支付成功")
+            this.isSearchLoading=false;
+            this.getUserInfo()
+          }
+          else{
+            alert(json.msg)
+          }
+        }
+      })
+
+    }else{
+      alert("支付失败")
+      this.isSearchLoading=false
+    }
+
+  }
 }

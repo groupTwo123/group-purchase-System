@@ -8,109 +8,120 @@
 			<p class="huanyin">欢迎登陆</p>
 		</div>
 	</div>
-	<div class="row loginboxbg" >
-		<div class="col-sm-8"></div>
-		<div class="col-sm-3 loginbox ">
-			<div class="row text-center" >
-				<div class="col-sm-6 "  >
-					<p  [ngClass]="{'pick':loginWay=='mobile', 'unpick':loginWay=='Id'}" (click)="changeLoginWay('mobile')">手机登陆</p>
-				</div>
-				<div class="col-sm-6">
-					<p  [ngClass]="{'pick':loginWay=='Id' ,'unpick':loginWay=='mobile'}" (click)="changeLoginWay('Id')">账号登陆</p>
-				</div>
-			</div>
-      <div *ngIf="loginWay=='mobile'">
-        <div class="row" style="margin-top: 30px">
-          <div class="col-sm-12">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
-              </div>
-              <input type="text" class="form-control" placeholder="请输入手机号码" [(ngModel)]="phone"  aria-describedby="basic-addon1">
+	<div class="row " >
+    <div class="col-sm-12 ">
+      <div class="row loginboxbg">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-3 loginbox ">
+          <div class="row text-center" >
+            <div class="col-sm-6 "  >
+              <p  [ngClass]="{'pick':loginWay=='mobile', 'unpick':loginWay=='Id'}" (click)="changeLoginWay('mobile')">手机登陆</p>
+            </div>
+            <div class="col-sm-6">
+              <p  [ngClass]="{'pick':loginWay=='Id' ,'unpick':loginWay=='mobile'}" (click)="changeLoginWay('Id')">账号登陆</p>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-7">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true" style="font-size: 12px"></i></span>
+          <div *ngIf="loginWay=='mobile'">
+            <div class="row" style="margin-top: 30px">
+              <div class="col-sm-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="请输入手机号码" [(ngModel)]="phone"  aria-describedby="basic-addon1">
+                </div>
               </div>
-              <input type="text" class="form-control" placeholder="验证码" [(ngModel)]="code" aria-describedby="basic-addon1">
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true" style="font-size: 12px"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="验证码" [(ngModel)]="code" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-sm-6 text-center">
+                <button class="btn btn-outline-success " (click)="getCode()" *ngIf="!codeGetting">获取验证码</button>
+                <button class="btn btn-outline-success "  *ngIf="codeGetting" disabled="disabled">重新发送（{{time}}s）</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <button class="btn btn-success login-btn" (click)="submitData()">登录</button>
+              </div>
+            </div>
+            <div class="row mt-2"  style="margin-top: 5px">
+
+              <div class="col-sm-12 login-a text-right">
+                <a [routerLink]="['/register']"> 立即注册</a>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-sm-6 text-right ">
+                <i class="fa fa-user-circle loginWayI"  aria-hidden="true" title="商家登录" [routerLink]="['/businessLogin']"></i>
+              </div>
+              <div class="col-sm-6 text-left ">
+                <i class="fa fa-user-secret loginWayI" aria-hidden="true" title="管理员登录" [routerLink]="['/adminLogin']"></i>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="loginWay=='Id'">
+            <div class="row" style="margin-top: 30px">
+              <div class="col-sm-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="请输入账号" [(ngModel)]="id"  aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true" style="font-size: 12px"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="密码" [(ngModel)]="password" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <button class="btn btn-success login-btn" (click)="submitData()">登录</button>
+              </div>
+            </div>
+            <div class="row mt-2"  style="margin-top: 5px">
+              <div class="col-sm-9 text-right login-a">
+                <a [routerLink]="['/forgetPassword']">忘记密码</a>
+              </div>
+              <div class="col-sm-3 login-a">
+                <a [routerLink]="['/register']"> 立即注册</a>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-sm-6 text-right ">
+                <i class="fa fa-user-circle loginWayI"  aria-hidden="true" title="商家登录" [routerLink]="['/businessLogin']"></i>
+              </div>
+              <div class="col-sm-6 text-left ">
+                <i class="fa fa-user-secret loginWayI" aria-hidden="true" title="管理员登录" [routerLink]="['/adminLogin']"></i>
+              </div>
             </div>
           </div>
-          <div class="col-sm-5 text-left">
-            <button class="btn btn-outline-success " (click)="getCode()">获取验证码</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <button class="btn btn-success login-btn" (click)="submitData()">登录</button>
-          </div>
-        </div>
-        <div class="row mt-2"  style="margin-top: 5px">
 
-          <div class="col-sm-12 login-a text-right">
-            <a [routerLink]="['/register']"> 立即注册</a>
-          </div>
         </div>
-        <div class="row mt-4">
-          <div class="col-sm-6 text-right ">
-            <i class="fa fa-user-circle loginWayI"  aria-hidden="true" title="商家登录" [routerLink]="['/businessLogin']"></i>
-          </div>
-          <div class="col-sm-6 text-left ">
-            <i class="fa fa-user-secret loginWayI" aria-hidden="true" title="管理员登录" [routerLink]="['/adminLogin']"></i>
-          </div>
-        </div>
-
+        <div class="col-sm-1"></div>
       </div>
-      <div *ngIf="loginWay=='Id'">
-        <div class="row" style="margin-top: 30px">
-          <div class="col-sm-12">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" ><i class="fa fa-user" aria-hidden="true"></i></span>
-              </div>
-              <input type="text" class="form-control" placeholder="请输入账号" [(ngModel)]="id"  aria-describedby="basic-addon1">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" ><i class="fa fa-key" aria-hidden="true" style="font-size: 12px"></i></span>
-              </div>
-              <input type="password" class="form-control" placeholder="密码" [(ngModel)]="password" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <button class="btn btn-success login-btn" (click)="submitData()">登录</button>
-          </div>
-        </div>
-        <div class="row mt-2"  style="margin-top: 5px">
-          <div class="col-sm-9 text-right login-a">
-            <a [routerLink]="['/forgetPassword']">忘记密码</a>
-          </div>
-          <div class="col-sm-3 login-a">
-            <a [routerLink]="['/register']"> 立即注册</a>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col-sm-6 text-right ">
-            <i class="fa fa-user-circle loginWayI"  aria-hidden="true" title="商家登录" [routerLink]="['/businessLogin']"></i>
-          </div>
-          <div class="col-sm-6 text-left ">
-            <i class="fa fa-user-secret loginWayI" aria-hidden="true" title="管理员登录" [routerLink]="['/adminLogin']"></i>
-          </div>
-        </div>
-      </div>
+    </div>
 
-		</div>
-		<div class="col-sm-1"></div>
 	</div>
+  <div class="row mt-5" >
+    <div class="col-sm-12 text-center">
+      <p class="simhei " style="color:#8d8d8d;">Copyright&nbsp;©&nbsp;2018-**** &nbsp;方黄张昀科技有限公司</p>
+    </div>
+  </div>
 </div>
 <div>
   <app-home-page [usernameFromParent]="username" [idFormParent]="id" *ngIf="homePageShow"></app-home-page>

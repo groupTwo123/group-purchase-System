@@ -7,8 +7,8 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class BusinessHomepageComponent implements OnInit {
   $:any=(window as any).$;
-  @Input() username:any="张昀";
-  @Input() id:any="zhangyun";
+  @Input() username:any="";
+  @Input() id:any="";
   navPick:any="0" //左侧导航栏选择 0为首页，1为账号信息，2为商品列表，3为订单状态修改
   isChangeInfo:boolean=false;
   scorllHeight:any=(document.documentElement.scrollHeight).toString()+'px';

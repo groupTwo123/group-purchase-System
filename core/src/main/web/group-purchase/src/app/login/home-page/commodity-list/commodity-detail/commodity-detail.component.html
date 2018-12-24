@@ -12,14 +12,8 @@
 </div>
 <div class="row storeCss" >
   <div class="col-sm-1"></div>
-  <div class="col-sm-1">
-    <p class="font16 mt-2 simhei" >全部分类></p>
-  </div>
-  <div class="col-sm-1">
-    <p class="font16 mt-2 simhei cursor">{{commidtyTypeName}}></p>
-  </div>
-  <div class="col-sm-1">
-    <p class="font16 mt-2 simhei">{{data.volumeData.commodityName}}></p>
+  <div class="col-sm-3">
+    <p class="font16 mt-2 simhei" >全部分类> &nbsp; {{commidtyTypeName}}>&nbsp;&nbsp;{{data.volumeData.commodityName}}></p>
   </div>
   <div class="col-sm-5 text-right">
     <p class="font16 mt-2 simhei">信誉度：{{sellerInfo.sellerPink}}</p>
@@ -27,10 +21,32 @@
   <div class="col-sm-2"><p class="font16 mt-2 simhei">{{data.store_name}}</p></div>
   <div class="col-sm-1"></div>
 </div>
-<div class="container" >
-  <div class="row ">
-    <div class="col-sm-5">
-      <img src="../../../../../assets/phone.png" class="imgCss">
+<div class="container" *ngIf="bodyShow">
+  <div class="row mt-1">
+    <div class="col-sm-5 text-center" >
+      <!--<img src="../../../../../assets/phone.png" class="imgCss">-->
+      <div id="commodityPic" class="carousel slide" data-ride="carousel">
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+          <li data-target="#commodityPic" data-slide-to="i" [ngClass]="{active:i==0}" *ngFor="let item of commodityPic;let i=index"></li>
+        </ul>
+        <!-- 轮播图片 -->
+        <div class="carousel-inner">
+          <div class="carousel-item " [ngClass]="{active:i==0}" *ngFor="let item of commodityPic;let i=index">
+            <img src="{{item}}" class="imgCss">
+          </div>
+        </div>
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev " href="#commodityPic" data-slide="prev">
+          <!--<span class="carousel-control-prev-icon " ></span>-->
+          <i class="fa fa-chevron-left fa-2x  "  style="color:silver" aria-hidden="true"></i>
+        </a>
+        <a class="carousel-control-next" href="#commodityPic" data-slide="next">
+          <i class="fa fa-chevron-right fa-2x "  style="color:silver" aria-hidden="true"></i>
+          <!--<span class="carousel-control-next-icon"></span>-->
+        </a>
+
+      </div>
     </div>
     <div class="col-sm-7">
       <div class="row mt-2 mt-5">
@@ -63,9 +79,73 @@
           </div>
         </div>
         <div class="col-sm-3">
-          <button class="btn btn-danger form-control" (click)="addShoppingCar()">加入购物车</button>
+          <button class="btn btn-danger form-control" (click)="addShoppingCar()">立即抢购</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="row mt-3" style="border: 1px solid silver;box-shadow: 0px 0px 10px #888888">
+     <div class="col-sm-12">
+       <div class="row">
+         <div class="col-sm-12" >
+           <div class="row mt-1 ml-1">
+             <div class="col-sm-2 text-center" >
+               <p class=" cursor mt-1"  [ngClass]="{borTopRed:pageShow==0}" (click)="pageChose(0)">商品详情</p>
+             </div>
+             <div class="col-sm-1 text-left">
+               <p class=" cursor mt-1" [ngClass]="{borTopRed:pageShow==1}" (click)="pageChose(1)">评论</p>
+
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="row mt-2" *ngIf="pageShow==0">
+         <div class="col-sm-12 text-center" >
+           <div class="row " *ngFor="let item of commodityPicDetail;">
+             <div class="col-sm-12">
+               <img src="{{item}}">
+             </div>
+           </div>
+
+         </div>
+       </div>
+       <div class="row mt-2" *ngIf="pageShow==1">
+          <div class="col-sm-12" *ngIf="articleIsHasData" style="margin-bottom: 50px">
+            <div class="row mt-2" *ngFor="let item of articleObj">
+              <div class="col-sm-3 ml-2 text-center">
+                <div class="row ">
+                  <div class="col-sm-12">
+                    <img src="{{item.picData}}" class="userImg">
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-sm-12">
+                    <p> 用户：{{item.article[0].id}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8 ml-1" style="border: 1px solid silver ;box-shadow: 0px 0px 5px #888888">
+                <div class="row mt-1">
+                  <div class="col-sm-12">
+                    <p class="text-success" *ngIf="item.article[0].commentType=='3'">好评</p>
+                    <p class="text-primary" *ngIf="item.article[0].commentType=='2'">中评</p>
+                    <p class="text-danger" *ngIf="item.article[0].commentType=='1'">差评</p>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div class="col-sm-12">
+                    <p >评论内容：{{item.article[0].article}}</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         <div class="col-sm-12 mt-2 text-center"  *ngIf="!articleIsHasData" style="margin-bottom: 50px">
+           <p>无评论</p>
+         </div>
+       </div>
+     </div>
   </div>
 </div>

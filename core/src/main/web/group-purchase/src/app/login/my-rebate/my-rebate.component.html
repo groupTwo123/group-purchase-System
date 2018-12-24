@@ -4,21 +4,33 @@
       <i class="fa fa-diamond"  style=" color: red;font-size: 20px"  aria-hidden="true"></i>
     </div>
     <div class="col-sm-8">
-      <p class="youyuan">我的会员</p>
+      <p >我的会员</p>
     </div>
   </div>
   <div class="row ">
     <div class="col-sm-8">
-      <p class="youyuan font12 mt-2">账号余额：{{userInfo.vacancy}}</p>
+      <p class=" font12 mt-2">账号余额：{{userInfo.vacancy}}</p>
     </div>
 
   </div>
-  <div class="row "><div class="col-sm-12"><p class="youyuan font12 mt-2">会员等级：{{userInfo.level}}</p></div> </div>
   <div class="row ">
     <div class="col-sm-12">
-      <button class="btn btn-primary btn-sm form-control" on-click="addMoney()">充值</button>
+      <p class=" font12 mt-2">会员等级：{{userInfo.level}}</p>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-sm-5">
+      <p class=" font12 mt-2">充值金额:</p>
+    </div>
+    <div class="col-sm-6">
+      <input class="form-control" [(ngModel)]="addPrice" style="height: 30px">
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-sm-12">
+      <button class="btn btn-primary btn-sm form-control" on-click="addMoney()" >充值</button>
     </div>
   </div>
 </div>
-
+<app-search-loading *ngIf="isSearchLoading"></app-search-loading>
 

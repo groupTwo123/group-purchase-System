@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as g from './../type'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,10 +16,12 @@ export class LoginComponent implements OnInit {
   homePageShow:boolean=false; //主页展示
   businessShow:boolean=false;
   checkCode:any=''; //获取后台验证码
-
+  codeGetting:boolean=false;//获取验证码中
+  time:number=120;
   constructor() { }
 
   ngOnInit() {
+    this.checkLoginSession()
     this.homePageShow=false;
     this.username="";
     this.password='';
@@ -29,6 +31,27 @@ export class LoginComponent implements OnInit {
     // document.getElementById("login").style.width=(document.body.scrollWidth).toString()+'px';
 
 
+  }
+  //查询session是否有登录信息
+  checkLoginSession(){
+    let url=g.namespace+"/gpsys/user/login";
+    let send={
+      id:"",
+      password:"",
+      isOut:"0"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:'jsonp',
+      success:json=>{
+        console.log(json)
+        if(json.stage==1){
+          this.username=json.data.username;
+          this.userType=json.data.type;
+          this.homePageShow=true;
+        }
+      }
+    })
   }
 
   //改变登陆方式
@@ -52,7 +75,8 @@ export class LoginComponent implements OnInit {
           let url="http://localhost:8080/gpsys/user/login";
           let send={
             id:this.id,
-            password:this.password
+            password:this.password,
+            isOut:"0"
           };
           $.ajax(url,{
             data:send,
@@ -116,6 +140,9 @@ export class LoginComponent implements OnInit {
       alert("请输入合法手机号码");
       return;
     }
+    this.codeGetting=true;
+    this.time=120;
+    this.settimeDown()
     let url="http://localhost:8080/gpsys/sendSMS/sendMessage/login";
     let send={
       phone:this.phone,
@@ -126,10 +153,28 @@ export class LoginComponent implements OnInit {
       jsonp:"callback",
       type:"POST",
       success:json=>{
-        console.log(json);
-        this.checkCode=json.data.code;
+        if(json.stage==1){
+          console.log(json);
+          this.checkCode=json.data.code;
+        }
+        else{
+          alert(json.msg);
+          this.codeGetting=false;
+        }
 
       }
     })
+  }
+  //倒计时
+  settimeDown(){
+    var time1=setInterval(json=>{
+      if(this.time!=0){
+        this.time--;
+      }
+      else{
+        clearInterval(time1);
+        this.codeGetting=false;
+      }
+    },1000)
   }
 }

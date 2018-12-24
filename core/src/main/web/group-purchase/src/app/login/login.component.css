@@ -67,3 +67,31 @@
 /*.bgBox{*/
   /*min-height: 675px;*/
 /*}*/
+.font20{
+  font-size: 20px;
+}
+.font16{
+  font-size: 16px;
+}
+.font12{
+  font-size: 12px;
+}
+.colorRed{
+  color: #e60000
+}
+.simhei{
+  font-family: SimHei;
+}
+.youyuan{
+  font-family: YouYuan;
+}
+.font30{
+  font-size: 30px;
+}
+.inputbg{
+  background-color: #f0f0f0;
+}
+
+.cursor{
+  cursor: pointer;
+}

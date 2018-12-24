@@ -4,10 +4,11 @@
     <div class="row ml-4">
       <div class="col-sm-2">
         <!--<p class="rightCenterP">用户头像</p>-->
-        <img class="headImg" src="../../../assets/businessHead.gif">
+        <img class="headImg" src="{{userPic}}">
       </div>
       <div class="col-sm-2 mt-5">
-        <button class="btn btn-outline-primary">上传商铺头像</button>
+        <button class="btn btn-outline-primary" (click)="uploadImgFun()">上传商铺头像</button>
+        <input type="file" style="display: none" id="uploadImg" (change)="addPic()" >
       </div>
     </div>
     <div class="row ml-2">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import * as g from"./../../type";
 /*
 * 订单状态
@@ -18,13 +18,15 @@ import * as g from"./../../type";
   styleUrls: ['./my-orders.component.css']
 })
 export class MyOrdersComponent implements OnInit {
+  @Input() userId:any=''
+  @Output() close=new EventEmitter();
   topDataObj:any=[
     {"id":"-1", "name":"所有订单"},
-    {"id":"0", "name":"代付款"},
+    {"id":"0", "name":"待付款"},
     {"id":"1", "name":"已付款"},
-    {"id":"2", "name":"代发货"},
+    {"id":"2", "name":"已发货"},
     {"id":"3", "name":"交易完成"},
-    {"id":"4", "name":"待评价"},
+    {"id":"4", "name":"已评价"},
     ];
   ordersTypeChose:any="-1";  //头部订单分类选择
   OrderDataList:any;  //存储订单列表
@@ -38,12 +40,27 @@ export class MyOrdersComponent implements OnInit {
   backCommodityPageShow:boolean=false;
   backCommodityData:any;
   orderState:any={}
+  picData:any=[];
+  isCommentShow:boolean=false;
+  commentData:any;
   constructor() {
     this.orderState=g.orderState;
   }
 
   ngOnInit() {
-    this.getAllOrderById();
+
+  }
+  ngOnChanges(){
+    if(this.userId==''){
+      setTimeout(json=>{
+        alert("请先登录");
+        this.close.emit();
+      },100)
+
+    }
+    else{
+      this.getAllOrderById();
+    }
   }
   //获取不同类型的订单
   getOrdersByType(typeId){
@@ -66,9 +83,10 @@ export class MyOrdersComponent implements OnInit {
   }
   //获取所有订单
   getAllOrderById(){
+    this.picData=[]
     let url="http://localhost:8080/gpsys/order/getOrderByUserId"
     let send={
-      userId:"1101"
+      userId:"huangchuwen"
     }
     $.ajax(url,{
       data:send,
@@ -76,6 +94,27 @@ export class MyOrdersComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           this.OrderDataList=json.data;
+          console.log(this.OrderDataList)
+          for(let item in this.OrderDataList){
+            let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+            let send={
+              picId:this.OrderDataList[item].CommodityData.commodityId
+            }
+            $.ajax(url,{
+              data:send,
+              dataType:'jsonp',
+              success:json=>{
+                if(json.stage==1){
+                  for(let item of json.data){
+                    if(item.picType=='2'){
+                      this.picData.push(item.picBase64);
+                      break;
+                    }
+                  }
+                }
+              }
+            })
+          }
           this.orderDataBuffer=json.data;
           var str = JSON.stringify(this.OrderDataList);
           this.orderDataBuffer = JSON.parse(str);
@@ -203,5 +242,55 @@ export class MyOrdersComponent implements OnInit {
         }
       })
     }
+  }
+
+  //展示评论区
+  showComment(item ,index){
+    this.commentData={}
+    console.log(item)
+    this.commentData=item;
+    this.commentData['pic']=this.picData[index];
+    this.isCommentShow=true;
+  }
+  //关闭评论区
+  closeComment(){
+    this.isCommentShow=false;
+    this.getAllOrderById();
+  }
+  //更新订单为已评论
+  updateOrder(state){
+    let url=g.namespace+"/gpsys/seller/getSellerInfoByVolumeId";
+    let send={
+      volumeId:this.commentData.CommodityData.volumeId
+    }
+    console.log(send)
+    $.ajax(url,{
+      data:send,
+      dataType:'jsonp',
+      success:json=>{
+        if(json.stage==1){
+          let url=g.namespace+"/gpsys/order/updateStateByOrderId";
+          let send={
+            orderId:this.commentData.orderData.orderId,
+            state:state,
+            beforeState:this.commentData.orderData.state,
+            money:this.commentData.orderData.money,
+            userId:this.userId,
+            sellerId:json.data.sellerId,
+
+          }
+          $.ajax(url,{
+            data:send,
+            dataType:'jsonp',
+            success:json=>{
+              if(json.stage==1){
+                this.closeComment();
+              }
+            }
+          })
+        }
+      }
+    })
+
   }
 }

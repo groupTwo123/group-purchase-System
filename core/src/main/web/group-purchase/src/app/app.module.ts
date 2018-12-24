@@ -41,30 +41,28 @@ import {AddTypeComponent} from "./admin-login/admin-home-page/admin-commodity-ty
 import {UpdatetypeComponent} from "./admin-login/admin-home-page/admin-commodity-type/updatetype/updatetype.component"
 import {UserListComponent} from "./admin-login/admin-home-page/user-list/user-list.component"
 import {AdminOrderListComponent} from "./admin-login/admin-home-page/user-list/admin-order-list/admin-order-list.component"
+import {BusinessArticleComponent} from "./business-login/business-homepage/business-article/business-article.component"
+import {AddArticleComponent} from "./business-login/business-homepage/business-article/add-article/add-article.component"
+import {FormAddressSelectComponent} from "./form-address-select/form-address-select.component"
+import {DateComponent} from "./date/date.component"
+import {UpdateArticleComponent} from "./business-login/business-homepage/business-article/update-article/update-article.component"
+import {AdminArticleComponent} from "./admin-login/admin-home-page/admin-article/admin-article.component"
+import {PayReturnPageComponent} from "./pay-return-page/pay-return-page.component"
+import {ShowReasonComponent} from "./business-login/business-homepage/update-order-state/show-reason/show-reason.component"
+import {CommmentComponent} from "./login/my-orders/commment/commment.component"
 
 const appRoutes:Routes=[
 	{path:'',redirectTo:'login',pathMatch:'full'},
 	{path:'login',component:LoginComponent},
 	{path:'register',component:RegisterComponent},
 	{path:'homePage',component:HomePageComponent},
-	{path:'ShopCarPage',component:ShoppingCardPageComponent},
-	{path:'myOrders',component:MyOrdersComponent},
-	{path:'myRebate',component:MyRebateComponent},
-	{path:'perCenter',component:PersonalCenterComponent},
-	{path:'businessHomePage',component:BusinessHomepageComponent},
-	{path:'addComodity',component:AddCommodityComponent},
 	{path:'adminLogin',component:AdminLoginComponent},
 	{path:'businessLogin',component:BusinessLoginComponent},
 	{path:'businessRegister',component:BusinessRegisterComponent},
-	{path:'adminHomePage',component:AdminHomePageComponent},
 	{path:'forgetPassword',component:ForgetPasswordComponent},
 	{path:'b_forgetPassword',component:BForgetPasswordComponent},
 	{path:'fileUpload',component:FileUploadComponent},
-	{path:'searchLoading',component:SearchLoadingComponent},
-	{path:'commodityDetal',component:CommodityDetailComponent},
-
-
-
+	{path:'payReturn',component:PayReturnPageComponent},
 ]
 
 @NgModule({
@@ -104,7 +102,16 @@ const appRoutes:Routes=[
     AddTypeComponent,
     UpdatetypeComponent,
     UserListComponent,
-    AdminOrderListComponent
+    AdminOrderListComponent,
+    BusinessArticleComponent,
+    AddArticleComponent,
+    FormAddressSelectComponent,
+    DateComponent,
+    UpdateArticleComponent,
+    AdminArticleComponent,
+    PayReturnPageComponent,
+    ShowReasonComponent,
+    CommmentComponent
   ],
   imports: [
     BrowserModule,

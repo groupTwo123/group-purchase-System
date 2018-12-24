@@ -37,7 +37,7 @@
         </td>
         <td style="color:red;font-weight: bold">￥{{item.totalPrice}}</td>
         <td>
-          <i class="fa fa-trash-o" aria-hidden="true" style="font-size: 20px;cursor: pointer;" title="删除商品" (click)="delete(item.commodityData.commodityId)"></i>
+          <i class="fa fa-trash-o text-danger" aria-hidden="true" style="font-size: 20px;cursor: pointer;" title="删除商品" (click)="delete(item.commodityData.commodityId)"></i>
         </td>
       </tr>
 
@@ -51,6 +51,8 @@
     <button class="btn btn-default topBtn" >总价为：{{totalPrice}}</button>
   </div>
   <div class="col-sm-7 text-right">
-    <button class="btn btn-primary topBtn" >结算</button>
+    <button class="btn btn-primary topBtn" (click)="goToPay()">结算</button>
   </div>
 </div>
+
+<app-search-loading *ngIf="isSearchLoading"></app-search-loading>

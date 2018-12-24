@@ -7,13 +7,15 @@ import * as g from'./../../../type'
   styleUrls: ['./business-per.component.css']
 })
 export class BusinessPerComponent implements OnInit {
-  @Input() username:any=''
+  @Input() id:any=''
   @Output() changeHeight=new EventEmitter();
   userInfo:any={};
   heartNumber:any=[];
   heartNumberShow:boolean=false;
   isChangeInfo:boolean=true;
   userInfoBuffer:any={};
+  userPic:any="../../../assets/headExample.gif"
+  imgBase64:any=""
   constructor() { }
   ngOnChanges(){
     this.getSellerInfo();
@@ -26,7 +28,7 @@ export class BusinessPerComponent implements OnInit {
     this.userInfoBuffer={};
     let url=g.namespace+"/gpsys/seller/getSellerInfoById";
     let send={
-      sellerId:this.username
+      sellerId:this.id
     }
     $.ajax(url,{
       data:send,
@@ -90,5 +92,64 @@ export class BusinessPerComponent implements OnInit {
       }
     })
   }
+  //点击上传图片
+  uploadImgFun(){
+    $("#uploadImg").click()
+  }
+  // 获取用户头像
+  getUserPic(){
+    let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+    let send={
+      picId:this.id
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      success:json=>{
+        if(json.stage==1){
+          if(json.data.length!=0){
+            for(let item of json.data){
+              if(item.picType=='4'){
+                this.userPic=item.picBase64
+              }
+            }
+          }
+          else{
+            this.userPic="../../../assets/headExample.gif"
+          }
+        }
+      }
+    })
+  }
+//上传图片
+  addPic() {
+    var MyTest = $("#uploadImg")[0].files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(MyTest);
+    reader.onload = theFile => {
+      var res = theFile.target['result'];
+      this.imgBase64 = res;
+      let url = g.namespace + "/gpsys/commodity/addCommodityPicture";
+      let send = {
+        picId: this.id,
+        picBase64: this.imgBase64,
+        picType: 4,
+      }
 
+      $.ajax(url, {
+        data: send,
+        dataType: 'jsonp',
+        success: json => {
+          if (json.stage == 1) {
+            alert("上传成功");
+            this.imgBase64 = "";
+            this.getUserPic();
+          }
+          else {
+            alert(json.msg)
+          }
+        }
+      })
+    }
+  }
 }

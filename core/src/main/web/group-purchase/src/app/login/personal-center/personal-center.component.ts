@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input} from '@angular/core';
 import * as g from'./../../type';
 @Component({
   selector: 'app-personal-center',
@@ -6,22 +6,64 @@ import * as g from'./../../type';
   styleUrls: ['./personal-center.component.css']
 })
 export class PersonalCenterComponent implements OnInit {
+  @Input() userId:any='';
   @Output() close=new EventEmitter();
+
   userInfo:any={};
   gender:any={
     '1':"男",
     '0':"女"
   }
+  userPic:any="../../../assets/headExample.gif"
+  imgBase64:any=""
   constructor() { }
 
   ngOnInit() {
-    this.getUserInfo();
+
+  }
+  ngOnChanges(){
+    if(this.userId==''){
+      setTimeout(json=>{
+        alert("请先登录");
+        this.close.emit();
+      },100)
+
+    }
+    else{
+      this.getUserPic()
+      this.getUserInfo();
+    }
+  }
+  // 获取用户头像
+  getUserPic(){
+    let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+    let send={
+      picId:"huangchuwen"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:"jsonp",
+      success:json=>{
+        if(json.stage==1){
+          if(json.data.length!=0){
+            for(let item of json.data){
+              if(item.picType=='1'){
+                this.userPic=item.picBase64
+              }
+            }
+          }
+          else{
+            this.userPic="../../../assets/headExample.gif"
+          }
+        }
+      }
+    })
   }
   //获取用户信息
   getUserInfo(){
     let url=g.namespace+"/gpsys/user/getUserInfoById";
     let send={
-      userId:"1101"
+      userId:"huangchuwen"
     }
     $.ajax(url,{
       data:send,
@@ -74,5 +116,41 @@ export class PersonalCenterComponent implements OnInit {
   //返回首页
   back(){
     this.close.emit()
+  }
+  //点击上传图片
+  uploadImgFun(){
+    $("#uploadImg").click()
+  }
+  //上传图片
+  addPic() {
+    var MyTest = $("#uploadImg")[0].files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(MyTest);
+    reader.onload = theFile => {
+      var res = theFile.target['result'];
+      this.imgBase64 = res;
+      let url=g.namespace+"/gpsys/commodity/addCommodityPicture";
+      let send={
+        picId:"huangchuwen",
+        picBase64:this.imgBase64,
+        picType:1,
+      }
+
+      $.ajax(url ,{
+        data:send,
+        dataType:'jsonp',
+        success:json=>{
+          if(json.stage==1){
+            alert("上传成功");
+            this.imgBase64="";
+            this.getUserPic();
+          }
+          else{
+            alert(json.msg)
+          }
+        }
+      })
+    }
+
   }
 }

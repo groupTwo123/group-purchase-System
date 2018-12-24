@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="step=='0'" class="row text-center marTop30">
+  <div *ngIf="step=='0'"class="row text-center marTop30">
     <div class="col-sm-12">
       <div class="row mt-4">
         <div class="col-sm-2"></div>
@@ -44,11 +44,12 @@
             </div>
           </div>
           <div class="row mt-2 ml-2">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <input type="text" class="form-control" placeholder="验证码" [(ngModel)]="code" aria-describedby="basic-addon1">
             </div>
-            <div class="col-sm-4 text-left">
-              <button class="btn btn-outline-success " (click)="getCode()">获取验证码</button>
+            <div class="col-sm-5 text-center">
+              <button class="btn btn-outline-success " (click)="getCode()" *ngIf="!codeGetting">获取验证码</button>
+              <button class="btn btn-outline-success "  *ngIf="codeGetting" disabled="disabled">重新发送（{{time}}s）</button>
             </div>
           </div>
           <div class="row mt-4 ml-2">
@@ -85,7 +86,7 @@
               <input type="text" class="form-control" [(ngModel)]="id">
             </div>
           </div>
-          <div class="row mt-2 ">
+          <div class="row mt-3 ">
             <div class="col-sm-3 text-right mt-2">
               <p class="pStyle">用户名：</p>
             </div>
@@ -93,18 +94,35 @@
               <input type="text" class="form-control" [(ngModel)]="username">
             </div>
           </div>
-          <div class="row mt-2 ">
+          <div class="row mt-3 ">
             <div class="col-sm-3 text-right mt-2">
               <p class="pStyle">性别：</p>
             </div>
             <div class="col-sm-9">
               <select class="form-control" [(ngModel)]="gender" >
-                <option value ="男">男</option>
-                <option value ="女">女</option>
+                <option value ="1">男</option>
+                <option value ="0">女</option>
               </select>
             </div>
           </div>
-          <div class="row mt-2 ">
+          <div class="row mt-3 " style="z-index: 5;position: relative">
+            <div class="col-sm-3 text-right mt-2">
+              <p class="pStyle">地区选择：</p>
+            </div>
+            <div class=" col-sm-9">
+              <app-form-address-select [(bind)]="area" (bindChange)='showArea()'></app-form-address-select>
+            </div>
+          </div>
+          <div class="row mt-3 ">
+            <div class="col-sm-3 text-right mt-2">
+              <p class="pStyle">出生日期：</p>
+            </div>
+            <div class="col-sm-9">
+              <app-date [(bind)]="birth" (bindChange)="showDataChose()"></app-date>
+            </div>
+          </div>
+
+          <div class="row mt-3 ">
             <div class="col-sm-3 text-right mt-2">
               <p class="pStyle">邮箱：</p>
             </div>
@@ -114,67 +132,35 @@
               </div>
             </div>
           </div>
-          <div class="row mt-2 ">
-            <div class="col-sm-3 text-right mt-2">
-              <p class="pStyle">出生日期：</p>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="year" class="form-control">
-                <option *ngFor="let item of yearObj" value ="{{item.key}}">{{item.value}}</option>
-              </select>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="month" class="form-control">
-                <option *ngFor="let item of monthObj" value ="{{item.key}}">{{item.value}}</option>
-              </select>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="day" class="form-control">
-                <option *ngFor="let item of dayObj" value ="{{item.key}}">{{item.key}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row mt-2 ">
-            <div class="col-sm-3 text-right mt-2">
-              <p class="pStyle">地区选择：</p>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="province" class="form-control" (change)="choseProvince(province)" style="font-size: 12px">
-                <option *ngFor="let item of areaObj" value ="{{item.province}}" >{{item.province}}</option>
-              </select>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="city" class="form-control" (change)="choseCity(city)" style="font-size: 12px">
-                <option *ngFor="let item of cityObj" value ="{{item.cityname}}" >{{item.cityname}}</option>
-              </select>
-            </div>
-            <div class=" col-sm-3">
-              <select [(ngModel)]="district" class="form-control"   style="font-size: 12px">
-                <option *ngFor="let item of districtObj" value ="{{item.districtName}}" >{{item.districtName}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row mt-2 ">
-            <div class="col-sm-3 text-right mt-2">
-              <p class="pStyle">账号选择：</p>
-            </div>
-            <div class="col-sm-9">
-              <select [(ngModel)]="type" class="form-control"   >
-                <option value="0">会员</option>
-                <option value="1">商家</option>
-              </select>
-            </div>
-
-          </div>
-          <div class="row mt-2 ">
+          <div class="row mt-3 ">
             <div class="col-sm-3 text-right mt-2">
               <p class="pStyle">密码：</p>
             </div>
             <div class="col-sm-9">
-              <input type="password" class="form-control" [(ngModel)]="password">
+              <div class="row ">
+                <div class="col-sm-12">
+                  <input type="password" class="form-control" [(ngModel)]="password" (keyup)="0" (change)="pswChange()">
+                </div>
+              </div>
+              <div class="row mt-2" *ngIf="password!=''">
+                <div class="col-sm-12">
+                  <div class="progress" >
+                    <div class="progress-bar bg-success progress-bar-striped" *ngIf="passwordLevel=='weak'" style="width:100%">
+                      弱
+                    </div>
+                    <div class="progress-bar bg-warning progress-bar-striped" *ngIf="passwordLevel=='middle'" style="width:100%">
+                      中等
+                    </div>
+                    <div class="progress-bar bg-danger progress-bar-striped"  *ngIf="passwordLevel=='strong'" style="width:100%">
+                      强
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-          <div class="row mt-2 ">
+          <div class="row mt-3 ">
             <div class="col-sm-3 text-right mt-2">
               <p class="pStyle">重新输入：</p>
             </div>
@@ -182,7 +168,7 @@
               <input type="password" class="form-control" [(ngModel)]="repassword">
             </div>
           </div>
-          <div class="row mt-2 ml-2">
+          <div class="row mt-4 ml-2">
             <button class="btn btn-danger form-control" (click)="submitData()">注册</button>
           </div>
         </div>
@@ -191,7 +177,7 @@
     </div>
 
   </div>
-  <div *ngIf="step=='2'" class="row text-center marTop30">
+  <div *ngIf="step=='2'"  class="row text-center marTop30">
 
     <div class="col-sm-12 marTop30">
       <div class="row mt-4">

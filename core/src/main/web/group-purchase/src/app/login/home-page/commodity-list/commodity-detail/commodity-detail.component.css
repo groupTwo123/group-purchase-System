@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 .storeCss{
-  background-color: #dad2d5;
+  background-color: #e7dfe2;
   height: 40px;
 }
 .bold{
@@ -36,4 +36,11 @@
 .borderPadding5{
   border: 1px solid silver ;
   padding: 5px;
+}
+.borTopRed{
+  border-bottom:1px solid  #dd0000;
+  color:#dd0000
+}
+.userImg{
+  height: 120px;
 }

@@ -16,89 +16,17 @@ export class RegisterComponent implements OnInit {
   email:any='' ;        //邮箱
   password:any='' ;         //密码
   type:number=0;         //账号类型
-  birth:any='' ;        //出生年月日yyyy-mm-dd
-  area:any='' ;         //所在地区
+  birth:any=moment().format('YYYY-MM-DD ');        //出生年月日yyyy-mm-dd
+  area:any={} ;         //所在地区
   isEamilCorrect:boolean=false; //判断email格式
   isPhoneCorrect:boolean=false; //判断手机正确
-  year:any='' ;
-  month:any='' ;
-  day:any='' ;
   repassword:any='' ;
   checkCode:any="";
-  yearObj:any=[
-    {
-      'key':'1990','value':'1990'
-    },
-    {
-      'key':'1991','value':'1991'
-    },
-    {
-      'key':'1992','value':'1992'
-    },
-    {
-      'key':'1993','value':'1993'
-    },
-    {
-      'key':'1994','value':'1994'
-    }
-    ];
-  monthObj:any=[
-  { 'key':'01','value':'一月'},
-  { 'key':'02','value':'二月'},
-  { 'key':'03','value':'三月'},
-  { 'key':'04','value':'四月'},
-  { 'key':'05','value':'五月'},
-  { 'key':'06','value':'六月'},
-  { 'key':'07','value':'七月'},
-  { 'key':'08','value':'八月'},
-  { 'key':'09','value':'九月'},
-  { 'key':'10','value':'十月'},
-  { 'key':'11','value':'十一月'},
-  { 'key':'12','value':'十二月'},
-];
-  dayObj:any=[
-    { 'key':'01'},
-    { 'key':'02'},
-    { 'key':'03'},
-    { 'key':'04'},
-    { 'key':'05'},
-    { 'key':'06'},
-    { 'key':'07'},
-    { 'key':'08'},
-    { 'key':'09'},
-    { 'key':'10'},
-    { 'key':'11'},
-    { 'key':'12'},
-    { 'key':'13'},
-    { 'key':'14'},
-    { 'key':'15'},
-    { 'key':'16'},
-    { 'key':'17'},
-    { 'key':'18'},
-    { 'key':'19'},
-    { 'key':'20'},
-    { 'key':'21'},
-    { 'key':'22'},
-    { 'key':'23'},
-    { 'key':'24'},
-    { 'key':'25'},
-    { 'key':'26'},
-    { 'key':'27'},
-    { 'key':'28'},
-    { 'key':'29'},
-    { 'key':'30'},
-    { 'key':'31'},
-  ]
-  areaObj:any=[
-    {'province':'广东省','city':[{'cityname':'佛山市','district':[{'districtName':'禅城区'},{'districtName':'南海区'}]},{'cityname':'广州市','district':[{'districtName':'天河区'},{'districtName':'荔湾区'}]}]},
-  ]
-  province:any;
-  city:any;
-  district:any;
-  privinceObj:any;
-  cityObj:any;
-  districtObj:any;
-  emailCheck:any= /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;  //邮箱验证正则
+  codeGetting:boolean=false;//获取验证码中
+  time:number=120;
+  passwordLevelObj=g.passwordLevel;
+  passwordLevel="";
+  emailCheck:any= g.emailCheck;  //邮箱验证正则
   constructor() { }
 
   ngOnInit() {
@@ -114,17 +42,6 @@ export class RegisterComponent implements OnInit {
     this.step=this.step+1;
   }
 
-  //选中省
-  choseProvince(province){
-    this.cityObj=[];
-    for(let item of this.areaObj){
-      if(item.province==province){
-        for(let item1 of item.city){
-          this.cityObj.push(item1);
-        }
-      }
-    }
-  }
 
   //验证手机
   getCode(){
@@ -132,6 +49,9 @@ export class RegisterComponent implements OnInit {
       alert("请输入正确的手机号码");
       return;
     }
+    this.codeGetting=true;
+    this.time=120;
+    this.settimeDown()
     let url=g.namespace+"/gpsys/sendSMS/sendMessage/register"
     let send={
       phone:this.phone
@@ -151,22 +71,7 @@ export class RegisterComponent implements OnInit {
       }
     })
   }
-  //选中市
-  choseCity(city){
-    this.districtObj=[];
-    for(let item of this.areaObj){
-      if(item.province==this.province){
-        for(let item1 of item.city){
-          if(item1.cityname==city){
-            for(let item2 of item1.district){
-              // console.log(item2)
-              this.districtObj.push(item2)
-            }
-          }
-        }
-      }
-    }
-  }
+
 
   //提交注册信息
   submitData(){
@@ -176,7 +81,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if(this.id==''|| this.username ==''|| this.gender==''|| this.email==''|| this.password==''|| this.year==''||this.day==''||this.month==''|| this.province==''){
+    if(this.id==''|| this.username ==''|| this.gender==''|| this.email==''|| this.password==''){
 
       alert('请输入必要信息');
       return;
@@ -192,8 +97,8 @@ export class RegisterComponent implements OnInit {
           email:this.email,
           password:this.password,
           type:this.type,
-          birth:this.year+'-'+this.month+'-'+this.day,
-          area:this.province+'-'+this.city+'-'+this.district,
+          birth:this.birth,
+          area:this.area.country+','+this.area.province+','+this.area.city
         };
         console.log(send);
         this.$.ajax(url,{
@@ -217,5 +122,34 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
+  //倒计时
+  settimeDown(){
+    var time1=setInterval(json=>{
+      if(this.time!=0){
+        this.time--;
+      }
+      else{
+        clearInterval(time1);
+        this.codeGetting=false;
+      }
+    },1000)
+  }
+  showArea(){
+    // console.log(this.area)
+  }
+  pswChange(){
 
+    if(this.password.match(this.passwordLevelObj['weak'])){
+      this.passwordLevel='weak'
+    }
+    else if(this.password.match(this.passwordLevelObj['middle'])){
+      this.passwordLevel='middle'
+    }
+    else if(this.password.match(this.passwordLevelObj['strong'])){
+      this.passwordLevel='strong'
+    }
+  }
+  showDataChose(){
+    // alert(this.birth)
+  }
 }

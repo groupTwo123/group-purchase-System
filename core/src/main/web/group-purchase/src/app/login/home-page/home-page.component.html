@@ -13,7 +13,7 @@
           <p class="PUser">欢迎</p>
         </div>
         <div class="col-sm-8">
-          <p class="PUser" (click)="returnLogin()">{{username}}</p>
+          <p class="PUser" >{{username}} <a class="PUser text-primary ml-2" (click)="returnLogin()">注销</a></p>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
           <i class="fa fa-smile-o" aria-hidden="true" style="color:#cb00cb;"></i>
           <a class="aStyle" (click)="showMyRebate()">我的会员</a>
           <template  [ngIf]="myRebatePageShow" style="position:absolute;z-index: 4">
-            <app-my-rebate  [userId]="'1101'" [myRebateNum]="myRebateNum" (bindChange)="closeMyRebate()"></app-my-rebate>
+            <app-my-rebate  [userId]="idFormParent" [myRebateNum]="myRebateNum" (bindChange)="closeMyRebate()"></app-my-rebate>
           </template>
 
         </div>
@@ -144,16 +144,30 @@
           </div>
           <div class="row mt-1">
             <div class="col-sm-12" *ngIf="classificationLeftChose=='Promotion'">
-              <p class="AdverRightPStyle">促销</p>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="AdverRightPStyle">促销</p>
+                </div>
+                <div class="col-sm-12" *ngFor="let item of articleData['promotion'];let i=index">
+                  <p class="font12 fontColorGrey">{{item.article}}</p>
+                </div>
+              </div>
             </div>
             <div class="col-sm-12"  *ngIf="classificationLeftChose=='Notice'">
-              <p class="AdverRightPStyle">公告</p>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="AdverRightPStyle">公告</p>
+                </div>
+                <div class="col-sm-12" *ngFor="let item of articleData['notice'];let i=index">
+                  <p class="font12 fontColorGrey">{{item.article}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="row mt-2 " >
-        <div class=" col-sm-4  boxStyle " style="height:300px;">
+        <div class=" col-sm-4  boxStyle " style="min-height:300px;">
           <div class="row mt-2">
               <div class="col-sm-3">
                 <h5 style="font-family: SimHei">排行榜</h5>
@@ -163,7 +177,7 @@
               </div>
           </div>
         </div>
-        <div class=" col-sm-4 boxStyle"  style="height:300px;">
+        <div class=" col-sm-4 boxStyle"  style="min-height:300px;">
           <div class="row mt-2">
             <div class="col-sm-4">
               <h5 style="font-family: SimHei">会员专享</h5>
@@ -172,8 +186,18 @@
               <i class="fa fa-chevron-circle-right boxIStyle" aria-hidden="true" ></i>
             </div>
           </div>
+          <div *ngIf="userWelfareShow">
+            <div class="row mt-1" *ngFor="let item of articleData['userWelfare']"  >
+              <div class="col-sm-3 ml-2 text-center" >
+                <img src="{{item['picData']}}" class="imgCss">
+              </div>
+              <div class="col-sm-8  ">
+                <p class="simhei mt-4">{{item.articleObj.article}}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class=" col-sm-4 boxStyle "  style="height:300px;">
+        <div class=" col-sm-4 boxStyle "  style="min-height:300px;">
           <div class="row mt-2">
             <div class="col-sm-4">
               <h5 style="font-family: SimHei">积分商城</h5>
@@ -182,21 +206,31 @@
               <i class="fa fa-chevron-circle-right boxIStyle" aria-hidden="true" ></i>
             </div>
           </div>
+          <div *ngIf="integralShow">
+            <div class="row mt-1" *ngFor="let item of articleData['integral']"  >
+              <div class="col-sm-3 ml-2 text-center" >
+                <img src="{{item['picData']}}" class="imgCss">
+              </div>
+              <div class="col-sm-8  ">
+                <p class="simhei mt-4">{{item.articleObj.article}}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div *ngIf="CommodityListShow">
-      <app-commodity-list [search]="search" ></app-commodity-list>
+      <app-commodity-list [search]="search" [id]="idFormParent"></app-commodity-list>
     </div>
   </div>
 
 </div>
 
-<app-personal-center *ngIf="personCenterPageshow" (close)="closePersonCenter()"></app-personal-center>
+<app-personal-center *ngIf="personCenterPageshow" (close)="closePersonCenter()" [userId]="idFormParent"></app-personal-center>
 <div class="container" *ngIf="shoppingCarPageshow">
-  <app-shopping-card-page></app-shopping-card-page>
+  <app-shopping-card-page [id]="idFormParent" (close)="closePersonCenter()"></app-shopping-card-page>
 </div>
 <div class="container" *ngIf="myOrdersPageShow">
-  <app-my-orders></app-my-orders>
+  <app-my-orders [userId]="idFormParent" (close)="closeMyOrder()"></app-my-orders>
 </div>
 

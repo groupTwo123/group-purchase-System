@@ -9,7 +9,7 @@ import * as g from'./../../type';
 })
 export class HomePageComponent implements OnInit {
   @Input() usernameFromParent:any;
-  @Input() idFormParent:any;
+  @Input() idFormParent:any='';
   username:any="";
   isLogin:boolean=false;
   typeDataObj:any;
@@ -24,16 +24,51 @@ export class HomePageComponent implements OnInit {
   myOrdersPageShow:boolean=false; //我的订单显示
   myRebatePageShow:boolean=false;  //我的会员页面显示
   myRebateNum:number=0;
+  articleList:any={};
+  articleData:any={
+    promotion:[], //促销
+    notice:[], //公告
+    userWelfare:[], //会员专享
+    integral:[]//积分商城
+  }
+  userWelfareShow:boolean=false
+  integralShow:boolean=false
   constructor() { }
 
   ngOnInit() {
+    this.checkLoginSession();
     this.getAllCommodityType();
+    this.getArticle();
     $('.carousel').carousel({  interval: 2000})
     if(this.usernameFromParent==''||this.idFormParent==''){
 
     }
 
   }
+
+  //查询session是否有登录信息
+  checkLoginSession(){
+    let url=g.namespace+"/gpsys/user/login";
+    let send={
+      id:"",
+      password:"",
+      isOut:"0"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:'jsonp',
+      success:json=>{
+        console.log(json)
+        if(json.stage==1){
+         this.usernameFromParent=json.data.username;
+         this.idFormParent=json.data.id;
+          this.username=this.usernameFromParent;
+          this.isLogin=true;
+        }
+      }
+    })
+  }
+
   ngOnChanges(){
     this.CommodityListShow=false;
     this.isLogin=false;
@@ -78,7 +113,23 @@ export class HomePageComponent implements OnInit {
   }
   //返回到登录页面
   returnLogin(){
-    window.location.reload();
+    //查询session是否有登录信息
+      let url=g.namespace+"/gpsys/user/login";
+      let send={
+        id:"",
+        password:"",
+        isOut:"1"
+      }
+      $.ajax(url,{
+        data:send,
+        dataType:'jsonp',
+        success:json=>{
+          console.log(json)
+          if(json.stage==1){
+            window.location.reload();
+          }
+        }
+      })
   }
   //返回首页
   backToHome(){
@@ -117,7 +168,15 @@ export class HomePageComponent implements OnInit {
     this.myRebatePageShow=false;
 
   }
+//关闭我的订单界面
+  closeMyOrder(){
+    this.myOrdersPageShow=false;
+    this.shoppingCarPageshow=false;
+    this.CommodityListShow=false;
+    this.personCenterPageshow=false;
+    this.myRebatePageShow=false;
 
+  }
   //关闭个人中心页面
   closePersonCenter(){
     this.myOrdersPageShow=false;
@@ -129,19 +188,112 @@ export class HomePageComponent implements OnInit {
 
   //显示我的会员页面
   showMyRebate(){
-    this.myOrdersPageShow=false;
-    this.shoppingCarPageshow=false;
-    this.CommodityListShow=false;
-    this.personCenterPageshow=false;
-    this.myRebatePageShow=true;
-    this.myRebateNum++;
+    if(this.idFormParent==''){
+      setTimeout(json=>{
+        alert("请先登录");
+        this.closeMyRebate()
+      },100)
+    }
+    else{
+      this.myRebatePageShow=true;
+      this.myRebateNum++;
+    }
+
   }
   //关闭会员页面
   closeMyRebate(){
-    this.myOrdersPageShow=false;
-    this.shoppingCarPageshow=false;
-    this.CommodityListShow=false;
-    this.personCenterPageshow=false;
+
     this.myRebatePageShow=false;
+  }
+  //获取文章列表
+  getArticle(){
+    this.articleList={}
+    let url=g.namespace+"/gpsys/commodity/getArticleById";
+    let send={
+      id:"",
+      idType:"0"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:'jsonp',
+      success:json=>{
+        if(json.stage==1){
+          this.articleList=json.data;
+          console.log(this.articleList)
+          for(let item in this.articleList){
+            if(this.articleList[item].type=='2' &&this.articleList[item].state=='1'){
+              this.articleData.promotion.push(this.articleList[item])
+            }
+            else  if(this.articleList[item].type=='3' &&this.articleList[item].state=='1'){
+              this.articleData.notice.push(this.articleList[item])
+            }
+            else if(this.articleList[item].type=='4' &&this.articleList[item].state=='1'){
+              var dataObj={
+                articleObj:{},
+                picData:""
+              };
+              var articleObj=this.articleList[item];
+              let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+              let send={
+                picId:this.articleList[item].commodityId
+              }
+              $.ajax(url,{
+                data:send,
+                dataType:'jsonp',
+                success:json=>{
+                  if(json.stage==1){
+                    for(let item1 of json.data){
+                      if(item1.picType=='2'){
+                        dataObj.articleObj=articleObj
+                        dataObj.picData=item1.picBase64;
+                        break;
+                      }
+                    }
+                  }
+                }
+              })
+              this.articleData.userWelfare.push(dataObj)
+
+            }
+            else if(this.articleList[item].type=='5' &&this.articleList[item].state=='1'){
+              var dataObj1={
+                articleObj:{},
+                picData:""
+              }
+              var articleObj1=this.articleList[item];
+              let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+              let send={
+                picId:this.articleList[item].commodityId
+              }
+              $.ajax(url,{
+                data:send,
+                dataType:'jsonp',
+                success:json=>{
+                  if(json.stage==1){
+                    for(let item1 of json.data){
+                      if(item1.picType=='2'){
+                        dataObj1.articleObj= articleObj1
+                        dataObj1.picData=item1.picBase64;
+                        break;
+                      }
+                    }
+                  }
+                }
+              })
+              this.articleData.integral.push(dataObj1)
+
+            }
+          }
+          console.log(this.articleData)
+          setTimeout(json=>{
+            this.userWelfareShow=true;
+            this.integralShow=true;
+          },100)
+        }
+        else{
+          alert(json.msg)
+        }
+      }
+    })
   }
 }

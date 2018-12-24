@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import * as g from'./../../type';
 @Component({
   selector: 'app-shopping-card-page',
@@ -6,15 +6,31 @@ import * as g from'./../../type';
   styleUrls: ['./shopping-card-page.component.css']
 })
 export class ShoppingCardPageComponent implements OnInit {
+  @Input() id:any='';
+  @Output() close=new EventEmitter()
   $thr:any=$('table thead tr');
   $tbr:any=$('table tbody tr');
   dataList:any;
   tbShow:boolean=false;
   totalPrice:any;
+  isSearchLoading:boolean=false;
+  sellerInfo:any={};
   constructor() { }
 
   ngOnInit() {
-    this.getShopCarData()
+
+  }
+  ngOnChanges(){
+    if(this.id==''){
+      setTimeout(json=>{
+        alert("请先登录");
+        this.close.emit();
+      },100)
+
+    }
+    else{
+      this.getShopCarData()
+    }
   }
 
 
@@ -37,7 +53,7 @@ export class ShoppingCardPageComponent implements OnInit {
     this.tbShow=false;
     let url="http://localhost:8080/gpsys/shopcar/getShopcarInfo"
     let send={
-      userId:"1101"
+      userId:this.id
     }
     $.ajax(url,{
       data:send,
@@ -67,12 +83,12 @@ export class ShoppingCardPageComponent implements OnInit {
   }
   //购物车点击减少
   reduceNumber(commodityId,commodityNumber,commodityAllNumber,index){
-    if(commodityNumber!='1'){
-      let url=g.namespace+"gpsys/shopcar/changeShoppingCarVolumeNumById";
+    if(commodityNumber!=1){
+      let url=g.namespace+"/gpsys/shopcar/changeShoppingCarVolumeNumById";
       let send={
         commodityId:commodityId,
         changeNum:(parseInt(commodityNumber)-1).toString(),
-        userId:"1101"
+        userId:this.id
       }
       $.ajax(url,{
         data:send,
@@ -107,7 +123,7 @@ export class ShoppingCardPageComponent implements OnInit {
       let send={
         commodityId:commodityId,
         changeNum:(parseInt(commodityNumber)+1).toString(),
-        userId:"1101"
+        userId:this.id
       }
       $.ajax(url,{
         data:send,
@@ -136,7 +152,7 @@ export class ShoppingCardPageComponent implements OnInit {
       let url=g.namespace+"/gpsys/shopcar/delShopcarInfo"
       let send={
         commodityIds:commodityId,
-        userId:"1101"
+        userId:this.id
       }
       $.ajax(url,{
         data:send,
@@ -165,5 +181,102 @@ export class ShoppingCardPageComponent implements OnInit {
     for(let item of this.dataList){
       this.totalPrice=this.totalPrice+item.totalPrice;
     }
+  }
+  //结算
+  goToPay(){
+    setTimeout(json=>{
+      let url=g.namespace+"/gpsys/order/getPaySession";
+      $.ajax(url,{
+        data:{stage:"-1"},
+        dataType:'jsonp',
+        success:json=>{
+        }
+      })
+    },900000)
+    this.isSearchLoading=true;
+    window.open(g.namespace+"/gpsys/order/alipayToOrder?money="+this.totalPrice);
+    var get=setInterval(json=>{
+      let url=g.namespace+"/gpsys/order/getPaySession";
+      $.ajax(url,{
+        data:{stage:"0"},
+        dataType:'jsonp',
+        success:json=>{
+          if(json.stage==1){
+            console.log(json.data.paySessionId)
+            if(json.data.paySessionId=='1'){
+              clearInterval(get)
+              this.orderCreateFun("1")
+            }else if (json.data.paySessionId=='-1'){
+              clearInterval(get)
+              this.orderCreateFun("-1")
+            }
+            else{
+              // console.log("**")
+            }
+          }
+        }
+      })
+    },2000)
+  }
+
+  orderCreateFun(stage){
+    var length=this.dataList.length
+    var index=0
+    for(let item of this.dataList){
+      this.sellerInfo={};
+      let url=g.namespace+"/gpsys/seller/getSellerInfoByVolumeId";
+      let send={
+        volumeId:item.commodityData.volumeId
+      }
+      console.log(send)
+      $.ajax(url,{
+        data:send,
+        dataType:'jsonp',
+        success:json=>{
+          if(json.stage==1){
+            this.sellerInfo=json.data;
+            let url=g.namespace+"/gpsys/order/userPayToSeller";
+            let send={
+              id:this.id,
+              sellerId:this.sellerInfo.sellerId,
+              money:item.totalPrice
+            }
+            $.ajax(url,{
+              data:send,
+              dataType:'jsonp',
+              success:json=>{
+                if(json.stage==1){
+                  let url=g.namespace+"/gpsys/order/changeOrderAndShopcar";
+                  let send={
+                    ids:item.shopCarData.id,
+                    state:stage
+                  }
+                  $.ajax(url,{
+                    data:send,
+                    dataType:'jsonp',
+                    success:json=>{
+                      if(json.stage==1){
+                        index++
+                        if(index==length){
+                          alert("支付成功")
+                          this.isSearchLoading=false;
+                          this.getShopCarData();
+                        }
+                      }
+                    }
+                  })
+                }
+                else{
+                  alert(json.msg)
+                }
+              }
+            })
+          }
+        }
+      })
+
+    }
+
+
   }
 }

@@ -1,10 +1,11 @@
+
 export const namespace: string="http://localhost:8080";
 export const orderState:any={
   0:'未付款',
   1:'已付款',
   2:'商家已发货',
   3:'交易完成',
-  4:'待评价',
+  4:'已评价',
   5:'取消订单申请中',
   6:'交易关闭',
   7:'退货申请中',
@@ -35,3 +36,20 @@ export const dataTable:any={
     }
   },
 }
+export const articleType:any={
+  1:'评论',
+  2:'促销',
+  3:'公告',
+  4:'会员专享',
+  5:'积分商城'
+}
+export const time:any=1000;
+
+export  const  passwordLevel:any= {
+  'weak' :  /^[0-9]{0,1000}$|^[a-zA-Z]{0,1000}$/,
+  'middle': /^[A-Za-z0-9]{0,1000}$/,
+  'strong' : /^\w{0,1000}$/
+}
+export const  emailCheck=/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/
+
+

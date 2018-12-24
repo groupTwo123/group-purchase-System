@@ -14,6 +14,10 @@ export class ForgetPasswordComponent implements OnInit {
   id:any='';
   password:any='';
   repassword:any='';
+  codeGetting:boolean=false;//获取验证码中
+  time:number=120;
+  passwordLevelObj=g.passwordLevel;
+  passwordLevel="";
   constructor() { }
 
   ngOnInit() {
@@ -34,6 +38,9 @@ export class ForgetPasswordComponent implements OnInit {
       alert("请输入正确手机号码");
       return;
     }
+    this.codeGetting=true;
+    this.time=120;
+    this.settimeDown()
     let url=g.namespace+"/gpsys/user/confirmMessage";
     let send={
       phone:this.phone
@@ -96,12 +103,36 @@ export class ForgetPasswordComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           alert("修改成功");
-          window.location.href=window.location.href+'/login';
+          window.location.href='htttp://localhost:4200/login';
         }
         else{
           alert("修改失败");
         }
       }
     })
+  }
+  //倒计时
+  settimeDown(){
+    var time1=setInterval(json=>{
+      if(this.time!=0){
+        this.time--;
+      }
+      else{
+        clearInterval(time1);
+        this.codeGetting=false;
+      }
+    },1000)
+  }
+  pswChange(){
+
+    if(this.password.match(this.passwordLevelObj['weak'])){
+      this.passwordLevel='weak'
+    }
+    else if(this.password.match(this.passwordLevelObj['middle'])){
+      this.passwordLevel='middle'
+    }
+    else if(this.password.match(this.passwordLevelObj['strong'])){
+      this.passwordLevel='strong'
+    }
   }
 }
