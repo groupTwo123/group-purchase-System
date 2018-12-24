@@ -5,6 +5,7 @@ import com.felix.grouppurchase.model.Seller;
 import com.felix.grouppurchase.service.ISellerService;
 import com.felix.grouppurchase.util.ErrorCodeDesc;
 import com.felix.grouppurchase.util.GetSMS;
+import com.felix.grouppurchase.util.GetUUID;
 import com.felix.grouppurchase.util.JsonTransfer;
 import net.sf.json.JSON;
 import org.slf4j.Logger;
@@ -29,7 +30,8 @@ public class SellerServiceImpl implements ISellerService {
 
     @Override
     public String sellerRegister(String sellerId, String sellerNickName, String sellerName, String sellerPassword, String sellerIdentityId, String sellerPhone, String sellerEmail, String storeName, String storeArea, String callback) {
-        sellerMapper.sellerRegister(sellerId,sellerNickName,sellerName,sellerPassword,sellerIdentityId,sellerPhone,sellerEmail,storeName,storeArea);
+        String volumeId= GetUUID.getUUID();
+        sellerMapper.sellerRegister(sellerId,sellerNickName,sellerName,sellerPassword,sellerIdentityId,sellerPhone,sellerEmail,storeName,storeArea,volumeId);
         JsonTransfer s = new JsonTransfer();
         try {
             String result1 = s.result(1, "注册成功", "", callback);

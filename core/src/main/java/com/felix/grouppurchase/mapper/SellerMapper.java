@@ -13,11 +13,11 @@ import java.util.List;
 public interface SellerMapper {
 
     //商家注册
-    @Insert("insert into tb_seller(seller_id,seller_nickname,seller_name,seller_password,seller_identity_id,seller_phone,seller_email,store_name,store_area)\n" +
-            " values(#{sellerId}, #{sellerNickName}, #{sellerName}, #{sellerPassword}, #{sellerIdentityId}, #{sellerPhone}, #{sellerEmail}, #{storeName}, #{storeArea} )")
+    @Insert("insert into tb_seller(seller_id,seller_nickname,seller_name,seller_password,seller_identity_id,seller_phone,seller_email,store_name,store_area,volume_id)\n" +
+            " values(#{sellerId}, #{sellerNickName}, #{sellerName}, #{sellerPassword}, #{sellerIdentityId}, #{sellerPhone}, #{sellerEmail}, #{storeName}, #{storeArea}, #{volumeId} )")
     void sellerRegister(@Param("sellerId") String sellerId, @Param("sellerNickName") String sellerNickName, @Param("sellerName") String sellerName,
                         @Param("sellerPassword") String sellerPassword,@Param("sellerIdentityId") String sellerIdentityId, @Param("sellerPhone") String sellerPhone,
-                        @Param("sellerEmail") String sellerEmail, @Param("storeName") String storeName, @Param("storeArea") String storeArea);
+                        @Param("sellerEmail") String sellerEmail, @Param("storeName") String storeName, @Param("storeArea") String storeArea, @Param("volumeId") String volumeId);
 
     //商家登录
     @Select("select * from tb_seller where seller_id = #{sellerId} and seller_password = #{sellerPassword}")

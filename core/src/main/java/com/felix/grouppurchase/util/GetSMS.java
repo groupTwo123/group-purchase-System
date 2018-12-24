@@ -41,6 +41,8 @@ public class GetSMS {
      * @return
      */
     public static String getMssage(String to,String callback) {
+        randNum = RandUtil.getRandomNum();
+        smsContent = "【美购网】尊敬的用户，您的验证码为：" + randNum ;
         String args = SendNumUtil.queryArgs(ACCOUNT_SID, AUTH_TOKEN, smsContent, to);
         OutputStreamWriter out = null;
         InputStream in = null;
