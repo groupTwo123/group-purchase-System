@@ -118,9 +118,17 @@ export class CommodityDetailComponent implements OnInit {
   //改变数量
   numberChange(change){
     if(change=="+"){
+      if(this.commodityNumber==this.data.volumeData.commodityNumber){
+        alert("已为最大数量");
+        return;
+      }
       this.commodityNumber++
     }
     else{
+      if(this.commodityNumber==1){
+        alert("已为最小数量");
+        return;
+      }
       this.commodityNumber--
     }
   }

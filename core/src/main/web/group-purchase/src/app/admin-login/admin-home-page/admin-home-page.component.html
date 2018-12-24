@@ -54,7 +54,11 @@
         <p class="rightTopP1" style="cursor: pointer" (click)="loginOut()">退出登录</p>
       </div>
     </div>
-
+    <div *ngIf="navPick=='0'" class="row mt-4 ml-2">
+      <div class="col-sm-12">
+        <h4>欢迎进入后台管理系统</h4>
+      </div>
+    </div>
     <div class="row mt-4 ml-2" *ngIf="navPick=='1'">
       <div class="col-sm-12">
         <app-seller-list (changHeight)="scrollHeightChange()"></app-seller-list>

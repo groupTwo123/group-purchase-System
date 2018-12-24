@@ -192,7 +192,7 @@
                 <img src="{{item['picData']}}" class="imgCss">
               </div>
               <div class="col-sm-8  ">
-                <p class="simhei mt-4">{{item.articleObj.article}}</p>
+                <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.articleObj.article}}</p>
               </div>
             </div>
           </div>
@@ -207,12 +207,12 @@
             </div>
           </div>
           <div *ngIf="integralShow">
-            <div class="row mt-1" *ngFor="let item of articleData['integral']"  >
+            <div class="row mt-1" *ngFor="let item of articleData['integral'] ;let i=index"  >
               <div class="col-sm-3 ml-2 text-center" >
                 <img src="{{item['picData']}}" class="imgCss">
               </div>
               <div class="col-sm-8  ">
-                <p class="simhei mt-4">{{item.articleObj.article}}</p>
+                <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.articleObj.article}}</p>
               </div>
             </div>
           </div>

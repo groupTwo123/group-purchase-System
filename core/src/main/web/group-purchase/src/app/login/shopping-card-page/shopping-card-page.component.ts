@@ -209,6 +209,12 @@ export class ShoppingCardPageComponent implements OnInit {
   }
   //结算
   goToPay(){
+    for(let item of this.dataList){
+      if(item.hasNumber=='false'){
+        alert("购物车中存在数量大于商品总数的商品，请进行修改");
+        return;
+      }
+    }
     setTimeout(json=>{
       let url=g.namespace+"/gpsys/order/getPaySession";
       $.ajax(url,{
