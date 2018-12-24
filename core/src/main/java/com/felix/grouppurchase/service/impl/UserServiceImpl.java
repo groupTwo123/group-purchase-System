@@ -40,30 +40,40 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public String login(HttpServletRequest request,String id, String password, String callback) {
+    public String login(HttpServletRequest request,String id, String password,  String isOut,String callback) {
+        //isOut 是否注销
         String result = "";
         JsonTransfer s = new JsonTransfer();
         HttpSession session = request.getSession();
-        if (id.equals("") && password.equals("")) {
-            if (session.getAttribute("sessionLoginId")==null || session.getAttribute("sessionLoginPassword") == null){
-                result = s.result(0,"用户未登录","",callback);
-                return result;
-            }else {
-                id = session.getAttribute("sessionLoginId").toString();
-                password = session.getAttribute("sessionLoginPassword").toString();
+        if(isOut.equals("1")){
+            session.setAttribute("sessionLoginId",null);
+            session.setAttribute("sessionLoginPassword",null);
+            result = s.result(1,"已注销","",callback);
+        }
+        else{
+            if (id.equals("") && password.equals("")) {
+                if (session.getAttribute("sessionLoginId")==null || session.getAttribute("sessionLoginPassword") == null){
+                    result = s.result(0,"用户未登录","",callback);
+                    return result;
+                }else {
+                    id = session.getAttribute("sessionLoginId").toString();
+                    password = session.getAttribute("sessionLoginPassword").toString();
+                }
             }
+            session.setAttribute("sessionLoginId",id);
+            session.setAttribute("sessionLoginPassword",password);
+            User user =  userMapper.userLogin(id, password);
+            if (user == null){
+                result = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+                return result;
+            }
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("username",user.getUserName());
+            map.put("id",user.getId());
+            map.put("type",user.getType());
+            result = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
         }
-        session.setAttribute("sessionLoginId",id);
-        session.setAttribute("sessionLoginPassword",password);
-        User user =  userMapper.userLogin(id, password);
-        if (user == null){
-            result = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
-            return result;
-        }
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("username",user.getUserName());
-        map.put("type",user.getType());
-        result = s.result(1,ErrorCodeDesc.USER_EXIST,map,callback);
+
         return result;
     }
 
@@ -140,6 +150,20 @@ public class UserServiceImpl implements IUserService{
             result=s.result(1,"",userList,callback);
         }catch (Exception e){
             result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String addVancy(String user,Float money, String callback) {
+        JsonTransfer s=new JsonTransfer();
+        String result="";
+        try{
+            userMapper.updateAccountData(user,money);
+            result=s.result(1,"","",callback);
+        }catch (Exception e){
+            result=s.result(1,e.toString(),"",callback);
+
         }
         return result;
     }

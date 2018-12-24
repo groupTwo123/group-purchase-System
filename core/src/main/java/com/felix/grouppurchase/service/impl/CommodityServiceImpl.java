@@ -1,6 +1,7 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
+import com.felix.grouppurchase.mapper.SellerMapper;
 import com.felix.grouppurchase.model.*;
 import com.felix.grouppurchase.service.ICommodityService;
 import com.felix.grouppurchase.util.GetUUID;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class CommodityServiceImpl  implements ICommodityService {
 
     @Autowired
     CommodityMapper commodityMapper;
-
+    @Autowired
+    SellerMapper sellerMapper;
 
     @Override
     public String getAllCommodityType(String callback){
@@ -195,27 +198,40 @@ public class CommodityServiceImpl  implements ICommodityService {
     @Override
     public String addCommodityPicture(String picId, String picBase64, int picType, int priority, String callback) {
         JsonTransfer s = new JsonTransfer();
-        List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
-        if (commodityPictureList == null) {
-            commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
-        } else {
-            int sort = 0;
-            for (CommodityPicture commodityPicture : commodityPictureList) {
-                if (picId.equals(commodityPicture.getPicId())&& picType==commodityPicture.getPicType()) {
-                    CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
-                    if (sort < priorityMax.getPriority()) {
-                        sort = priorityMax.getPriority();
-                    }
-                }
+        String result="";
+        if(picType==1||picType==4){
+            List<User> users=commodityMapper.getCommodityPicByIdAndType(picId, picType);
+            if(users.isEmpty()){
+                commodityMapper.addCommodityPicture(picId, picBase64, picType, 0);
             }
-            if (sort == 0) {
+            else{
+                commodityMapper.updateCommodityPicture(picId, picBase64, picType);
+            }
+            result = s.result(1, "上传成功", "", callback);
+        }else{
+            List<CommodityPicture> commodityPictureList = commodityMapper.getCommodityPicture();
+            if (commodityPictureList == null) {
                 commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
             } else {
-                sort++;
-                commodityMapper.addCommodityPicture(picId, picBase64, picType, sort);
+                int sort = 0;
+                for (CommodityPicture commodityPicture : commodityPictureList) {
+                    if (picId.equals(commodityPicture.getPicId())&& picType==commodityPicture.getPicType()) {
+                        CommodityPicture priorityMax = commodityMapper.getCommodityPictureByPriority(picId, picType);
+                        if (sort < priorityMax.getPriority()) {
+                            sort = priorityMax.getPriority();
+                        }
+                    }
+                }
+                if (sort == 0) {
+                    commodityMapper.addCommodityPicture(picId, picBase64, picType, priority);
+                } else {
+                    sort++;
+                    commodityMapper.addCommodityPicture(picId, picBase64, picType, sort);
+                }
             }
+            result = s.result(1, "上传成功", "", callback);
         }
-        String result = s.result(1, "上传成功", "", callback);
+
         return result;
     }
 
@@ -223,7 +239,7 @@ public class CommodityServiceImpl  implements ICommodityService {
     public String getCommodityPicById(String picId, String callback) {
         List<CommodityPicture> commodityPictures=commodityMapper.getCommodityPicById(picId);
         JsonTransfer s=new JsonTransfer();
-        String result = s.result(1, "上传成功", commodityPictures, callback);
+        String result = s.result(1, "", commodityPictures, callback);
         return result;
     }
 
@@ -298,14 +314,18 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public String addArticle(String id, String commodityId, String article, Integer type, String callback) {
+    public String addArticle(String id, String commodityId, String article, Integer type,String commentType, String callback) {
         JsonTransfer s =new JsonTransfer();
         try {
-            commodityMapper.addArticle(id, commodityId, article, type);
+            String state="0";
+            if(type==1){
+                state="1";
+            }
+            commodityMapper.addArticle(id, commodityId, article, type,commentType,state);
             String result = s.result(1,"添加成功","",callback);
             return result;
         }catch (Exception e){
-            String result = s.result(0,"添加失败","",callback);
+            String result = s.result(0,e.toString(),"",callback);
             return result;
         }
     }
@@ -324,11 +344,11 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public String deleteArticle(String id, String commodityId, String callback) {
+    public String deleteArticle(String id, String commodityId,String article,String type, String callback) {
         String result = "";
         JsonTransfer s = new JsonTransfer();
         try{
-            commodityMapper.deleteArticle(id,commodityId);
+            commodityMapper.deleteArticle(id,commodityId,article, type);
             result = s.result(1,"删除成功","",callback);
         }catch(Exception e){
             result = s.result(0,"删除失败","",callback);
@@ -350,14 +370,70 @@ public class CommodityServiceImpl  implements ICommodityService {
     }
 
     @Override
-    public String changeArticleState(String id, String commodityId, Integer type, Integer state, String callback) {
+    public String changeArticleState(String id, String commodityId,String article, Integer type, Integer state, String callback) {
         String result = "";
         JsonTransfer s = new JsonTransfer();
         try{
-            commodityMapper.changeArticleState(id,commodityId,type,state);
+            commodityMapper.changeArticleState(id,commodityId,article,type,state);
             result = s.result(1,"状态修改成功","",callback);
         }catch (Exception e){
             result = s.result(0,"状态修改失败","",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String getArticleById(String id,String idType, String callback) {
+        JsonTransfer s=new JsonTransfer();
+        String result="";
+        try {
+            if(idType.equals("1")){
+                Seller seller= sellerMapper.getSellerInfoById(id);
+                List<VolumeManage> volumeManages=commodityMapper.getAllCommodityInfoById(seller.getVolumeId());
+                List<Article> articles= new ArrayList<>();
+                for(VolumeManage volumeManage: volumeManages){
+                    List<Article> articles1= commodityMapper.getAllArticleByCommodityId( volumeManage.getCommodityId());
+                        articles.addAll(articles1);
+                }
+                result=s.result(1,"查询成功",articles,callback);
+            }else{
+                if(id.equals("")){
+                    List<Article> articles= commodityMapper.getAllArticle();
+                    result=s.result(1,"查询成功",articles,callback);
+                }else{
+                    List<Article> articles= commodityMapper.getArticleById(id);
+                    result=s.result(1,"查询成功",articles,callback);
+                }
+            }
+
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String getBackReasonByOrderId(String orderiId, String callback) {
+        JsonTransfer s= new JsonTransfer();
+        String result="";
+        try {
+            BackCommodity backCommodity=commodityMapper.getBackReasonByOrderId(orderiId);
+            result=s.result(1,"",backCommodity,callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return result;
+    }
+
+    @Override
+    public String getArticleByCommodityId(String commodityId, String type, String callback) {
+        JsonTransfer s= new JsonTransfer();
+        String result="";
+        try {
+            List<Article> articles=commodityMapper.getArticleByCommodityId(commodityId,type);
+            result=s.result(1,"",articles,callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
         }
         return result;
     }

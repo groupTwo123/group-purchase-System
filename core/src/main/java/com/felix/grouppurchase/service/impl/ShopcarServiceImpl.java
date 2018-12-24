@@ -37,6 +37,7 @@ public class ShopcarServiceImpl implements IShopcarService {
         for (ShopCar shopCarListPO : shopCarList){
             HashMap<String,Object> map = new HashMap<>();
             map.put("commodityNumber",shopCarListPO.getCommodityNumber());
+            map.put("shopCarData",shopCarListPO);
             map.put("commodityData",(shopcarMapper.getCommodityData(shopCarListPO.getVolumeId(),shopCarListPO.getCommodityId())).get(0));
             mapObj.put(index,map);
             index++;

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -153,11 +154,17 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public String updateStateByOrderId(String orderId, String state,String beforeState, String money, String userId, String sellerId, String callback) {
-        if(state.equals("6")||state.equals("9")){
+        if(state.equals("6")){
             if(!(beforeState.equals("0"))){
                 userMapper.updateAccountData(userId,Float.parseFloat(money));
                 sellerMapper.updateAccountData(sellerId,Float.parseFloat(money));
             }
+        }
+        else if(state.equals("9")){
+            userMapper.updateAccountData(userId,Float.parseFloat(money));
+            sellerMapper.updateAccountData(sellerId,Float.parseFloat(money));
+            Order order=orderMapper.getCommodityByOrderId(orderId);
+            commodityMapper.addCommodityNumberByCommodityId(order.getCommodityId(),Integer.parseInt(order.getCommodityNumber()) );
         }
         orderMapper.updateOrderStage(orderId,state);
         JsonTransfer s=new JsonTransfer();
@@ -175,7 +182,7 @@ public class OrderServiceImpl implements IOrderService {
                 "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiwhHaFCYrNgZrmZW5kWnnm7T9ntoXD4eEvwisbIiRQhrnoiQ0bweMWpSmMh6e68M2sSd0ywWENY4Pprj2P9VtJXcdy3v3Kgl1ZRI6XYQPGU9boNssTfFjCqVsPYYpTdr6mW1rPFxxslT6hTfU8QlxYfcl3g3rN62AlfqneQ5smGK2op0lYlWuQWFVe/h93iHm+2J+XHKlnl0BUPsEk87c0mMKBweMewvt5KfeWXrQSppS7cnbdyOKV8g7M8IrC4Jw1iWbuqvwOhjFNJKKydxyL1srCV1YP34TGcjZjBGq7Vq1Pp1QaVFeuKFnYIVmodX7lmqKzDdhdydEfNJ6cA57QIDAQAB",
                 "RSA2");
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl("http://domain.com/CallBack/return_url.jsp");
+        alipayRequest.setReturnUrl("http://localhost:4200/payReturn");
         alipayRequest.setNotifyUrl("http://domain.com/CallBack/notify_url.jsp");//在公共参数中设置回跳和通知地址
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":"+GetUUID.getOrderIdByTime()+"," +
@@ -199,5 +206,7 @@ public class OrderServiceImpl implements IOrderService {
         httpResponse.getWriter().flush();
         httpResponse.getWriter().close();
     }
+
+
 
 }
