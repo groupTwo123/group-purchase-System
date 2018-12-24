@@ -63,7 +63,7 @@ export class PersonalCenterComponent implements OnInit {
   getUserInfo(){
     let url=g.namespace+"/gpsys/user/getUserInfoById";
     let send={
-      userId:"huangchuwen"
+      userId:this.userId
     }
     $.ajax(url,{
       data:send,
