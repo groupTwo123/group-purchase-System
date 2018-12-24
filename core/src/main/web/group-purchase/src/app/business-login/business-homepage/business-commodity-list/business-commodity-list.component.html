@@ -1,4 +1,5 @@
-<div class="row mt-4 " *ngIf="!isAddCommodity&& !editPage" style="margin:5px">
+<div style="display: none;" id="businCommodityList">
+  <div class="row mt-4 " *ngIf="!isAddCommodity&& !editPage" style="margin:5px">
   <div class="col-sm-12">
     <div class="row  col-sm-12">
       <div class="col-sm-11" >
@@ -42,7 +43,7 @@
   </div>
   <!--<app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>-->
 </div>
-
+</div>
 <div *ngIf="isAddCommodity">
     <app-add-commodity (close)="closeAdd()" [sellerInfo]="userInfo" (changeHeight)="changeHeightFun()"></app-add-commodity>
 </div>

@@ -1,58 +1,59 @@
-<div class="row ">
-  <div class="col-sm-12  ">
-    <h4>我的购物车</h4>
+<div id="shopCar" style="display: none;">
+  <div class="row ">
+    <div class="col-sm-12  ">
+      <h4>我的购物车</h4>
+    </div>
+  </div>
+
+  <div class="row mt-2 ">
+    <div class="col-sm-12">
+      <table class="table table-hover table-striped tableStyle">
+        <thead>
+        <tr>
+          <th><input type='checkbox' id='checkAll' name='checkAll' (click)='checkAllFun()'/></th>
+          <th>商品图片</th>
+          <th>商品名称</th>
+          <th>商品价格</th>
+          <th>商品数量</th>
+          <th>总价</th>
+          <th>商品操作</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="tbShow">
+        <tr *ngFor="let item of dataList;let i=index">
+          <td><input type="checkbox" name="checkItem" (click)="checkItemFun()"/></td>
+          <td>
+            <img src="{{item['picData']}}" class="imgCss">
+          </td>
+          <td>{{item.commodityData.commodityName}}</td>
+          <td style="font-weight: bold">￥{{item.commodityData.commodityPrice}}</td>
+          <td>
+            <div class="row">
+              <p class="borderPadding5 cursor" (click)="reduceNumber(item.commodityData.commodityId,item.commodityNumber,item.commodityData.commodityNumber,i)">-</p>
+              <p class="borderPadding5" style=" width:40px; text-align: center">{{item.commodityNumber}}</p>
+              <p class="borderPadding5 cursor" (click)="AddNumber(item.commodityData.commodityId,item.commodityNumber,item.commodityData.commodityNumber,i)">+</p>
+              <p class="ml-2 mt-2" style="color:#9e9e9e" *ngIf="item.hasNumber=='true'">有货</p>
+              <p class="ml-2 mt-2" style="color:#9e9e9e" *ngIf="item.hasNumber=='false'">无货</p>
+            </div>
+          </td>
+          <td style="color:red;font-weight: bold">￥{{item.totalPrice}}</td>
+          <td>
+            <i class="fa fa-trash-o text-danger" aria-hidden="true" style="font-size: 20px;cursor: pointer;" title="删除商品" (click)="delete(item.commodityData.commodityId)"></i>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <div class="row mt-2">
+    <div class="col-sm-5">
+      <button class="btn btn-default topBtn" >总价为：{{totalPrice}}</button>
+    </div>
+    <div class="col-sm-7 text-right">
+      <button class="btn btn-primary topBtn" (click)="goToPay()">结算</button>
+    </div>
   </div>
 </div>
-
-<div class="row mt-2 ">
-  <div class="col-sm-12">
-    <table class="table table-hover table-striped tableStyle">
-      <thead>
-      <tr>
-        <th><input type='checkbox' id='checkAll' name='checkAll' (click)='checkAllFun()'/></th>
-        <th>商品图片</th>
-        <th>商品名称</th>
-        <th>商品价格</th>
-        <th>商品数量</th>
-        <th>总价</th>
-        <th>商品操作</th>
-      </tr>
-      </thead>
-      <tbody *ngIf="tbShow">
-      <tr *ngFor="let item of dataList;let i=index">
-        <td><input type="checkbox" name="checkItem" (click)="checkItemFun()"/></td>
-        <td>
-          <img src="{{item['picData']}}" class="imgCss">
-        </td>
-        <td>{{item.commodityData.commodityName}}</td>
-        <td style="font-weight: bold">￥{{item.commodityData.commodityPrice}}</td>
-        <td>
-          <div class="row">
-            <p class="borderPadding5 cursor" (click)="reduceNumber(item.commodityData.commodityId,item.commodityNumber,item.commodityData.commodityNumber,i)">-</p>
-            <p class="borderPadding5" style=" width:40px; text-align: center">{{item.commodityNumber}}</p>
-            <p class="borderPadding5 cursor" (click)="AddNumber(item.commodityData.commodityId,item.commodityNumber,item.commodityData.commodityNumber,i)">+</p>
-            <p class="ml-2 mt-2" style="color:#9e9e9e" *ngIf="item.hasNumber=='true'">有货</p>
-            <p class="ml-2 mt-2" style="color:#9e9e9e" *ngIf="item.hasNumber=='false'">无货</p>
-          </div>
-        </td>
-        <td style="color:red;font-weight: bold">￥{{item.totalPrice}}</td>
-        <td>
-          <i class="fa fa-trash-o text-danger" aria-hidden="true" style="font-size: 20px;cursor: pointer;" title="删除商品" (click)="delete(item.commodityData.commodityId)"></i>
-        </td>
-      </tr>
-
-      </tbody>
-    </table>
-  </div>
-
-</div>
-<div class="row mt-2">
-  <div class="col-sm-5">
-    <button class="btn btn-default topBtn" >总价为：{{totalPrice}}</button>
-  </div>
-  <div class="col-sm-7 text-right">
-    <button class="btn btn-primary topBtn" (click)="goToPay()">结算</button>
-  </div>
-</div>
-
 <!--<app-search-loading *ngIf="isSearchLoading"></app-search-loading>-->

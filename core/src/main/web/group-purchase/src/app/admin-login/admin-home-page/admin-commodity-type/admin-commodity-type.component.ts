@@ -18,6 +18,7 @@ export class AdminCommodityTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    $("#adminCommodityType").fadeIn(g.time);
     this.bodyShow=false;
     this.getAllCommodityType();
     this.setTable();

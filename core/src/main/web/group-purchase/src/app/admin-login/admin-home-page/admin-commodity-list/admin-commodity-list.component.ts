@@ -21,6 +21,7 @@ export class AdminCommodityListComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
+    $("#adminCommodityList").fadeIn(g.time);
     this.bodyShow=false;
     this.getAllCommodityType();
     this.getCommodityByVolumeId()

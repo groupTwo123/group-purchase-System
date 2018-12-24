@@ -1,4 +1,5 @@
-<div style="margin-right: 10px;" *ngIf="!commodityListPageShow">
+<div style="display: none" id="sellerList">
+  <div style="margin-right: 10px;" *ngIf="!commodityListPageShow">
   <div class="row mt-2">
     <div class="col-sm-10" >
       <p class=" youyuan font20"><i class="fa fa-user text-primary" aria-hidden="true" style="margin-right:5px;"></i>所有商家列表：</p>
@@ -45,5 +46,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <app-admin-commodity-list (close)="closeCommodityList()" (changHeight)="scrollHeightChange()" [sellerDataObj]="sellerDataObj" *ngIf="commodityListPageShow"></app-admin-commodity-list>

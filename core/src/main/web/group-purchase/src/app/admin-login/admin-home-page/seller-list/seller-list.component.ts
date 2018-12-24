@@ -14,6 +14,7 @@ export class SellerListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("#sellerList").fadeIn(g.time);
     this.bodyShow=false;
     this.getAllSeller();
     this.setTable();

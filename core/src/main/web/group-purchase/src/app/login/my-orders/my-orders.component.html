@@ -1,96 +1,97 @@
-<div *ngIf="!isCommentShow">
-  <div class="row ml-2">
-    <div class="col-sm-1 topBox text-center " *ngFor="let item of topDataObj" >
-      <div class="insideBox " [ngClass]="{'topPick':ordersTypeChose==item.id}">
-        <p class="boxPStyle" (click)="getOrdersByType(item.id)">{{item.name}}</p>
+<div id="myOrder" style="display: none;">
+  <div *ngIf="!isCommentShow">
+    <div class="row ml-2">
+      <div class="col-sm-1 topBox text-center " *ngFor="let item of topDataObj" >
+        <div class="insideBox " [ngClass]="{'topPick':ordersTypeChose==item.id}">
+          <p class="boxPStyle" (click)="getOrdersByType(item.id)">{{item.name}}</p>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+        <div class="input-group">
+          <input type="text" class="form-control"  [(ngModel)]="searchOrder" placeholder="输入商品订单号或标题进行搜索" >
+          <span class="input-group-btn">
+              <button class="btn searchBtn btn-primary" (click)="searchOrderFun()" type="button">搜索</button>
+            </span>
+        </div>
       </div>
     </div>
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4">
-      <div class="input-group">
-        <input type="text" class="form-control"  [(ngModel)]="searchOrder" placeholder="输入商品订单号或标题进行搜索" >
-        <span class="input-group-btn">
-            <button class="btn searchBtn btn-primary" (click)="searchOrderFun()" type="button">搜索</button>
-          </span>
+    <div class="row mt-4 text-center">
+      <div class="col-sm-12 ">
+        <table class="table table-bordered table-striped" >
+          <thead>
+          <th>商品</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>实际付款</th>
+          <th>交易状态</th>
+          <th>交易操作</th>
+          </thead>
+          <tbody *ngIf="isHasData">
+          <tr *ngFor="let item of orderListDataObj[pageChose];let i=index">
+            <td>
+              <div class="row">
+                <div class="col-sm-3 text-right">
+                  <img src="{{picData[i]}}" class="imgCss">
+                </div>
+                <div class="col-sm-8 mt-2 text-left">
+                  <p ><a style="font-size: 14px;font-weight: bold">订单号:</a>&nbsp;{{item.orderData.orderId}}</p>
+                  <p ><a style="font-size: 14px;font-weight: bold">商品名称:</a>&nbsp;{{item.CommodityData.commodityName}}</p>
+                </div>
+              </div>
+            </td>
+            <td> <p class="mt-4">￥{{item.orderData.money}}</p></td>
+            <td><p class="mt-4">{{item.CommodityData.commodityPrice}}</p></td>
+            <td><p class="mt-4">￥{{item.orderData.money}}</p></td>
+            <td>
+              <p class="mt-4">{{orderState[item.orderData.state]}}</p>
+            </td>
+            <td>
+              <div *ngIf="item.orderData.state=='0'">
+                <p class=" operationCss" >去付款</p>
+                <p class=" operationCss" (click)="backCommodityShow(item)">取消订单</p>
+                <p class="operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='1'||item.orderData.state=='2'">
+                <p class=" mt-2 operationCss" (click)="backCommodityShow(item)">取消订单</p>
+                <p class="operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='3'">
+                <p class="  operationCss" (click)="backCommodityShow(item)">退货</p>
+                <p class="operationCss" (click)="showComment(item, i)">去评论</p>
+                <p class="operationCss" >商品详情</p>
+                <!--<p class="operationCss" >删除订单</p>-->
+              </div>
+              <div *ngIf="item.orderData.state=='5'||item.orderData.state=='4'">
+                <p class=" mt-4 operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='6'">
+                <p class=" mt-4 operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='7'">
+                <p class=" mt-2 operationCss" (click)="getSellerInfoByVolumeId(item)">取消退货</p>
+                <p class="operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='8'">
+                <p class=" mt-4 operationCss" >商品详情</p>
+              </div>
+              <div *ngIf="item.orderData.state=='9'">
+                <p class=" mt-4 operationCss" >商品详情</p>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-  <div class="row mt-4 text-center">
-    <div class="col-sm-12 ">
-      <table class="table table-bordered table-striped" >
-        <thead>
-        <th>商品</th>
-        <th>单价</th>
-        <th>数量</th>
-        <th>实际付款</th>
-        <th>交易状态</th>
-        <th>交易操作</th>
-        </thead>
-        <tbody *ngIf="isHasData">
-        <tr *ngFor="let item of orderListDataObj[pageChose];let i=index">
-          <td>
-            <div class="row">
-              <div class="col-sm-3 text-right">
-                <img src="{{picData[i]}}" class="imgCss">
-              </div>
-              <div class="col-sm-8 mt-2 text-left">
-                <p ><a style="font-size: 14px;font-weight: bold">订单号:</a>&nbsp;{{item.orderData.orderId}}</p>
-                <p ><a style="font-size: 14px;font-weight: bold">商品名称:</a>&nbsp;{{item.CommodityData.commodityName}}</p>
-              </div>
-            </div>
-          </td>
-          <td> <p class="mt-4">￥{{item.orderData.money}}</p></td>
-          <td><p class="mt-4">{{item.CommodityData.commodityPrice}}</p></td>
-          <td><p class="mt-4">￥{{item.orderData.money}}</p></td>
-          <td>
-            <p class="mt-4">{{orderState[item.orderData.state]}}</p>
-          </td>
-          <td>
-            <div *ngIf="item.orderData.state=='0'">
-              <p class=" operationCss" >去付款</p>
-              <p class=" operationCss" (click)="backCommodityShow(item)">取消订单</p>
-              <p class="operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='1'||item.orderData.state=='2'">
-              <p class=" mt-2 operationCss" (click)="backCommodityShow(item)">取消订单</p>
-              <p class="operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='3'">
-              <p class="  operationCss" (click)="backCommodityShow(item)">退货</p>
-              <p class="operationCss" (click)="showComment(item, i)">去评论</p>
-              <p class="operationCss" >商品详情</p>
-              <!--<p class="operationCss" >删除订单</p>-->
-            </div>
-            <div *ngIf="item.orderData.state=='5'||item.orderData.state=='4'">
-              <p class=" mt-4 operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='6'">
-              <p class=" mt-4 operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='7'">
-              <p class=" mt-2 operationCss" (click)="getSellerInfoByVolumeId(item)">取消退货</p>
-              <p class="operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='8'">
-              <p class=" mt-4 operationCss" >商品详情</p>
-            </div>
-            <div *ngIf="item.orderData.state=='9'">
-              <p class=" mt-4 operationCss" >商品详情</p>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <app-page [(pageObj)]="pageObj" [(page)]="page" [(pageChose)]="pageChose" *ngIf="isHasData"></app-page>
-  <div class="row" *ngIf="!isHasData">
-    <div class=" col-sm-12 text-center mt-2">
-      <h5 >无搜索结果</h5>
+    <app-page [(pageObj)]="pageObj" [(page)]="page" [(pageChose)]="pageChose" *ngIf="isHasData"></app-page>
+    <div class="row" *ngIf="!isHasData">
+      <div class=" col-sm-12 text-center mt-2">
+        <h5 >无搜索结果</h5>
+      </div>
     </div>
   </div>
 </div>
-
 <app-back-commodity *ngIf="backCommodityPageShow" [backCommodityData]="backCommodityData" (closeFun)="closeBackCommodity()"></app-back-commodity>
 
 <app-commment *ngIf="isCommentShow" [data]="commentData" (close)="closeComment()" (updateOrder)="updateOrder('4')" [userId]="userId"></app-commment>

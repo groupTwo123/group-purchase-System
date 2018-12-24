@@ -1,4 +1,5 @@
-<div style="margin-right: 10px;" >
+<div style="display: none" id="adminCommodityList">
+  <div style="margin-right: 10px;" >
   <div class="row mt-2">
     <div class="col-sm-11 " >
       <p class=" youyuan font20"><i class="fa fa-shopping-bag text-primary" aria-hidden="true" style="margin-right:5px;"></i>商家{{sellerDataObj.sellerName}}的商品列表</p>
@@ -40,5 +41,5 @@
     </div>
   </div>
 </div>
-
+</div>
 <app-commodity-pic *ngIf="PicPage" [picData]="PicData" (close)="PicPage=false"></app-commodity-pic>

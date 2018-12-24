@@ -21,6 +21,7 @@ export class ShoppingCardPageComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#shopCar").fadeIn(g.time);
     if(this.id==''){
       setTimeout(json=>{
         alert("请先登录");

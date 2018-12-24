@@ -24,6 +24,7 @@ export class AddArticleComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#addArticle").fadeIn(g.time);
     this.dataObj={
       commodityId:'',
       article:"",

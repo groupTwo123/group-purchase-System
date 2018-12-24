@@ -23,6 +23,7 @@ export class BusinessArticleComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#businArticle").fadeIn(g.time);
     this.bodyShow=false;
     this.getArticleById();
     this.setTable();

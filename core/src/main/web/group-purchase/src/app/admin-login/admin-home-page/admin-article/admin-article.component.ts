@@ -16,6 +16,7 @@ export class AdminArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+    $("#adminArticle").fadeIn(g.time);
     this.bodyShow=false;
     this.getArticle();
     this.setTable();

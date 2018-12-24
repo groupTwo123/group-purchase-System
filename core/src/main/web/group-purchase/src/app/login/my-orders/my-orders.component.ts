@@ -51,6 +51,7 @@ export class MyOrdersComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#myOrder").fadeIn(g.time);
     if(this.userId==''){
       setTimeout(json=>{
         alert("请先登录");

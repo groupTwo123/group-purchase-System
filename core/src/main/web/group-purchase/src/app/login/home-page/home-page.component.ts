@@ -36,6 +36,7 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("#homepage").fadeIn(g.time);
     this.checkLoginSession();
     this.getAllCommodityType();
     this.getArticle();
@@ -179,6 +180,7 @@ export class HomePageComponent implements OnInit {
   }
   //关闭个人中心页面
   closePersonCenter(){
+    $("#homepage").fadeIn(g.time);
     this.myOrdersPageShow=false;
     this.shoppingCarPageshow=false;
     this.CommodityListShow=false;

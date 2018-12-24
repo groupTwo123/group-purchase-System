@@ -27,6 +27,7 @@ export class CommodityDetailComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
+    $("#commodityDetail").fadeIn(g.time);
     this.bodyShow=false;
     this.commodityNumber=1;
     this.getCommodityPic();

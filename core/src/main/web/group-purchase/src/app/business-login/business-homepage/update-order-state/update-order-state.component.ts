@@ -23,6 +23,7 @@ export class UpdateOrderStateComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
+    $("#updateOrderState").fadeIn(g.time);
     this.getSellerInfo();
   }
 //获取商家信息

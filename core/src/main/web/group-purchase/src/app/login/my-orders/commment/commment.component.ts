@@ -15,6 +15,7 @@ export class CommmentComponent implements OnInit {
   commentType:any='2';
   constructor() { }
   ngOnChanges(){
+    $("#comment").fadeIn(g.time);
     console.log(this.data)
   }
   ngOnInit() {

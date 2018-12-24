@@ -26,6 +26,7 @@ export class CommodityListComponent implements OnInit {
     this.changeFun();
   }
   ngOnChanges(){
+    $("#commodityList").fadeIn(g.time);
     this.changeFun();
   }
 

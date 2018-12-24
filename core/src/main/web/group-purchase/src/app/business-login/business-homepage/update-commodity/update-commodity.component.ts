@@ -32,6 +32,7 @@ export class UpdateCommodityComponent implements OnInit {
     })
   }
   ngOnChanges(){
+    $("#updateCommodity").fadeIn(g.time);
     this.getPic();
     this.getAllCommodityType()
   }

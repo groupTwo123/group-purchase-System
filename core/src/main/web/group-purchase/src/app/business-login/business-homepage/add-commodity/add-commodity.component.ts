@@ -23,6 +23,7 @@ export class AddCommodityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $("#addCommodity").fadeIn(g.time);
     this.getAllCommodityType()
   }
   //获取所有商品类别

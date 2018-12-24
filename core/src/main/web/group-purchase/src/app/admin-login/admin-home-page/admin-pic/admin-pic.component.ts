@@ -15,6 +15,7 @@ export class AdminPicComponent implements OnInit {
   }
 
   ngOnInit() {
+    $("#adminPic").fadeIn(g.time);
     this.bodyShow=false;
     this.getPic();
     // this.setTable();

@@ -23,6 +23,7 @@ export class BusinessCommodityListComponent implements OnInit {
   constructor() { }
 
   ngOnChanges(){
+    $("#businCommodityList").fadeIn(globle.time);
     this.bodyShow=false;
     this.getSellerInfo();
     this.getAllCommodityType();

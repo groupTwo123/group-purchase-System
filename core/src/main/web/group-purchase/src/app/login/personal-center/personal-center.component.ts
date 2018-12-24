@@ -23,6 +23,7 @@ export class PersonalCenterComponent implements OnInit {
 
   }
   ngOnChanges(){
+    $("#app-personal-center").fadeIn(g.time);
     if(this.userId==''){
       setTimeout(json=>{
         alert("请先登录");

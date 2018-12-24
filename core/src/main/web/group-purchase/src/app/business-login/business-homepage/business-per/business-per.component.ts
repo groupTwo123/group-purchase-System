@@ -18,6 +18,7 @@ export class BusinessPerComponent implements OnInit {
   imgBase64:any=""
   constructor() { }
   ngOnChanges(){
+    $("#businessPer").fadeIn(g.time);
     this.getUserPic();
     this.getSellerInfo();
   }

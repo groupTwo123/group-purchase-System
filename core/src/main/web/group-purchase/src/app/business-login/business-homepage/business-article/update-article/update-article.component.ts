@@ -16,6 +16,7 @@ export class UpdateArticleComponent implements OnInit {
   ngOnInit() {
   }
   ngOnChanges(){
+    $("#updateArticle").fadeIn(g.time);
     for(let item in g.articleType){
       this.articleType.push(g.articleType[item]);
     }

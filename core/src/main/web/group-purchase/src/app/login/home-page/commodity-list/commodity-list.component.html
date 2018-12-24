@@ -1,94 +1,96 @@
-<div *ngIf="!commodityDetailPageShow" class="container">
-  <div class="row adverBoxCss ">
-    <div class="col-sm-2 text-center" style="background-color: #cb00cb;">
-      <p class="commodityTopPStyle" (click)="showCommodityList()" style="cursor:pointer;"> 全部商品</p>
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="row col-sm-12 ml-1">
-      <p class="searchResultPStyle">全部结果></p>
-      <p class="searchResultPStyle" *ngIf="search!=''">{{search}}></p>
-    </div>
-  </div>
-  <div class="row mt-2 indexBox">
-    <div class="col-sm-1 text-right">
-      <p style="color:#7c7c7c;font-size: 15px;font-family: SimHei;" >分类：</p>
-    </div>
-    <div class="col-sm-11">
-      <div class="row" *ngIf="!isCommodityTypeShow">
-        <div class="col-sm-2 text-center " >
-          <p class="indexP ml-2"style="width:60%;border: 1px solid silver" (click)="showType()"> <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div class="row" *ngIf="isCommodityTypeShow">
-        <div class="col-sm-2 text-center" *ngFor="let item of typeDataObj">
-          <p class="indexP" >{{item.name}}</p>
-        </div>
-        <div class="col-sm-2 text-center " >
-          <p class="indexP ml-1" style="width:60%;border: 1px solid silver"  (click)="closeType()"><i class="fa fa-chevron-up" aria-hidden="true"></i></p>
-        </div>
+<div style="display: none;" id="commodityList">
+  <div *ngIf="!commodityDetailPageShow" class="container">
+    <div class="row adverBoxCss ">
+      <div class="col-sm-2 text-center" style="background-color: #cb00cb;">
+        <p class="commodityTopPStyle" (click)="showCommodityList()" style="cursor:pointer;"> 全部商品</p>
       </div>
     </div>
+    <div class="row mt-2">
+      <div class="row col-sm-12 ml-1">
+        <p class="searchResultPStyle">全部结果></p>
+        <p class="searchResultPStyle" *ngIf="search!=''">{{search}}></p>
+      </div>
+    </div>
+    <div class="row mt-2 indexBox">
+      <div class="col-sm-1 text-right">
+        <p style="color:#7c7c7c;font-size: 15px;font-family: SimHei;" >分类：</p>
+      </div>
+      <div class="col-sm-11">
+        <div class="row" *ngIf="!isCommodityTypeShow">
+          <div class="col-sm-2 text-center " >
+            <p class="indexP ml-2"style="width:60%;border: 1px solid silver" (click)="showType()"> <i class="fa fa-chevron-down" aria-hidden="true"></i></p>
+          </div>
+        </div>
+        <div class="row" *ngIf="isCommodityTypeShow">
+          <div class="col-sm-2 text-center" *ngFor="let item of typeDataObj">
+            <p class="indexP" >{{item.name}}</p>
+          </div>
+          <div class="col-sm-2 text-center " >
+            <p class="indexP ml-1" style="width:60%;border: 1px solid silver"  (click)="closeType()"><i class="fa fa-chevron-up" aria-hidden="true"></i></p>
+          </div>
+        </div>
+      </div>
 
-  </div>
-  <div class="row mt-2 indexBox"></div>
-  <div class="row">
-    <div class="col-sm-2 recommendBox">
-      <div class="row mt-2 ml-1">
-        <p class="simHei fontSize-16 ">商品精选</p>
+    </div>
+    <div class="row mt-2 indexBox"></div>
+    <div class="row">
+      <div class="col-sm-2 recommendBox">
+        <div class="row mt-2 ml-1">
+          <p class="simHei fontSize-16 ">商品精选</p>
+        </div>
+      </div>
+      <div class="col-sm-10 text-center">
+        <div class="row selectBox ml-2">
+          <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='0'}" (click)="resetSort('0')">
+            <p class=" fontSize-13 cursor ">销量<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
+          </div>
+          <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='1'}" (click)="resetSort('1')">
+            <p class=" fontSize-13 cursor ">评论<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
+          </div>
+          <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='2'}" (click)="resetSort('2')">
+            <p class=" fontSize-13 cursor ">价格<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
+          </div>
+          <div class="col-sm-2 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='3'}" (click)="resetSort('3')">
+            <p class=" fontSize-13 cursor ">评论数<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
+          </div>
+        </div>
+        <div class="row ml-1 " *ngIf="isHasData">
+          <div class="col-sm-3 mt-2 cursor commodityBox" (click)="choseCommodity(item)" *ngFor="let item of commodityListDataObj[pageChose]">
+            <div class="row ">
+              <div class="col-sm-12 text-center">
+                <img src="{{item['picData']}}" class="commodityImg">
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-sm-12 text-left">
+                <p class="commodityPrice fontSize-25 simHei"><i class="fa fa-usd fontSize-16 mr-1"  aria-hidden="true"></i>{{item.volumeData.commodityPrice}}</p>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-sm-12 text-left">
+                <p class=" fontSize-16 simHei">{{item.volumeData.commodityName}}</p>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-sm-12 text-left">
+                <p class=" colorSilver fontSize-16 youyuan">{{item.store_name}} <i class="fa fa-building-o ml-1" aria-hidden="true" style="color: #ff68b8;"></i></p>
+              </div>
+            </div>
+          </div >
+        </div>
+        <div  *ngIf="isHasData" class=" text-center">
+          <app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>
+        </div>
+        <div class="row" *ngIf="!isHasData">
+          <div class=" col-sm-12 text-center mt-2">
+            <h5 >无搜索结果</h5>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-10 text-center">
-      <div class="row selectBox ml-2">
-        <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='0'}" (click)="resetSort('0')">
-          <p class=" fontSize-13 cursor ">销量<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
-        </div>
-        <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='1'}" (click)="resetSort('1')">
-          <p class=" fontSize-13 cursor ">评论<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
-        </div>
-        <div class="col-sm-1 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='2'}" (click)="resetSort('2')">
-          <p class=" fontSize-13 cursor ">价格<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
-        </div>
-        <div class="col-sm-2 cursor selectContent text-center" [ngClass]="{'pickSelectContent':sortWay=='3'}" (click)="resetSort('3')">
-          <p class=" fontSize-13 cursor ">评论数<i class="fa fa-long-arrow-down ml-1" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div class="row ml-1 " *ngIf="isHasData">
-        <div class="col-sm-3 mt-2 cursor commodityBox" (click)="choseCommodity(item)" *ngFor="let item of commodityListDataObj[pageChose]">
-          <div class="row ">
-            <div class="col-sm-12 text-center">
-              <img src="{{item['picData']}}" class="commodityImg">
-            </div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-sm-12 text-left">
-              <p class="commodityPrice fontSize-25 simHei"><i class="fa fa-usd fontSize-16 mr-1"  aria-hidden="true"></i>{{item.volumeData.commodityPrice}}</p>
-            </div>
-          </div>
-          <div class="row ">
-            <div class="col-sm-12 text-left">
-              <p class=" fontSize-16 simHei">{{item.volumeData.commodityName}}</p>
-            </div>
-          </div>
-          <div class="row ">
-            <div class="col-sm-12 text-left">
-              <p class=" colorSilver fontSize-16 youyuan">{{item.store_name}} <i class="fa fa-building-o ml-1" aria-hidden="true" style="color: #ff68b8;"></i></p>
-            </div>
-          </div>
-        </div >
-      </div>
-      <div  *ngIf="isHasData" class=" text-center">
-        <app-page [(page)]="page" [(pageChose)]="pageChose" [(pageObj)]="pageObj"></app-page>
-      </div>
-      <div class="row" *ngIf="!isHasData">
-        <div class=" col-sm-12 text-center mt-2">
-          <h5 >无搜索结果</h5>
-        </div>
-      </div>
-    </div>
+    <app-search-loading *ngIf="isLoading"></app-search-loading>
   </div>
-  <app-search-loading *ngIf="isLoading"></app-search-loading>
-</div>
-<div *ngIf="commodityDetailPageShow">
-  <app-commodity-detail [data]="commodityDetail" [id]="id" (close)="closeDetail()"></app-commodity-detail>
+  <div *ngIf="commodityDetailPageShow">
+    <app-commodity-detail [data]="commodityDetail" [id]="id" (close)="closeDetail()"></app-commodity-detail>
+  </div>
 </div>
