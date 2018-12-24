@@ -38,7 +38,7 @@ export class PersonalCenterComponent implements OnInit {
   getUserPic(){
     let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
     let send={
-      picId:"huangchuwen"
+      picId:this.userId
     }
     $.ajax(url,{
       data:send,
@@ -131,7 +131,7 @@ export class PersonalCenterComponent implements OnInit {
       this.imgBase64 = res;
       let url=g.namespace+"/gpsys/commodity/addCommodityPicture";
       let send={
-        picId:"huangchuwen",
+        picId:this.userId,
         picBase64:this.imgBase64,
         picType:1,
       }
