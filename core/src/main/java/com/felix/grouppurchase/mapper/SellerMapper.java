@@ -65,4 +65,8 @@ public interface SellerMapper {
     //检测是否被注册
     @Select("select * from tb_seller where seller_id=#{sellerId}")
     Seller checkIdIsRegist(@Param("sellerId") String sellerId);
+
+    //更新店铺分数
+    @Update("update tb_seller set seller_pink=#{score} where seller_id=#{sellerId}")
+    void updateSellerPink(@Param("sellerId") String sellerId,@Param("score") String score);
 }

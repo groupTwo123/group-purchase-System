@@ -59,17 +59,25 @@ export class CommodityDetailComponent implements OnInit {
               let send={
                 picId:json.data[item].id
               }
+              console.log(send)
               $.ajax(url ,{
                 data:send,
                 dataType:'jsonp',
                 success:json=>{
                   if(json.stage==1){
-                    for(let item of json.data){
-                      if(item.picType=='1'){
-                        this.articleData.picData=item.picBase64
-                        this.articleObj.push(this.articleData);
+                    if(json.data.length!=0){
+                      for(let item of json.data){
+                        if(item.picType=='1'){
+                          this.articleData.picData=item.picBase64
+                          this.articleObj.push(this.articleData);
+                        }
                       }
                     }
+                    else{
+                      this.articleData.picData='./../../../../../assets/headExample.gif'
+                      this.articleObj.push(this.articleData);
+                    }
+
                   }
                 }
               })

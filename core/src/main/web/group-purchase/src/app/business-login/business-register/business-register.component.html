@@ -47,7 +47,7 @@
               <input type="text" class="form-control" placeholder="验证码" aria-describedby="basic-addon1" [(ngModel)]="code">
             </div>
             <div class="col-sm-4 text-left">
-              <button class="btn btn-outline-success " (click)="getCode()">获取验证码</button>
+              <button class="btn btn-outline-success " *ngIf="!codeGetting"  (click)="getCode()">获取验证码</button>
               <button class="btn btn-outline-success "  *ngIf="codeGetting" disabled="disabled">重新发送（{{time}}s）</button>
             </div>
           </div>

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +60,7 @@ public class SellerServiceImpl implements ISellerService {
         Seller seller =  sellerMapper.sellerLogin(sellerId, sellerPassword);
         JsonTransfer s = new JsonTransfer();
         if (seller == null){
-            String result1 = s.result(0,ErrorCodeDesc.USER_NOEXIST,"",callback);
+            String result1 = s.result(0,"用户不存在或者账号密码输入错误","",callback);
             return result1;
         }
         HashMap<String, Object> map = new HashMap<>();
@@ -186,21 +187,36 @@ public class SellerServiceImpl implements ISellerService {
     }
 
     @Override
-    public String updateSellerPink(String sellerId, String callback) {
+    public String updateSellerPink(String volumeId, String callback) {
         JsonTransfer s= new JsonTransfer();
         String result="";
         int haoping=0;
         int zhongping=0;
         int chaping=0;
+        String score="";
         try {
-            Seller seller=sellerMapper.getSellerInfoById(sellerId);
-            List<VolumeManage> volumeManages= commodityMapper.getAllCommodityInfoById(seller.getVolumeId());
+            Seller seller=sellerMapper.getSellerInfoByVolumeId(volumeId);
+            List<VolumeManage> volumeManages= commodityMapper.getAllCommodityInfoById(volumeId);
             for(VolumeManage volumeManagePo:volumeManages){
                 List<Article> articles= commodityMapper.getAllArticleByCommodityId(volumeManagePo.getCommodityId());
                 for(Article articlePo:articles){
-
+                    Article article=commodityMapper.getArticleCountByPicIdAndCommentType(volumeManagePo.getCommodityId(),"3");
+                    haoping=haoping+Integer.parseInt(article.getCommentType());
+                    Article article1=commodityMapper.getArticleCountByPicIdAndCommentType(volumeManagePo.getCommodityId(),"2");
+                    zhongping=zhongping+Integer.parseInt(article1.getCommentType());
+                    Article article2=commodityMapper.getArticleCountByPicIdAndCommentType(volumeManagePo.getCommodityId(),"1");
+                    chaping=chaping+Integer.parseInt(article2.getCommentType());
                 }
             }
+            if( haoping==0&&zhongping==0&&chaping==0){
+                 score="10";
+            }
+            else{
+                score=String.valueOf(haoping/(haoping+zhongping+chaping)*100);
+            }
+            System.out.print(score);
+            sellerMapper.updateSellerPink(seller.getSellerId(),score);
+            result=s.result(1,"","",callback);
         }catch (Exception e){
             result=s.result(1,e.toString(),"",callback);
         }

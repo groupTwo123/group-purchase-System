@@ -151,8 +151,8 @@ public class SellerController {
      * @return:
      */
     @RequestMapping(value = "/updateSellerPink",method = RequestMethod.GET)
-    public String updateSellerPink(String sellerId, String callback){
-        return sellerService.updateSellerPink(sellerId,callback);
+    public String updateSellerPink(String volumeId, String callback){
+        return sellerService.updateSellerPink(volumeId,callback);
     }
 
 

@@ -122,8 +122,9 @@ export class ShoppingCardPageComponent implements OnInit {
             }else{
               this.dataList[index]['hasNumber']='false';
             }
-            this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*parseInt(this.dataList[index].commodityData.commodityPrice)
             this.dataList[index]['commodityNumber']=(parseInt(commodityNumber)-1).toString();
+            this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*parseInt(this.dataList[index].commodityData.commodityPrice)
+           console.log(this.dataList)
             this.setTotalPrice();
           }
           else{
@@ -157,8 +158,8 @@ export class ShoppingCardPageComponent implements OnInit {
             }else{
               this.dataList[index]['hasNumber']='false';
             }
-            this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*parseInt(this.dataList[index].commodityData.commodityPrice)
             this.dataList[index]['commodityNumber']=(parseInt(commodityNumber)+1).toString();
+            this.dataList[index]['totalPrice']=parseInt(this.dataList[index].commodityNumber)*(parseInt(this.dataList[index].commodityData.commodityPrice))
             this.setTotalPrice();
           }
           else{

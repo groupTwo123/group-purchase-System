@@ -81,7 +81,7 @@ public class UserServiceImpl implements IUserService{
             session.setAttribute("sessionLoginPassword",password);
             User user =  userMapper.userLogin(id, password);
             if (user == null){
-                result = s.result(0,"用户不存在","",callback);
+                result = s.result(0,"用户不存在或者账号密码输入错误","",callback);
                 return result;
             }
             HashMap<String, Object> map = new HashMap<>();
