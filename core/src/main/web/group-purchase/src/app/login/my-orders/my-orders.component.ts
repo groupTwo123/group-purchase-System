@@ -106,9 +106,12 @@ export class MyOrdersComponent implements OnInit {
               dataType:'jsonp',
               success:json=>{
                 if(json.stage==1){
-                  for(let item of json.data){
-                    if(item.picType=='2'){
-                      this.picData.push(item.picBase64);
+                  for(let item1 of json.data){
+                    if(item1.picType=='2'){
+                      // this.picData=[]
+                      // this.picData.push(item.picBase64);
+                      this.OrderDataList[item]['picData']=[]
+                      this.OrderDataList[item]['picData'].push(item1.picBase64)
                       break;
                     }
                   }

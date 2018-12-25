@@ -177,6 +177,11 @@
                   <i class="fa fa-chevron-circle-right boxIStyle" aria-hidden="true" ></i>
                 </div>
             </div>
+            <div class="row mt-2">
+              <div class="col-sm-12">
+                <img src="../../../assets/paihangbang.png" style="height: 300px">
+              </div>
+            </div>
           </div>
           <div class=" col-sm-4 boxStyle"  style="min-height:300px;">
             <div class="row mt-2">
@@ -188,12 +193,12 @@
               </div>
             </div>
             <div *ngIf="userWelfareShow">
-              <div class="row mt-1" *ngFor="let item of articleData['userWelfare']"  >
+              <div class="row mt-1" *ngFor="let item of articleData['userWelfare'];let i=index"  >
                 <div class="col-sm-3 ml-2 text-center" >
-                  <img src="{{item['picData']}}" class="imgCss">
+                  <img src="{{item.picData}}" class="imgCss">
                 </div>
                 <div class="col-sm-8  ">
-                  <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.articleObj.article}}</p>
+                  <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.article}}</p>
                 </div>
               </div>
             </div>
@@ -210,10 +215,10 @@
             <div *ngIf="integralShow">
               <div class="row mt-1" *ngFor="let item of articleData['integral'] ;let i=index"  >
                 <div class="col-sm-3 ml-2 text-center" >
-                  <img src="{{item['picData']}}" class="imgCss">
+                  <img src="{{item.picData}}" class="imgCss">
                 </div>
                 <div class="col-sm-8  ">
-                  <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.articleObj.article}}</p>
+                  <p class="simhei mt-2 ml-2"><a class="mr-2 mt-4 text-danger" style="font-family: SimHei ;font-weight: bold;font-size: 45px ;">{{i+1}}</a>{{item.article}}</p>
                 </div>
               </div>
             </div>

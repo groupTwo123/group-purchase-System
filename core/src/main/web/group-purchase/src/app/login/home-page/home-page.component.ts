@@ -31,6 +31,10 @@ export class HomePageComponent implements OnInit {
     userWelfare:[], //会员专享
     integral:[]//积分商城
   }
+  picData:any={
+    integral:[],
+    userWelfare:[]
+  }
   userWelfareShow:boolean=false
   integralShow:boolean=false
   constructor() { }
@@ -246,15 +250,21 @@ export class HomePageComponent implements OnInit {
                   if(json.stage==1){
                     for(let item1 of json.data){
                       if(item1.picType=='2'){
-                        dataObj.articleObj=articleObj
-                        dataObj.picData=item1.picBase64;
+                        // var str1=JSON.stringify(articleObj)
+                        // dataObj.articleObj=JSON.parse(str1);
+                        // dataObj.articleObj=articleObj
+                        // var str=JSON.stringify(item1.picBase64)
+                        // dataObj.picData=JSON.parse(str);
+                        this.articleList[item]['picData']=[]
+                        this.articleList[item]['picData'].push(item1.picBase64)
+                        this.articleData.userWelfare.push(this.articleList[item])
                         break;
                       }
                     }
                   }
                 }
               })
-              this.articleData.userWelfare.push(dataObj)
+
 
             }
             else if(this.articleList[item].type=='5' &&this.articleList[item].state=='1'){
@@ -274,15 +284,22 @@ export class HomePageComponent implements OnInit {
                   if(json.stage==1){
                     for(let item1 of json.data){
                       if(item1.picType=='2'){
-                        dataObj1.articleObj= articleObj1
-                        dataObj1.picData=item1.picBase64;
+                        // var str1=JSON.stringify(articleObj1)
+                        // dataObj1.articleObj=JSON.parse(str1);
+                        // // dataObj1.articleObj= articleObj1
+                        // var str=JSON.stringify(item1.picBase64)
+                        // dataObj1.picData=JSON.parse(str);
+                        this.articleList[item]['picData']=[]
+                        this.articleList[item]['picData'].push(item1.picBase64)
+                        this.articleData.integral.push(this.articleList[item])
+                        // this.picData.integral.push(item1.picBase64)
                         break;
                       }
                     }
                   }
                 }
               })
-              this.articleData.integral.push(dataObj1)
+              // this.articleData.integral.push(dataObj1)
 
             }
           }
