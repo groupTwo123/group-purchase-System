@@ -38,6 +38,18 @@
         <div class="row mt-2 ml-1">
           <p class="simHei fontSize-16 ">商品精选</p>
         </div>
+        <div class="row  " *ngFor="let item of data['rank'];let i=index">
+          <div class="col-sm-12">
+            <div class="row mt-2">
+              <div class="col-sm-12  text-center" >
+                <img src="{{item.picData}}" class="imgCss">
+              </div>
+              <div class="col-sm-12  text-center">
+                <p class="simhei mt-4 ml-2 font12" ><i class="fa fa-fire text-danger mr-2" aria-hidden="true"></i>{{item.commodityName}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-sm-10 text-center">
         <div class="row selectBox ml-2">

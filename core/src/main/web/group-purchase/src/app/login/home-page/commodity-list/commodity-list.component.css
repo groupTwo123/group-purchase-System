@@ -98,6 +98,9 @@
 
   height:350px;
 }
+.imgCss{
+  height: 80px;
+}
 .commodityBox:hover{
   border:1px solid silver;
 }

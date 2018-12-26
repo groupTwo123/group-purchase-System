@@ -7,6 +7,7 @@ import * as g from'./../../../type';
 })
 export class CommodityListComponent implements OnInit {
   @Input() search:any='';
+  @Input() data:any={};
   @Input() id:any='';
   typeDataObj:any;
   sortWay:any='0';    //  排序顺序，0为销量，1为评论，2为价格，3为评论数

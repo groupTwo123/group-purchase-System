@@ -197,7 +197,7 @@
                 <!--<img src="../../../assets/paihangbang.png" style="height: 300px">-->
               <!--</div>-->
             <!--</div>-->
-            <div *ngIf="rankShow">
+            <div *ngIf="rankShow" style="margin-bottom: 20px">
               <div class="row mt-2" *ngFor="let item of articleData['rank'];let i=index"  >
               <div class="col-sm-3 ml-2 text-center" >
                 <img src="{{item.picData}}" class="imgCss">
@@ -260,7 +260,7 @@
         </div>
       </div>
       <div *ngIf="CommodityListShow">
-        <app-commodity-list [search]="search" [id]="idFormParent"></app-commodity-list>
+        <app-commodity-list [search]="search" [id]="idFormParent" [data]="articleData"></app-commodity-list>
       </div>
     </div>
 
