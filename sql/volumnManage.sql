@@ -7,6 +7,7 @@ CREATE TABLE `tb_volume_manage` (
   `commodity_description` varchar(200) DEFAULT NULL COMMENT '商品描述',
   `commodity_price` double(10,2) DEFAULT NULL COMMENT '商品单价',
   `commodity_type_id` varchar(32) DEFAULT NULL COMMENT '商品类型id',
+  `pink` bigint DEFAULT 0 COMMENT '商品类型id',
   PRIMARY KEY (`id`),
   KEY `index_name` (`volume_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
