@@ -331,5 +331,16 @@ public class CommodityController {
     public String getArticgetBackReasonByOrderIdleById(String orderiId, String callback){
         return commodityService.getBackReasonByOrderId(orderiId,callback);
     }
+    /**
+     * @Author huangchuwen
+     * @Description 获取排行榜信息
+     * @Date 2018/12/26 10:00
+     * @Param limit(需要查找的数量)
+     * @return
+     **/
+    @RequestMapping(value = "/getRankData", method = RequestMethod.GET)
+    public String getRankData( String limit,String callback){
+        return commodityService.getRankData( limit,callback);
+    }
 
 }

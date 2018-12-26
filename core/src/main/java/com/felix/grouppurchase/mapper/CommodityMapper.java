@@ -186,4 +186,12 @@ public interface CommodityMapper {
     //通过评论类型和id获取评论 数量
     @Select("select count(commentType) as commentType from tb_article where  commodity_id=#{commodityId} and commentType=#{c}")
     Article getArticleCountByPicIdAndCommentType(@Param("commodityId") String commodityId,@Param("c") String c);
+
+    //设置商品分数
+    @Update("update tb_volume_manage set pink=#{totalScore} where commodity_id=#{commodityId}")
+    void setCommodityScore(@Param("totalScore") double totalScore,@Param("commodityId") String commodityId);
+
+    //查询排行榜数据
+    @Select("select * from tb_volume_manage  ORDER BY pink DESC limit #{index}")
+    List<VolumeManage> getCommodityByLimit(@Param("index") int index);
 }

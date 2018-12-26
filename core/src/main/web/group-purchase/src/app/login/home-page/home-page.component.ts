@@ -29,26 +29,73 @@ export class HomePageComponent implements OnInit {
     promotion:[], //促销
     notice:[], //公告
     userWelfare:[], //会员专享
-    integral:[]//积分商城
+    integral:[],//积分商城
+    rank:[]   //排行榜
   }
   picData:any={
     integral:[],
     userWelfare:[]
   }
   userWelfareShow:boolean=false
-  integralShow:boolean=false
+  integralShow:boolean=false;
+  rankShow:boolean=false;
   constructor() { }
 
   ngOnInit() {
     $("#homepage").fadeIn(g.time);
+    this.getRankData();
     this.checkLoginSession();
     this.getAllCommodityType();
     this.getArticle();
-    $('.carousel').carousel({  interval: 2000})
+    $('.carousel').carousel({  interval: 1500})
     if(this.usernameFromParent==''||this.idFormParent==''){
 
     }
 
+  }
+  //获取排行榜数
+  getRankData(){
+    this.rankShow=false;
+    let url=g.namespace+"/gpsys/commodity/getRankData";
+    let send={
+      limit:"3"
+    }
+    $.ajax(url,{
+      data:send,
+      dataType:'jsonp',
+      success:json=>{
+        this.articleData.rank=[]
+        if(json.stage==1){
+          // console.log(json.data)
+          for(let item in json.data){
+            let url=g.namespace+"/gpsys/commodity/getCommodityPicById";
+            let send={
+              picId:json.data[item].commodityId
+            }
+            $.ajax(url,{
+              data:send,
+              dataType:'jsonp',
+              success:json1=>{
+                if(json1.stage==1){
+                  for(let item1 of json1.data){
+                    if(item1.picType=='2'){
+                      json.data[item]['picData']=""
+                      json.data[item]['picData']=item1.picBase64
+                      this.articleData.rank.unshift(json.data[item])
+                      // console.log(this.articleData.rank)
+                      break;
+                    }
+                  }
+                }
+              }
+            })
+          }
+          setTimeout(json=>{
+            this.rankShow=true;
+          },200)
+        }
+      }
+    })
   }
 
   //查询session是否有登录信息
@@ -129,7 +176,7 @@ export class HomePageComponent implements OnInit {
         data:send,
         dataType:'jsonp',
         success:json=>{
-          console.log(json)
+
           if(json.stage==1){
             window.location.reload();
           }
@@ -225,7 +272,6 @@ export class HomePageComponent implements OnInit {
       success:json=>{
         if(json.stage==1){
           this.articleList=json.data;
-          console.log(this.articleList)
           for(let item in this.articleList){
             if(this.articleList[item].type=='2' &&this.articleList[item].state=='1'){
               this.articleData.promotion.push(this.articleList[item])

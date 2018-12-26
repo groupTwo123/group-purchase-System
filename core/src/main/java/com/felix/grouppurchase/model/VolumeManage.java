@@ -15,6 +15,7 @@ public class VolumeManage implements Serializable {
     private String commodityDescription;
     private String commodityPrice;
     private String commodityTypeId;
+    private String pink;
 
     public Integer getId() {
         return id;
@@ -78,5 +79,13 @@ public class VolumeManage implements Serializable {
 
     public void setCommodityTypeId(String commodityTypeId) {
         this.commodityTypeId = commodityTypeId;
+    }
+
+    public String getPink() {
+        return pink;
+    }
+
+    public void setPink(String pink) {
+        this.pink = pink;
     }
 }

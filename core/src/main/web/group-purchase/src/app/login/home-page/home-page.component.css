@@ -46,10 +46,10 @@
   font-size: 15px;
   letter-spacing:5px;
 }
-.classificationHeight{
-  height: 460px;
+/*.classificationHeight{*/
+  /*height: 460px;*/
 
-}
+/*}*/
 .classificationLeft{
   background-color: #fffefd;
   box-shadow: 0px 0px 10px #888888;
@@ -123,6 +123,9 @@
   height: 600px;
 }
 .font12{
+  font-size: 14px;
+}
+.font10{
   font-size: 10px;
 }
 .fontColorGrey{
@@ -135,7 +138,24 @@
   font-family: SimHei;
 }
 .imgCss{
-  height: 100px;
+  height: 80px;
+}
+.spanCss{
+
+  border-radius: 3px;
+  height: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  color:white;
+
+}
+.colorRed{
+  background-color: #ff5351;
+}
+.colorGreen{
+  background-color: #4cacf9;
 }
 
 input::-webkit-input-placeholder { /* WebKit browsers */

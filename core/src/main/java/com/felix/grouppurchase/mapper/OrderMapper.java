@@ -73,4 +73,12 @@ public interface OrderMapper {
     //根据商品id查找订单
     @Select("select * from tb_order where order_id=#{orderId}")
     Order getCommodityByOrderId(@Param("orderId") String orderId);
+
+    //通过商品id获取订单数
+    @Select("select count(order_id) as order_id from tb_order where commodity_id=#{commodityId}")
+    Order getOrderNumByCommodityId(@Param("commodityId") String commodityId);
+
+    //获取所有订单数量
+    @Select("select count(order_id) as order_id from tb_order")
+    Order getAllOrderNum();
 }

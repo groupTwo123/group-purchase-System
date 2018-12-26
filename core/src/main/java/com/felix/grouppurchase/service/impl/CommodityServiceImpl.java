@@ -1,6 +1,7 @@
 package com.felix.grouppurchase.service.impl;
 
 import com.felix.grouppurchase.mapper.CommodityMapper;
+import com.felix.grouppurchase.mapper.OrderMapper;
 import com.felix.grouppurchase.mapper.SellerMapper;
 import com.felix.grouppurchase.model.*;
 import com.felix.grouppurchase.service.ICommodityService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,8 @@ public class CommodityServiceImpl  implements ICommodityService {
     CommodityMapper commodityMapper;
     @Autowired
     SellerMapper sellerMapper;
+    @Autowired
+    OrderMapper orderMapper;
 
     @Override
     public String getAllCommodityType(String callback){
@@ -438,6 +442,39 @@ public class CommodityServiceImpl  implements ICommodityService {
             result=s.result(0,e.toString(),"",callback);
         }
         return result;
+    }
+
+    @Override
+    public String getRankData(String limit,String callback) {
+        JsonTransfer s= new JsonTransfer();
+        String result="";
+        //排行榜定义存储x条数据
+        int index=Integer.parseInt(limit);
+        try {
+            List<VolumeManage> volumeManages=commodityMapper.getAllCommodity();
+            for(VolumeManage volumeManage:volumeManages){
+                double totalScore=0;
+                double sellerScore=0;
+                double orderScore=0;
+                //分数机制：4（店铺分数[通过评论类型比例计算]）：6(购买数量/所有订单数量)*100 百分制
+                Seller seller=sellerMapper.getSellerInfoByVolumeId(volumeManage.getVolumeId());
+                sellerScore=seller.getSellerPink();
+                Order order=orderMapper.getOrderNumByCommodityId(volumeManage.getCommodityId());
+                Order order1=orderMapper.getAllOrderNum();
+                orderScore=((Double.valueOf(order.getOrderId()))/(Double.valueOf(order1.getOrderId())))*100;
+                System.out.print(orderScore);
+                totalScore=((sellerScore/10)*4)+((orderScore/10)*6);
+                commodityMapper.setCommodityScore(totalScore,volumeManage.getCommodityId());
+                System.out.print(totalScore);
+                System.out.print(sellerScore);
+                System.out.print(orderScore);
+            }
+            List<VolumeManage> volumeManageList=commodityMapper.getCommodityByLimit( (index));
+            result=s.result(1,"",volumeManageList,callback);
+        }catch (Exception e){
+            result=s.result(0,e.toString(),"",callback);
+        }
+        return  result;
     }
 
 }

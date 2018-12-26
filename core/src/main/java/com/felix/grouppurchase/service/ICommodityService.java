@@ -93,4 +93,7 @@ public interface ICommodityService {
 
     //通过商品id和类型获取文章列表
     String getArticleByCommodityId(String commodityId, String type, String callback);
+
+    //获取排行榜信息
+    String getRankData(String limit,String callback);
 }
