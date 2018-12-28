@@ -116,10 +116,34 @@ export class LoginComponent implements OnInit {
           type:"POST",
           success:json=>{
             if(json.stage==1){
-              alert("登录成功")
+              // alert("登录成功")
               this.id=json.data.id;
               this.username=json.data.userName;
-              this.homePageShow=true;
+              this.password=json.data.password;
+              let url="http://localhost:8080/gpsys/user/login";
+              let send={
+                id:this.id,
+                password:this.password,
+                isOut:"0"
+              };
+              $.ajax(url,{
+                  data:send,
+                  dataType:"jsonp",
+                  jsonp:"callback",
+                  type:"GET",
+                  success:json=>{
+                    if(json.stage=='1'){
+                      alert('登录成功');
+                      this.homePageShow=true;
+
+                    }
+                    else{
+                      alert("登录失败："+json.msg);
+                    }
+                  }
+                }
+              )
+
             }
             else{
               alert("登录失败:"+json.msg);
